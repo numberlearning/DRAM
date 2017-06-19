@@ -1,0 +1,192 @@
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f339bebb5c0>: The input_size parameter is deprecated.
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f3379ee8b38>: The input_size parameter is deprecated.
+2017-06-19 12:03:47.623624: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-19 12:03:47.623653: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-19 12:03:47.623658: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-19 12:03:47.623662: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-19 12:03:47.623666: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+['DRAMcopy8-number_learning_input.py', 'true', 'false', 'true', 'false', 'true', 'true', 'number_learning_lr_point_two/classify_log.csv', 'number_learning_lr_point_two/classifymodel_.ckpt', 'number_learning_lr_point_two/classifymodel_', 'number_learning_lr_point_two/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+read/w:0
+read/b:0
+z/w:0
+z/b:0
+hidden1/w:0
+hidden1/b:0
+hidden2/w:0
+hidden2/b:0
+Neg_21:0
+[<tf.Variable 'read/w:0' shape=(256, 5) dtype=float32_ref>, <tf.Variable 'read/b:0' shape=(5,) dtype=float32_ref>, <tf.Variable 'z/w:0' shape=(256, 9) dtype=float32_ref>, <tf.Variable 'z/b:0' shape=(9,) dtype=float32_ref>, <tf.Variable 'hidden1/w:0' shape=(256, 256) dtype=float32_ref>, <tf.Variable 'hidden1/b:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'hidden2/w:0' shape=(256, 9) dtype=float32_ref>, <tf.Variable 'hidden2/b:0' shape=(9,) dtype=float32_ref>]
+Traceback (most recent call last):
+  File "DRAMcopy8-number_learning_input.py", line 415, in <module>
+    train_data.get_train()
+  File "/home/sychen23/DRAM/load_input.py", line 27, in get_train
+    self.images, self.labels = create_data.generate_data(i)
+  File "/home/sychen23/DRAM/create_data.py", line 57, in generate_data
+    train[i] = a
+UnboundLocalError: local variable 'train' referenced before assignment
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7fa429b17c18>: The input_size parameter is deprecated.
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7fa4057bbb38>: The input_size parameter is deprecated.
+2017-06-19 13:34:14.948110: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-19 13:34:14.948151: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-19 13:34:14.948157: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-19 13:34:14.948161: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-19 13:34:14.948166: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+['DRAMcopy8-number_learning_input.py', 'true', 'false', 'true', 'false', 'true', 'true', 'number_learning_lr_point_two/classify_log.csv', 'number_learning_lr_point_two/classifymodel_.ckpt', 'number_learning_lr_point_two/classifymodel_', 'number_learning_lr_point_two/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+filterbank: 
+grid_i.shape:  (1, 5)
+a.shape:  (1, 1, 100)
+b.shape:  (1, 1, 100)
+Fx.shape: (100, 5, 100)
+Fxt.shape: (100, 100, 5)
+img.shape: (100, 100, 100)
+read/w:0
+read/b:0
+z/w:0
+z/b:0
+hidden1/w:0
+hidden1/b:0
+hidden2/w:0
+hidden2/b:0
+Neg_21:0
+[<tf.Variable 'read/w:0' shape=(256, 5) dtype=float32_ref>, <tf.Variable 'read/b:0' shape=(5,) dtype=float32_ref>, <tf.Variable 'z/w:0' shape=(256, 9) dtype=float32_ref>, <tf.Variable 'z/b:0' shape=(9,) dtype=float32_ref>, <tf.Variable 'hidden1/w:0' shape=(256, 256) dtype=float32_ref>, <tf.Variable 'hidden1/b:0' shape=(256,) dtype=float32_ref>, <tf.Variable 'hidden2/w:0' shape=(256, 9) dtype=float32_ref>, <tf.Variable 'hidden2/b:0' shape=(9,) dtype=float32_ref>]
+Traceback (most recent call last):
+  File "DRAMcopy8-number_learning_input.py", line 415, in <module>
+    train_data.get_train()
+  File "/home/sychen23/DRAM/load_input.py", line 27, in get_train
+    self.images, self.labels = create_data.generate_data(i)
+  File "/home/sychen23/DRAM/create_data.py", line 57, in generate_data
+    train[i] = a
+UnboundLocalError: local variable 'train' referenced before assignment

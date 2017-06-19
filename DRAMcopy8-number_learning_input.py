@@ -41,7 +41,7 @@ enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
 pretrain_iters = 10000000
 train_iters = 10000000 # train forever . . .
-learning_rate = .2 # learning rate for optimizer
+learning_rate = 1e-1 # learning rate for optimizer
 eps = 1e-8 # epsilon for numerical stability
 pretrain = str2bool(sys.argv[11]) #False
 classify = str2bool(sys.argv[12]) #True
@@ -204,8 +204,7 @@ def binary_crossentropy(t,o):
 
 
 def evaluate():
-    data = load_input.InputData("data")
-    # data.load_sample()
+    data = load_input.InputData()
     data.get_test(1)
     batches_in_epoch = len(data.images) // batch_size
     print("batches_in_epoch: ", batches_in_epoch)
@@ -412,7 +411,7 @@ if classify:
         tf.variables_initializer(varsToTrain).run()
 
 
-    train_data = load_input.InputData("data")
+    train_data = load_input.InputData()
     train_data.get_train()
     fetches2=[]
     fetches2.extend([reward,train_op2])
@@ -433,8 +432,7 @@ if classify:
 
             if i%1000==0:
                 # train_data = mnist.input_data.read_data_sets("mnist", one_hot=True).train
-                train_data = load_input.InputData("data")
-                # train_data.load_sample()
+                train_data = load_input.InputData()
                 train_data.get_train()
      
                 if i %10000==0:

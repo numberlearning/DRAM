@@ -22,7 +22,7 @@ class InputData(object):
         self.length = 0
 
 
-    def get_train(self, i):
+    def get_train(self, i=None):
         """Generate and get train images and labels."""
         self.images, self.labels = create_data.generate_data(i)
         self.length = len(self.images)

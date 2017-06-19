@@ -19,16 +19,29 @@ def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
 
 
-folder_name = "number_learning_lr_point_two"
+folder_name = "number_learning_lr_tenth"
+start_restore_index = 0
 
 sys.argv = [sys.argv[0], "true", "false", "true", "false", "true", "true",
 folder_name + "/classify_log.csv",
-folder_name + "/classifymodel_.ckpt",
+folder_name + "/classifymodel_" + str(start_restore_index) + ".ckpt",
 folder_name + "/classifymodel_",
 folder_name + "/zzzdraw_data_5000.npy",
 "false", "true", "false", "false", "true"]
 print(sys.argv)
 
+pretrain_iters = 10000000
+train_iters = 10000000 # train forever . . .
+learning_rate = .2 # learning rate for optimizer
+eps = 1e-8 # epsilon for numerical stability
+rigid_pretrain = True
+log_filename = sys.argv[7]
+load_file = sys.argv[8]
+save_file = sys.argv[9]
+draw_file = sys.argv[10]
+pretrain = str2bool(sys.argv[11]) #False
+classify = str2bool(sys.argv[12]) #True
+pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
@@ -39,19 +52,7 @@ glimpses = 10
 batch_size = 100 # training minibatch size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
-pretrain_iters = 10000000
-train_iters = 10000000 # train forever . . .
-learning_rate = .2 # learning rate for optimizer
-eps = 1e-8 # epsilon for numerical stability
-pretrain = str2bool(sys.argv[11]) #False
-classify = str2bool(sys.argv[12]) #True
-pretrain_restore = False
 restore = str2bool(sys.argv[14])
-rigid_pretrain = True
-log_filename = sys.argv[7] #"folder_name/classify_weird_from_20000_log.csv"
-load_file = sys.argv[8] #"folder_name/drawmodel20000.ckpt"
-save_file = sys.argv[9] #"folder_name/classifymodel_weird_from_20000_"
-draw_file = sys.argv[10] #"folder_name/zzzdraw_data_5000.npy"
 start_non_restored_from_random = str2bool(sys.argv[15])
 
 
@@ -111,28 +112,24 @@ def attn_window(scope,h_dec,N):
     return filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),)
 
 
-def read(x,h_dec_prev):
-    Fx,Fy,gamma=attn_window("read",h_dec_prev,read_n)
-    def filter_img(img,Fx,Fy,gamma,N):
-        print("Fx.shape:", Fx.shape)
+def read(x, h_dec_prev):
+    stats = Fx, Fy, gamma = attn_window("read", h_dec_prev, read_n)
 
-        Fxt=tf.transpose(Fx,perm=[0,2,1])
-        print("Fxt.shape:", Fxt.shape)
+    def filter_img(img, Fx, Fy, gamma, N):
+        Fxt = tf.transpose(Fx,perm=[0,2,1])
+        img = tf.reshape(img,[-1,dims[1],dims[0]])
+        glimpse = tf.matmul(Fy, tf.matmul(img,Fxt))
+        glimpse = tf.reshape(glimpse,[-1,N*N])
+        return glimpse * tf.reshape(gamma,[-1,1])
 
-        img=tf.reshape(img,[-1,dims[1],dims[0]])
-        print("img.shape:", img.shape)
-
-        glimpse=tf.matmul(Fy, tf.matmul(img,Fxt))
-        glimpse=tf.reshape(glimpse,[-1,N*N])
-        return glimpse*tf.reshape(gamma,[-1,1])
-    x=filter_img(x,Fx,Fy,gamma,read_n) # batch x (read_n*read_n)
-    return tf.concat([x], 1) # concat along feature axis
-
+    x = filter_img(x, Fx, Fy, gamma, read_n) # batch x (read_n*read_n)
+    return tf.concat([x], 1), stats # concat along feature axis
 
 
 def write(h_dec):
     with tf.variable_scope("write",reuse=REUSE):
         return linear(h_dec,img_size)
+
 
 def convertTranslated(images):
     newimages = []
@@ -145,6 +142,7 @@ def convertTranslated(images):
         image = np.reshape(image, (100*100))
         newimages.append(image)
     return newimages
+
 
 def dense_to_one_hot(labels_dense, num_classes=z_size):
     # copied from TensorFlow tutorial
@@ -163,14 +161,15 @@ enc_state=lstm_enc.zero_state(batch_size, tf.float32)
 dec_state=lstm_dec.zero_state(batch_size, tf.float32)
 
 pqs = []
+classifications = []
 
 for glimpse in range(glimpses):
-    r=read(x,h_dec_prev)
+    r, stats = read(x, h_dec_prev)
     with tf.variable_scope("encoder", reuse=REUSE):
         h_enc, enc_state = lstm_enc(tf.concat([r,h_dec_prev], 1), enc_state)
     
     with tf.variable_scope("z",reuse=REUSE):
-        z=linear(h_enc,z_size)
+        z = linear(h_enc,z_size)
 
     with tf.variable_scope("decoder", reuse=REUSE):
         h_dec, dec_state = lstm_dec(z, dec_state)
@@ -185,12 +184,29 @@ for glimpse in range(glimpses):
         hidden = tf.nn.relu(linear(h_dec_prev, 256))
     with tf.variable_scope("hidden2",reuse=REUSE):
         classification = tf.nn.softmax(linear(hidden, z_size))
+        classifications.append({
+            "classification": classification,
+            "stats": stats,
+            "r": r,
+            "enc_state": enc_state,
+            "dec_state": dec_state,
+            "enc_gates": enc_gates,
+            "dec_gates": dec_gates,
+            # "Fx": Fx,
+            # "Fy": Fy,
+            # "gamma": gamma,
+        })
     pq = tf.log(classification + 1e-5) * onehot_labels
     pq = tf.reduce_mean(pq, 0)
     pqs.append(pq)
 
     REUSE=True
 
+print("len(pqs): ", len(pqs))
+print("The below are a_pq in pqs")
+for a_pq in pqs:
+    print(a_pq)
+print("The above are a_pq in pqs")
 predquality = tf.reduce_mean(pqs)
 correct = tf.arg_max(onehot_labels, 1)
 prediction = tf.arg_max(classification, 1)
@@ -205,7 +221,6 @@ def binary_crossentropy(t,o):
 
 def evaluate():
     data = load_input.InputData("data")
-    # data.load_sample()
     data.get_test()
     batches_in_epoch = len(data.images) // batch_size
     print("batches_in_epoch: ", batches_in_epoch)
@@ -236,6 +251,7 @@ predcost = -predquality
 
 ##################
 
+
 with tf.variable_scope("optimizer", reuse=None):
     optimizer=tf.train.AdamOptimizer(learning_rate, beta1=0.5)
     grads=optimizer.compute_gradients(reconstruction_loss)
@@ -246,6 +262,7 @@ with tf.variable_scope("optimizer", reuse=None):
 
 varsToTrain = []
 
+
 if str2bool(sys.argv[1]):
     
     with tf.variable_scope("read",reuse=True):
@@ -255,7 +272,6 @@ if str2bool(sys.argv[1]):
         varsToTrain.append(b)
 
 
-
 if str2bool(sys.argv[2]):
     
     with tf.variable_scope("encoder/LSTMCell",reuse=True):
@@ -263,8 +279,6 @@ if str2bool(sys.argv[2]):
         varsToTrain.append(w)
         b = tf.get_variable("B")
         varsToTrain.append(b)
-            
-
 
 
 if str2bool(sys.argv[3]):
@@ -305,13 +319,7 @@ if str2bool(sys.argv[6]):
         varsToTrain.append(b)
 
 
-
-
-
-
-
-
-
+###############################################################################
 
 
 with tf.variable_scope("optimizer2", reuse=None):
@@ -401,11 +409,10 @@ if classify:
     
     saver = tf.train.Saver()
     tf.global_variables_initializer().run()
-    start_restore_idx = 0
 
     if restore:
         saver.restore(sess, load_file)
-        start_restore_idx = int(load_file[len(save_file):-len(".ckpt")])
+        # start_restore_index = int(load_file[len(save_file):-len(".ckpt")])
 
 
     if start_non_restored_from_random:
@@ -422,7 +429,7 @@ if classify:
     extra_time = 0
 
 
-    for i in range(start_restore_idx, train_iters):
+    for i in range(start_restore_index, train_iters):
         xtrain, ytrain =train_data.next_batch(batch_size)
         feed_dict={x:xtrain, onehot_labels:ytrain}
         results=sess.run(fetches2,feed_dict)
