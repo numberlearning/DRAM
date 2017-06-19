@@ -62,8 +62,11 @@ REUSE=None
 
 x = tf.placeholder(tf.float32,shape=(batch_size,img_size))
 onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, z_size))
-lstm_enc = tf.contrib.rnn.LSTMCell(enc_size, read_size+dec_size) # encoder Op
-lstm_dec = tf.contrib.rnn.LSTMCell(dec_size, z_size) # decoder Op
+lstm_enc = custom_lstm.LSTMCell(enc_size, read_size+dec_size, state_is_tuple) # encoder Op
+lstm_dec = custom_lstm.LSTMCell(dec_size, z_size) # decoder Op
+
+# lstm_enc = tf.contrib.rnn.LSTMCell(enc_size, read_size+dec_size) # encoder Op
+# lstm_dec = tf.contrib.rnn.LSTMCell(dec_size, z_size) # decoder Op
 
 def linear(x,output_dim):
     """
@@ -166,13 +169,13 @@ classifications = []
 for glimpse in range(glimpses):
     r, stats = read(x, h_dec_prev)
     with tf.variable_scope("encoder", reuse=REUSE):
-        h_enc, enc_state = lstm_enc(tf.concat([r,h_dec_prev], 1), enc_state)
+        h_enc, enc_state, enc_gates = lstm_enc(tf.concat([r,h_dec_prev], 1), enc_state)
     
     with tf.variable_scope("z",reuse=REUSE):
         z = linear(h_enc,z_size)
 
     with tf.variable_scope("decoder", reuse=REUSE):
-        h_dec, dec_state = lstm_dec(z, dec_state)
+        h_dec, dec_state, dec_gates = lstm_dec(z, dec_state)
 
     with tf.variable_scope("write", reuse=REUSE):
         outputs[glimpse] = linear(h_dec, img_size)
@@ -221,7 +224,7 @@ def binary_crossentropy(t,o):
 
 def evaluate():
     data = load_input.InputData("data")
-    data.get_test()
+    data.get_test(1)
     batches_in_epoch = len(data.images) // batch_size
     print("batches_in_epoch: ", batches_in_epoch)
     accuracy = 0

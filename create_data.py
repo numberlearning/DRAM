@@ -5,13 +5,13 @@ import random
 c = 1
 total = 0
 while (c < 10):
-   cN = int(10000/(c * c))
+   cN = int(10000/c)
    total = total + cN
    c = c + 1
 
 def set_size(num_blobs, even=None):
     if even is None:
-        return int(10000/(num_blobs * num_blobs))
+        return int(10000/num_blobs)
     else:
         return 100
  
