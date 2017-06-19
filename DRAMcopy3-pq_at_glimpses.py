@@ -21,7 +21,7 @@ sys.argv = [sys.argv[0], "true", "false", "true", "false", "true", "true",
 "pq_at_glimpses/classifymodel_weird_from_20000_70000.ckpt",
 "pq_at_glimpses/classifymodel_weird_from_20000_",
 "pq_at_glimpses/zzzdraw_data_5000.npy",
-"false", "true", "true", "true", "true"]
+"false", "true", "true", "false", "true"]
 print(sys.argv[0])
 print(sys.argv[1])
 translated = str2bool(sys.argv[13]) #True
@@ -160,7 +160,7 @@ h_enc_prev=tf.zeros((batch_size,enc_size))
 enc_state=lstm_enc.zero_state(batch_size, tf.float32)
 dec_state=lstm_dec.zero_state(batch_size, tf.float32)
 
-pqs = []
+pqs = list()
 
 for glimpse in range(glimpses):
     r=read(x,h_dec_prev)
@@ -187,6 +187,7 @@ for glimpse in range(glimpses):
     pq = tf.reduce_mean(pq, 0)
     pqs.append(pq)
     
+    print(len(pqs))
     REUSE=True
 
 print(pqs)

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 
-
 import tensorflow as tf
 from tensorflow.examples.tutorials import mnist
 import numpy as np
@@ -12,42 +11,47 @@ import time
 import sys
 import load_input
 
+
 FLAGS = tf.flags.FLAGS
+
 
 def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
 
+
+folder_name = "number_learning_lr_point_two"
+
 sys.argv = [sys.argv[0], "true", "false", "true", "false", "true", "true",
-"number_learning/classify_log.csv",
-"number_learning/classifymodel_.ckpt",
-"number_learning/classifymodel_",
-"number_learning/zzzdraw_data_5000.npy",
+folder_name + "/classify_log.csv",
+folder_name + "/classifymodel_.ckpt",
+folder_name + "/classifymodel_",
+folder_name + "/zzzdraw_data_5000.npy",
 "false", "true", "false", "false", "true"]
-print(sys.argv[0])
-print(sys.argv[1])
+print(sys.argv)
+
 translated = str2bool(sys.argv[13])
 dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
 read_n = 5 # read glimpse grid width/height
 read_size = read_n*read_n
-z_size=9 # QSampler output size
-glimpses=10
-batch_size=100 # training minibatch size
+z_size = 9 # QSampler output size
+glimpses = 10
+batch_size = 100 # training minibatch size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
-pretrain_iters=10000000
-train_iters=10000000 # train forever . . .
-learning_rate=2 # learning rate for optimizer
-eps=1e-8 # epsilon for numerical stability
+pretrain_iters = 10000000
+train_iters = 10000000 # train forever . . .
+learning_rate = .2 # learning rate for optimizer
+eps = 1e-8 # epsilon for numerical stability
 pretrain = str2bool(sys.argv[11]) #False
 classify = str2bool(sys.argv[12]) #True
 pretrain_restore = False
 restore = str2bool(sys.argv[14])
 rigid_pretrain = True
-log_filename = sys.argv[7] #"translatedplain/classify_weird_from_20000_log.csv"
-load_file = sys.argv[8] #"translatedplain/drawmodel20000.ckpt"
-save_file = sys.argv[9] #"translatedplain/classifymodel_weird_from_20000_"
-draw_file = sys.argv[10] #"translatedplain/zzzdraw_data_5000.npy"
+log_filename = sys.argv[7] #"folder_name/classify_weird_from_20000_log.csv"
+load_file = sys.argv[8] #"folder_name/drawmodel20000.ckpt"
+save_file = sys.argv[9] #"folder_name/classifymodel_weird_from_20000_"
+draw_file = sys.argv[10] #"folder_name/zzzdraw_data_5000.npy"
 start_non_restored_from_random = str2bool(sys.argv[15])
 
 
@@ -56,7 +60,7 @@ start_non_restored_from_random = str2bool(sys.argv[15])
 REUSE=None
 
 x = tf.placeholder(tf.float32,shape=(batch_size,img_size))
-onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, 9))
+onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, z_size))
 lstm_enc = tf.contrib.rnn.LSTMCell(enc_size, read_size+dec_size) # encoder Op
 lstm_dec = tf.contrib.rnn.LSTMCell(dec_size, z_size) # decoder Op
 
@@ -142,7 +146,7 @@ def convertTranslated(images):
         newimages.append(image)
     return newimages
 
-def dense_to_one_hot(labels_dense, num_classes=9):
+def dense_to_one_hot(labels_dense, num_classes=z_size):
     # copied from TensorFlow tutorial
     num_labels = labels_dense.shape[0]
     index_offset = np.arange(num_labels) * num_classes
@@ -180,7 +184,7 @@ for glimpse in range(glimpses):
     with tf.variable_scope("hidden1",reuse=REUSE):
         hidden = tf.nn.relu(linear(h_dec_prev, 256))
     with tf.variable_scope("hidden2",reuse=REUSE):
-        classification = tf.nn.softmax(linear(hidden, 9))
+        classification = tf.nn.softmax(linear(hidden, z_size))
     pq = tf.log(classification + 1e-5) * onehot_labels
     pq = tf.reduce_mean(pq, 0)
     pqs.append(pq)
@@ -401,7 +405,7 @@ if classify:
 
     if restore:
         saver.restore(sess, load_file)
-        start_restore_idx = int(load_file[len("translatedplain_restore/classifymodel_wierd_from_20000_"):-len(".ckpt")])
+        start_restore_idx = int(load_file[len(save_file):-len(".ckpt")])
 
 
     if start_non_restored_from_random:
@@ -423,26 +427,29 @@ if classify:
         feed_dict={x:xtrain, onehot_labels:ytrain}
         results=sess.run(fetches2,feed_dict)
         reward_fetched,_=results
+
         if i%100==0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
-            if i %1000==0:
+
+            if i%1000==0:
                 # train_data = mnist.input_data.read_data_sets("mnist", one_hot=True).train
                 train_data = load_input.InputData("data")
                 # train_data.load_sample()
                 train_data.get_train()
-                
-                start_evaluate = time.clock()
-                test_accuracy = evaluate()
-                saver = tf.train.Saver(tf.global_variables())
-                print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
-                extra_time = extra_time + time.clock() - start_evaluate
-                print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
-                if i == 0:
-                    log_file = open(log_filename, 'w')
-                else:
-                    log_file = open(log_filename, 'a')
-                log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
-                log_file.close()
+     
+                if i %10000==0:
+                    start_evaluate = time.clock()
+                    test_accuracy = evaluate()
+                    saver = tf.train.Saver(tf.global_variables())
+                    print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
+                    extra_time = extra_time + time.clock() - start_evaluate
+                    print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
+                    if i == 0:
+                        log_file = open(log_filename, 'w')
+                    else:
+                        log_file = open(log_filename, 'a')
+                    log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
+                    log_file.close()
 
 
 
