@@ -22,15 +22,15 @@ class InputData(object):
         self.length = 0
 
 
-    def get_train(self, i=None):
+    def get_train(self, even=None):
         """Generate and get train images and labels."""
-        self.images, self.labels = create_data.generate_data(i)
+        self.images, self.labels = create_data.generate_data(even)
         self.length = len(self.images)
 
 
-    def get_test(self, i=None):
+    def get_test(self, even=None):
         """Generate and get train images and labels."""
-        self.get_train(i)
+        self.get_train(even)
 
 
     def load_sample(self):
