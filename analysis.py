@@ -16,13 +16,16 @@ from scipy.spatial.distance import cosine, euclidean
 from sklearn.manifold import TSNE
 from scipy.linalg import norm
 
+output_size = 9
+glimpses = 10
 sess_config = tf.ConfigProto()
 sess_config.gpu_options.allow_growth = True
 sess = tf.InteractiveSession(config=sess_config)
 
 saver = tf.train.Saver()
 
-data = mnist.input_data.read_data_sets("mnist", one_hot=True).test
+data = load_input.InputData()
+data.get_test(1)
 
 def random_image():
     num_images = len(data.images)
@@ -32,8 +35,8 @@ def random_image():
     return translated[0], data.labels[i]
 
 def load_checkpoint(it, human):
-    path = "attention-run" if human else "combined-run"
-    saver.restore(sess, "%s/save_%d.ckpt" % (path, it))
+    path = "number_learning_lr_tenth"
+    saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 last_image = None
 
@@ -78,57 +81,16 @@ def classify_image(it, new_image):
     load_checkpoint(it, human=False)
     machine_cs = sess.run(classifications, feed_dict={x: img.reshape(1, 10000)})
 
-    # print_distances(state_to_cell_array(machine_cs, "enc_state"), "machine enc")
-    # print_distances(state_to_cell_array(machine_cs, "dec_state"), "machine dec")
-
-    # for d in machine_cs:
-    #     i, f, o = d["dec_gates"]
-    #     print i.shape, f.shape, o.shape
-
-    #     print "MACHINE DEC I F O NORMS", map(np.mean, map(lambda x: x[0], d["dec_gates"]))
-
-    # last = None
-
-    # for d in machine_cs:
-    #     dec_state = d["dec_state"]
-    #     c = dec_state.c
-    #     if last is not None:
-    #         print "MACHINE DIST FROM LAST", euclidean(c, last)
-    #     last = c
-    #     # cell = dec_state[0]
-    #     # print cell.shape
-
-
     load_checkpoint(it, human=True)
     human_cs = sess.run(classifications, feed_dict={x: img.reshape(1, 10000)})
-
-    # print_distances(state_to_cell_array(human_cs, "enc_state"), "human enc")
-    # print_distances(state_to_cell_array(human_cs, "dec_state"), "human dec")
-
-
-
-    # h_last = None 
-    # human_cells
-    # for d in human_cs:
-    #     dec_state = d["dec_state"]
-    #     c = dec_state.c
-    #     if h_last is not None:
-    #         print "HUMAN DIST FROM LAST", euclidean(c, h_last)
-    #     h_last = c
 
     for i in range(len(machine_cs)):
         out["rs"].append((np.flip(machine_cs[i]["r"].reshape(12, 12), 0), np.flip(human_cs[i]["r"].reshape(12, 12), 0)))
         out["classifications"].append((machine_cs[i]["classification"], human_cs[i]["classification"]))
         out["rects"].append((stats_to_rect(machine_cs[i]["stats"]), stats_to_rect(human_cs[i]["stats"])))
 
-
-    # machine_cs = state_to_cell_array(machine_cs, "dec_state")
-    # human_cs = state_to_cell_array(human_cs, "dec_state")
-
-    # print np.array(do_tsne(machine_cs))
-    # print np.array(do_tsne(human_cs))
-
     return out
+
 
 def accuracy_stats(it, human):
     load_checkpoint(it, human)
@@ -141,31 +103,29 @@ def accuracy_stats(it, human):
 
     print("STARTING", batches_in_epoch)
     
-    for i in xrange(batches_in_epoch):
+    pred_distr_at_glimpses = np.zeros((10, 9, 9))
+
+    for i in range(batches_in_epoch):
         nextX, nextY = data.next_batch(bsize)
         nextX = convertTranslated(nextX)
         cs = sess.run(classifications, feed_dict={x: nextX})
 
-        y = nextY.reshape(10)
-        l = np.argmax(y)
-        # print cs[-1].shape, nextY.shape
-        for j in range(10):
-            c = cs[j]["classification"].reshape(10)
-            p = np.argmax(c)
-            # print c, nextY
+        y = nextY.reshape(output_size)
+        label = np.argmax(y)
 
-            # c = c.reshape(10)
-            accuracy[j] += 1 if p == l else 0
-            confidence[j] += c[l]
-            confusion[l, p] += 1
+        for glimpse in range(glimpses):
+            c = cs[glimpse]["classification"].reshape(output_size)
+            pred = np.argmax(c)
+            accuracy[glimpse] += 1 if pred == label else 0
+            confidence[glimpse] += c[label]
+            confusion[label, pred] += 1
+            pred_distr_at_glimpses[glimpse, label, pred] += 1
         if i % 1000 == 0:
             print(i, batches_in_epoch)
     
     accuracy /= float(batches_in_epoch)
     confidence /= float(batches_in_epoch)
-
-    # return accuracy
-    return confusion
+    return pred_distr_at_glimpses
 
 
 def stats_to_rect(stats):
@@ -211,5 +171,5 @@ def stats_to_rect(stats):
 
 
 # classify_image(300000, new_image=True)
-print "ALL-STEP", accuracy_stats(300000, True)
-print "LAST-STEP", accuracy_stats(300000, False)
+print("ALL-STEP", accuracy_stats(300000, True))
+print("LAST-STEP", accuracy_stats(300000, False))
