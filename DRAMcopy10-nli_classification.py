@@ -62,11 +62,8 @@ REUSE=None
 
 x = tf.placeholder(tf.float32,shape=(batch_size,img_size))
 onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, z_size))
-lstm_enc = custom_lstm.LSTMCell(enc_size, read_size+dec_size, state_is_tuple) # encoder Op
-lstm_dec = custom_lstm.LSTMCell(dec_size, z_size) # decoder Op
-
-# lstm_enc = tf.contrib.rnn.LSTMCell(enc_size, read_size+dec_size) # encoder Op
-# lstm_dec = tf.contrib.rnn.LSTMCell(dec_size, z_size) # decoder Op
+lstm_enc = tf.contrib.rnn.LSTMCell(enc_size, read_size+dec_size) # encoder Op
+lstm_dec = tf.contrib.rnn.LSTMCell(dec_size, z_size) # decoder Op
 
 def linear(x,output_dim):
     """
@@ -116,6 +113,9 @@ def attn_window(scope,h_dec,N):
 
 
 def read(x, h_dec_prev):
+    stats = Fx, Fy, gamma = attn_window("read", h_dec_prev, read_n)
+
+    def filter_img(img, Fx, Fy, gamma, N):
     stats = Fx, Fy, gamma = attn_window("read", h_dec_prev, read_n)
 
     def filter_img(img, Fx, Fy, gamma, N):
@@ -442,9 +442,7 @@ if classify:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
 
             if i%1000==0:
-                # train_data = mnist.input_data.read_data_sets("mnist", one_hot=True).train
                 train_data = load_input.InputData("data")
-                # train_data.load_sample()
                 train_data.get_train()
      
                 if i %10000==0:
@@ -465,7 +463,4 @@ if classify:
 
 
 
-
-
-sess.close()
 

@@ -128,48 +128,5 @@ def accuracy_stats(it, human):
     return pred_distr_at_glimpses
 
 
-def stats_to_rect(stats):
-    Fx, Fy, gamma = stats
-    
-    def min_max(ar):
-        minI = None
-        maxI = None
-        for i in range(100):
-            if np.any(ar[0, :, i]):
-                minI = i
-                break
-                
-        for i in reversed(range(100)):
-            if np.any(ar[0, :, i]):
-                maxI = i
-                break
-                
-        return minI, maxI
-
-    minX, maxX = min_max(Fx)
-    minY, maxY = min_max(Fy)
-    
-    if minX == 0:
-        minX = 1
-        
-    if minY == 0:
-        minY = 1
-        
-    if maxX == 100:
-        maxX = 99
-        
-    if maxY == 100:
-        maxY = 99
-    
-    return dict(
-        top=[minY],
-        bottom=[maxY],
-        left=[minX],
-        right=[maxX]
-    )
-
-
-
-# classify_image(300000, new_image=True)
 print("ALL-STEP", accuracy_stats(300000, True))
 print("LAST-STEP", accuracy_stats(300000, False))
