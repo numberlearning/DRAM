@@ -23,10 +23,10 @@ def generate_data(even=None):
     i = 0
     if even is None:
         train = np.empty([total, 10000])
-        label = np.empty([total, 9])
+        label = np.empty([total, max_blobs])
     else:
         train = np.empty([9000, 10000])
-        label = np.empty([9000, 9])
+        label = np.empty([9000, max_blobs])
         
     while (num_blobs < max_blobs + 1):
 

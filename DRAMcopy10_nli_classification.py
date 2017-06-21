@@ -41,7 +41,7 @@ folder_name + "/zzzdraw_data_5000.npy",
 print(sys.argv)
 
 pretrain_iters = 10000000
-train_iters = 50000000 # train forever . . .
+train_iters = 50 # train forever . . .
 learning_rate = .1 # learning rate for optimizer
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
@@ -58,7 +58,7 @@ dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
 read_n = 5 # read glimpse grid width/height
 read_size = read_n*read_n
-z_size = 9 # QSampler output size
+z_size = 4 # QSampler output size
 glimpses = 3
 batch_size = 100 # training minibatch size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -184,7 +184,7 @@ for glimpse in range(glimpses):
         hidden = tf.nn.relu(linear(h_dec_prev, 256))
     with tf.variable_scope("hidden2",reuse=REUSE):
         classification = tf.nn.softmax(linear(hidden, z_size))
-        print("classification.shape, the batch_size, z_size, 9: ", classification.shape)
+        print("classification.shape, the batch_size, z_size: ", classification.shape)
         classifications.append({
             "classification": classification,
             "stats": stats,

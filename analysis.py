@@ -23,7 +23,7 @@ data = load_input.InputData()
 data.get_test(1)
 
 def load_checkpoint(it, human):
-    path = "model_runs/number_learning_new_prop"
+    path = "model_runs/baby_blobs"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
