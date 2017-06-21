@@ -2,6 +2,9 @@ import sys
 import numpy as np
 import random
 
+max_edge = 30
+min_edge = 30
+max_blobs = 4
 c = 1
 total = 0
 while (c < 10):
@@ -20,12 +23,12 @@ def generate_data(even=None):
     i = 0
     if even is None:
         train = np.empty([total, 10000])
-        label = np.empty([total, 9])
+        label = np.empty([total, max_blobs])
     else:
         train = np.empty([9000, 10000])
-        label = np.empty([9000, 9])
+        label = np.empty([9000, max_blobs])
         
-    while (num_blobs < 10):
+    while (num_blobs < max_blobs + 1):
 
         nOfItem = set_size(num_blobs, even)
 
@@ -35,8 +38,8 @@ def generate_data(even=None):
             used = np.zeros((num_blobs, 4))
     
             while count < num_blobs: 
-                height = random.randint(2, 5)
-                width = random.randint(2, 5)
+                height = random.randint(min_edge, max_edge)
+                width = random.randint(min_edge, max_edge)
                 cX = random.randint(1, 99-width)
                 cY = random.randint(1, 99-height)
                 h = height 

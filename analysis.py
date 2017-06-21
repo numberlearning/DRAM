@@ -23,7 +23,7 @@ data = load_input.InputData()
 data.get_test(1)
 
 def load_checkpoint(it, human):
-    path = "number_learning_lr_tenth"
+    path = "model_runs/baby_blobs"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -34,7 +34,7 @@ def accuracy_stats(it, human):
     confidence = np.zeros(glimpses)
     confusion = np.zeros((output_size + 1, output_size + 1))
     pred_distr_at_glimpses = np.zeros((glimpses, output_size, output_size + 1)) # 10x9x10
-    class_distr_at_glimpses = np.zeros((glimpses, output_size, output_size + 1))# 10x9x10
+    # class_distr_at_glimpses = np.zeros((glimpses, output_size, output_size + 1))# 10x9x10
 
     print("STARTING, batches_in_epoch: ", batches_in_epoch)
     for i in range(batches_in_epoch):
@@ -62,15 +62,13 @@ def accuracy_stats(it, human):
 
             label = int(labels[img][0])
             pred_distr_at_glimpses[glimpses - 1, label, pred + 1] += 1
-            class_distr_at_glimpses[glimpses - 1, label, glimpse] = img_c[glimpse]  
-      if i % 1000 == 0:
+            # class_distr_at_glimpses[glimpses - 1, label, glimpse] = img_c[glimpse]  
+        if i % 1000 == 0:
             print(i, batches_in_epoch)
     
     
 #     accuracy /= float(batches_in_epoch)
 #     confidence /= float(batches_in_epoch)
-    return pred_distr_at_glimpses, class_distr_at_glimpses
+    return pred_distr_at_glimpses# , class_distr_at_glimpses
 
 print("analysis.py")
-print("ALL-STEP", accuracy_stats(40, True))
-print("LAST-STEP", accuracy_stats(40, False))
