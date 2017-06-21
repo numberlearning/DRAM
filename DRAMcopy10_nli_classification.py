@@ -19,7 +19,14 @@ def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
 
 
-folder_name = "number_learning_lr_tenth"
+if not os.path.exists("model_runs"):
+    os.makedirs("model_runs")
+
+folder_name = "model_runs/number_learning_new_prop"
+
+if not os.path.exists(folder_name):
+    os.makedirs(folder_name)
+
 start_restore_index = 0
 
 sys.argv = [sys.argv[0], "true", "false", "true", "false", "true", "true",
@@ -31,11 +38,12 @@ folder_name + "/zzzdraw_data_5000.npy",
 print(sys.argv)
 
 pretrain_iters = 10000000
-train_iters = 50 # train forever . . .
-learning_rate = .2 # learning rate for optimizer
+train_iters = 50000000 # train forever . . .
+learning_rate = .1 # learning rate for optimizer
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
 log_filename = sys.argv[7]
+settings_filename = folder_name + "/settings.csv"
 load_file = sys.argv[8]
 save_file = sys.argv[9]
 draw_file = sys.argv[10]
@@ -48,8 +56,8 @@ img_size = dims[1]*dims[0] # canvas size
 read_n = 5 # read glimpse grid width/height
 read_size = read_n*read_n
 z_size = 9 # QSampler output size
-glimpses = 10
-batch_size = 23 # training minibatch size
+glimpses = 3
+batch_size = 100 # training minibatch size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
 restore = str2bool(sys.argv[14])
@@ -206,7 +214,7 @@ def binary_crossentropy(t,o):
 
 
 def evaluate():
-    data = load_input.InputData("data")
+    data = load_input.InputData()
     data.get_test(1)
     batches_in_epoch = len(data.images) // batch_size
     print("batches_in_epoch: ", batches_in_epoch)
@@ -330,9 +338,9 @@ if pretrain:
 
     if not os.path.exists("mnist"):
         os.makedirs("mnist")
-    train_data = load_input.InputData("data")
+    train_data = load_input.InputData()
     # train_data.load_sample()
-    train_data.get_train()
+    train_data.get_train(1)
     print(train_data.get_length())
 
 
@@ -399,8 +407,8 @@ if classify:
         tf.variables_initializer(varsToTrain).run()
 
 
-    train_data = load_input.InputData("data")
-    train_data.get_train()
+    train_data = load_input.InputData()
+    train_data.get_train(1)
     fetches2=[]
     fetches2.extend([reward,train_op2])
 
@@ -415,14 +423,14 @@ if classify:
         results=sess.run(fetches2,feed_dict)
         reward_fetched,_=results
 
-        if i%10==0:
+        if i%100==0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
 
-#             if i%1000==0:
-#                 train_data = load_input.InputData("data")
-#                 train_data.get_train()
+            if i%1000==0:
+                train_data = load_input.InputData()
+                train_data.get_train(1)
      
-            if i %20==0:
+            if i %10000==0:
                 start_evaluate = time.clock()
                 test_accuracy = evaluate()
                 saver = tf.train.Saver(tf.global_variables())
@@ -431,6 +439,9 @@ if classify:
                 print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
                 if i == 0:
                     log_file = open(log_filename, 'w')
+                    settings_file = open(settings_filename, "w")
+                    settings_file.write("learning rate, glimpses, batch_size")
+                    settings_file.write(learning_rate + ", " + glimpses + ", " + batch_size)
                 else:
                     log_file = open(log_filename, 'a')
                 log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")

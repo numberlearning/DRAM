@@ -13,7 +13,7 @@ def set_size(num_blobs, even=None):
     if even is None:
         return int(10000/num_blobs)
     else:
-        return 100
+        return 1000
  
 def generate_data(even=None):        
     num_blobs = 1
@@ -22,8 +22,8 @@ def generate_data(even=None):
         train = np.empty([total, 10000])
         label = np.empty([total, 9])
     else:
-        train = np.empty([900, 10000])
-        label = np.empty([900, 9])
+        train = np.empty([9000, 10000])
+        label = np.empty([9000, 9])
         
     while (num_blobs < 10):
 
