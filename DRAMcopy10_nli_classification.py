@@ -22,7 +22,10 @@ def str2bool(v):
 if not os.path.exists("model_runs"):
     os.makedirs("model_runs")
 
-folder_name = "model_runs/number_learning_new_prop"
+folder_name = "model_runs/baby_blobs"
+
+# folder_name = "model_runs/number_learning_test_graph"
+# folder_name = "model_runs/number_learning_new_prop"
 
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
@@ -441,7 +444,7 @@ if classify:
                     log_file = open(log_filename, 'w')
                     settings_file = open(settings_filename, "w")
                     settings_file.write("learning rate, glimpses, batch_size")
-                    settings_file.write(learning_rate + ", " + glimpses + ", " + batch_size)
+                    settings_file.write(str(learning_rate) + ", " + str(glimpses) + ", " + str(batch_size))
                 else:
                     log_file = open(log_filename, 'a')
                 log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
