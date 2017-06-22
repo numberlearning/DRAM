@@ -1,10 +1,8 @@
 import sys
 import numpy as np
 import random
+from model_settings import min_edge, max_edge, max_blobs
 
-max_edge = 30
-min_edge = 30
-max_blobs = 4
 c = 1
 total = 0
 while (c < 10):

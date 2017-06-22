@@ -10,7 +10,7 @@ from scipy import misc
 import time
 import sys
 import load_input
-
+from model_settings import learning_rate, glimpses, batch_size, min_edge, max_edge, max_blobs, model_name
 
 FLAGS = tf.flags.FLAGS
 
@@ -22,15 +22,15 @@ def str2bool(v):
 if not os.path.exists("model_runs"):
     os.makedirs("model_runs")
 
-folder_name = "model_runs/baby_blobs"
+# folder_name = "model_runs/baby_blobs"
 
 # folder_name = "model_runs/number_learning_test_graph"
-# folder_name = "model_runs/number_learning_new_prop"
+folder_name = "model_runs/" + model_name
 
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
 
-start_restore_index = 0
+start_restore_index = 1660000
 
 sys.argv = [sys.argv[0], "true", "false", "true", "false", "true", "true",
 folder_name + "/classify_log.csv",
@@ -41,8 +41,7 @@ folder_name + "/zzzdraw_data_5000.npy",
 print(sys.argv)
 
 pretrain_iters = 10000000
-train_iters = 50 # train forever . . .
-learning_rate = .1 # learning rate for optimizer
+train_iters = 50000000 # train forever . . .
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
 log_filename = sys.argv[7]
@@ -58,9 +57,7 @@ dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
 read_n = 5 # read glimpse grid width/height
 read_size = read_n*read_n
-z_size = 4 # QSampler output size
-glimpses = 3
-batch_size = 100 # training minibatch size
+z_size = 9 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
 restore = str2bool(sys.argv[14])
@@ -426,7 +423,7 @@ if classify:
         results=sess.run(fetches2,feed_dict)
         reward_fetched,_=results
 
-        if i%100==0:
+        if i%1000==0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
 
             if i%1000==0:
@@ -443,8 +440,13 @@ if classify:
                 if i == 0:
                     log_file = open(log_filename, 'w')
                     settings_file = open(settings_filename, "w")
-                    settings_file.write("learning rate, glimpses, batch_size")
-                    settings_file.write(str(learning_rate) + ", " + str(glimpses) + ", " + str(batch_size))
+                    settings_file.write("learning_rate = ", str(learning_rate), ", ")
+                    settings_file.write("glimpses = ", str(glimpses), ", ")
+                    settings_file.write("batch_size = ", str(batch_size), ", ")
+                    settings_file.write("min_edge = ", str(min_edge), ", ")
+                    settings_file.write("max_edge = ", str(max_edge), ", ")
+                    settings_file.write("max_blobs = ", str(max_blobs), ", ")
+                    settings_file.close()
                 else:
                     log_file = open(log_filename, 'a')
                 log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
