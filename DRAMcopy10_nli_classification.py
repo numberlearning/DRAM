@@ -30,7 +30,7 @@ folder_name = "model_runs/" + model_name
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
 
-start_restore_index = 1660000
+start_restore_index = 0
 
 sys.argv = [sys.argv[0], "true", "false", "true", "false", "true", "true",
 folder_name + "/classify_log.csv",
@@ -41,11 +41,11 @@ folder_name + "/zzzdraw_data_5000.npy",
 print(sys.argv)
 
 pretrain_iters = 10000000
-train_iters = 50000000 # train forever . . .
+train_iters = 50000000000 # train forever . . .
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
 log_filename = sys.argv[7]
-settings_filename = folder_name + "/settings.csv"
+settings_filename = folder_name + "/settings.txt"
 load_file = sys.argv[8]
 save_file = sys.argv[9]
 draw_file = sys.argv[10]
@@ -57,7 +57,7 @@ dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
 read_n = 5 # read glimpse grid width/height
 read_size = read_n*read_n
-z_size = 9 # QSampler output size
+z_size = max_blobs # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
 restore = str2bool(sys.argv[14])
@@ -204,7 +204,15 @@ print("len(pqs): ", len(pqs))
 predquality = tf.reduce_mean(pqs)
 correct = tf.arg_max(onehot_labels, 1)
 prediction = tf.arg_max(classification, 1)
-R = tf.cast(tf.equal(correct, prediction), tf.float32)
+
+# R = tf.cast(tf.equal(correct, prediction), tf.float32)
+R = [0 for x in range(batch_size)]
+for img in range(batch_size):
+    print("tf.equal(correct[img], 0): ", tf.equal(correct[img], 0))
+    R[img] = tf.cond(tf.equal(correct[img], 0),
+            lambda: tf.cast(tf.equal(prediction[img], 0), tf.float32),
+            lambda: tf.cast(tf.not_equal(prediction[img], 0), tf.float32))
+R = tf.convert_to_tensor(R, dtype=tf.float32)
 reward = tf.reduce_mean(R)
 
 
@@ -425,6 +433,7 @@ if classify:
 
         if i%1000==0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
+            sys.stdout.flush()
 
             if i%1000==0:
                 train_data = load_input.InputData()
@@ -440,12 +449,12 @@ if classify:
                 if i == 0:
                     log_file = open(log_filename, 'w')
                     settings_file = open(settings_filename, "w")
-                    settings_file.write("learning_rate = ", str(learning_rate), ", ")
-                    settings_file.write("glimpses = ", str(glimpses), ", ")
-                    settings_file.write("batch_size = ", str(batch_size), ", ")
-                    settings_file.write("min_edge = ", str(min_edge), ", ")
-                    settings_file.write("max_edge = ", str(max_edge), ", ")
-                    settings_file.write("max_blobs = ", str(max_blobs), ", ")
+                    settings_file.write("learning_rate = " + str(learning_rate) + ", ")
+                    settings_file.write("glimpses = " + str(glimpses) + ", ")
+                    settings_file.write("batch_size = " + str(batch_size) + ", ")
+                    settings_file.write("min_edge = " + str(min_edge) + ", ")
+                    settings_file.write("max_edge = " + str(max_edge) + ", ")
+                    settings_file.write("max_blobs = " + str(max_blobs) + ", ")
                     settings_file.close()
                 else:
                     log_file = open(log_filename, 'a')

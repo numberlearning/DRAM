@@ -122,9 +122,3 @@ def print_img(img):
     plt.colorbar()
     plt.show()
 
-
-
-
-
-
-

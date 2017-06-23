@@ -1,0 +1,160 @@
+['DRAMcopy10_nli_classification.py', 'true', 'false', 'true', 'false', 'true', 'true', 'model_runs/one_knower/classify_log.csv', 'model_runs/one_knower/classifymodel_0.ckpt', 'model_runs/one_knower/classifymodel_', 'model_runs/one_knower/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f0b88fa8390>: The input_size parameter is deprecated.
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f0b87917a90>: The input_size parameter is deprecated.
+classification.shape, the batch_size, z_size:  (100, 9)
+classification.shape, the batch_size, z_size:  (100, 9)
+classification.shape, the batch_size, z_size:  (100, 9)
+len(pqs):  3
+tf.equal(correct[img], 0):  Tensor("Equal:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_2:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_4:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_6:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_8:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_10:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_12:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_14:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_16:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_18:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_20:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_22:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_24:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_26:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_28:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_30:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_32:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_34:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_36:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_38:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_40:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_42:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_44:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_46:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_48:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_50:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_52:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_54:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_56:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_58:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_60:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_62:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_64:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_66:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_68:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_70:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_72:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_74:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_76:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_78:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_80:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_82:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_84:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_86:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_88:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_90:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_92:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_94:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_96:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_98:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_100:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_102:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_104:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_106:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_108:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_110:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_112:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_114:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_116:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_118:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_120:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_122:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_124:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_126:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_128:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_130:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_132:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_134:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_136:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_138:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_140:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_142:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_144:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_146:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_148:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_150:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_152:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_154:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_156:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_158:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_160:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_162:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_164:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_166:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_168:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_170:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_172:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_174:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_176:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_178:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_180:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_182:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_184:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_186:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_188:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_190:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_192:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_194:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_196:0", shape=(), dtype=bool)
+tf.equal(correct[img], 0):  Tensor("Equal_198:0", shape=(), dtype=bool)
+read/w:0
+read/b:0
+z/w:0
+z/b:0
+hidden1/w:0
+hidden1/b:0
+hidden2/w:0
+hidden2/b:0
+2017-06-22 17:23:48.131107: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 17:23:48.131136: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 17:23:48.131140: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 17:23:48.131143: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 17:23:48.131146: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 17:23:48.295720: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-06-22 17:23:48.296008: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 5.01GiB
+2017-06-22 17:23:48.296054: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x75e85d0
+2017-06-22 17:23:48.377709: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-06-22 17:23:48.377988: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 6.81GiB
+2017-06-22 17:23:48.378119: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-06-22 17:23:48.378125: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-06-22 17:23:48.378127: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-06-22 17:23:48.378132: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-06-22 17:23:48.378136: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: 0.820000
+batches_in_epoch:  90
+ACCURACY: 0.884222231309
+Model saved in file: model_runs/one_knower/classifymodel_0.ckpt
+--- 2.4049270000000025 CPU seconds ---
+iter=1000 : Reward: 0.090000
+iter=2000 : Reward: 0.180000
+iter=3000 : Reward: 0.110000
+iter=4000 : Reward: 0.240000
+iter=5000 : Reward: 0.050000
+iter=6000 : Reward: 0.190000
+iter=7000 : Reward: 0.060000
+iter=8000 : Reward: 0.210000
+iter=9000 : Reward: 0.080000
+iter=10000 : Reward: 0.230000
+batches_in_epoch:  90
+ACCURACY: 0.109111107513
+Model saved in file: model_runs/one_knower/classifymodel_10000.ckpt
+--- 762.10548 CPU seconds ---
+iter=11000 : Reward: 0.100000
