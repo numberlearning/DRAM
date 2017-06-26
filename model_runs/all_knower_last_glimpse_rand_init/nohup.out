@@ -1,0 +1,158 @@
+['DRAMcopy10_nli_classification.py', 'true', 'false', 'true', 'false', 'true', 'true', 'model_runs/all_knower_last_glimpse_rand_init/classify_log.csv', 'model_runs/all_knower_last_glimpse_rand_init/classifymodel_0.ckpt', 'model_runs/all_knower_last_glimpse_rand_init/classifymodel_', 'model_runs/all_knower_last_glimpse_rand_init/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f0f32f26e48>: The input_size parameter is deprecated.
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f0f394e9940>: The input_size parameter is deprecated.
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+read/w:0
+read/b:0
+z/w:0
+z/b:0
+hidden1/w:0
+hidden1/b:0
+hidden2/w:0
+hidden2/b:0
+2017-06-26 11:04:46.850762: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-26 11:04:46.852545: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-26 11:04:46.852558: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-26 11:04:46.852564: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-26 11:04:46.852570: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-26 11:04:47.477950: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-06-26 11:04:47.481871: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 5.53GiB
+2017-06-26 11:04:47.481955: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x1eb8cd10
+2017-06-26 11:04:48.013614: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-06-26 11:04:48.014026: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.15GiB
+2017-06-26 11:04:48.018438: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-06-26 11:04:48.018463: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-06-26 11:04:48.018470: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-06-26 11:04:48.024782: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-06-26 11:04:48.024831: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.110555557683
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_0.ckpt
+--- 10.31670200000002 CPU seconds ---
+iter=1000 : Reward: 0.100000
+iter=2000 : Reward: 0.000000
+iter=3000 : Reward: 0.300000
+iter=4000 : Reward: 0.400000
+iter=5000 : Reward: 0.000000
+iter=6000 : Reward: 0.300000
+iter=7000 : Reward: 0.100000
+iter=8000 : Reward: 0.200000
+iter=9000 : Reward: 0.200000
+iter=10000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.281777783732
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_10000.ckpt
+--- 4609.761869999999 CPU seconds ---
+iter=11000 : Reward: 0.200000
+iter=12000 : Reward: 0.600000
+iter=13000 : Reward: 0.500000

@@ -78,8 +78,8 @@ def linear(x,output_dim):
     affine transformation Wx+b
     assumes x.shape = (batch_size, num_features)
     """
-    w=tf.get_variable("w", [x.get_shape()[1], output_dim])
-    b=tf.get_variable("b", [output_dim], initializer=tf.constant_initializer(0.0))
+    w=tf.get_variable("w", [x.get_shape()[1], output_dim], initializer=tf.random_normal_initializer())
+    b=tf.get_variable("b", [output_dim], initializer=tf.random_normal_initializer())
     return tf.matmul(x,w)+b
 
 
@@ -157,7 +157,6 @@ h_enc_prev=tf.zeros((batch_size,enc_size))
 enc_state=lstm_enc.zero_state(batch_size, tf.float32)
 dec_state=lstm_dec.zero_state(batch_size, tf.float32)
 
-pqs = []
 classifications = []
 
 for glimpse in range(glimpses):
@@ -194,31 +193,30 @@ for glimpse in range(glimpses):
             # "Fy": Fy,
             # "gamma": gamma,
         })
-    pq = tf.log(classification + 1e-5) * onehot_labels
-    pq = tf.reduce_mean(pq, 0)
-    pqs.append(pq)
 
     REUSE=True
 
-print("len(pqs): ", len(pqs))
-predquality = tf.reduce_mean(pqs)
+predquality = tf.log(classification + 1e-5) * onehot_labels
+predquality = tf.reduce_mean(predquality, 0)
 correct = tf.arg_max(onehot_labels, 1)
 prediction = tf.arg_max(classification, 1)
 
-# R = tf.cast(tf.equal(correct, prediction), tf.float32)
-R = [0 for x in range(batch_size)]
-for img in range(batch_size):
-    print("tf.equal(correct[img], 0): ", tf.equal(correct[img], 0))
-    R[img] = tf.cond(tf.equal(correct[img], 0),
-            lambda: tf.cast(tf.equal(prediction[img], 0), tf.float32),
-            lambda: tf.cast(tf.not_equal(prediction[img], 0), tf.float32))
-R = tf.convert_to_tensor(R, dtype=tf.float32)
+# all-knower
+R = tf.cast(tf.equal(correct, prediction), tf.float32)
+
+# one-knower
+# R = [0 for x in range(batch_size)]
+# for img in range(batch_size):
+#     R[img] = tf.cond(tf.equal(correct[img], 0),
+#             lambda: tf.cast(tf.equal(prediction[img], 0), tf.float32),
+#             lambda: tf.cast(tf.not_equal(prediction[img], 0), tf.float32))
+# R = tf.convert_to_tensor(R, dtype=tf.float32)
+
 reward = tf.reduce_mean(R)
 
 
 def binary_crossentropy(t,o):
     return -(t*tf.log(o+eps) + (1.0-t)*tf.log(1.0-o+eps))
-
 
 
 def evaluate():
@@ -246,7 +244,6 @@ x_recons=tf.nn.sigmoid(outputs[-1])
 
 reconstruction_loss=tf.reduce_sum(binary_crossentropy(x,x_recons),1)
 reconstruction_loss=tf.reduce_mean(reconstruction_loss)
-
 
 predcost = -predquality
 
@@ -323,22 +320,22 @@ if str2bool(sys.argv[6]):
 
 
 with tf.variable_scope("optimizer2", reuse=None):
-    optimizer2=tf.train.AdamOptimizer(learning_rate, beta1=0.5)
+    optimizer2 = tf.train.AdamOptimizer(learning_rate, beta1=0.5)
     for v in varsToTrain:
         print(v.name)
-    grads2a=optimizer2.compute_gradients(predcost, var_list = varsToTrain)
-    grads2b=optimizer2.compute_gradients(predcost)
+    grads2a = optimizer2.compute_gradients(predcost, var_list = varsToTrain)
+    grads2b = optimizer2.compute_gradients(predcost)
     
-    for i,(g,v) in enumerate(grads2a):
+    for i,(g, v) in enumerate(grads2a):
         if g is not None:
-            grads2a[i]=(tf.clip_by_norm(g,5),v)
-    for i,(g,v) in enumerate(grads2b):
+            grads2a[i]=(tf.clip_by_norm(g, 5), v)
+    for i,(g, v) in enumerate(grads2b):
         if g is not None:
-            grads2b[i]=(tf.clip_by_norm(g,5),v)
+            grads2b[i]=(tf.clip_by_norm(g, 5), v)
     if rigid_pretrain:
-        train_op2=optimizer2.apply_gradients(grads2a)
+        train_op2 = optimizer2.apply_gradients(grads2a)
     else:
-        train_op2=optimizer2.apply_gradients(grads2b)
+        train_op2 = optimizer2.apply_gradients(grads2b)
     
 
 if pretrain:
@@ -347,10 +344,7 @@ if pretrain:
     if not os.path.exists("mnist"):
         os.makedirs("mnist")
     train_data = load_input.InputData()
-    # train_data.load_sample()
     train_data.get_train(1)
-    print(train_data.get_length())
-
 
     fetches=[]
     fetches.extend([reconstruction_loss,train_op])
@@ -371,7 +365,7 @@ if pretrain:
     start_time = time.clock()
     extra_time = 0
     for i in range(pretrain_iters):
-        xtrain, ytrain =train_data.next_batch(batch_size)
+        xtrain, ytrain = train_data.next_batch(batch_size)
         if translated:
             xtrain = convertTranslated(xtrain)
         
@@ -426,7 +420,7 @@ if classify:
 
 
     for i in range(start_restore_index, train_iters):
-        xtrain, ytrain =train_data.next_batch(batch_size)
+        xtrain, ytrain = train_data.next_batch(batch_size)
         feed_dict={x:xtrain, onehot_labels:ytrain}
         results=sess.run(fetches2,feed_dict)
         reward_fetched,_=results
