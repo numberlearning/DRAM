@@ -954,3 +954,11 @@ Model saved in file: model_runs/all_knower_last_glimpse/classifymodel_580000.ckp
 iter=581000 : Reward: 0.200000
 iter=582000 : Reward: 0.100000
 iter=583000 : Reward: 0.100000
+iter=584000 : Reward: 0.200000
+iter=585000 : Reward: 0.200000
+iter=586000 : Reward: 0.300000
+iter=587000 : Reward: 0.000000
+iter=588000 : Reward: 0.100000
+iter=589000 : Reward: 0.300000
+iter=590000 : Reward: 0.000000
+batches_in_epoch:  900

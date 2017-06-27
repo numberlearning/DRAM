@@ -733,3 +733,20 @@ iter=422000 : Reward: 0.120000
 iter=423000 : Reward: 0.130000
 iter=424000 : Reward: 0.120000
 iter=425000 : Reward: 0.090000
+iter=426000 : Reward: 0.130000
+iter=427000 : Reward: 0.060000
+iter=428000 : Reward: 0.120000
+iter=429000 : Reward: 0.110000
+iter=430000 : Reward: 0.120000
+Traceback (most recent call last):
+  File "DRAMcopy10_nli_classification.py", line 438, in <module>
+    test_accuracy = evaluate()
+  File "DRAMcopy10_nli_classification.py", line 224, in evaluate
+    data.get_test(1)
+  File "/home/sychen23/DRAM/load_input.py", line 33, in get_test
+    self.get_train(even)
+  File "/home/sychen23/DRAM/load_input.py", line 27, in get_train
+    self.images, self.labels = create_data.generate_data(even)
+  File "/home/sychen23/DRAM/create_data.py", line 26, in generate_data
+    train = np.empty([9000, 10000])
+MemoryError

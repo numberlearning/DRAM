@@ -11526,3 +11526,75 @@ Model saved in file: model_runs/even_props/classifymodel_9860000.ckpt
 --- 205349.67327900013 CPU seconds ---
 iter=9861000 : Reward: 0.120000
 iter=9862000 : Reward: 0.080000
+iter=9863000 : Reward: 0.130000
+iter=9864000 : Reward: 0.140000
+iter=9865000 : Reward: 0.070000
+iter=9866000 : Reward: 0.090000
+iter=9867000 : Reward: 0.080000
+iter=9868000 : Reward: 0.130000
+iter=9869000 : Reward: 0.110000
+iter=9870000 : Reward: 0.120000
+batches_in_epoch:  90
+ACCURACY: 0.106999996594
+Model saved in file: model_runs/even_props/classifymodel_9870000.ckpt
+--- 205684.87891400012 CPU seconds ---
+iter=9871000 : Reward: 0.130000
+iter=9872000 : Reward: 0.150000
+iter=9873000 : Reward: 0.180000
+iter=9874000 : Reward: 0.130000
+iter=9875000 : Reward: 0.110000
+iter=9876000 : Reward: 0.170000
+iter=9877000 : Reward: 0.140000
+iter=9878000 : Reward: 0.070000
+iter=9879000 : Reward: 0.060000
+iter=9880000 : Reward: 0.140000
+batches_in_epoch:  90
+ACCURACY: 0.108222218148
+Model saved in file: model_runs/even_props/classifymodel_9880000.ckpt
+--- 206018.5200370001 CPU seconds ---
+iter=9881000 : Reward: 0.130000
+iter=9882000 : Reward: 0.110000
+iter=9883000 : Reward: 0.130000
+iter=9884000 : Reward: 0.130000
+iter=9885000 : Reward: 0.130000
+iter=9886000 : Reward: 0.080000
+iter=9887000 : Reward: 0.100000
+iter=9888000 : Reward: 0.050000
+iter=9889000 : Reward: 0.080000
+iter=9890000 : Reward: 0.110000
+batches_in_epoch:  90
+ACCURACY: 0.111555551158
+Model saved in file: model_runs/even_props/classifymodel_9890000.ckpt
+--- 206397.4810120001 CPU seconds ---
+iter=9891000 : Reward: 0.070000
+iter=9892000 : Reward: 0.150000
+iter=9893000 : Reward: 0.130000
+iter=9894000 : Reward: 0.090000
+iter=9895000 : Reward: 0.090000
+iter=9896000 : Reward: 0.120000
+iter=9897000 : Reward: 0.090000
+iter=9898000 : Reward: 0.130000
+iter=9899000 : Reward: 0.100000
+iter=9900000 : Reward: 0.140000
+batches_in_epoch:  90
+ACCURACY: 0.111999995096
+Model saved in file: model_runs/even_props/classifymodel_9900000.ckpt
+--- 206787.6135640001 CPU seconds ---
+iter=9901000 : Reward: 0.120000
+iter=9902000 : Reward: 0.060000
+iter=9903000 : Reward: 0.170000
+iter=9904000 : Reward: 0.090000
+iter=9905000 : Reward: 0.080000
+iter=9906000 : Reward: 0.110000
+iter=9907000 : Reward: 0.110000
+iter=9908000 : Reward: 0.110000
+iter=9909000 : Reward: 0.090000
+iter=9910000 : Reward: 0.060000
+Traceback (most recent call last):
+  File "DRAMcopy10_nli_classification.py", line 434, in <module>
+    train_data.get_train(1)
+  File "/home/sychen23/DRAM/load_input.py", line 27, in get_train
+    self.images, self.labels = create_data.generate_data(even)
+  File "/home/sychen23/DRAM/create_data.py", line 28, in generate_data
+    
+MemoryError

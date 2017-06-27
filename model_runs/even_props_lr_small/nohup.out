@@ -10334,3 +10334,280 @@ ACCURACY: 0.111111106786
 Model saved in file: model_runs/even_props_lr_small/classifymodel_9830000.ckpt
 --- 191158.07785199964 CPU seconds ---
 iter=9831000 : Reward: 0.120000
+iter=9832000 : Reward: 0.070000
+iter=9833000 : Reward: 0.160000
+iter=9834000 : Reward: 0.120000
+iter=9835000 : Reward: 0.080000
+iter=9836000 : Reward: 0.130000
+iter=9837000 : Reward: 0.110000
+iter=9838000 : Reward: 0.110000
+iter=9839000 : Reward: 0.070000
+iter=9840000 : Reward: 0.080000
+batches_in_epoch:  90
+ACCURACY: 0.116999995874
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9840000.ckpt
+--- 191488.07728099963 CPU seconds ---
+iter=9841000 : Reward: 0.090000
+iter=9842000 : Reward: 0.130000
+iter=9843000 : Reward: 0.150000
+iter=9844000 : Reward: 0.150000
+iter=9845000 : Reward: 0.100000
+iter=9846000 : Reward: 0.090000
+iter=9847000 : Reward: 0.150000
+iter=9848000 : Reward: 0.120000
+iter=9849000 : Reward: 0.100000
+iter=9850000 : Reward: 0.140000
+batches_in_epoch:  90
+ACCURACY: 0.10799999593
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9850000.ckpt
+--- 191818.64926499964 CPU seconds ---
+iter=9851000 : Reward: 0.140000
+iter=9852000 : Reward: 0.130000
+iter=9853000 : Reward: 0.140000
+iter=9854000 : Reward: 0.100000
+iter=9855000 : Reward: 0.110000
+iter=9856000 : Reward: 0.130000
+iter=9857000 : Reward: 0.140000
+iter=9858000 : Reward: 0.090000
+iter=9859000 : Reward: 0.120000
+iter=9860000 : Reward: 0.100000
+batches_in_epoch:  90
+ACCURACY: 0.116222217596
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9860000.ckpt
+--- 192193.94097699964 CPU seconds ---
+iter=9861000 : Reward: 0.090000
+iter=9862000 : Reward: 0.140000
+iter=9863000 : Reward: 0.120000
+iter=9864000 : Reward: 0.080000
+iter=9865000 : Reward: 0.100000
+iter=9866000 : Reward: 0.090000
+iter=9867000 : Reward: 0.120000
+iter=9868000 : Reward: 0.170000
+iter=9869000 : Reward: 0.090000
+iter=9870000 : Reward: 0.130000
+batches_in_epoch:  90
+ACCURACY: 0.112777774284
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9870000.ckpt
+--- 192578.31067399963 CPU seconds ---
+iter=9871000 : Reward: 0.130000
+iter=9872000 : Reward: 0.080000
+iter=9873000 : Reward: 0.160000
+iter=9874000 : Reward: 0.100000
+iter=9875000 : Reward: 0.110000
+iter=9876000 : Reward: 0.070000
+iter=9877000 : Reward: 0.090000
+iter=9878000 : Reward: 0.110000
+iter=9879000 : Reward: 0.130000
+iter=9880000 : Reward: 0.110000
+batches_in_epoch:  90
+ACCURACY: 0.110777773211
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9880000.ckpt
+--- 192947.65902499965 CPU seconds ---
+iter=9881000 : Reward: 0.150000
+iter=9882000 : Reward: 0.100000
+iter=9883000 : Reward: 0.110000
+iter=9884000 : Reward: 0.040000
+iter=9885000 : Reward: 0.110000
+iter=9886000 : Reward: 0.130000
+iter=9887000 : Reward: 0.100000
+iter=9888000 : Reward: 0.130000
+iter=9889000 : Reward: 0.100000
+iter=9890000 : Reward: 0.090000
+batches_in_epoch:  90
+ACCURACY: 0.108555551598
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9890000.ckpt
+--- 193187.11566899967 CPU seconds ---
+iter=9891000 : Reward: 0.160000
+iter=9892000 : Reward: 0.100000
+iter=9893000 : Reward: 0.090000
+iter=9894000 : Reward: 0.110000
+iter=9895000 : Reward: 0.110000
+iter=9896000 : Reward: 0.070000
+iter=9897000 : Reward: 0.090000
+iter=9898000 : Reward: 0.130000
+iter=9899000 : Reward: 0.080000
+iter=9900000 : Reward: 0.120000
+batches_in_epoch:  90
+ACCURACY: 0.110666662703
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9900000.ckpt
+--- 193428.22022899968 CPU seconds ---
+iter=9901000 : Reward: 0.110000
+iter=9902000 : Reward: 0.160000
+iter=9903000 : Reward: 0.160000
+iter=9904000 : Reward: 0.110000
+iter=9905000 : Reward: 0.120000
+iter=9906000 : Reward: 0.130000
+iter=9907000 : Reward: 0.110000
+iter=9908000 : Reward: 0.140000
+iter=9909000 : Reward: 0.150000
+iter=9910000 : Reward: 0.090000
+batches_in_epoch:  90
+ACCURACY: 0.110777773543
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9910000.ckpt
+--- 193668.01468399967 CPU seconds ---
+iter=9911000 : Reward: 0.170000
+iter=9912000 : Reward: 0.140000
+iter=9913000 : Reward: 0.140000
+iter=9914000 : Reward: 0.100000
+iter=9915000 : Reward: 0.100000
+iter=9916000 : Reward: 0.110000
+iter=9917000 : Reward: 0.090000
+iter=9918000 : Reward: 0.120000
+iter=9919000 : Reward: 0.150000
+iter=9920000 : Reward: 0.060000
+batches_in_epoch:  90
+ACCURACY: 0.117444440164
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9920000.ckpt
+--- 193907.98911699967 CPU seconds ---
+iter=9921000 : Reward: 0.120000
+iter=9922000 : Reward: 0.110000
+iter=9923000 : Reward: 0.120000
+iter=9924000 : Reward: 0.130000
+iter=9925000 : Reward: 0.180000
+iter=9926000 : Reward: 0.120000
+iter=9927000 : Reward: 0.130000
+iter=9928000 : Reward: 0.130000
+iter=9929000 : Reward: 0.090000
+iter=9930000 : Reward: 0.130000
+batches_in_epoch:  90
+ACCURACY: 0.113555551941
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9930000.ckpt
+--- 194139.22151699968 CPU seconds ---
+iter=9931000 : Reward: 0.110000
+iter=9932000 : Reward: 0.150000
+iter=9933000 : Reward: 0.130000
+iter=9934000 : Reward: 0.100000
+iter=9935000 : Reward: 0.100000
+iter=9936000 : Reward: 0.130000
+iter=9937000 : Reward: 0.090000
+iter=9938000 : Reward: 0.110000
+iter=9939000 : Reward: 0.090000
+iter=9940000 : Reward: 0.160000
+batches_in_epoch:  90
+ACCURACY: 0.116333329595
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9940000.ckpt
+--- 194379.3450829997 CPU seconds ---
+iter=9941000 : Reward: 0.120000
+iter=9942000 : Reward: 0.100000
+iter=9943000 : Reward: 0.150000
+iter=9944000 : Reward: 0.070000
+iter=9945000 : Reward: 0.130000
+iter=9946000 : Reward: 0.140000
+iter=9947000 : Reward: 0.110000
+iter=9948000 : Reward: 0.070000
+iter=9949000 : Reward: 0.100000
+iter=9950000 : Reward: 0.110000
+batches_in_epoch:  90
+ACCURACY: 0.108777773504
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9950000.ckpt
+--- 194617.88913399968 CPU seconds ---
+iter=9951000 : Reward: 0.140000
+iter=9952000 : Reward: 0.100000
+iter=9953000 : Reward: 0.140000
+iter=9954000 : Reward: 0.090000
+iter=9955000 : Reward: 0.120000
+iter=9956000 : Reward: 0.120000
+iter=9957000 : Reward: 0.120000
+iter=9958000 : Reward: 0.130000
+iter=9959000 : Reward: 0.140000
+iter=9960000 : Reward: 0.150000
+batches_in_epoch:  90
+ACCURACY: 0.11099999518
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9960000.ckpt
+--- 194856.79255799967 CPU seconds ---
+iter=9961000 : Reward: 0.110000
+iter=9962000 : Reward: 0.080000
+iter=9963000 : Reward: 0.120000
+iter=9964000 : Reward: 0.080000
+iter=9965000 : Reward: 0.120000
+iter=9966000 : Reward: 0.110000
+iter=9967000 : Reward: 0.130000
+iter=9968000 : Reward: 0.170000
+iter=9969000 : Reward: 0.110000
+iter=9970000 : Reward: 0.090000
+batches_in_epoch:  90
+ACCURACY: 0.110111106767
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9970000.ckpt
+--- 195097.8579809997 CPU seconds ---
+iter=9971000 : Reward: 0.070000
+iter=9972000 : Reward: 0.090000
+iter=9973000 : Reward: 0.140000
+iter=9974000 : Reward: 0.110000
+iter=9975000 : Reward: 0.170000
+iter=9976000 : Reward: 0.070000
+iter=9977000 : Reward: 0.060000
+iter=9978000 : Reward: 0.140000
+iter=9979000 : Reward: 0.090000
+iter=9980000 : Reward: 0.070000
+batches_in_epoch:  90
+ACCURACY: 0.113111106058
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9980000.ckpt
+--- 195337.47385999968 CPU seconds ---
+iter=9981000 : Reward: 0.120000
+iter=9982000 : Reward: 0.130000
+iter=9983000 : Reward: 0.090000
+iter=9984000 : Reward: 0.110000
+iter=9985000 : Reward: 0.130000
+iter=9986000 : Reward: 0.090000
+iter=9987000 : Reward: 0.110000
+iter=9988000 : Reward: 0.150000
+iter=9989000 : Reward: 0.110000
+iter=9990000 : Reward: 0.110000
+batches_in_epoch:  90
+ACCURACY: 0.110888884796
+Model saved in file: model_runs/even_props_lr_small/classifymodel_9990000.ckpt
+--- 195579.1646759997 CPU seconds ---
+iter=9991000 : Reward: 0.160000
+iter=9992000 : Reward: 0.130000
+iter=9993000 : Reward: 0.100000
+iter=9994000 : Reward: 0.140000
+iter=9995000 : Reward: 0.080000
+iter=9996000 : Reward: 0.120000
+iter=9997000 : Reward: 0.150000
+iter=9998000 : Reward: 0.120000
+iter=9999000 : Reward: 0.090000
+iter=10000000 : Reward: 0.140000
+batches_in_epoch:  90
+ACCURACY: 0.112999996419
+Model saved in file: model_runs/even_props_lr_small/classifymodel_10000000.ckpt
+--- 195817.1236449997 CPU seconds ---
+iter=10001000 : Reward: 0.100000
+iter=10002000 : Reward: 0.120000
+iter=10003000 : Reward: 0.140000
+iter=10004000 : Reward: 0.040000
+iter=10005000 : Reward: 0.140000
+iter=10006000 : Reward: 0.100000
+iter=10007000 : Reward: 0.090000
+iter=10008000 : Reward: 0.100000
+iter=10009000 : Reward: 0.060000
+iter=10010000 : Reward: 0.080000
+batches_in_epoch:  90
+ACCURACY: 0.107999995102
+Model saved in file: model_runs/even_props_lr_small/classifymodel_10010000.ckpt
+--- 196080.22014999972 CPU seconds ---
+iter=10011000 : Reward: 0.080000
+iter=10012000 : Reward: 0.150000
+iter=10013000 : Reward: 0.040000
+iter=10014000 : Reward: 0.070000
+iter=10015000 : Reward: 0.090000
+iter=10016000 : Reward: 0.080000
+iter=10017000 : Reward: 0.120000
+iter=10018000 : Reward: 0.150000
+iter=10019000 : Reward: 0.100000
+iter=10020000 : Reward: 0.130000
+batches_in_epoch:  90
+ACCURACY: 0.111333329189
+Model saved in file: model_runs/even_props_lr_small/classifymodel_10020000.ckpt
+--- 196364.96892799973 CPU seconds ---
+iter=10021000 : Reward: 0.070000
+iter=10022000 : Reward: 0.080000
+iter=10023000 : Reward: 0.100000
+iter=10024000 : Reward: 0.150000
+iter=10025000 : Reward: 0.090000
+iter=10026000 : Reward: 0.170000
+iter=10027000 : Reward: 0.100000
+iter=10028000 : Reward: 0.120000
+iter=10029000 : Reward: 0.070000
+iter=10030000 : Reward: 0.080000
+batches_in_epoch:  90
+ACCURACY: 0.110888884341

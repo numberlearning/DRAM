@@ -11482,3 +11482,296 @@ ACCURACY: 0.876444441411
 Model saved in file: model_runs/teeny_infant/classifymodel_8170000.ckpt
 --- 164083.751398 CPU seconds ---
 iter=8171000 : Reward: 0.900000
+iter=8172000 : Reward: 1.000000
+iter=8173000 : Reward: 0.700000
+iter=8174000 : Reward: 0.800000
+iter=8175000 : Reward: 0.900000
+iter=8176000 : Reward: 0.900000
+iter=8177000 : Reward: 0.900000
+iter=8178000 : Reward: 0.800000
+iter=8179000 : Reward: 1.000000
+iter=8180000 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.87866666509
+Model saved in file: model_runs/teeny_infant/classifymodel_8180000.ckpt
+--- 164355.193436 CPU seconds ---
+iter=8181000 : Reward: 0.900000
+iter=8182000 : Reward: 0.900000
+iter=8183000 : Reward: 1.000000
+iter=8184000 : Reward: 0.900000
+iter=8185000 : Reward: 0.900000
+iter=8186000 : Reward: 0.800000
+iter=8187000 : Reward: 0.900000
+iter=8188000 : Reward: 1.000000
+iter=8189000 : Reward: 0.700000
+iter=8190000 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.881666664448
+Model saved in file: model_runs/teeny_infant/classifymodel_8190000.ckpt
+--- 164625.672692 CPU seconds ---
+iter=8191000 : Reward: 0.800000
+iter=8192000 : Reward: 0.900000
+iter=8193000 : Reward: 0.800000
+iter=8194000 : Reward: 0.800000
+iter=8195000 : Reward: 1.000000
+iter=8196000 : Reward: 0.900000
+iter=8197000 : Reward: 1.000000
+iter=8198000 : Reward: 1.000000
+iter=8199000 : Reward: 0.800000
+iter=8200000 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.878333331082
+Model saved in file: model_runs/teeny_infant/classifymodel_8200000.ckpt
+--- 164931.32870299998 CPU seconds ---
+iter=8201000 : Reward: 0.800000
+iter=8202000 : Reward: 1.000000
+iter=8203000 : Reward: 0.900000
+iter=8204000 : Reward: 0.700000
+iter=8205000 : Reward: 1.000000
+iter=8206000 : Reward: 0.700000
+iter=8207000 : Reward: 0.800000
+iter=8208000 : Reward: 1.000000
+iter=8209000 : Reward: 0.900000
+iter=8210000 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.879666663872
+Model saved in file: model_runs/teeny_infant/classifymodel_8210000.ckpt
+--- 165246.49523199996 CPU seconds ---
+iter=8211000 : Reward: 1.000000
+iter=8212000 : Reward: 0.800000
+iter=8213000 : Reward: 0.800000
+iter=8214000 : Reward: 0.900000
+iter=8215000 : Reward: 0.600000
+iter=8216000 : Reward: 0.800000
+iter=8217000 : Reward: 0.900000
+iter=8218000 : Reward: 0.900000
+iter=8219000 : Reward: 0.900000
+iter=8220000 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.880111108025
+Model saved in file: model_runs/teeny_infant/classifymodel_8220000.ckpt
+--- 165558.44728499997 CPU seconds ---
+iter=8221000 : Reward: 0.800000
+iter=8222000 : Reward: 0.600000
+iter=8223000 : Reward: 0.900000
+iter=8224000 : Reward: 0.900000
+iter=8225000 : Reward: 0.900000
+iter=8226000 : Reward: 0.800000
+iter=8227000 : Reward: 0.700000
+iter=8228000 : Reward: 0.900000
+iter=8229000 : Reward: 1.000000
+iter=8230000 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.875444442895
+Model saved in file: model_runs/teeny_infant/classifymodel_8230000.ckpt
+--- 165746.24706299996 CPU seconds ---
+iter=8231000 : Reward: 0.900000
+iter=8232000 : Reward: 0.800000
+iter=8233000 : Reward: 0.800000
+iter=8234000 : Reward: 0.700000
+iter=8235000 : Reward: 0.900000
+iter=8236000 : Reward: 0.800000
+iter=8237000 : Reward: 0.600000
+iter=8238000 : Reward: 0.900000
+iter=8239000 : Reward: 0.800000
+iter=8240000 : Reward: 0.700000
+batches_in_epoch:  900
+ACCURACY: 0.883333330552
+Model saved in file: model_runs/teeny_infant/classifymodel_8240000.ckpt
+--- 165941.01432599995 CPU seconds ---
+iter=8241000 : Reward: 0.900000
+iter=8242000 : Reward: 0.900000
+iter=8243000 : Reward: 1.000000
+iter=8244000 : Reward: 1.000000
+iter=8245000 : Reward: 0.900000
+iter=8246000 : Reward: 0.600000
+iter=8247000 : Reward: 0.900000
+iter=8248000 : Reward: 0.800000
+iter=8249000 : Reward: 0.900000
+iter=8250000 : Reward: 0.700000
+batches_in_epoch:  900
+ACCURACY: 0.881888887088
+Model saved in file: model_runs/teeny_infant/classifymodel_8250000.ckpt
+--- 166135.31936499994 CPU seconds ---
+iter=8251000 : Reward: 0.800000
+iter=8252000 : Reward: 0.800000
+iter=8253000 : Reward: 1.000000
+iter=8254000 : Reward: 1.000000
+iter=8255000 : Reward: 0.800000
+iter=8256000 : Reward: 0.700000
+iter=8257000 : Reward: 0.900000
+iter=8258000 : Reward: 0.900000
+iter=8259000 : Reward: 0.900000
+iter=8260000 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.882999996742
+Model saved in file: model_runs/teeny_infant/classifymodel_8260000.ckpt
+--- 166329.33273399994 CPU seconds ---
+iter=8261000 : Reward: 1.000000
+iter=8262000 : Reward: 0.700000
+iter=8263000 : Reward: 0.900000
+iter=8264000 : Reward: 0.800000
+iter=8265000 : Reward: 0.900000
+iter=8266000 : Reward: 1.000000
+iter=8267000 : Reward: 0.900000
+iter=8268000 : Reward: 0.800000
+iter=8269000 : Reward: 1.000000
+iter=8270000 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.883888885776
+Model saved in file: model_runs/teeny_infant/classifymodel_8270000.ckpt
+--- 166519.55925099994 CPU seconds ---
+iter=8271000 : Reward: 0.900000
+iter=8272000 : Reward: 0.900000
+iter=8273000 : Reward: 1.000000
+iter=8274000 : Reward: 0.900000
+iter=8275000 : Reward: 0.900000
+iter=8276000 : Reward: 1.000000
+iter=8277000 : Reward: 0.900000
+iter=8278000 : Reward: 0.900000
+iter=8279000 : Reward: 0.800000
+iter=8280000 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.880222219891
+Model saved in file: model_runs/teeny_infant/classifymodel_8280000.ckpt
+--- 166712.11548499993 CPU seconds ---
+iter=8281000 : Reward: 0.900000
+iter=8282000 : Reward: 0.800000
+iter=8283000 : Reward: 0.900000
+iter=8284000 : Reward: 0.700000
+iter=8285000 : Reward: 0.800000
+iter=8286000 : Reward: 1.000000
+iter=8287000 : Reward: 0.800000
+iter=8288000 : Reward: 0.900000
+iter=8289000 : Reward: 0.700000
+iter=8290000 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.875777775182
+Model saved in file: model_runs/teeny_infant/classifymodel_8290000.ckpt
+--- 166906.60457899992 CPU seconds ---
+iter=8291000 : Reward: 0.800000
+iter=8292000 : Reward: 0.900000
+iter=8293000 : Reward: 0.900000
+iter=8294000 : Reward: 0.800000
+iter=8295000 : Reward: 0.800000
+iter=8296000 : Reward: 1.000000
+iter=8297000 : Reward: 0.600000
+iter=8298000 : Reward: 0.800000
+iter=8299000 : Reward: 0.900000
+iter=8300000 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.886777775486
+Model saved in file: model_runs/teeny_infant/classifymodel_8300000.ckpt
+--- 167095.58190699993 CPU seconds ---
+iter=8301000 : Reward: 1.000000
+iter=8302000 : Reward: 0.600000
+iter=8303000 : Reward: 0.900000
+iter=8304000 : Reward: 0.800000
+iter=8305000 : Reward: 0.900000
+iter=8306000 : Reward: 0.900000
+iter=8307000 : Reward: 1.000000
+iter=8308000 : Reward: 0.800000
+iter=8309000 : Reward: 0.800000
+iter=8310000 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.877777775228
+Model saved in file: model_runs/teeny_infant/classifymodel_8310000.ckpt
+--- 167291.84217999992 CPU seconds ---
+iter=8311000 : Reward: 0.800000
+iter=8312000 : Reward: 0.800000
+iter=8313000 : Reward: 0.700000
+iter=8314000 : Reward: 0.900000
+iter=8315000 : Reward: 0.900000
+iter=8316000 : Reward: 0.900000
+iter=8317000 : Reward: 0.800000
+iter=8318000 : Reward: 0.800000
+iter=8319000 : Reward: 0.700000
+iter=8320000 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.877555553549
+Model saved in file: model_runs/teeny_infant/classifymodel_8320000.ckpt
+--- 167486.6033509999 CPU seconds ---
+iter=8321000 : Reward: 0.900000
+iter=8322000 : Reward: 0.800000
+iter=8323000 : Reward: 0.700000
+iter=8324000 : Reward: 1.000000
+iter=8325000 : Reward: 1.000000
+iter=8326000 : Reward: 1.000000
+iter=8327000 : Reward: 0.700000
+iter=8328000 : Reward: 1.000000
+iter=8329000 : Reward: 0.800000
+iter=8330000 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.882222218116
+Model saved in file: model_runs/teeny_infant/classifymodel_8330000.ckpt
+--- 167681.27995799994 CPU seconds ---
+iter=8331000 : Reward: 0.700000
+iter=8332000 : Reward: 1.000000
+iter=8333000 : Reward: 0.800000
+iter=8334000 : Reward: 1.000000
+iter=8335000 : Reward: 0.800000
+iter=8336000 : Reward: 0.900000
+iter=8337000 : Reward: 0.800000
+iter=8338000 : Reward: 0.700000
+iter=8339000 : Reward: 0.800000
+iter=8340000 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.889333329929
+Model saved in file: model_runs/teeny_infant/classifymodel_8340000.ckpt
+--- 167876.73078899994 CPU seconds ---
+iter=8341000 : Reward: 0.800000
+iter=8342000 : Reward: 0.900000
+iter=8343000 : Reward: 1.000000
+iter=8344000 : Reward: 1.000000
+iter=8345000 : Reward: 0.700000
+iter=8346000 : Reward: 0.900000
+iter=8347000 : Reward: 0.900000
+iter=8348000 : Reward: 0.800000
+iter=8349000 : Reward: 0.800000
+iter=8350000 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.874222220182
+Model saved in file: model_runs/teeny_infant/classifymodel_8350000.ckpt
+--- 168065.23532299994 CPU seconds ---
+iter=8351000 : Reward: 1.000000
+iter=8352000 : Reward: 1.000000
+iter=8353000 : Reward: 0.900000
+iter=8354000 : Reward: 0.800000
+iter=8355000 : Reward: 1.000000
+iter=8356000 : Reward: 0.900000
+iter=8357000 : Reward: 0.900000
+iter=8358000 : Reward: 1.000000
+iter=8359000 : Reward: 0.800000
+iter=8360000 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.880777775711
+Model saved in file: model_runs/teeny_infant/classifymodel_8360000.ckpt
+--- 168282.07634099998 CPU seconds ---
+iter=8361000 : Reward: 0.900000
+iter=8362000 : Reward: 0.800000
+iter=8363000 : Reward: 1.000000
+iter=8364000 : Reward: 1.000000
+iter=8365000 : Reward: 0.900000
+iter=8366000 : Reward: 0.800000
+iter=8367000 : Reward: 0.800000
+iter=8368000 : Reward: 0.900000
+iter=8369000 : Reward: 0.900000
+iter=8370000 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.88766666366
+Model saved in file: model_runs/teeny_infant/classifymodel_8370000.ckpt
+--- 168516.43906599996 CPU seconds ---
+iter=8371000 : Reward: 0.900000
+iter=8372000 : Reward: 1.000000
+iter=8373000 : Reward: 0.800000
+iter=8374000 : Reward: 0.700000
+iter=8375000 : Reward: 1.000000
+iter=8376000 : Reward: 0.700000
+iter=8377000 : Reward: 0.700000
+iter=8378000 : Reward: 0.800000
+iter=8379000 : Reward: 0.900000
+iter=8380000 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.882555552721
+Model saved in file: model_runs/teeny_infant/classifymodel_8380000.ckpt
+--- 168746.30100099996 CPU seconds ---

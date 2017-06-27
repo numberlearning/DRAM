@@ -1,4 +1,4 @@
-print "Setting everything up!"
+print("Setting everything up!")
 import warnings
 warnings.filterwarnings('ignore')
 

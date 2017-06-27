@@ -30,7 +30,7 @@ folder_name = "model_runs/" + model_name
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
 
-start_restore_index = 0
+start_restore_index = 0 
 
 sys.argv = [sys.argv[0], "true", "false", "true", "false", "true", "true",
 folder_name + "/classify_log.csv",
@@ -41,7 +41,7 @@ folder_name + "/zzzdraw_data_5000.npy",
 print(sys.argv)
 
 pretrain_iters = 10000000
-train_iters = 50000000000 # train forever . . .
+train_iters = 2 # train forever . . .
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
 log_filename = sys.argv[7]
@@ -118,14 +118,14 @@ def read(x, h_dec_prev):
     stats = Fx, Fy, gamma = attn_window("read", h_dec_prev, read_n)
 
     def filter_img(img, Fx, Fy, gamma, N):
-        Fxt = tf.transpose(Fx,perm=[0,2,1])
-        img = tf.reshape(img,[-1,dims[1],dims[0]])
-        glimpse = tf.matmul(Fy, tf.matmul(img,Fxt))
-        glimpse = tf.reshape(glimpse,[-1,N*N])
-        return glimpse * tf.reshape(gamma,[-1,1])
+        Fxt = tf.transpose(Fx, perm=[0,2,1])
+        img = tf.reshape(img,[-1, dims[1], dims[0]])
+        glimpse = tf.matmul(Fy, tf.matmul(img, Fxt))
+        glimpse = tf.reshape(glimpse,[-1, N*N])
+        return glimpse * tf.reshape(gamma, [-1,1])
 
     x = filter_img(x, Fx, Fy, gamma, read_n) # batch x (read_n*read_n)
-    return tf.concat([x], 1), stats # concat along feature axis
+    return x, stats # concat along feature axis
 
 
 def write(h_dec):

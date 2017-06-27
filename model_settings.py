@@ -1,9 +1,9 @@
 min_edge = 2
 max_edge = 5
-max_blobs = 9
+max_blobs = 4
 
 learning_rate = 1e-3
-glimpses = 100
-batch_size = 10
+glimpses = 10
+batch_size = 1
 
-model_name = "all_knower_last_glimpse_rand_init"
+model_name = "test_notebook"
