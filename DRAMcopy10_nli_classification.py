@@ -215,6 +215,52 @@ R = tf.cast(tf.equal(correct, prediction), tf.float32)
 reward = tf.reduce_mean(R)
 
 
+def stats_to_rect(stats_in):
+    Fx_in, Fy_in, gamma_in = stats_in
+    
+    def min_max(ar):
+        minI = None
+        maxI = None
+        for i in range(dims[0]):
+            if np.any(ar[0, :, i]):
+                minI = i
+                break
+                
+        for i in reversed(range(dims[0])):
+            if np.any(ar[0, :, i]):
+                maxI = i
+                break
+                
+        return minI, maxI
+
+    minX, maxX = min_max(Fx_in)
+    minY, maxY = min_max(Fy_in)
+    
+    if minX == 0:
+        minX = 1
+        
+    if minY == 0:
+        minY = 1
+        
+    if maxX == 100:
+        maxX = 99
+        
+    if maxY == 100:
+        maxY = 99
+    
+    return dict(
+        top=[minY],
+        bottom=[maxY],
+        left=[minX],
+        right=[maxX]
+    )
+
+
+rect_list = []
+for glimpse in range(glimpses):
+    rect_list.append(stats_to_rect(classifications[glimpse]["stats"]))
+
+
 def binary_crossentropy(t,o):
     return -(t*tf.log(o+eps) + (1.0-t)*tf.log(1.0-o+eps))
 
@@ -412,7 +458,7 @@ if classify:
     train_data = load_input.InputData()
     train_data.get_train(1)
     fetches2=[]
-    fetches2.extend([reward,train_op2])
+    fetches2.extend([reward, train_op2, rect_list])
 
 
     start_time = time.clock()
@@ -421,12 +467,15 @@ if classify:
 
     for i in range(start_restore_index, train_iters):
         xtrain, ytrain = train_data.next_batch(batch_size)
-        feed_dict={x:xtrain, onehot_labels:ytrain}
-        results=sess.run(fetches2,feed_dict)
-        reward_fetched,_=results
+        feed_dict = {x:xtrain, onehot_labels:ytrain}
+        results = sess.run(fetches2, feed_dict)
+        reward_fetched, _, rect_list_fetched = results
 
         if i%1000==0:
-            print("iter=%d : Reward: %f" % (i, reward_fetched))
+            print("iter=%d : Reward: %f\n" % (i, reward_fetched))
+            print("rect_list\n")
+            print(rect_list_fetched)
+            print("\n")
             sys.stdout.flush()
 
             if i%1000==0:

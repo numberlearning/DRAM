@@ -32,7 +32,7 @@ def random_image():
 
 
 def load_checkpoint(it, human):
-    path = "model_runs/baby_blobs"
+    path = "model_runs/all_knower_last_glimpse_rand_init"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 

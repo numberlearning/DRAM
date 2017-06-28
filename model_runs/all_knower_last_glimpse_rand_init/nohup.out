@@ -196,3 +196,64 @@ ACCURACY: 0.109555557635
 Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_310000.ckpt
 --- 11534.366378 CPU seconds ---
 iter=311000 : Reward: 0.100000
+iter=312000 : Reward: 0.100000
+iter=313000 : Reward: 0.000000
+iter=314000 : Reward: 0.200000
+iter=315000 : Reward: 0.300000
+iter=316000 : Reward: 0.200000
+iter=317000 : Reward: 0.100000
+iter=318000 : Reward: 0.200000
+iter=319000 : Reward: 0.200000
+iter=320000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.112555557721
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_320000.ckpt
+--- 14399.584048 CPU seconds ---
+iter=321000 : Reward: 0.400000
+iter=322000 : Reward: 0.200000
+iter=323000 : Reward: 0.400000
+iter=324000 : Reward: 0.200000
+iter=325000 : Reward: 0.300000
+iter=326000 : Reward: 0.100000
+iter=327000 : Reward: 0.400000
+iter=328000 : Reward: 0.100000
+iter=329000 : Reward: 0.200000
+iter=330000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.110888891079
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_330000.ckpt
+--- 17303.063664 CPU seconds ---
+iter=331000 : Reward: 0.300000
+iter=332000 : Reward: 0.200000
+iter=333000 : Reward: 0.000000
+iter=334000 : Reward: 0.000000
+iter=335000 : Reward: 0.300000
+iter=336000 : Reward: 0.200000
+iter=337000 : Reward: 0.200000
+iter=338000 : Reward: 0.100000
+iter=339000 : Reward: 0.200000
+iter=340000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.113777780011
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_340000.ckpt
+--- 20460.376691 CPU seconds ---
+iter=341000 : Reward: 0.200000
+iter=342000 : Reward: 0.100000
+iter=343000 : Reward: 0.200000
+iter=344000 : Reward: 0.200000
+iter=345000 : Reward: 0.500000
+iter=346000 : Reward: 0.200000
+iter=347000 : Reward: 0.100000
+iter=348000 : Reward: 0.100000
+iter=349000 : Reward: 0.100000
+iter=350000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.109111113234
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_350000.ckpt
+--- 23523.933952 CPU seconds ---
+iter=351000 : Reward: 0.300000
+iter=352000 : Reward: 0.100000
+iter=353000 : Reward: 0.300000
+iter=354000 : Reward: 0.100000
+iter=355000 : Reward: 0.500000
+iter=356000 : Reward: 0.200000

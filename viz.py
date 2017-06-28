@@ -18,7 +18,7 @@ import numpy as np
 
 from bokeh.charts import Bar, Histogram
 
-from analysis import classify_image
+from analysis import classify_image, glimpses
 
 clear_output()
 b = Button(description="Loading...", icon="arrow", width=400)
@@ -124,7 +124,7 @@ def make_figure(color, i, j, smol=False):
     
     return p, iii, q;
 
-for i in range(10):
+for i in range(glimpses):
     (machine, i1, q1), (human, i2, q2) = make_figure("pink", i, 0), make_figure("orange", i, 1)
     machine_c, machine_cdata = make_chart(i, 0)
     human_c, human_cdata = make_chart(i, 0)
