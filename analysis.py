@@ -26,7 +26,7 @@ data.get_test(1)
 def random_image():
     num_images = len(data.images)
     i = random.randrange(num_images)
-    image_ar = np.array(data.images[i]).reshape((1, 100, 100))
+    image_ar = np.array(data.images[i]).reshape((1, dims[0], dims[1]))
     translated = convertTranslated(image_ar)
     return translated[0], data.labels[i]
 
@@ -100,6 +100,7 @@ def classify_image(it, new_image):
         out["classifications"].append((machine_cs[i]["classification"], human_cs[i]["classification"]))
         out["rects"].append((stats_to_rect(machine_cs[i]["stats"]), stats_to_rect(human_cs[i]["stats"])))
 
+    print(out["rects"])
 
     # machine_cs = state_to_cell_array(machine_cs, "dec_state")
     # human_cs = state_to_cell_array(human_cs, "dec_state")

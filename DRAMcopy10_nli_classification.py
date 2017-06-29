@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import warnings
+warnings.filterwarnings('ignore')
 
 
 import tensorflow as tf
@@ -109,6 +111,13 @@ def attn_window(scope,h_dec,N):
 
     gx=(dims[0]+1)/2*(gx_+1)
     gy=(dims[1]+1)/2*(gy_+1)
+
+
+    tf.Print(gx, [gx])
+    tf.Print(gy, [gy])
+    gx_list.append(gx)
+    gy_list.append(gy)
+
     sigma2=tf.exp(log_sigma2)
     delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
     return filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),)
@@ -158,6 +167,9 @@ enc_state=lstm_enc.zero_state(batch_size, tf.float32)
 dec_state=lstm_dec.zero_state(batch_size, tf.float32)
 
 classifications = []
+gx_list = []
+gy_list = []
+
 
 for glimpse in range(glimpses):
     r, stats = read(x, h_dec_prev)
@@ -214,23 +226,54 @@ R = tf.cast(tf.equal(correct, prediction), tf.float32)
 
 reward = tf.reduce_mean(R)
 
+def random_image():
+    data = load_input.InputData()
+    data.get_test(1)
+    num_images = len(data.images)
+    i = random.randrange(num_images)
+    image_ar = np.array(data.images[i]).reshape((1, dims[0], dims[1]))
+    translated = convertTranslated(image_ar)
+    return translated[0], data.labels[i]
+
 
 def stats_to_rect(stats_in):
     Fx_in, Fy_in, gamma_in = stats_in
+#     return stats_in
     
     def min_max(ar):
         minI = None
         maxI = None
+        
         for i in range(dims[0]):
-            if np.any(ar[0, :, i]):
+            print(ar)
+            print("ar[0]: ", ar[0])
+            print("ar[0][:]: ", ar[0][:])
+#             print("ar[0][:][i]: ", ar[0][:][i])
+            tf.Print(ar[0][:][i], [ar[0][:][i]])
+#             array = sess.run(ar)
+            array = ar[0, :, i]
+
+            minI = tf.cond(tf.reduce_sum(ar[0, :, i]) > 0,
+                    lambda: tf.cast(i, tf.int32),
+                    lambda: tf.cast(0, tf.int32))
+#            if tf.reduce_sum(ar[0, :, i]) > 0:
+            if minI == i:
                 minI = i
                 break
+
                 
         for i in reversed(range(dims[0])):
-            if np.any(ar[0, :, i]):
+            array = sess.run(ar[0, :, i])
+#             maxI = tf.cond(tf.reduce_sum(ar[0, :, i]) > 0,
+#                     lambda: tf.cast(i, tf.int32),
+#                     lambda: tf.cast(0, tf.int32))
+#             if tf.reduce_sum(ar[0, :, i]) > 0:
+#             if np.any(ar[0, :, i]):
+            if np.any(array):
                 maxI = i
                 break
-                
+
+                    
         return minI, maxI
 
     minX, maxX = min_max(Fx_in)
@@ -255,10 +298,6 @@ def stats_to_rect(stats_in):
         right=[maxX]
     )
 
-
-rect_list = []
-for glimpse in range(glimpses):
-    rect_list.append(stats_to_rect(classifications[glimpse]["stats"]))
 
 
 def binary_crossentropy(t,o):
@@ -441,11 +480,11 @@ if pretrain:
 
 
 if classify:
-    sess=tf.InteractiveSession()
+    sess = tf.InteractiveSession()
     
     saver = tf.train.Saver()
     tf.global_variables_initializer().run()
-
+    
     if restore:
         saver.restore(sess, load_file)
         # start_restore_index = int(load_file[len(save_file):-len(".ckpt")])
@@ -458,24 +497,41 @@ if classify:
     train_data = load_input.InputData()
     train_data.get_train(1)
     fetches2=[]
-    fetches2.extend([reward, train_op2, rect_list])
-
+    fetches2.extend([reward, train_op2])
 
     start_time = time.clock()
     extra_time = 0
 
-
     for i in range(start_restore_index, train_iters):
         xtrain, ytrain = train_data.next_batch(batch_size)
-        feed_dict = {x:xtrain, onehot_labels:ytrain}
-        results = sess.run(fetches2, feed_dict)
-        reward_fetched, _, rect_list_fetched = results
+        results = sess.run(fetches2, feed_dict = {x: xtrain, onehot_labels: ytrain})
+        reward_fetched, _ = results
+
+        last_image = random_image()
+        img, label = last_image
+
+#         rect_list_fetched = sess.run(classifications, 
+#                 feed_dict = {x: img.reshape(1, 10000)})
+
+        print("i: ", i)
+#         rect_list = []
+#         for glimpse in range(glimpses):
+#             rect_list.append(stats_to_rect(classifications[glimpse]["stats"]))
 
         if i%1000==0:
             print("iter=%d : Reward: %f\n" % (i, reward_fetched))
-            print("rect_list\n")
-            print(rect_list_fetched)
+            print("gx_list\n")
+            print(tf.Print(gx_list, [gx_list]))
             print("\n")
+
+            print("gy_list\n")
+            print(tf.Print(gy_list, [gy_list]))
+            print("\n")
+
+            print("rect_list_fetched\n")
+#             print(rect_list_fetched)
+            print("\n")
+
             sys.stdout.flush()
 
             if i%1000==0:
