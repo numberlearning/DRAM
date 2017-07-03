@@ -9,7 +9,7 @@ import random
 from scipy import misc
 import time
 import sys
-from DRAMcopy10_nli_classification import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims 
+from DRAMcopy10_nli_classification import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 import load_input
 
 output_size = z_size
@@ -32,7 +32,7 @@ def random_image():
 
 
 def load_checkpoint(it, human):
-    path = "model_runs/all_knower_last_glimpse_rand_init"
+    path = "model_runs/test_h_dec"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -51,11 +51,13 @@ def classify_image(it, new_image):
     out["classifications"] = list()
     out["rects"] = list()
     out["rs"] = list()
+    out["centers"] = list()
+    out["h_decs"] = list()
 
 
 
     load_checkpoint(it, human=False)
-    machine_cs = sess.run(classifications, feed_dict={x: img.reshape(batch_size, dims[0] * dims[1])})
+    machine_cs = sess.run(classifications, feed_dict={x: img.reshape(1, dims[0] * dims[1])})
 
     # print_distances(state_to_cell_array(machine_cs, "enc_state"), "machine enc")
     # print_distances(state_to_cell_array(machine_cs, "dec_state"), "machine dec")
@@ -96,11 +98,15 @@ def classify_image(it, new_image):
     #     h_last = c
 
     for i in range(len(machine_cs)):
-        out["rs"].append((np.flip(machine_cs[i]["r"].reshape(5, 5), 0), np.flip(human_cs[i]["r"].reshape(5, 5), 0)))
+        out["rs"].append((np.flip(machine_cs[i]["r"].reshape(read_n, read_n), 0), np.flip(human_cs[i]["r"].reshape(read_n, read_n), 0)))
         out["classifications"].append((machine_cs[i]["classification"], human_cs[i]["classification"]))
         out["rects"].append((stats_to_rect(machine_cs[i]["stats"]), stats_to_rect(human_cs[i]["stats"])))
+        out["centers"].append((machine_cs[i]["more_stats"], human_cs[i]["more_stats"]))
+        out["h_decs"].append((machine_cs[i]["h_dec"], human_cs[i]["h_dec"]))
 
     print(out["rects"])
+    print(out["centers"])
+    print(out["h_decs"])
 
     # machine_cs = state_to_cell_array(machine_cs, "dec_state")
     # human_cs = state_to_cell_array(human_cs, "dec_state")

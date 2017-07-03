@@ -23,8 +23,8 @@ from analysis import classify_image, glimpses, read_n
 clear_output()
 b = Button(description="Loading...", icon="arrow", width=400)
 dropdown = Dropdown(
-    options=['5000', '10000', '50000', '100000', '200000', '300000', '400000', '500000'],
-    value='300000',
+    options=['5000', '10000', '20000', '30000', '50000', '100000', '200000', '300000', '400000', '500000'],
+    value='30000',
     description='Iteration:'
 )
 
@@ -169,9 +169,6 @@ def unhover(i, j):
     """
     iqs[i][j][0].data_source.data["image"][0] = data["img"]
     iqs[i][j][1].data_source.data = data["rects"][i][j]
-    print('data["rects"][:][j]: ')
-    for glimpse in range(glimpses):
-        print(data["rects"][glimpse][j])
     push_notebook(handle=handle)
     
     
@@ -197,6 +194,8 @@ def update_figures(handle, new_image=True):
                 colors.append("lime" if x else "red")
             return colors
         
+        print('data["label"]: ')
+        print(data["label"])
         clabel = colorify(data["label"])
                 
         
@@ -204,6 +203,10 @@ def update_figures(handle, new_image=True):
 
         print('data["classifications"][i][0][0]: ')
         print(data["classifications"][i][0][0])
+
+        print('data["rects"][i][j]: ')
+        # for glimpse in range(glimpses):
+        print(data["rects"][i][0])
 
         machine_cdata.data_source.data["color"] = clabel
         
