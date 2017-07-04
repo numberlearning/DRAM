@@ -70,7 +70,7 @@ start_non_restored_from_random = str2bool(sys.argv[15])
 
 REUSE = None
 
-x = tf.placeholder(tf.float32,shape=(batch_size,img_size))
+x = tf.placeholder(tf.float32,shape=(batch_size, img_size))
 onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, z_size))
 lstm_enc = tf.contrib.rnn.LSTMCell(enc_size, read_size+dec_size) # encoder Op
 lstm_dec = tf.contrib.rnn.LSTMCell(dec_size, z_size) # decoder Op
@@ -126,7 +126,6 @@ def attn_window(scope,h_dec,N):
 def read(x, h_dec_prev):
     att_ret = attn_window("read", h_dec_prev, read_n)
     stats = Fx, Fy, gamma = att_ret[0]
-    #more_stats = gx, gy, delta = att_ret[1]
 
     def filter_img(img, Fx, Fy, gamma, N):
         Fxt = tf.transpose(Fx, perm=[0,2,1])
@@ -136,10 +135,34 @@ def read(x, h_dec_prev):
         return glimpse * tf.reshape(gamma, [-1,1])
 
     x = filter_img(x, Fx, Fy, gamma, read_n) # batch x (read_n*read_n)
-    return x, stats, #more_stats # concat along feature axis
+    return x, stats # concat along feature axis
 
 
-def write(h_dec):
+def encode(input, state):
+    """
+    run LSTM
+    state: previous encoder state
+    input: cat(read, h_dec_prev)
+    returns: (output, new_state)
+    """
+
+    with tf.variable_scope("encoder/LSTMCell", reuse=REUSE):
+        return lstm_enc(input, state)
+
+
+def decode(input, state):
+    """
+    run LSTM
+    state: previous decoder state
+    input: cat(write, h_dec_prev)
+    returns: (output, new_state)
+    """
+
+    with tf.variable_scope("decoder/LSTMCell", reuse=REUSE):
+        return lstm_dec(input, state)
+
+
+ def write(h_dec):
     with tf.variable_scope("write",reuse=REUSE):
         return linear(h_dec,img_size)
 
@@ -161,10 +184,9 @@ def dense_to_one_hot(labels_dense, num_classes=z_size):
     return labels_one_hot
 
 
-
-outputs=[0] * glimpses
+## STATE VARIABLES ##############
+outputs = [0] * glimpses
 h_dec_prev=tf.zeros((batch_size,dec_size))
-# h_enc_prev=tf.zeros((batch_size,enc_size))
 enc_state=lstm_enc.zero_state(batch_size, tf.float32)
 dec_state=lstm_dec.zero_state(batch_size, tf.float32)
 
@@ -175,21 +197,16 @@ gy_list = list()
 
 for glimpse in range(glimpses):
     r, stats = read(x, h_dec_prev)
-    #r, stats, more_stats = read(x, h_dec_prev)
-    with tf.variable_scope("encoder/LSTMCell", reuse=REUSE):
-        h_enc, enc_state = lstm_enc(tf.concat([r,h_dec_prev], 1), enc_state)
-    
+   
+    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state)
+
     with tf.variable_scope("z",reuse=REUSE):
         z = linear(h_enc, z_size)
 
-    with tf.variable_scope("decoder/LSTMCell", reuse=REUSE):
-        h_dec, dec_state = lstm_dec(z, dec_state)
+    h_dec, dec_state = decode(z, dec_state)
 
-    with tf.variable_scope("write", reuse=REUSE):
-        outputs[glimpse] = linear(h_dec, img_size)
 
     h_dec_prev=h_dec
- #   h_enc_prev=h_enc
 
     with tf.variable_scope("hidden1",reuse=REUSE):
         hidden = tf.nn.relu(linear(h_dec_prev, 256))
@@ -198,16 +215,8 @@ for glimpse in range(glimpses):
         classifications.append({
             "classification": classification,
             "stats": stats,
-            #"more_stats": more_stats,
             "r": r,
-            "enc_state": enc_state,
-            "dec_state": dec_state,
             "h_dec": h_dec,
-            # "enc_gates": enc_gates,
-            # "dec_gates": dec_gates,
-            # "Fx": Fx,
-            # "Fy": Fy,
-            # "gamma": gamma,
         })
 
     REUSE=True
@@ -220,14 +229,6 @@ prediction = tf.arg_max(classification, 1)
 # all-knower
 R = tf.cast(tf.equal(correct, prediction), tf.float32)
 
-# one-knower
-# R = [0 for x in range(batch_size)]
-# for img in range(batch_size):
-#     R[img] = tf.cond(tf.equal(correct[img], 0),
-#             lambda: tf.cast(tf.equal(prediction[img], 0), tf.float32),
-#             lambda: tf.cast(tf.not_equal(prediction[img], 0), tf.float32))
-# R = tf.convert_to_tensor(R, dtype=tf.float32)
-
 reward = tf.reduce_mean(R)
 
 
@@ -239,17 +240,12 @@ def evaluate():
     data = load_input.InputData()
     data.get_test(1)
     batches_in_epoch = len(data.images) // batch_size
-    print("batches_in_epoch: ", batches_in_epoch)
     accuracy = 0
     
     for i in range(batches_in_epoch):
         nextX, nextY = data.next_batch(batch_size)
-        #print("got next batch")
-        #if translated:
-        #    nextX = convertTranslated(nextX)
         feed_dict = {x: nextX, onehot_labels:nextY}
         r = sess.run(reward, feed_dict=feed_dict)
-        #print("ran reward")
         accuracy += r
     
     accuracy /= batches_in_epoch
@@ -258,95 +254,19 @@ def evaluate():
     return accuracy
 
 
-x_recons=tf.nn.sigmoid(outputs[-1])
-
-reconstruction_loss=tf.reduce_sum(binary_crossentropy(x,x_recons),1)
-reconstruction_loss=tf.reduce_mean(reconstruction_loss)
-
 predcost = -predquality
 
 
-##################
+## OPTIMIZER #################################################
 
 
-# with tf.variable_scope("optimizer", reuse=None):
-#     optimizer=tf.train.AdamOptimizer(learning_rate, beta1=0.5)
-#     grads=optimizer.compute_gradients(reconstruction_loss)
-#     for i,(g,v) in enumerate(grads):
-#         if g is not None:
-#             grads[i]=(tf.clip_by_norm(g,5),v)
-#     train_op=optimizer.apply_gradients(grads)
+optimizer = tf.train.AdamOptimizer(learning_rate, beta1=0.5)
+grads = optimizer.compute_gradients(predcost)
 
-varsToTrain = []
-
-
-if True:#str2bool(sys.argv[1]):
-    
-    with tf.variable_scope("read",reuse=True):
-        w = tf.get_variable("w")
-        varsToTrain.append(w)
-        b = tf.get_variable("b")
-        varsToTrain.append(b)
-
-
-if False:#True:#str2bool(sys.argv[2]):
-    
-    with tf.variable_scope("encoder/LSTMCell",reuse=True):
-        w = tf.get_variable("W_0")
-        varsToTrain.append(w)
-        b = tf.get_variable("B")
-        varsToTrain.append(b)
-
-
-if True:#str2bool(sys.argv[3]):
-    
-    with tf.variable_scope("z",reuse=True):
-        w = tf.get_variable("w")
-        varsToTrain.append(w)
-        b = tf.get_variable("b")
-        varsToTrain.append(b)
-
-
-if False:#True:#str2bool(sys.argv[4]):
-    
-    with tf.variable_scope("decoder/LSTMCell",reuse=True):
-        w = tf.get_variable("W_0")
-        varsToTrain.append(w)
-        b = tf.get_variable("B")
-        varsToTrain.append(b)
-
-
-if True:#str2bool(sys.argv[5]):
-    
-    with tf.variable_scope("hidden1",reuse=True):
-        w = tf.get_variable("w")
-        varsToTrain.append(w)
-        b = tf.get_variable("b")
-        varsToTrain.append(b)
-
-
-if True:#str2bool(sys.argv[6]):
-    
-    with tf.variable_scope("output",reuse=True):
-        w = tf.get_variable("w")
-        varsToTrain.append(w)
-        b = tf.get_variable("b")
-        varsToTrain.append(b)
-
-
-##########################################################################
-
-
-with tf.variable_scope("optimizer2", reuse=None):
-    optimizer2 = tf.train.AdamOptimizer(learning_rate, beta1=0.5)
-    #for v in varsToTrain:
-        #print(v.name)
-    grads2b = optimizer2.compute_gradients(predcost)
-    
-    for i,(g, v) in enumerate(grads2b):
-        if g is not None:
-            grads2b[i]=(tf.clip_by_norm(g, 5), v)
-    train_op2 = optimizer2.apply_gradients(grads2b)
+for i, (g, v) in enumerate(grads):
+    if g is not None:
+        grads[i] = (tf.clip_by_norm(g, 5), v)
+train_op = optimizer.apply_gradients(grads)
     
 
 if __name__ == '__main__':
@@ -359,8 +279,6 @@ if __name__ == '__main__':
     
     if restore:
         saver.restore(sess, load_file)
-        # start_restore_index = int(load_file[len(save_file):-len(".ckpt")])
-
 
     if start_non_restored_from_random:
         tf.variables_initializer(varsToTrain).run()
@@ -381,40 +299,31 @@ if __name__ == '__main__':
 
         if i%10==0:
             print("iter=%d : Reward: %f\n" % (i, reward_fetched))
-            #print("gx_list\n")
-            #print(sess.run(gx_list, feed_dict = {x: xtrain, onehot_labels: ytrain})) 
-            #print("\n")
-
-            #print("gy_list\n")
-            #print(sess.run(gy_list, feed_dict = {x: xtrain, onehot_labels: ytrain})) 
-            #print("\n")
-
-
             sys.stdout.flush()
 
             if i%1000==0:
                 train_data = load_input.InputData()
                 train_data.get_train(1)
      
-            if i %10000==0:
-                start_evaluate = time.clock()
-                test_accuracy = evaluate()
-                saver = tf.train.Saver(tf.global_variables())
-                print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
-                extra_time = extra_time + time.clock() - start_evaluate
-                print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
-                if i == 0:
-                    log_file = open(log_filename, 'w')
-                    settings_file = open(settings_filename, "w")
-                    settings_file.write("learning_rate = " + str(learning_rate) + ", ")
-                    settings_file.write("glimpses = " + str(glimpses) + ", ")
-                    settings_file.write("batch_size = " + str(batch_size) + ", ")
-                    settings_file.write("min_edge = " + str(min_edge) + ", ")
-                    settings_file.write("max_edge = " + str(max_edge) + ", ")
-                    settings_file.write("min_blobs = " + str(min_blobs) + ", ")
-                    settings_file.write("max_blobs = " + str(max_blobs) + ", ")
-                    settings_file.close()
-                else:
-                    log_file = open(log_filename, 'a')
-                log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
-                log_file.close()
+                if i %10000==0:
+                    start_evaluate = time.clock()
+                    test_accuracy = evaluate()
+                    saver = tf.train.Saver(tf.global_variables())
+                    print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
+                    extra_time = extra_time + time.clock() - start_evaluate
+                    print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
+                    if i == 0:
+                        log_file = open(log_filename, 'w')
+                        settings_file = open(settings_filename, "w")
+                        settings_file.write("learning_rate = " + str(learning_rate) + ", ")
+                        settings_file.write("glimpses = " + str(glimpses) + ", ")
+                        settings_file.write("batch_size = " + str(batch_size) + ", ")
+                        settings_file.write("min_edge = " + str(min_edge) + ", ")
+                        settings_file.write("max_edge = " + str(max_edge) + ", ")
+                        settings_file.write("min_blobs = " + str(min_blobs) + ", ")
+                        settings_file.write("max_blobs = " + str(max_blobs) + ", ")
+                        settings_file.close()
+                    else:
+                        log_file = open(log_filename, 'a')
+                    log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
+                    log_file.close()
