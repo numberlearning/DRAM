@@ -1,4 +1,4 @@
-print "Setting everything up!"
+print("Setting everything up!")
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -18,13 +18,13 @@ import numpy as np
 
 from bokeh.charts import Bar, Histogram
 
-from analysis import classify_image
+from analysis import classify_image, glimpses, read_n
 
 clear_output()
 b = Button(description="Loading...", icon="arrow", width=400)
 dropdown = Dropdown(
-    options=['5000', '10000', '50000', '100000', '200000', '300000'],
-    value='300000',
+    options=['5000', '10000', '20000', '30000', '50000', '100000', '200000', '300000', '400000', '500000'],
+    value='30000',
     description='Iteration:'
 )
 
@@ -33,6 +33,10 @@ iqs = list()
 charts = list()
 
 def make_chart(i, j):
+    """
+    i: glimpse number
+    j: Last-Step if 0, All-Step if 1
+    """
 #     source = ColumnDataSource(data=dict(data=))
 #     bar2 = Bar(data=np.random.rand(10), title="Python Interpreters", plot_width=400, legend=False)
     name = "Last-Step" if j == 0 else "All-Step"
@@ -40,7 +44,7 @@ def make_chart(i, j):
     p = figure(x_range=(-0.5, 10), y_range=(0, 1), width=200, height=200, tools="")
     
     m = 0.1
-    source = ColumnDataSource(data=dict(color=["lime"] * 10, top=np.zeros(10), bottom=np.zeros(10), left=np.arange(10) + m - 0.5, right=np.arange(1, 11) - m - 0.5))
+    source = ColumnDataSource(data=dict(color=["lime"] * 10, top=np.zeros(10), bottom=np.zeros(10), left=np.arange(10) + m + 0.5, right=np.arange(1, 11) - m + 0.5))
     q = p.quad('left', 'right', 'top', 'bottom', source=source, color="color")
 
 
@@ -67,8 +71,14 @@ def make_spacer():
     return p
 
 def make_figure(color, i, j, smol=False):
+    """
+    color: attention window color
+    i: glimpse number
+    j: Last-Step if 0, All-Step if 1
+    smol: if the image should be small
+    """
     if smol:
-        w = 12
+        w = read_n
     else:
         w = 100
         
@@ -124,25 +134,39 @@ def make_figure(color, i, j, smol=False):
     
     return p, iii, q;
 
-for i in range(10):
-    (machine, i1, q1), (human, i2, q2) = make_figure("pink", i, 0), make_figure("orange", i, 1)
-    machine_c, machine_cdata = make_chart(i, 0)
-    human_c, human_cdata = make_chart(i, 0)
-    figures.append([machine, machine_c, make_spacer(), human, human_c])
-    iqs.append([
-        (i1, q1),
-        (i2, q2)
-    ])
-    charts.append([machine_cdata, human_cdata])
-    
+for i in range(glimpses):
+    if i % 10 == 0:
+        (machine, i1, q1), (human, i2, q2) = make_figure("pink", i, 0), make_figure("orange", i, 1)
+        machine_c, machine_cdata = make_chart(i, 0)
+        human_c, human_cdata = make_chart(i, 0)
+        figures.append([machine, machine_c, make_spacer(), human, human_c])
+        iqs.append([
+            (i1, q1),
+            (i2, q2)
+        ])
+        charts.append([machine_cdata, human_cdata])
+        
 data = None
     
 def hover(i, j):
+    """
+    Show attention window image when figure is hovered over.
+    i: glimpse number
+    j: Last-Step or All-Step
+    iqs: list of images and attention windows
+    """
     iqs[i][j][0].data_source.data["image"][0] = data["rs"][i][j]
     iqs[i][j][1].data_source.data = dict(top=[0], bottom=[0], left=[0], right=[0])
     push_notebook(handle=handle)
-    
+
+
 def unhover(i, j):
+    """
+    Show figure image when figure is unhovered.
+    i: glimpse number
+    j: Last-Step or All-Step
+    iqs: list of images and attention windows
+    """
     iqs[i][j][0].data_source.data["image"][0] = data["img"]
     iqs[i][j][1].data_source.data = data["rects"][i][j]
     push_notebook(handle=handle)
@@ -170,10 +194,20 @@ def update_figures(handle, new_image=True):
                 colors.append("lime" if x else "red")
             return colors
         
+        print('data["label"]: ')
+        print(data["label"])
         clabel = colorify(data["label"])
                 
         
         machine_cdata.data_source.data["top"] = data["classifications"][i][0][0]
+
+        print('data["classifications"][i][0][0]: ')
+        print(data["classifications"][i][0][0])
+
+        print('data["rects"][i][j]: ')
+        # for glimpse in range(glimpses):
+        print(data["rects"][i][0])
+
         machine_cdata.data_source.data["color"] = clabel
         
         human_cdata.data_source.data["top"] = data["classifications"][i][1][0]

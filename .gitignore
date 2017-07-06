@@ -1,3 +1,4 @@
 /mnist.pkl
-/data/testSet.txt
-/data/trainSet.txt
+/data/*
+/model_runs/**/*.ckpt.*
+__pycache__/

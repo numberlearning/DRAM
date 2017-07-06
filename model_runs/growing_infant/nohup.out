@@ -1,0 +1,574 @@
+['DRAMcopy10_nli_classification.py', 'true', 'false', 'true', 'false', 'true', 'true', 'model_runs/growing_infant/classify_log.csv', 'model_runs/growing_infant/classifymodel_0.ckpt', 'model_runs/growing_infant/classifymodel_', 'model_runs/growing_infant/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f0711a74080>: The input_size parameter is deprecated.
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f06cec879b0>: The input_size parameter is deprecated.
+classification.shape, the batch_size, z_size:  (10, 3)
+classification.shape, the batch_size, z_size:  (10, 3)
+classification.shape, the batch_size, z_size:  (10, 3)
+len(pqs):  3
+read/w:0
+read/b:0
+z/w:0
+z/b:0
+hidden1/w:0
+hidden1/b:0
+hidden2/w:0
+hidden2/b:0
+2017-06-22 15:37:38.970237: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 15:37:38.970262: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 15:37:38.970266: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 15:37:38.970269: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 15:37:38.970272: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-22 15:37:39.155698: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-06-22 15:37:39.156040: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 5.01GiB
+2017-06-22 15:37:39.156092: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x5ad1b20
+2017-06-22 15:37:39.241572: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-06-22 15:37:39.241923: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 6.81GiB
+2017-06-22 15:37:39.243694: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-06-22 15:37:39.243702: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-06-22 15:37:39.243707: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-06-22 15:37:39.243714: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-06-22 15:37:39.243719: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.101444446428
+Model saved in file: model_runs/growing_infant/classifymodel_0.ckpt
+--- 1.913608 CPU seconds ---
+iter=1 : Reward: 0.200000
+iter=2 : Reward: 0.300000
+iter=3 : Reward: 0.100000
+iter=4 : Reward: 0.300000
+iter=5 : Reward: 0.200000
+iter=6 : Reward: 0.100000
+iter=7 : Reward: 0.000000
+iter=8 : Reward: 0.200000
+iter=9 : Reward: 0.100000
+iter=10 : Reward: 0.300000
+batches_in_epoch:  900
+ACCURACY: 0.114444446729
+Model saved in file: model_runs/growing_infant/classifymodel_10.ckpt
+--- 2.6124380000000045 CPU seconds ---
+iter=11 : Reward: 0.000000
+iter=12 : Reward: 0.000000
+iter=13 : Reward: 0.000000
+iter=14 : Reward: 0.100000
+iter=15 : Reward: 0.100000
+iter=16 : Reward: 0.200000
+iter=17 : Reward: 0.000000
+iter=18 : Reward: 0.000000
+iter=19 : Reward: 0.200000
+iter=20 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.1145555579
+Model saved in file: model_runs/growing_infant/classifymodel_20.ckpt
+--- 3.3235719999999844 CPU seconds ---
+iter=21 : Reward: 0.100000
+iter=22 : Reward: 0.200000
+iter=23 : Reward: 0.100000
+iter=24 : Reward: 0.000000
+iter=25 : Reward: 0.300000
+iter=26 : Reward: 0.200000
+iter=27 : Reward: 0.000000
+iter=28 : Reward: 0.300000
+iter=29 : Reward: 0.000000
+iter=30 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.114333335625
+Model saved in file: model_runs/growing_infant/classifymodel_30.ckpt
+--- 4.0276549999999816 CPU seconds ---
+iter=31 : Reward: 0.000000
+iter=32 : Reward: 0.100000
+iter=33 : Reward: 0.000000
+iter=34 : Reward: 0.200000
+iter=35 : Reward: 0.200000
+iter=36 : Reward: 0.200000
+iter=37 : Reward: 0.300000
+iter=38 : Reward: 0.200000
+iter=39 : Reward: 0.200000
+iter=40 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.118444446764
+Model saved in file: model_runs/growing_infant/classifymodel_40.ckpt
+--- 4.730201999999991 CPU seconds ---
+iter=41 : Reward: 0.200000
+iter=42 : Reward: 0.100000
+iter=43 : Reward: 0.100000
+iter=44 : Reward: 0.000000
+iter=45 : Reward: 0.100000
+iter=46 : Reward: 0.000000
+iter=47 : Reward: 0.300000
+iter=48 : Reward: 0.100000
+iter=49 : Reward: 0.400000
+iter=50 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.115111113456
+Model saved in file: model_runs/growing_infant/classifymodel_50.ckpt
+--- 5.419388000000026 CPU seconds ---
+iter=51 : Reward: 0.100000
+iter=52 : Reward: 0.100000
+iter=53 : Reward: 0.300000
+iter=54 : Reward: 0.100000
+iter=55 : Reward: 0.200000
+iter=56 : Reward: 0.100000
+iter=57 : Reward: 0.100000
+iter=58 : Reward: 0.000000
+iter=59 : Reward: 0.200000
+iter=60 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.118666669048
+Model saved in file: model_runs/growing_infant/classifymodel_60.ckpt
+--- 6.089282000000026 CPU seconds ---
+iter=61 : Reward: 0.000000
+iter=62 : Reward: 0.100000
+iter=63 : Reward: 0.200000
+iter=64 : Reward: 0.300000
+iter=65 : Reward: 0.000000
+iter=66 : Reward: 0.400000
+iter=67 : Reward: 0.100000
+iter=68 : Reward: 0.300000
+iter=69 : Reward: 0.100000
+iter=70 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.12311111355
+Model saved in file: model_runs/growing_infant/classifymodel_70.ckpt
+--- 6.8119950000000244 CPU seconds ---
+iter=71 : Reward: 0.100000
+iter=72 : Reward: 0.400000
+iter=73 : Reward: 0.100000
+iter=74 : Reward: 0.000000
+iter=75 : Reward: 0.000000
+iter=76 : Reward: 0.100000
+iter=77 : Reward: 0.000000
+iter=78 : Reward: 0.000000
+iter=79 : Reward: 0.000000
+iter=80 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.107111113262
+Model saved in file: model_runs/growing_infant/classifymodel_80.ckpt
+--- 7.507352000000054 CPU seconds ---
+iter=81 : Reward: 0.200000
+iter=82 : Reward: 0.000000
+iter=83 : Reward: 0.800000
+iter=84 : Reward: 1.000000
+iter=85 : Reward: 0.700000
+iter=86 : Reward: 0.600000
+iter=87 : Reward: 0.900000
+iter=88 : Reward: 0.700000
+iter=89 : Reward: 0.600000
+iter=90 : Reward: 0.700000
+batches_in_epoch:  900
+ACCURACY: 0.770333345036
+Model saved in file: model_runs/growing_infant/classifymodel_90.ckpt
+--- 8.280248000000086 CPU seconds ---
+iter=91 : Reward: 0.800000
+iter=92 : Reward: 0.900000
+iter=93 : Reward: 0.900000
+iter=94 : Reward: 1.000000
+iter=95 : Reward: 0.900000
+iter=96 : Reward: 1.000000
+iter=97 : Reward: 0.900000
+iter=98 : Reward: 0.800000
+iter=99 : Reward: 0.500000
+iter=100 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.784111119873
+Model saved in file: model_runs/growing_infant/classifymodel_100.ckpt
+--- 8.968396000000126 CPU seconds ---
+iter=101 : Reward: 1.000000
+iter=102 : Reward: 0.900000
+iter=103 : Reward: 0.900000
+iter=104 : Reward: 0.900000
+iter=105 : Reward: 0.600000
+iter=106 : Reward: 0.700000
+iter=107 : Reward: 0.500000
+iter=108 : Reward: 0.900000
+iter=109 : Reward: 0.600000
+iter=110 : Reward: 0.500000
+batches_in_epoch:  900
+ACCURACY: 0.77622223162
+Model saved in file: model_runs/growing_infant/classifymodel_110.ckpt
+--- 9.663809000000072 CPU seconds ---
+iter=111 : Reward: 0.700000
+iter=112 : Reward: 0.800000
+iter=113 : Reward: 0.700000
+iter=114 : Reward: 0.800000
+iter=115 : Reward: 0.600000
+iter=116 : Reward: 0.700000
+iter=117 : Reward: 0.600000
+iter=118 : Reward: 0.800000
+iter=119 : Reward: 0.700000
+iter=120 : Reward: 0.600000
+batches_in_epoch:  900
+ACCURACY: 0.775333343844
+Model saved in file: model_runs/growing_infant/classifymodel_120.ckpt
+--- 10.348164000000168 CPU seconds ---
+iter=121 : Reward: 0.900000
+iter=122 : Reward: 0.600000
+iter=123 : Reward: 0.900000
+iter=124 : Reward: 0.800000
+iter=125 : Reward: 0.800000
+iter=126 : Reward: 0.800000
+iter=127 : Reward: 0.800000
+iter=128 : Reward: 0.800000
+iter=129 : Reward: 0.700000
+iter=130 : Reward: 0.700000
+batches_in_epoch:  900
+ACCURACY: 0.756444455584
+Model saved in file: model_runs/growing_infant/classifymodel_130.ckpt
+--- 11.05671700000022 CPU seconds ---
+iter=131 : Reward: 0.900000
+iter=132 : Reward: 0.900000
+iter=133 : Reward: 0.900000
+iter=134 : Reward: 0.800000
+iter=135 : Reward: 1.000000
+iter=136 : Reward: 0.800000
+iter=137 : Reward: 0.800000
+iter=138 : Reward: 0.800000
+iter=139 : Reward: 0.600000
+iter=140 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.774000009596
+Model saved in file: model_runs/growing_infant/classifymodel_140.ckpt
+--- 11.701798000000224 CPU seconds ---
+iter=141 : Reward: 0.900000
+iter=142 : Reward: 0.700000
+iter=143 : Reward: 0.900000
+iter=144 : Reward: 0.900000
+iter=145 : Reward: 0.900000
+iter=146 : Reward: 0.700000
+iter=147 : Reward: 0.900000
+iter=148 : Reward: 0.900000
+iter=149 : Reward: 0.700000
+iter=150 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.775111121138
+Model saved in file: model_runs/growing_infant/classifymodel_150.ckpt
+--- 12.35347900000022 CPU seconds ---
+iter=151 : Reward: 0.600000
+iter=152 : Reward: 0.800000
+iter=153 : Reward: 0.700000
+iter=154 : Reward: 0.900000
+iter=155 : Reward: 1.000000
+iter=156 : Reward: 0.900000
+iter=157 : Reward: 0.700000
+iter=158 : Reward: 0.800000
+iter=159 : Reward: 0.900000
+iter=160 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.775555566351
+Model saved in file: model_runs/growing_infant/classifymodel_160.ckpt
+--- 13.012546000000214 CPU seconds ---
+iter=161 : Reward: 0.500000
+iter=162 : Reward: 0.900000
+iter=163 : Reward: 0.700000
+iter=164 : Reward: 0.800000
+iter=165 : Reward: 0.600000
+iter=166 : Reward: 0.600000
+iter=167 : Reward: 0.700000
+iter=168 : Reward: 1.000000
+iter=169 : Reward: 0.700000
+iter=170 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.765000008825
+Model saved in file: model_runs/growing_infant/classifymodel_170.ckpt
+--- 13.702501000000211 CPU seconds ---
+iter=171 : Reward: 0.900000
+iter=172 : Reward: 0.900000
+iter=173 : Reward: 1.000000
+iter=174 : Reward: 0.900000
+iter=175 : Reward: 0.700000
+iter=176 : Reward: 0.800000
+iter=177 : Reward: 0.600000
+iter=178 : Reward: 0.700000
+iter=179 : Reward: 0.800000
+iter=180 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.772666676972
+Model saved in file: model_runs/growing_infant/classifymodel_180.ckpt
+--- 14.391201000000251 CPU seconds ---
+iter=181 : Reward: 0.800000
+iter=182 : Reward: 1.000000
+iter=183 : Reward: 0.800000
+iter=184 : Reward: 0.800000
+iter=185 : Reward: 0.700000
+iter=186 : Reward: 0.800000
+iter=187 : Reward: 0.400000
+iter=188 : Reward: 0.800000
+iter=189 : Reward: 0.800000
+iter=190 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.769222233329
+Model saved in file: model_runs/growing_infant/classifymodel_190.ckpt
+--- 15.034443000000238 CPU seconds ---
+iter=191 : Reward: 0.800000
+iter=192 : Reward: 0.700000
+iter=193 : Reward: 0.900000
+iter=194 : Reward: 0.700000
+iter=195 : Reward: 0.700000
+iter=196 : Reward: 0.700000
+iter=197 : Reward: 0.700000
+iter=198 : Reward: 0.700000
+iter=199 : Reward: 0.900000
+iter=200 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.777111121151
+Model saved in file: model_runs/growing_infant/classifymodel_200.ckpt
+--- 15.687967000000299 CPU seconds ---
+iter=201 : Reward: 0.600000
+iter=202 : Reward: 0.600000
+iter=203 : Reward: 0.600000
+iter=204 : Reward: 1.000000
+iter=205 : Reward: 0.700000
+iter=206 : Reward: 0.700000
+iter=207 : Reward: 0.600000
+iter=208 : Reward: 0.800000
+iter=209 : Reward: 0.900000
+iter=210 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.764333343638
+Model saved in file: model_runs/growing_infant/classifymodel_210.ckpt
+--- 16.344113000000277 CPU seconds ---
+iter=211 : Reward: 0.800000
+iter=212 : Reward: 0.800000
+iter=213 : Reward: 0.700000
+iter=214 : Reward: 0.600000
+iter=215 : Reward: 0.900000
+iter=216 : Reward: 0.700000
+iter=217 : Reward: 0.800000
+iter=218 : Reward: 0.800000
+iter=219 : Reward: 0.800000
+iter=220 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.77588889771
+Model saved in file: model_runs/growing_infant/classifymodel_220.ckpt
+--- 16.987370000000226 CPU seconds ---
+iter=221 : Reward: 0.800000
+iter=222 : Reward: 0.700000
+iter=223 : Reward: 0.600000
+iter=224 : Reward: 0.600000
+iter=225 : Reward: 0.800000
+iter=226 : Reward: 0.700000
+iter=227 : Reward: 0.900000
+iter=228 : Reward: 0.700000
+iter=229 : Reward: 0.700000
+iter=230 : Reward: 0.700000
+batches_in_epoch:  900
+ACCURACY: 0.768111121919
+Model saved in file: model_runs/growing_infant/classifymodel_230.ckpt
+--- 17.661353000000133 CPU seconds ---
+iter=231 : Reward: 0.600000
+iter=232 : Reward: 0.700000
+iter=233 : Reward: 0.900000
+iter=234 : Reward: 0.900000
+iter=235 : Reward: 0.800000
+iter=236 : Reward: 0.800000
+iter=237 : Reward: 0.900000
+iter=238 : Reward: 0.900000
+iter=239 : Reward: 0.800000
+iter=240 : Reward: 0.700000
+batches_in_epoch:  900
+ACCURACY: 0.777000010146
+Model saved in file: model_runs/growing_infant/classifymodel_240.ckpt
+--- 18.30965700000013 CPU seconds ---
+iter=241 : Reward: 0.700000
+iter=242 : Reward: 0.800000
+iter=243 : Reward: 0.600000
+iter=244 : Reward: 0.600000
+iter=245 : Reward: 0.700000
+iter=246 : Reward: 0.900000
+iter=247 : Reward: 1.000000
+iter=248 : Reward: 0.800000
+iter=249 : Reward: 0.700000
+iter=250 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.764444455753
+Model saved in file: model_runs/growing_infant/classifymodel_250.ckpt
+--- 18.998623000000293 CPU seconds ---
+iter=251 : Reward: 0.800000
+iter=252 : Reward: 0.800000
+iter=253 : Reward: 0.700000
+iter=254 : Reward: 0.800000
+iter=255 : Reward: 0.700000
+iter=256 : Reward: 0.900000
+iter=257 : Reward: 0.900000
+iter=258 : Reward: 0.900000
+iter=259 : Reward: 0.700000
+iter=260 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.768777788414
+Model saved in file: model_runs/growing_infant/classifymodel_260.ckpt
+--- 19.63106200000027 CPU seconds ---
+iter=261 : Reward: 0.800000
+iter=262 : Reward: 0.900000
+iter=263 : Reward: 0.900000
+iter=264 : Reward: 0.800000
+iter=265 : Reward: 0.800000
+iter=266 : Reward: 0.900000
+iter=267 : Reward: 0.800000
+iter=268 : Reward: 0.800000
+iter=269 : Reward: 0.900000
+iter=270 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.772444453902
+Model saved in file: model_runs/growing_infant/classifymodel_270.ckpt
+--- 20.31434300000012 CPU seconds ---
+iter=271 : Reward: 0.700000
+iter=272 : Reward: 0.800000
+iter=273 : Reward: 0.500000
+iter=274 : Reward: 1.000000
+iter=275 : Reward: 0.900000
+iter=276 : Reward: 0.700000
+iter=277 : Reward: 0.600000
+iter=278 : Reward: 0.800000
+iter=279 : Reward: 0.500000
+iter=280 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.771888899439
+Model saved in file: model_runs/growing_infant/classifymodel_280.ckpt
+--- 20.962185999999974 CPU seconds ---
+iter=281 : Reward: 0.700000
+iter=282 : Reward: 0.700000
+iter=283 : Reward: 0.800000
+iter=284 : Reward: 0.600000
+iter=285 : Reward: 0.500000
+iter=286 : Reward: 0.600000
+iter=287 : Reward: 0.600000
+iter=288 : Reward: 0.900000
+iter=289 : Reward: 0.800000
+iter=290 : Reward: 0.800000
+batches_in_epoch:  900
+ACCURACY: 0.769333343638
+Model saved in file: model_runs/growing_infant/classifymodel_290.ckpt
+--- 21.62914100000023 CPU seconds ---
+iter=291 : Reward: 0.900000
+iter=292 : Reward: 0.600000
+iter=293 : Reward: 0.800000
+iter=294 : Reward: 0.700000
+iter=295 : Reward: 0.700000
+iter=296 : Reward: 0.700000
+iter=297 : Reward: 0.900000
+iter=298 : Reward: 1.000000
+iter=299 : Reward: 0.800000
+iter=300 : Reward: 0.600000
+batches_in_epoch:  900
+ACCURACY: 0.771333344148
+Model saved in file: model_runs/growing_infant/classifymodel_300.ckpt
+--- 22.34640000000013 CPU seconds ---
+iter=301 : Reward: 0.800000
+iter=302 : Reward: 0.800000
+iter=303 : Reward: 0.700000
+iter=304 : Reward: 0.800000
+iter=305 : Reward: 0.800000
+iter=306 : Reward: 0.800000
+iter=307 : Reward: 0.700000
+iter=308 : Reward: 0.500000
+iter=309 : Reward: 0.900000
+iter=310 : Reward: 1.000000
+batches_in_epoch:  900
+ACCURACY: 0.77777778652
+Model saved in file: model_runs/growing_infant/classifymodel_310.ckpt
+--- 23.06696100000022 CPU seconds ---
+iter=311 : Reward: 0.900000
+iter=312 : Reward: 0.900000
+iter=313 : Reward: 0.800000
+iter=314 : Reward: 0.900000
+iter=315 : Reward: 0.700000
+iter=316 : Reward: 0.700000
+iter=317 : Reward: 1.000000
+iter=318 : Reward: 0.800000
+iter=319 : Reward: 0.800000
+iter=320 : Reward: 0.700000
+batches_in_epoch:  900
+ACCURACY: 0.768000010467
+Model saved in file: model_runs/growing_infant/classifymodel_320.ckpt
+--- 23.813802000000237 CPU seconds ---
+iter=321 : Reward: 0.700000
+iter=322 : Reward: 0.700000
+iter=323 : Reward: 0.800000
+iter=324 : Reward: 0.800000
+iter=325 : Reward: 0.800000
+iter=326 : Reward: 0.700000
+iter=327 : Reward: 0.800000
+iter=328 : Reward: 0.900000
+iter=329 : Reward: 0.800000
+iter=330 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.765222232375
+Model saved in file: model_runs/growing_infant/classifymodel_330.ckpt
+--- 24.534185000000434 CPU seconds ---
+iter=331 : Reward: 0.900000
+iter=332 : Reward: 0.800000
+iter=333 : Reward: 0.700000
+iter=334 : Reward: 0.900000
+iter=335 : Reward: 1.000000
+iter=336 : Reward: 0.600000
+iter=337 : Reward: 0.800000
+iter=338 : Reward: 1.000000
+iter=339 : Reward: 0.900000
+iter=340 : Reward: 0.600000
+batches_in_epoch:  900
+ACCURACY: 0.780111120674
+Model saved in file: model_runs/growing_infant/classifymodel_340.ckpt
+--- 25.239768000000367 CPU seconds ---
+iter=341 : Reward: 0.800000
+iter=342 : Reward: 0.800000
+iter=343 : Reward: 0.900000
+iter=344 : Reward: 0.800000
+iter=345 : Reward: 0.900000
+iter=346 : Reward: 0.700000
+iter=347 : Reward: 0.800000
+iter=348 : Reward: 0.500000
+iter=349 : Reward: 1.000000
+iter=350 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.778333342754
+Model saved in file: model_runs/growing_infant/classifymodel_350.ckpt
+--- 25.958417000000395 CPU seconds ---
+iter=351 : Reward: 0.600000
+iter=352 : Reward: 0.700000
+iter=353 : Reward: 0.600000
+iter=354 : Reward: 0.600000
+iter=355 : Reward: 0.900000
+iter=356 : Reward: 0.600000
+iter=357 : Reward: 0.800000
+iter=358 : Reward: 0.700000
+iter=359 : Reward: 0.600000
+iter=360 : Reward: 0.900000
+batches_in_epoch:  900
+ACCURACY: 0.77477778756
+Model saved in file: model_runs/growing_infant/classifymodel_360.ckpt
+--- 26.64757900000029 CPU seconds ---
+iter=361 : Reward: 0.800000
+iter=362 : Reward: 0.700000
+iter=363 : Reward: 0.400000
+iter=364 : Reward: 0.400000
+iter=365 : Reward: 0.900000
+iter=366 : Reward: 0.600000
+iter=367 : Reward: 0.800000
+iter=368 : Reward: 0.800000
+iter=369 : Reward: 0.600000
+iter=370 : Reward: 0.400000
+batches_in_epoch:  900
+ACCURACY: 0.772333342565
+Model saved in file: model_runs/growing_infant/classifymodel_370.ckpt
+--- 27.35123500000043 CPU seconds ---
+iter=371 : Reward: 0.800000
+iter=372 : Reward: 1.000000
+iter=373 : Reward: 0.900000
+iter=374 : Reward: 0.900000
+iter=375 : Reward: 0.700000
+iter=376 : Reward: 0.700000
+iter=377 : Reward: 0.900000
+iter=378 : Reward: 0.700000
+iter=379 : Reward: 0.800000
+iter=380 : Reward: 0.600000
+batches_in_epoch:  900

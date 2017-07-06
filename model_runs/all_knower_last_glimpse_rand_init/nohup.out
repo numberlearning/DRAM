@@ -1,0 +1,1391 @@
+['DRAMcopy10_nli_classification.py', 'true', 'false', 'true', 'false', 'true', 'true', 'model_runs/all_knower_last_glimpse_rand_init/classify_log.csv', 'model_runs/all_knower_last_glimpse_rand_init/classifymodel_270000.ckpt', 'model_runs/all_knower_last_glimpse_rand_init/classifymodel_', 'model_runs/all_knower_last_glimpse_rand_init/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7ff7c9b76f28>: The input_size parameter is deprecated.
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7ff7d03fb908>: The input_size parameter is deprecated.
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+classification.shape, the batch_size, z_size:  (10, 9)
+read/w:0
+read/b:0
+z/w:0
+z/b:0
+hidden1/w:0
+hidden1/b:0
+hidden2/w:0
+hidden2/b:0
+2017-06-27 10:38:26.569258: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-27 10:38:26.569286: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-27 10:38:26.569292: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-27 10:38:26.569296: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-27 10:38:26.569300: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-06-27 10:38:26.695870: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-06-27 10:38:26.696416: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 7.13GiB
+2017-06-27 10:38:26.696472: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x1feb5240
+2017-06-27 10:38:26.794511: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-06-27 10:38:26.794874: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.59GiB
+2017-06-27 10:38:26.796625: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-06-27 10:38:26.796634: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-06-27 10:38:26.796639: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-06-27 10:38:26.796646: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-06-27 10:38:26.796652: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=270000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.111555557806
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_270000.ckpt
+--- 7.870051000000018 CPU seconds ---
+iter=271000 : Reward: 0.300000
+iter=272000 : Reward: 0.400000
+iter=273000 : Reward: 0.100000
+iter=274000 : Reward: 0.200000
+iter=275000 : Reward: 0.300000
+iter=276000 : Reward: 0.300000
+iter=277000 : Reward: 0.400000
+iter=278000 : Reward: 0.400000
+iter=279000 : Reward: 0.000000
+iter=280000 : Reward: 0.300000
+batches_in_epoch:  900
+ACCURACY: 0.424000010226
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_280000.ckpt
+--- 2864.140778 CPU seconds ---
+iter=281000 : Reward: 0.300000
+iter=282000 : Reward: 0.500000
+iter=283000 : Reward: 0.000000
+iter=284000 : Reward: 0.200000
+iter=285000 : Reward: 0.500000
+iter=286000 : Reward: 0.100000
+iter=287000 : Reward: 0.100000
+iter=288000 : Reward: 0.000000
+iter=289000 : Reward: 0.100000
+iter=290000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.108444446532
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_290000.ckpt
+--- 5724.852435000001 CPU seconds ---
+iter=291000 : Reward: 0.300000
+iter=292000 : Reward: 0.000000
+iter=293000 : Reward: 0.200000
+iter=294000 : Reward: 0.100000
+iter=295000 : Reward: 0.000000
+iter=296000 : Reward: 0.000000
+iter=297000 : Reward: 0.100000
+iter=298000 : Reward: 0.000000
+iter=299000 : Reward: 0.300000
+iter=300000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.115222224452
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_300000.ckpt
+--- 8591.418134 CPU seconds ---
+iter=301000 : Reward: 0.100000
+iter=302000 : Reward: 0.000000
+iter=303000 : Reward: 0.200000
+iter=304000 : Reward: 0.200000
+iter=305000 : Reward: 0.100000
+iter=306000 : Reward: 0.200000
+iter=307000 : Reward: 0.300000
+iter=308000 : Reward: 0.200000
+iter=309000 : Reward: 0.200000
+iter=310000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.109555557635
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_310000.ckpt
+--- 11534.366378 CPU seconds ---
+iter=311000 : Reward: 0.100000
+iter=312000 : Reward: 0.100000
+iter=313000 : Reward: 0.000000
+iter=314000 : Reward: 0.200000
+iter=315000 : Reward: 0.300000
+iter=316000 : Reward: 0.200000
+iter=317000 : Reward: 0.100000
+iter=318000 : Reward: 0.200000
+iter=319000 : Reward: 0.200000
+iter=320000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.112555557721
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_320000.ckpt
+--- 14399.584048 CPU seconds ---
+iter=321000 : Reward: 0.400000
+iter=322000 : Reward: 0.200000
+iter=323000 : Reward: 0.400000
+iter=324000 : Reward: 0.200000
+iter=325000 : Reward: 0.300000
+iter=326000 : Reward: 0.100000
+iter=327000 : Reward: 0.400000
+iter=328000 : Reward: 0.100000
+iter=329000 : Reward: 0.200000
+iter=330000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.110888891079
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_330000.ckpt
+--- 17303.063664 CPU seconds ---
+iter=331000 : Reward: 0.300000
+iter=332000 : Reward: 0.200000
+iter=333000 : Reward: 0.000000
+iter=334000 : Reward: 0.000000
+iter=335000 : Reward: 0.300000
+iter=336000 : Reward: 0.200000
+iter=337000 : Reward: 0.200000
+iter=338000 : Reward: 0.100000
+iter=339000 : Reward: 0.200000
+iter=340000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.113777780011
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_340000.ckpt
+--- 20460.376691 CPU seconds ---
+iter=341000 : Reward: 0.200000
+iter=342000 : Reward: 0.100000
+iter=343000 : Reward: 0.200000
+iter=344000 : Reward: 0.200000
+iter=345000 : Reward: 0.500000
+iter=346000 : Reward: 0.200000
+iter=347000 : Reward: 0.100000
+iter=348000 : Reward: 0.100000
+iter=349000 : Reward: 0.100000
+iter=350000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.109111113234
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_350000.ckpt
+--- 23523.933952 CPU seconds ---
+iter=351000 : Reward: 0.300000
+iter=352000 : Reward: 0.100000
+iter=353000 : Reward: 0.300000
+iter=354000 : Reward: 0.100000
+iter=355000 : Reward: 0.500000
+iter=356000 : Reward: 0.200000
+iter=357000 : Reward: 0.300000
+iter=358000 : Reward: 0.100000
+iter=359000 : Reward: 0.200000
+iter=360000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.118111113451
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_360000.ckpt
+--- 26382.473199000004 CPU seconds ---
+iter=361000 : Reward: 0.300000
+iter=362000 : Reward: 0.000000
+iter=363000 : Reward: 0.300000
+iter=364000 : Reward: 0.100000
+iter=365000 : Reward: 0.200000
+iter=366000 : Reward: 0.100000
+iter=367000 : Reward: 0.200000
+iter=368000 : Reward: 0.100000
+iter=369000 : Reward: 0.000000
+iter=370000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.109222224446
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_370000.ckpt
+--- 29245.155211 CPU seconds ---
+iter=371000 : Reward: 0.100000
+iter=372000 : Reward: 0.300000
+iter=373000 : Reward: 0.200000
+iter=374000 : Reward: 0.300000
+iter=375000 : Reward: 0.100000
+iter=376000 : Reward: 0.200000
+iter=377000 : Reward: 0.200000
+iter=378000 : Reward: 0.100000
+iter=379000 : Reward: 0.100000
+iter=380000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.109777779885
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_380000.ckpt
+--- 32108.492420000002 CPU seconds ---
+iter=381000 : Reward: 0.100000
+iter=382000 : Reward: 0.100000
+iter=383000 : Reward: 0.300000
+iter=384000 : Reward: 0.000000
+iter=385000 : Reward: 0.100000
+iter=386000 : Reward: 0.200000
+iter=387000 : Reward: 0.100000
+iter=388000 : Reward: 0.300000
+iter=389000 : Reward: 0.100000
+iter=390000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.111000002217
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_390000.ckpt
+--- 34970.630925000005 CPU seconds ---
+iter=391000 : Reward: 0.400000
+iter=392000 : Reward: 0.200000
+iter=393000 : Reward: 0.100000
+iter=394000 : Reward: 0.000000
+iter=395000 : Reward: 0.400000
+iter=396000 : Reward: 0.200000
+iter=397000 : Reward: 0.400000
+iter=398000 : Reward: 0.100000
+iter=399000 : Reward: 0.100000
+iter=400000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.112777780038
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_400000.ckpt
+--- 37831.730262000005 CPU seconds ---
+iter=401000 : Reward: 0.200000
+iter=402000 : Reward: 0.200000
+iter=403000 : Reward: 0.100000
+iter=404000 : Reward: 0.200000
+iter=405000 : Reward: 0.000000
+iter=406000 : Reward: 0.300000
+iter=407000 : Reward: 0.400000
+iter=408000 : Reward: 0.200000
+iter=409000 : Reward: 0.300000
+iter=410000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.110333335474
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_410000.ckpt
+--- 40695.029205000006 CPU seconds ---
+iter=411000 : Reward: 0.200000
+iter=412000 : Reward: 0.100000
+iter=413000 : Reward: 0.100000
+iter=414000 : Reward: 0.200000
+iter=415000 : Reward: 0.100000
+iter=416000 : Reward: 0.200000
+iter=417000 : Reward: 0.100000
+iter=418000 : Reward: 0.100000
+iter=419000 : Reward: 0.300000
+iter=420000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.11111111328
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_420000.ckpt
+--- 43557.570856000006 CPU seconds ---
+iter=421000 : Reward: 0.200000
+iter=422000 : Reward: 0.100000
+iter=423000 : Reward: 0.200000
+iter=424000 : Reward: 0.000000
+iter=425000 : Reward: 0.300000
+iter=426000 : Reward: 0.300000
+iter=427000 : Reward: 0.100000
+iter=428000 : Reward: 0.100000
+iter=429000 : Reward: 0.200000
+iter=430000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.111777779907
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_430000.ckpt
+--- 46421.13446000001 CPU seconds ---
+iter=431000 : Reward: 0.100000
+iter=432000 : Reward: 0.200000
+iter=433000 : Reward: 0.300000
+iter=434000 : Reward: 0.100000
+iter=435000 : Reward: 0.200000
+iter=436000 : Reward: 0.100000
+iter=437000 : Reward: 0.100000
+iter=438000 : Reward: 0.100000
+iter=439000 : Reward: 0.000000
+iter=440000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.110333335532
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_440000.ckpt
+--- 49282.551591 CPU seconds ---
+iter=441000 : Reward: 0.100000
+iter=442000 : Reward: 0.200000
+iter=443000 : Reward: 0.200000
+iter=444000 : Reward: 0.200000
+iter=445000 : Reward: 0.200000
+iter=446000 : Reward: 0.200000
+iter=447000 : Reward: 0.200000
+iter=448000 : Reward: 0.100000
+iter=449000 : Reward: 0.600000
+iter=450000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.110444446653
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_450000.ckpt
+--- 52144.77478400001 CPU seconds ---
+iter=451000 : Reward: 0.200000
+iter=452000 : Reward: 0.000000
+iter=453000 : Reward: 0.200000
+iter=454000 : Reward: 0.000000
+iter=455000 : Reward: 0.300000
+iter=456000 : Reward: 0.000000
+iter=457000 : Reward: 0.300000
+iter=458000 : Reward: 0.300000
+iter=459000 : Reward: 0.100000
+iter=460000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.113000002197
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_460000.ckpt
+--- 55006.97336700001 CPU seconds ---
+iter=461000 : Reward: 0.200000
+iter=462000 : Reward: 0.100000
+iter=463000 : Reward: 0.400000
+iter=464000 : Reward: 0.200000
+iter=465000 : Reward: 0.200000
+iter=466000 : Reward: 0.300000
+iter=467000 : Reward: 0.000000
+iter=468000 : Reward: 0.100000
+iter=469000 : Reward: 0.500000
+iter=470000 : Reward: 0.400000
+batches_in_epoch:  900
+ACCURACY: 0.112666668942
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_470000.ckpt
+--- 57869.61723200001 CPU seconds ---
+iter=471000 : Reward: 0.400000
+iter=472000 : Reward: 0.000000
+iter=473000 : Reward: 0.300000
+iter=474000 : Reward: 0.000000
+iter=475000 : Reward: 0.300000
+iter=476000 : Reward: 0.000000
+iter=477000 : Reward: 0.200000
+iter=478000 : Reward: 0.100000
+iter=479000 : Reward: 0.200000
+iter=480000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.112555557812
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_480000.ckpt
+--- 60731.363237000005 CPU seconds ---
+iter=481000 : Reward: 0.100000
+iter=482000 : Reward: 0.100000
+iter=483000 : Reward: 0.400000
+iter=484000 : Reward: 0.100000
+iter=485000 : Reward: 0.200000
+iter=486000 : Reward: 0.000000
+iter=487000 : Reward: 0.500000
+iter=488000 : Reward: 0.400000
+iter=489000 : Reward: 0.100000
+iter=490000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.10788889101
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_490000.ckpt
+--- 63592.511138 CPU seconds ---
+iter=491000 : Reward: 0.400000
+iter=492000 : Reward: 0.100000
+iter=493000 : Reward: 0.200000
+iter=494000 : Reward: 0.100000
+iter=495000 : Reward: 0.500000
+iter=496000 : Reward: 0.000000
+iter=497000 : Reward: 0.300000
+iter=498000 : Reward: 0.200000
+iter=499000 : Reward: 0.000000
+iter=500000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.111888891127
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_500000.ckpt
+--- 66452.44475 CPU seconds ---
+iter=501000 : Reward: 0.300000
+iter=502000 : Reward: 0.100000
+iter=503000 : Reward: 0.200000
+iter=504000 : Reward: 0.200000
+iter=505000 : Reward: 0.200000
+iter=506000 : Reward: 0.000000
+iter=507000 : Reward: 0.300000
+iter=508000 : Reward: 0.100000
+iter=509000 : Reward: 0.200000
+iter=510000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.113555557935
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_510000.ckpt
+--- 69314.07299199999 CPU seconds ---
+iter=511000 : Reward: 0.200000
+iter=512000 : Reward: 0.000000
+iter=513000 : Reward: 0.000000
+iter=514000 : Reward: 0.000000
+iter=515000 : Reward: 0.100000
+iter=516000 : Reward: 0.000000
+iter=517000 : Reward: 0.200000
+iter=518000 : Reward: 0.200000
+iter=519000 : Reward: 0.100000
+iter=520000 : Reward: 0.400000
+batches_in_epoch:  900
+ACCURACY: 0.111444446627
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_520000.ckpt
+--- 72172.419258 CPU seconds ---
+iter=521000 : Reward: 0.000000
+iter=522000 : Reward: 0.000000
+iter=523000 : Reward: 0.300000
+iter=524000 : Reward: 0.100000
+iter=525000 : Reward: 0.000000
+iter=526000 : Reward: 0.200000
+iter=527000 : Reward: 0.200000
+iter=528000 : Reward: 0.100000
+iter=529000 : Reward: 0.200000
+iter=530000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.109777779828
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_530000.ckpt
+--- 75032.770966 CPU seconds ---
+iter=531000 : Reward: 0.200000
+iter=532000 : Reward: 0.000000
+iter=533000 : Reward: 0.100000
+iter=534000 : Reward: 0.000000
+iter=535000 : Reward: 0.300000
+iter=536000 : Reward: 0.400000
+iter=537000 : Reward: 0.100000
+iter=538000 : Reward: 0.100000
+iter=539000 : Reward: 0.100000
+iter=540000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.112222224482
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_540000.ckpt
+--- 77894.76981900001 CPU seconds ---
+iter=541000 : Reward: 0.300000
+iter=542000 : Reward: 0.100000
+iter=543000 : Reward: 0.200000
+iter=544000 : Reward: 0.300000
+iter=545000 : Reward: 0.400000
+iter=546000 : Reward: 0.100000
+iter=547000 : Reward: 0.200000
+iter=548000 : Reward: 0.100000
+iter=549000 : Reward: 0.400000
+iter=550000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.116555557971
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_550000.ckpt
+--- 80753.99438200002 CPU seconds ---
+iter=551000 : Reward: 0.000000
+iter=552000 : Reward: 0.000000
+iter=553000 : Reward: 0.300000
+iter=554000 : Reward: 0.000000
+iter=555000 : Reward: 0.100000
+iter=556000 : Reward: 0.000000
+iter=557000 : Reward: 0.200000
+iter=558000 : Reward: 0.400000
+iter=559000 : Reward: 0.500000
+iter=560000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.114000002262
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_560000.ckpt
+--- 83612.691921 CPU seconds ---
+iter=561000 : Reward: 0.200000
+iter=562000 : Reward: 0.200000
+iter=563000 : Reward: 0.200000
+iter=564000 : Reward: 0.100000
+iter=565000 : Reward: 0.000000
+iter=566000 : Reward: 0.300000
+iter=567000 : Reward: 0.200000
+iter=568000 : Reward: 0.200000
+iter=569000 : Reward: 0.400000
+iter=570000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.114222224446
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_570000.ckpt
+--- 86596.965047 CPU seconds ---
+iter=571000 : Reward: 0.300000
+iter=572000 : Reward: 0.000000
+iter=573000 : Reward: 0.300000
+iter=574000 : Reward: 0.300000
+iter=575000 : Reward: 0.500000
+iter=576000 : Reward: 0.100000
+iter=577000 : Reward: 0.400000
+iter=578000 : Reward: 0.100000
+iter=579000 : Reward: 0.100000
+iter=580000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.113000002197
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_580000.ckpt
+--- 89512.35274 CPU seconds ---
+iter=581000 : Reward: 0.100000
+iter=582000 : Reward: 0.200000
+iter=583000 : Reward: 0.000000
+iter=584000 : Reward: 0.100000
+iter=585000 : Reward: 0.300000
+iter=586000 : Reward: 0.200000
+iter=587000 : Reward: 0.200000
+iter=588000 : Reward: 0.100000
+iter=589000 : Reward: 0.200000
+iter=590000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.106222224385
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_590000.ckpt
+--- 92357.907049 CPU seconds ---
+iter=591000 : Reward: 0.300000
+iter=592000 : Reward: 0.000000
+iter=593000 : Reward: 0.200000
+iter=594000 : Reward: 0.100000
+iter=595000 : Reward: 0.500000
+iter=596000 : Reward: 0.200000
+iter=597000 : Reward: 0.100000
+iter=598000 : Reward: 0.000000
+iter=599000 : Reward: 0.100000
+iter=600000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.111333335539
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_600000.ckpt
+--- 95214.95718499999 CPU seconds ---
+iter=601000 : Reward: 0.100000
+iter=602000 : Reward: 0.000000
+iter=603000 : Reward: 0.500000
+iter=604000 : Reward: 0.100000
+iter=605000 : Reward: 0.000000
+iter=606000 : Reward: 0.000000
+iter=607000 : Reward: 0.100000
+iter=608000 : Reward: 0.100000
+iter=609000 : Reward: 0.400000
+iter=610000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.105333335333
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_610000.ckpt
+--- 98073.39910899999 CPU seconds ---
+iter=611000 : Reward: 0.200000
+iter=612000 : Reward: 0.100000
+iter=613000 : Reward: 0.100000
+iter=614000 : Reward: 0.200000
+iter=615000 : Reward: 0.200000
+iter=616000 : Reward: 0.200000
+iter=617000 : Reward: 0.000000
+iter=618000 : Reward: 0.000000
+iter=619000 : Reward: 0.100000
+iter=620000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.104888890982
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_620000.ckpt
+--- 100931.20273599999 CPU seconds ---
+iter=621000 : Reward: 0.200000
+iter=622000 : Reward: 0.100000
+iter=623000 : Reward: 0.300000
+iter=624000 : Reward: 0.400000
+iter=625000 : Reward: 0.200000
+iter=626000 : Reward: 0.200000
+iter=627000 : Reward: 0.300000
+iter=628000 : Reward: 0.400000
+iter=629000 : Reward: 0.300000
+iter=630000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.110000002194
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_630000.ckpt
+--- 103837.560273 CPU seconds ---
+iter=631000 : Reward: 0.200000
+iter=632000 : Reward: 0.100000
+iter=633000 : Reward: 0.100000
+iter=634000 : Reward: 0.000000
+iter=635000 : Reward: 0.300000
+iter=636000 : Reward: 0.100000
+iter=637000 : Reward: 0.100000
+iter=638000 : Reward: 0.100000
+iter=639000 : Reward: 0.200000
+iter=640000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.110333335441
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_640000.ckpt
+--- 107031.09201099997 CPU seconds ---
+iter=641000 : Reward: 0.000000
+iter=642000 : Reward: 0.200000
+iter=643000 : Reward: 0.100000
+iter=644000 : Reward: 0.000000
+iter=645000 : Reward: 0.300000
+iter=646000 : Reward: 0.100000
+iter=647000 : Reward: 0.100000
+iter=648000 : Reward: 0.000000
+iter=649000 : Reward: 0.100000
+iter=650000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.103555557488
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_650000.ckpt
+--- 110025.56042999998 CPU seconds ---
+iter=651000 : Reward: 0.200000
+iter=652000 : Reward: 0.200000
+iter=653000 : Reward: 0.000000
+iter=654000 : Reward: 0.000000
+iter=655000 : Reward: 0.200000
+iter=656000 : Reward: 0.100000
+iter=657000 : Reward: 0.100000
+iter=658000 : Reward: 0.000000
+iter=659000 : Reward: 0.200000
+iter=660000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.117666669057
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_660000.ckpt
+--- 112884.02689999998 CPU seconds ---
+iter=661000 : Reward: 0.200000
+iter=662000 : Reward: 0.200000
+iter=663000 : Reward: 0.200000
+iter=664000 : Reward: 0.300000
+iter=665000 : Reward: 0.300000
+iter=666000 : Reward: 0.300000
+iter=667000 : Reward: 0.300000
+iter=668000 : Reward: 0.100000
+iter=669000 : Reward: 0.200000
+iter=670000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.106555557781
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_670000.ckpt
+--- 115744.13430499999 CPU seconds ---
+iter=671000 : Reward: 0.200000
+iter=672000 : Reward: 0.100000
+iter=673000 : Reward: 0.200000
+iter=674000 : Reward: 0.000000
+iter=675000 : Reward: 0.200000
+iter=676000 : Reward: 0.100000
+iter=677000 : Reward: 0.000000
+iter=678000 : Reward: 0.100000
+iter=679000 : Reward: 0.000000
+iter=680000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.111333335497
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_680000.ckpt
+--- 118602.96500599998 CPU seconds ---
+iter=681000 : Reward: 0.300000
+iter=682000 : Reward: 0.100000
+iter=683000 : Reward: 0.200000
+iter=684000 : Reward: 0.100000
+iter=685000 : Reward: 0.000000
+iter=686000 : Reward: 0.100000
+iter=687000 : Reward: 0.400000
+iter=688000 : Reward: 0.200000
+iter=689000 : Reward: 0.300000
+iter=690000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.110444446661
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_690000.ckpt
+--- 121459.66646 CPU seconds ---
+iter=691000 : Reward: 0.000000
+iter=692000 : Reward: 0.100000
+iter=693000 : Reward: 0.400000
+iter=694000 : Reward: 0.000000
+iter=695000 : Reward: 0.200000
+iter=696000 : Reward: 0.100000
+iter=697000 : Reward: 0.400000
+iter=698000 : Reward: 0.000000
+iter=699000 : Reward: 0.400000
+iter=700000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.109000002113
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_700000.ckpt
+--- 124319.349252 CPU seconds ---
+iter=701000 : Reward: 0.300000
+iter=702000 : Reward: 0.200000
+iter=703000 : Reward: 0.400000
+iter=704000 : Reward: 0.000000
+iter=705000 : Reward: 0.300000
+iter=706000 : Reward: 0.200000
+iter=707000 : Reward: 0.400000
+iter=708000 : Reward: 0.100000
+iter=709000 : Reward: 0.300000
+iter=710000 : Reward: 0.300000
+batches_in_epoch:  900
+ACCURACY: 0.117333335645
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_710000.ckpt
+--- 127176.43594600001 CPU seconds ---
+iter=711000 : Reward: 0.100000
+iter=712000 : Reward: 0.100000
+iter=713000 : Reward: 0.300000
+iter=714000 : Reward: 0.200000
+iter=715000 : Reward: 0.400000
+iter=716000 : Reward: 0.000000
+iter=717000 : Reward: 0.500000
+iter=718000 : Reward: 0.300000
+iter=719000 : Reward: 0.100000
+iter=720000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.115666668895
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_720000.ckpt
+--- 130035.35031499999 CPU seconds ---
+iter=721000 : Reward: 0.400000
+iter=722000 : Reward: 0.100000
+iter=723000 : Reward: 0.200000
+iter=724000 : Reward: 0.100000
+iter=725000 : Reward: 0.300000
+iter=726000 : Reward: 0.100000
+iter=727000 : Reward: 0.100000
+iter=728000 : Reward: 0.000000
+iter=729000 : Reward: 0.100000
+iter=730000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.110888891104
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_730000.ckpt
+--- 132893.892038 CPU seconds ---
+iter=731000 : Reward: 0.300000
+iter=732000 : Reward: 0.100000
+iter=733000 : Reward: 0.200000
+iter=734000 : Reward: 0.100000
+iter=735000 : Reward: 0.300000
+iter=736000 : Reward: 0.200000
+iter=737000 : Reward: 0.200000
+iter=738000 : Reward: 0.000000
+iter=739000 : Reward: 0.500000
+iter=740000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.110666668812
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_740000.ckpt
+--- 135753.42904699998 CPU seconds ---
+iter=741000 : Reward: 0.200000
+iter=742000 : Reward: 0.100000
+iter=743000 : Reward: 0.300000
+iter=744000 : Reward: 0.200000
+iter=745000 : Reward: 0.000000
+iter=746000 : Reward: 0.100000
+iter=747000 : Reward: 0.400000
+iter=748000 : Reward: 0.000000
+iter=749000 : Reward: 0.100000
+iter=750000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.107222224341
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_750000.ckpt
+--- 138611.77312799997 CPU seconds ---
+iter=751000 : Reward: 0.200000
+iter=752000 : Reward: 0.000000
+iter=753000 : Reward: 0.000000
+iter=754000 : Reward: 0.100000
+iter=755000 : Reward: 0.200000
+iter=756000 : Reward: 0.100000
+iter=757000 : Reward: 0.300000
+iter=758000 : Reward: 0.100000
+iter=759000 : Reward: 0.100000
+iter=760000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.11044444662
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_760000.ckpt
+--- 141469.330242 CPU seconds ---
+iter=761000 : Reward: 0.400000
+iter=762000 : Reward: 0.000000
+iter=763000 : Reward: 0.300000
+iter=764000 : Reward: 0.000000
+iter=765000 : Reward: 0.200000
+iter=766000 : Reward: 0.200000
+iter=767000 : Reward: 0.200000
+iter=768000 : Reward: 0.000000
+iter=769000 : Reward: 0.400000
+iter=770000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.11111111333
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_770000.ckpt
+--- 144325.61280499998 CPU seconds ---
+iter=771000 : Reward: 0.200000
+iter=772000 : Reward: 0.200000
+iter=773000 : Reward: 0.100000
+iter=774000 : Reward: 0.400000
+iter=775000 : Reward: 0.200000
+iter=776000 : Reward: 0.100000
+iter=777000 : Reward: 0.100000
+iter=778000 : Reward: 0.100000
+iter=779000 : Reward: 0.000000
+iter=780000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.106111113139
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_780000.ckpt
+--- 147183.327468 CPU seconds ---
+iter=781000 : Reward: 0.000000
+iter=782000 : Reward: 0.000000
+iter=783000 : Reward: 0.100000
+iter=784000 : Reward: 0.000000
+iter=785000 : Reward: 0.100000
+iter=786000 : Reward: 0.200000
+iter=787000 : Reward: 0.300000
+iter=788000 : Reward: 0.100000
+iter=789000 : Reward: 0.100000
+iter=790000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.110666668829
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_790000.ckpt
+--- 150041.29374999998 CPU seconds ---
+iter=791000 : Reward: 0.200000
+iter=792000 : Reward: 0.200000
+iter=793000 : Reward: 0.300000
+iter=794000 : Reward: 0.200000
+iter=795000 : Reward: 0.000000
+iter=796000 : Reward: 0.200000
+iter=797000 : Reward: 0.100000
+iter=798000 : Reward: 0.100000
+iter=799000 : Reward: 0.000000
+iter=800000 : Reward: 0.300000
+batches_in_epoch:  900
+ACCURACY: 0.107666668834
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_800000.ckpt
+--- 152898.50273399998 CPU seconds ---
+iter=801000 : Reward: 0.300000
+iter=802000 : Reward: 0.100000
+iter=803000 : Reward: 0.300000
+iter=804000 : Reward: 0.100000
+iter=805000 : Reward: 0.100000
+iter=806000 : Reward: 0.000000
+iter=807000 : Reward: 0.100000
+iter=808000 : Reward: 0.300000
+iter=809000 : Reward: 0.100000
+iter=810000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.114444446721
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_810000.ckpt
+--- 155752.69461899996 CPU seconds ---
+iter=811000 : Reward: 0.200000
+iter=812000 : Reward: 0.000000
+iter=813000 : Reward: 0.400000
+iter=814000 : Reward: 0.000000
+iter=815000 : Reward: 0.200000
+iter=816000 : Reward: 0.200000
+iter=817000 : Reward: 0.200000
+iter=818000 : Reward: 0.200000
+iter=819000 : Reward: 0.300000
+iter=820000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.108444446565
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_820000.ckpt
+--- 158609.83491299997 CPU seconds ---
+iter=821000 : Reward: 0.300000
+iter=822000 : Reward: 0.100000
+iter=823000 : Reward: 0.200000
+iter=824000 : Reward: 0.100000
+iter=825000 : Reward: 0.300000
+iter=826000 : Reward: 0.000000
+iter=827000 : Reward: 0.100000
+iter=828000 : Reward: 0.200000
+iter=829000 : Reward: 0.300000
+iter=830000 : Reward: 0.300000
+batches_in_epoch:  900
+ACCURACY: 0.109111113234
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_830000.ckpt
+--- 161467.61146799996 CPU seconds ---
+iter=831000 : Reward: 0.200000
+iter=832000 : Reward: 0.100000
+iter=833000 : Reward: 0.300000
+iter=834000 : Reward: 0.000000
+iter=835000 : Reward: 0.200000
+iter=836000 : Reward: 0.000000
+iter=837000 : Reward: 0.000000
+iter=838000 : Reward: 0.200000
+iter=839000 : Reward: 0.200000
+iter=840000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.111333335588
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_840000.ckpt
+--- 164326.64476499995 CPU seconds ---
+iter=841000 : Reward: 0.300000
+iter=842000 : Reward: 0.100000
+iter=843000 : Reward: 0.100000
+iter=844000 : Reward: 0.100000
+iter=845000 : Reward: 0.200000
+iter=846000 : Reward: 0.200000
+iter=847000 : Reward: 0.300000
+iter=848000 : Reward: 0.100000
+iter=849000 : Reward: 0.300000
+iter=850000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.111222224368
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_850000.ckpt
+--- 167183.43712999998 CPU seconds ---
+iter=851000 : Reward: 0.000000
+iter=852000 : Reward: 0.100000
+iter=853000 : Reward: 0.000000
+iter=854000 : Reward: 0.000000
+iter=855000 : Reward: 0.300000
+iter=856000 : Reward: 0.200000
+iter=857000 : Reward: 0.100000
+iter=858000 : Reward: 0.200000
+iter=859000 : Reward: 0.200000
+iter=860000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.113222224423
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_860000.ckpt
+--- 170039.62724599996 CPU seconds ---
+iter=861000 : Reward: 0.200000
+iter=862000 : Reward: 0.000000
+iter=863000 : Reward: 0.000000
+iter=864000 : Reward: 0.300000
+iter=865000 : Reward: 0.200000
+iter=866000 : Reward: 0.100000
+iter=867000 : Reward: 0.500000
+iter=868000 : Reward: 0.000000
+iter=869000 : Reward: 0.200000
+iter=870000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.110333335383
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_870000.ckpt
+--- 172897.19043999995 CPU seconds ---
+iter=871000 : Reward: 0.100000
+iter=872000 : Reward: 0.100000
+iter=873000 : Reward: 0.300000
+iter=874000 : Reward: 0.200000
+iter=875000 : Reward: 0.100000
+iter=876000 : Reward: 0.100000
+iter=877000 : Reward: 0.400000
+iter=878000 : Reward: 0.200000
+iter=879000 : Reward: 0.300000
+iter=880000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.114444446638
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_880000.ckpt
+--- 176086.13179899994 CPU seconds ---
+iter=881000 : Reward: 0.300000
+iter=882000 : Reward: 0.000000
+iter=883000 : Reward: 0.000000
+iter=884000 : Reward: 0.100000
+iter=885000 : Reward: 0.200000
+iter=886000 : Reward: 0.300000
+iter=887000 : Reward: 0.300000
+iter=888000 : Reward: 0.000000
+iter=889000 : Reward: 0.100000
+iter=890000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.10788889096
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_890000.ckpt
+--- 179178.86468299996 CPU seconds ---
+iter=891000 : Reward: 0.200000
+iter=892000 : Reward: 0.100000
+iter=893000 : Reward: 0.100000
+iter=894000 : Reward: 0.100000
+iter=895000 : Reward: 0.200000
+iter=896000 : Reward: 0.100000
+iter=897000 : Reward: 0.200000
+iter=898000 : Reward: 0.100000
+iter=899000 : Reward: 0.100000
+iter=900000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.106222224252
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_900000.ckpt
+--- 182174.23059499997 CPU seconds ---
+iter=901000 : Reward: 0.100000
+iter=902000 : Reward: 0.100000
+iter=903000 : Reward: 0.100000
+iter=904000 : Reward: 0.000000
+iter=905000 : Reward: 0.400000
+iter=906000 : Reward: 0.200000
+iter=907000 : Reward: 0.300000
+iter=908000 : Reward: 0.100000
+iter=909000 : Reward: 0.200000
+iter=910000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.112555557738
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_910000.ckpt
+--- 185549.21344899994 CPU seconds ---
+iter=911000 : Reward: 0.300000
+iter=912000 : Reward: 0.300000
+iter=913000 : Reward: 0.200000
+iter=914000 : Reward: 0.100000
+iter=915000 : Reward: 0.300000
+iter=916000 : Reward: 0.100000
+iter=917000 : Reward: 0.600000
+iter=918000 : Reward: 0.000000
+iter=919000 : Reward: 0.200000
+iter=920000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.112000002166
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_920000.ckpt
+--- 188831.33313799996 CPU seconds ---
+iter=921000 : Reward: 0.300000
+iter=922000 : Reward: 0.000000
+iter=923000 : Reward: 0.200000
+iter=924000 : Reward: 0.100000
+iter=925000 : Reward: 0.100000
+iter=926000 : Reward: 0.300000
+iter=927000 : Reward: 0.100000
+iter=928000 : Reward: 0.300000
+iter=929000 : Reward: 0.100000
+iter=930000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.114000002187
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_930000.ckpt
+--- 192257.01659899997 CPU seconds ---
+iter=931000 : Reward: 0.100000
+iter=932000 : Reward: 0.100000
+iter=933000 : Reward: 0.300000
+iter=934000 : Reward: 0.100000
+iter=935000 : Reward: 0.100000
+iter=936000 : Reward: 0.100000
+iter=937000 : Reward: 0.200000
+iter=938000 : Reward: 0.000000
+iter=939000 : Reward: 0.300000
+iter=940000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.106666668794
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_940000.ckpt
+--- 195706.93888499998 CPU seconds ---
+iter=941000 : Reward: 0.000000
+iter=942000 : Reward: 0.200000
+iter=943000 : Reward: 0.500000
+iter=944000 : Reward: 0.000000
+iter=945000 : Reward: 0.000000
+iter=946000 : Reward: 0.300000
+iter=947000 : Reward: 0.200000
+iter=948000 : Reward: 0.100000
+iter=949000 : Reward: 0.400000
+iter=950000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.11022222432
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_950000.ckpt
+--- 199290.97623399997 CPU seconds ---
+iter=951000 : Reward: 0.200000
+iter=952000 : Reward: 0.100000
+iter=953000 : Reward: 0.200000
+iter=954000 : Reward: 0.100000
+iter=955000 : Reward: 0.100000
+iter=956000 : Reward: 0.300000
+iter=957000 : Reward: 0.200000
+iter=958000 : Reward: 0.200000
+iter=959000 : Reward: 0.000000
+iter=960000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.118000002429
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_960000.ckpt
+--- 202145.99321599994 CPU seconds ---
+iter=961000 : Reward: 0.300000
+iter=962000 : Reward: 0.000000
+iter=963000 : Reward: 0.200000
+iter=964000 : Reward: 0.300000
+iter=965000 : Reward: 0.100000
+iter=966000 : Reward: 0.200000
+iter=967000 : Reward: 0.100000
+iter=968000 : Reward: 0.000000
+iter=969000 : Reward: 0.100000
+iter=970000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.114222224545
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_970000.ckpt
+--- 205003.64497799994 CPU seconds ---
+iter=971000 : Reward: 0.200000
+iter=972000 : Reward: 0.300000
+iter=973000 : Reward: 0.200000
+iter=974000 : Reward: 0.000000
+iter=975000 : Reward: 0.300000
+iter=976000 : Reward: 0.100000
+iter=977000 : Reward: 0.300000
+iter=978000 : Reward: 0.000000
+iter=979000 : Reward: 0.200000
+iter=980000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.106333335415
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_980000.ckpt
+--- 207865.06300199995 CPU seconds ---
+iter=981000 : Reward: 0.200000
+iter=982000 : Reward: 0.000000
+iter=983000 : Reward: 0.200000
+iter=984000 : Reward: 0.000000
+iter=985000 : Reward: 0.100000
+iter=986000 : Reward: 0.000000
+iter=987000 : Reward: 0.200000
+iter=988000 : Reward: 0.300000
+iter=989000 : Reward: 0.000000
+iter=990000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.110444446562
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_990000.ckpt
+--- 210727.84580699995 CPU seconds ---
+iter=991000 : Reward: 0.000000
+iter=992000 : Reward: 0.000000
+iter=993000 : Reward: 0.100000
+iter=994000 : Reward: 0.200000
+iter=995000 : Reward: 0.300000
+iter=996000 : Reward: 0.000000
+iter=997000 : Reward: 0.200000
+iter=998000 : Reward: 0.100000
+iter=999000 : Reward: 0.100000
+iter=1000000 : Reward: 0.300000
+batches_in_epoch:  900
+ACCURACY: 0.109000002162
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1000000.ckpt
+--- 213591.94528299992 CPU seconds ---
+iter=1001000 : Reward: 0.300000
+iter=1002000 : Reward: 0.200000
+iter=1003000 : Reward: 0.200000
+iter=1004000 : Reward: 0.000000
+iter=1005000 : Reward: 0.300000
+iter=1006000 : Reward: 0.100000
+iter=1007000 : Reward: 0.100000
+iter=1008000 : Reward: 0.100000
+iter=1009000 : Reward: 0.500000
+iter=1010000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.107777779972
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1010000.ckpt
+--- 216455.87608499994 CPU seconds ---
+iter=1011000 : Reward: 0.000000
+iter=1012000 : Reward: 0.100000
+iter=1013000 : Reward: 0.100000
+iter=1014000 : Reward: 0.000000
+iter=1015000 : Reward: 0.200000
+iter=1016000 : Reward: 0.200000
+iter=1017000 : Reward: 0.400000
+iter=1018000 : Reward: 0.100000
+iter=1019000 : Reward: 0.500000
+iter=1020000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.104444446506
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1020000.ckpt
+--- 219320.34675599993 CPU seconds ---
+iter=1021000 : Reward: 0.100000
+iter=1022000 : Reward: 0.200000
+iter=1023000 : Reward: 0.200000
+iter=1024000 : Reward: 0.300000
+iter=1025000 : Reward: 0.300000
+iter=1026000 : Reward: 0.100000
+iter=1027000 : Reward: 0.300000
+iter=1028000 : Reward: 0.000000
+iter=1029000 : Reward: 0.200000
+iter=1030000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.115111113398
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1030000.ckpt
+--- 222185.92181199993 CPU seconds ---
+iter=1031000 : Reward: 0.100000
+iter=1032000 : Reward: 0.100000
+iter=1033000 : Reward: 0.300000
+iter=1034000 : Reward: 0.000000
+iter=1035000 : Reward: 0.400000
+iter=1036000 : Reward: 0.100000
+iter=1037000 : Reward: 0.200000
+iter=1038000 : Reward: 0.000000
+iter=1039000 : Reward: 0.100000
+iter=1040000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.113111113475
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1040000.ckpt
+--- 225051.56814199995 CPU seconds ---
+iter=1041000 : Reward: 0.200000
+iter=1042000 : Reward: 0.100000
+iter=1043000 : Reward: 0.200000
+iter=1044000 : Reward: 0.300000
+iter=1045000 : Reward: 0.000000
+iter=1046000 : Reward: 0.000000
+iter=1047000 : Reward: 0.100000
+iter=1048000 : Reward: 0.100000
+iter=1049000 : Reward: 0.100000
+iter=1050000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.106666668736
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1050000.ckpt
+--- 227918.40133599995 CPU seconds ---
+iter=1051000 : Reward: 0.600000
+iter=1052000 : Reward: 0.100000
+iter=1053000 : Reward: 0.000000
+iter=1054000 : Reward: 0.000000
+iter=1055000 : Reward: 0.400000
+iter=1056000 : Reward: 0.100000
+iter=1057000 : Reward: 0.200000
+iter=1058000 : Reward: 0.400000
+iter=1059000 : Reward: 0.100000
+iter=1060000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.111888891169
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1060000.ckpt
+--- 230786.31782499998 CPU seconds ---
+iter=1061000 : Reward: 0.200000
+iter=1062000 : Reward: 0.300000
+iter=1063000 : Reward: 0.300000
+iter=1064000 : Reward: 0.100000
+iter=1065000 : Reward: 0.300000
+iter=1066000 : Reward: 0.000000
+iter=1067000 : Reward: 0.300000
+iter=1068000 : Reward: 0.100000
+iter=1069000 : Reward: 0.100000
+iter=1070000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.115555557799
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1070000.ckpt
+--- 233652.92356599998 CPU seconds ---
+iter=1071000 : Reward: 0.100000
+iter=1072000 : Reward: 0.300000
+iter=1073000 : Reward: 0.100000
+iter=1074000 : Reward: 0.200000
+iter=1075000 : Reward: 0.100000
+iter=1076000 : Reward: 0.200000
+iter=1077000 : Reward: 0.200000
+iter=1078000 : Reward: 0.100000
+iter=1079000 : Reward: 0.200000
+iter=1080000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.117666669033
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1080000.ckpt
+--- 236515.15216 CPU seconds ---
+iter=1081000 : Reward: 0.100000
+iter=1082000 : Reward: 0.100000
+iter=1083000 : Reward: 0.200000
+iter=1084000 : Reward: 0.200000
+iter=1085000 : Reward: 0.200000
+iter=1086000 : Reward: 0.200000
+iter=1087000 : Reward: 0.200000
+iter=1088000 : Reward: 0.200000
+iter=1089000 : Reward: 0.300000
+iter=1090000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.109000002121
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1090000.ckpt
+--- 239377.35548199998 CPU seconds ---
+iter=1091000 : Reward: 0.200000
+iter=1092000 : Reward: 0.200000
+iter=1093000 : Reward: 0.400000
+iter=1094000 : Reward: 0.100000
+iter=1095000 : Reward: 0.400000
+iter=1096000 : Reward: 0.000000
+iter=1097000 : Reward: 0.300000
+iter=1098000 : Reward: 0.000000
+iter=1099000 : Reward: 0.300000
+iter=1100000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.107000002008
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1100000.ckpt
+--- 242239.124959 CPU seconds ---
+iter=1101000 : Reward: 0.100000
+iter=1102000 : Reward: 0.000000
+iter=1103000 : Reward: 0.100000
+iter=1104000 : Reward: 0.300000
+iter=1105000 : Reward: 0.200000
+iter=1106000 : Reward: 0.200000
+iter=1107000 : Reward: 0.100000
+iter=1108000 : Reward: 0.300000
+iter=1109000 : Reward: 0.300000
+iter=1110000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.107444446476
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1110000.ckpt
+--- 245099.322592 CPU seconds ---
+iter=1111000 : Reward: 0.200000
+iter=1112000 : Reward: 0.100000
+iter=1113000 : Reward: 0.200000
+iter=1114000 : Reward: 0.100000
+iter=1115000 : Reward: 0.100000
+iter=1116000 : Reward: 0.000000
+iter=1117000 : Reward: 0.300000
+iter=1118000 : Reward: 0.100000
+iter=1119000 : Reward: 0.400000
+iter=1120000 : Reward: 0.200000
+batches_in_epoch:  900
+ACCURACY: 0.111555557913
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1120000.ckpt
+--- 247957.823361 CPU seconds ---
+iter=1121000 : Reward: 0.100000
+iter=1122000 : Reward: 0.100000
+iter=1123000 : Reward: 0.200000
+iter=1124000 : Reward: 0.000000
+iter=1125000 : Reward: 0.100000
+iter=1126000 : Reward: 0.000000
+iter=1127000 : Reward: 0.200000
+iter=1128000 : Reward: 0.200000
+iter=1129000 : Reward: 0.200000
+iter=1130000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.11444444663
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1130000.ckpt
+--- 250814.34380000003 CPU seconds ---
+iter=1131000 : Reward: 0.300000
+iter=1132000 : Reward: 0.000000
+iter=1133000 : Reward: 0.300000
+iter=1134000 : Reward: 0.200000
+iter=1135000 : Reward: 0.200000
+iter=1136000 : Reward: 0.200000
+iter=1137000 : Reward: 0.200000
+iter=1138000 : Reward: 0.000000
+iter=1139000 : Reward: 0.300000
+iter=1140000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.10977778001
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1140000.ckpt
+--- 253671.11527900002 CPU seconds ---
+iter=1141000 : Reward: 0.400000
+iter=1142000 : Reward: 0.200000
+iter=1143000 : Reward: 0.400000
+iter=1144000 : Reward: 0.100000
+iter=1145000 : Reward: 0.200000
+iter=1146000 : Reward: 0.200000
+iter=1147000 : Reward: 0.200000
+iter=1148000 : Reward: 0.100000
+iter=1149000 : Reward: 0.100000
+iter=1150000 : Reward: 0.100000
+batches_in_epoch:  900
+ACCURACY: 0.115111113307
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1150000.ckpt
+--- 256526.57441300002 CPU seconds ---
+iter=1151000 : Reward: 0.400000
+iter=1152000 : Reward: 0.100000
+iter=1153000 : Reward: 0.300000
+iter=1154000 : Reward: 0.200000
+iter=1155000 : Reward: 0.500000
+iter=1156000 : Reward: 0.000000
+iter=1157000 : Reward: 0.100000
+iter=1158000 : Reward: 0.200000
+iter=1159000 : Reward: 0.300000
+iter=1160000 : Reward: 0.000000
+batches_in_epoch:  900
+ACCURACY: 0.113888891157
+Model saved in file: model_runs/all_knower_last_glimpse_rand_init/classifymodel_1160000.ckpt
+--- 259381.550451 CPU seconds ---
+iter=1161000 : Reward: 0.400000
+iter=1162000 : Reward: 0.000000
+iter=1163000 : Reward: 0.400000
+iter=1164000 : Reward: 0.200000
