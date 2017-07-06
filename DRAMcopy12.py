@@ -57,7 +57,7 @@ pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 5 # read glimpse grid width/height
+read_n = 25 # read glimpse grid width/height
 read_size = read_n*read_n
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -162,7 +162,7 @@ def decode(input, state):
         return lstm_dec(input, state)
 
 
- def write(h_dec):
+def write(h_dec):
     with tf.variable_scope("write",reuse=REUSE):
         return linear(h_dec,img_size)
 
@@ -280,14 +280,10 @@ if __name__ == '__main__':
     if restore:
         saver.restore(sess, load_file)
 
-    if start_non_restored_from_random:
-        tf.variables_initializer(varsToTrain).run()
-
-
     train_data = load_input.InputData()
     train_data.get_train(1)
     fetches2=[]
-    fetches2.extend([reward, train_op2])
+    fetches2.extend([reward, train_op])
 
     start_time = time.clock()
     extra_time = 0
@@ -297,7 +293,7 @@ if __name__ == '__main__':
         results = sess.run(fetches2, feed_dict = {x: xtrain, onehot_labels: ytrain})
         reward_fetched, _ = results
 
-        if i%10==0:
+        if i%100==0:
             print("iter=%d : Reward: %f\n" % (i, reward_fetched))
             sys.stdout.flush()
 
@@ -305,7 +301,7 @@ if __name__ == '__main__':
                 train_data = load_input.InputData()
                 train_data.get_train(1)
      
-                if i %10000==0:
+                if i %1000==0:
                     start_evaluate = time.clock()
                     test_accuracy = evaluate()
                     saver = tf.train.Saver(tf.global_variables())

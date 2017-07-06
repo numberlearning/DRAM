@@ -7,4 +7,4 @@ learning_rate = 1e-3
 glimpses = 10
 batch_size = 100
 
-model_name = "test_if_DRAM_works"
+model_name = "test_DRAM_on_new_data"
