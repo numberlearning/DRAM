@@ -9,7 +9,7 @@ import random
 from scipy import misc
 import time
 import sys
-from DRAMcopy10_nli_classification import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
+from DRAMcopy12 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 import load_input
 
 output_size = z_size
@@ -32,7 +32,7 @@ def random_image():
 
 
 def load_checkpoint(it, human):
-    path = "model_runs/test_h_dec"
+    path = "model_runs/bitty_blobs"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 

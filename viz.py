@@ -23,8 +23,8 @@ from analysis import classify_image, glimpses, read_n
 clear_output()
 b = Button(description="Loading...", icon="arrow", width=400)
 dropdown = Dropdown(
-    options=['5000', '10000', '20000', '30000', '50000', '100000', '200000', '300000', '400000', '500000'],
-    value='30000',
+    options=['0', '1000', '2000', '3000', '4000', '5000', '10000', '20000', '30000', '50000', '100000', '200000', '300000', '400000', '500000'],
+    value='5000',
     description='Iteration:'
 )
 

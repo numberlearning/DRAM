@@ -1,0 +1,1509 @@
+['DRAMcopy12.py', 'true', 'true', 'true', 'true', 'true', 'true', 'model_runs/zoe_5_10_blob/classify_log.csv', 'model_runs/zoe_5_10_blob/classifymodel_0.ckpt', 'model_runs/zoe_5_10_blob/classifymodel_', 'model_runs/zoe_5_10_blob/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f92db14b0f0>: The input_size parameter is deprecated.
+WARNING:tensorflow:<tensorflow.contrib.rnn.python.ops.core_rnn_cell_impl.LSTMCell object at 0x7f929cefb748>: The input_size parameter is deprecated.
+2017-07-06 15:06:43.176278: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-06 15:06:43.176307: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-06 15:06:43.176312: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-06 15:06:43.176316: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-06 15:06:43.176320: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-06 15:06:43.352613: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-07-06 15:06:43.353019: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 5.75GiB
+2017-07-06 15:06:43.353073: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x5ae26a0
+2017-07-06 15:06:43.456688: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-07-06 15:06:43.457062: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.26GiB
+2017-07-06 15:06:43.457228: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-07-06 15:06:43.457235: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-07-06 15:06:43.457239: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-07-06 15:06:43.457246: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-07-06 15:06:43.457252: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: 0.450000
+
+ACCURACY: 0.511499978602
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_0.ckpt
+--- 1.953939 CPU seconds ---
+iter=100 : Reward: 0.540000
+
+iter=200 : Reward: 0.470000
+
+iter=300 : Reward: 0.560000
+
+iter=400 : Reward: 0.500000
+
+iter=500 : Reward: 0.440000
+
+iter=600 : Reward: 0.560000
+
+iter=700 : Reward: 0.520000
+
+iter=800 : Reward: 0.410000
+
+iter=900 : Reward: 0.510000
+
+iter=1000 : Reward: 0.480000
+
+ACCURACY: 0.50499998033
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_1000.ckpt
+--- 96.726017 CPU seconds ---
+iter=1100 : Reward: 0.520000
+
+iter=1200 : Reward: 0.480000
+
+iter=1300 : Reward: 0.400000
+
+iter=1400 : Reward: 0.500000
+
+iter=1500 : Reward: 0.560000
+
+iter=1600 : Reward: 0.490000
+
+iter=1700 : Reward: 0.600000
+
+iter=1800 : Reward: 0.520000
+
+iter=1900 : Reward: 0.470000
+
+iter=2000 : Reward: 0.470000
+
+ACCURACY: 0.538999973238
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_2000.ckpt
+--- 191.791457 CPU seconds ---
+iter=2100 : Reward: 0.420000
+
+iter=2200 : Reward: 0.580000
+
+iter=2300 : Reward: 0.440000
+
+iter=2400 : Reward: 0.560000
+
+iter=2500 : Reward: 0.500000
+
+iter=2600 : Reward: 0.420000
+
+iter=2700 : Reward: 0.440000
+
+iter=2800 : Reward: 0.570000
+
+iter=2900 : Reward: 0.540000
+
+iter=3000 : Reward: 0.520000
+
+ACCURACY: 0.496999979019
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_3000.ckpt
+--- 287.38465399999995 CPU seconds ---
+iter=3100 : Reward: 0.450000
+
+iter=3200 : Reward: 0.590000
+
+iter=3300 : Reward: 0.450000
+
+iter=3400 : Reward: 0.550000
+
+iter=3500 : Reward: 0.550000
+
+iter=3600 : Reward: 0.510000
+
+iter=3700 : Reward: 0.560000
+
+iter=3800 : Reward: 0.480000
+
+iter=3900 : Reward: 0.500000
+
+iter=4000 : Reward: 0.430000
+
+ACCURACY: 0.494499982893
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_4000.ckpt
+--- 383.420588 CPU seconds ---
+iter=4100 : Reward: 0.540000
+
+iter=4200 : Reward: 0.590000
+
+iter=4300 : Reward: 0.520000
+
+iter=4400 : Reward: 0.560000
+
+iter=4500 : Reward: 0.590000
+
+iter=4600 : Reward: 0.490000
+
+iter=4700 : Reward: 0.510000
+
+iter=4800 : Reward: 0.490000
+
+iter=4900 : Reward: 0.470000
+
+iter=5000 : Reward: 0.480000
+
+ACCURACY: 0.498999989033
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_5000.ckpt
+--- 477.050351 CPU seconds ---
+iter=5100 : Reward: 0.560000
+
+iter=5200 : Reward: 0.430000
+
+iter=5300 : Reward: 0.480000
+
+iter=5400 : Reward: 0.470000
+
+iter=5500 : Reward: 0.560000
+
+iter=5600 : Reward: 0.490000
+
+iter=5700 : Reward: 0.500000
+
+iter=5800 : Reward: 0.460000
+
+iter=5900 : Reward: 0.510000
+
+iter=6000 : Reward: 0.520000
+
+ACCURACY: 0.493999986351
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_6000.ckpt
+--- 571.088411 CPU seconds ---
+iter=6100 : Reward: 0.490000
+
+iter=6200 : Reward: 0.520000
+
+iter=6300 : Reward: 0.540000
+
+iter=6400 : Reward: 0.500000
+
+iter=6500 : Reward: 0.550000
+
+iter=6600 : Reward: 0.480000
+
+iter=6700 : Reward: 0.560000
+
+iter=6800 : Reward: 0.420000
+
+iter=6900 : Reward: 0.460000
+
+iter=7000 : Reward: 0.500000
+
+ACCURACY: 0.503499981761
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_7000.ckpt
+--- 666.333415 CPU seconds ---
+iter=7100 : Reward: 0.420000
+
+iter=7200 : Reward: 0.490000
+
+iter=7300 : Reward: 0.560000
+
+iter=7400 : Reward: 0.500000
+
+iter=7500 : Reward: 0.490000
+
+iter=7600 : Reward: 0.440000
+
+iter=7700 : Reward: 0.590000
+
+iter=7800 : Reward: 0.470000
+
+iter=7900 : Reward: 0.580000
+
+iter=8000 : Reward: 0.370000
+
+ACCURACY: 0.502999982238
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_8000.ckpt
+--- 760.8194290000001 CPU seconds ---
+iter=8100 : Reward: 0.580000
+
+iter=8200 : Reward: 0.480000
+
+iter=8300 : Reward: 0.560000
+
+iter=8400 : Reward: 0.530000
+
+iter=8500 : Reward: 0.500000
+
+iter=8600 : Reward: 0.390000
+
+iter=8700 : Reward: 0.520000
+
+iter=8800 : Reward: 0.510000
+
+iter=8900 : Reward: 0.440000
+
+iter=9000 : Reward: 0.420000
+
+ACCURACY: 0.509999984503
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_9000.ckpt
+--- 854.9893370000001 CPU seconds ---
+iter=9100 : Reward: 0.460000
+
+iter=9200 : Reward: 0.430000
+
+iter=9300 : Reward: 0.440000
+
+iter=9400 : Reward: 0.550000
+
+iter=9500 : Reward: 0.530000
+
+iter=9600 : Reward: 0.470000
+
+iter=9700 : Reward: 0.470000
+
+iter=9800 : Reward: 0.460000
+
+iter=9900 : Reward: 0.490000
+
+iter=10000 : Reward: 0.510000
+
+ACCURACY: 0.507499982417
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_10000.ckpt
+--- 949.6685570000001 CPU seconds ---
+iter=10100 : Reward: 0.430000
+
+iter=10200 : Reward: 0.560000
+
+iter=10300 : Reward: 0.490000
+
+iter=10400 : Reward: 0.500000
+
+iter=10500 : Reward: 0.450000
+
+iter=10600 : Reward: 0.560000
+
+iter=10700 : Reward: 0.530000
+
+iter=10800 : Reward: 0.530000
+
+iter=10900 : Reward: 0.510000
+
+iter=11000 : Reward: 0.510000
+
+ACCURACY: 0.491499987245
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_11000.ckpt
+--- 1044.9192329999998 CPU seconds ---
+iter=11100 : Reward: 0.510000
+
+iter=11200 : Reward: 0.460000
+
+iter=11300 : Reward: 0.450000
+
+iter=11400 : Reward: 0.530000
+
+iter=11500 : Reward: 0.450000
+
+iter=11600 : Reward: 0.450000
+
+iter=11700 : Reward: 0.540000
+
+iter=11800 : Reward: 0.450000
+
+iter=11900 : Reward: 0.590000
+
+iter=12000 : Reward: 0.510000
+
+ACCURACY: 0.506999984384
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_12000.ckpt
+--- 1139.6409459999998 CPU seconds ---
+iter=12100 : Reward: 0.470000
+
+iter=12200 : Reward: 0.500000
+
+iter=12300 : Reward: 0.510000
+
+iter=12400 : Reward: 0.390000
+
+iter=12500 : Reward: 0.580000
+
+iter=12600 : Reward: 0.510000
+
+iter=12700 : Reward: 0.580000
+
+iter=12800 : Reward: 0.420000
+
+iter=12900 : Reward: 0.520000
+
+iter=13000 : Reward: 0.550000
+
+ACCURACY: 0.505999979377
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_13000.ckpt
+--- 1235.0931509999996 CPU seconds ---
+iter=13100 : Reward: 0.500000
+
+iter=13200 : Reward: 0.480000
+
+iter=13300 : Reward: 0.470000
+
+iter=13400 : Reward: 0.390000
+
+iter=13500 : Reward: 0.490000
+
+iter=13600 : Reward: 0.490000
+
+iter=13700 : Reward: 0.480000
+
+iter=13800 : Reward: 0.570000
+
+iter=13900 : Reward: 0.560000
+
+iter=14000 : Reward: 0.430000
+
+ACCURACY: 0.485999982059
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_14000.ckpt
+--- 1329.7459329999995 CPU seconds ---
+iter=14100 : Reward: 0.510000
+
+iter=14200 : Reward: 0.410000
+
+iter=14300 : Reward: 0.510000
+
+iter=14400 : Reward: 0.430000
+
+iter=14500 : Reward: 0.530000
+
+iter=14600 : Reward: 0.410000
+
+iter=14700 : Reward: 0.480000
+
+iter=14800 : Reward: 0.530000
+
+iter=14900 : Reward: 0.510000
+
+iter=15000 : Reward: 0.560000
+
+ACCURACY: 0.504999995232
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_15000.ckpt
+--- 1422.4870849999995 CPU seconds ---
+iter=15100 : Reward: 0.410000
+
+iter=15200 : Reward: 0.550000
+
+iter=15300 : Reward: 0.500000
+
+iter=15400 : Reward: 0.450000
+
+iter=15500 : Reward: 0.540000
+
+iter=15600 : Reward: 0.540000
+
+iter=15700 : Reward: 0.500000
+
+iter=15800 : Reward: 0.450000
+
+iter=15900 : Reward: 0.540000
+
+iter=16000 : Reward: 0.410000
+
+ACCURACY: 0.503499981761
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_16000.ckpt
+--- 1517.5635969999996 CPU seconds ---
+iter=16100 : Reward: 0.550000
+
+iter=16200 : Reward: 0.510000
+
+iter=16300 : Reward: 0.550000
+
+iter=16400 : Reward: 0.530000
+
+iter=16500 : Reward: 0.410000
+
+iter=16600 : Reward: 0.540000
+
+iter=16700 : Reward: 0.510000
+
+iter=16800 : Reward: 0.510000
+
+iter=16900 : Reward: 0.460000
+
+iter=17000 : Reward: 0.460000
+
+ACCURACY: 0.492499989271
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_17000.ckpt
+--- 1611.3231569999994 CPU seconds ---
+iter=17100 : Reward: 0.450000
+
+iter=17200 : Reward: 0.520000
+
+iter=17300 : Reward: 0.510000
+
+iter=17400 : Reward: 0.560000
+
+iter=17500 : Reward: 0.470000
+
+iter=17600 : Reward: 0.510000
+
+iter=17700 : Reward: 0.590000
+
+iter=17800 : Reward: 0.480000
+
+iter=17900 : Reward: 0.510000
+
+iter=18000 : Reward: 0.510000
+
+ACCURACY: 0.493499982357
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_18000.ckpt
+--- 1705.5833799999996 CPU seconds ---
+iter=18100 : Reward: 0.520000
+
+iter=18200 : Reward: 0.480000
+
+iter=18300 : Reward: 0.570000
+
+iter=18400 : Reward: 0.560000
+
+iter=18500 : Reward: 0.430000
+
+iter=18600 : Reward: 0.510000
+
+iter=18700 : Reward: 0.490000
+
+iter=18800 : Reward: 0.500000
+
+iter=18900 : Reward: 0.510000
+
+iter=19000 : Reward: 0.440000
+
+ACCURACY: 0.504499985278
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_19000.ckpt
+--- 1798.8362849999994 CPU seconds ---
+iter=19100 : Reward: 0.500000
+
+iter=19200 : Reward: 0.490000
+
+iter=19300 : Reward: 0.520000
+
+iter=19400 : Reward: 0.490000
+
+iter=19500 : Reward: 0.480000
+
+iter=19600 : Reward: 0.510000
+
+iter=19700 : Reward: 0.530000
+
+iter=19800 : Reward: 0.510000
+
+iter=19900 : Reward: 0.480000
+
+iter=20000 : Reward: 0.500000
+
+ACCURACY: 0.498999974132
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_20000.ckpt
+--- 1895.1849629999995 CPU seconds ---
+iter=20100 : Reward: 0.530000
+
+iter=20200 : Reward: 0.500000
+
+iter=20300 : Reward: 0.540000
+
+iter=20400 : Reward: 0.430000
+
+iter=20500 : Reward: 0.460000
+
+iter=20600 : Reward: 0.540000
+
+iter=20700 : Reward: 0.470000
+
+iter=20800 : Reward: 0.560000
+
+iter=20900 : Reward: 0.510000
+
+iter=21000 : Reward: 0.520000
+
+ACCURACY: 0.497999987006
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_21000.ckpt
+--- 1988.5491849999994 CPU seconds ---
+iter=21100 : Reward: 0.410000
+
+iter=21200 : Reward: 0.470000
+
+iter=21300 : Reward: 0.460000
+
+iter=21400 : Reward: 0.500000
+
+iter=21500 : Reward: 0.510000
+
+iter=21600 : Reward: 0.400000
+
+iter=21700 : Reward: 0.490000
+
+iter=21800 : Reward: 0.500000
+
+iter=21900 : Reward: 0.550000
+
+iter=22000 : Reward: 0.480000
+
+ACCURACY: 0.500499986112
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_22000.ckpt
+--- 2083.2315029999995 CPU seconds ---
+iter=22100 : Reward: 0.520000
+
+iter=22200 : Reward: 0.490000
+
+iter=22300 : Reward: 0.570000
+
+iter=22400 : Reward: 0.500000
+
+iter=22500 : Reward: 0.510000
+
+iter=22600 : Reward: 0.630000
+
+iter=22700 : Reward: 0.440000
+
+iter=22800 : Reward: 0.550000
+
+iter=22900 : Reward: 0.460000
+
+iter=23000 : Reward: 0.520000
+
+ACCURACY: 0.491999982297
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_23000.ckpt
+--- 2177.257867 CPU seconds ---
+iter=23100 : Reward: 0.440000
+
+iter=23200 : Reward: 0.470000
+
+iter=23300 : Reward: 0.580000
+
+iter=23400 : Reward: 0.510000
+
+iter=23500 : Reward: 0.510000
+
+iter=23600 : Reward: 0.550000
+
+iter=23700 : Reward: 0.520000
+
+iter=23800 : Reward: 0.500000
+
+iter=23900 : Reward: 0.420000
+
+iter=24000 : Reward: 0.480000
+
+ACCURACY: 0.489999985695
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_24000.ckpt
+--- 2273.487433 CPU seconds ---
+iter=24100 : Reward: 0.530000
+
+iter=24200 : Reward: 0.480000
+
+iter=24300 : Reward: 0.510000
+
+iter=24400 : Reward: 0.530000
+
+iter=24500 : Reward: 0.490000
+
+iter=24600 : Reward: 0.470000
+
+iter=24700 : Reward: 0.500000
+
+iter=24800 : Reward: 0.560000
+
+iter=24900 : Reward: 0.510000
+
+iter=25000 : Reward: 0.490000
+
+ACCURACY: 0.497999981046
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_25000.ckpt
+--- 2368.106723 CPU seconds ---
+iter=25100 : Reward: 0.460000
+
+iter=25200 : Reward: 0.500000
+
+iter=25300 : Reward: 0.460000
+
+iter=25400 : Reward: 0.530000
+
+iter=25500 : Reward: 0.510000
+
+iter=25600 : Reward: 0.470000
+
+iter=25700 : Reward: 0.490000
+
+iter=25800 : Reward: 0.520000
+
+iter=25900 : Reward: 0.400000
+
+iter=26000 : Reward: 0.570000
+
+ACCURACY: 0.487499991059
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_26000.ckpt
+--- 2462.948024 CPU seconds ---
+iter=26100 : Reward: 0.510000
+
+iter=26200 : Reward: 0.530000
+
+iter=26300 : Reward: 0.490000
+
+iter=26400 : Reward: 0.530000
+
+iter=26500 : Reward: 0.420000
+
+iter=26600 : Reward: 0.540000
+
+iter=26700 : Reward: 0.460000
+
+iter=26800 : Reward: 0.520000
+
+iter=26900 : Reward: 0.450000
+
+iter=27000 : Reward: 0.440000
+
+ACCURACY: 0.50649998188
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_27000.ckpt
+--- 2557.3624290000002 CPU seconds ---
+iter=27100 : Reward: 0.490000
+
+iter=27200 : Reward: 0.490000
+
+iter=27300 : Reward: 0.490000
+
+iter=27400 : Reward: 0.520000
+
+iter=27500 : Reward: 0.400000
+
+iter=27600 : Reward: 0.560000
+
+iter=27700 : Reward: 0.480000
+
+iter=27800 : Reward: 0.510000
+
+iter=27900 : Reward: 0.480000
+
+iter=28000 : Reward: 0.600000
+
+ACCURACY: 0.52849996984
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_28000.ckpt
+--- 2651.9301339999997 CPU seconds ---
+iter=28100 : Reward: 0.520000
+
+iter=28200 : Reward: 0.540000
+
+iter=28300 : Reward: 0.470000
+
+iter=28400 : Reward: 0.470000
+
+iter=28500 : Reward: 0.490000
+
+iter=28600 : Reward: 0.550000
+
+iter=28700 : Reward: 0.590000
+
+iter=28800 : Reward: 0.420000
+
+iter=28900 : Reward: 0.440000
+
+iter=29000 : Reward: 0.550000
+
+ACCURACY: 0.49549998641
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_29000.ckpt
+--- 2746.5026009999997 CPU seconds ---
+iter=29100 : Reward: 0.480000
+
+iter=29200 : Reward: 0.510000
+
+iter=29300 : Reward: 0.470000
+
+iter=29400 : Reward: 0.500000
+
+iter=29500 : Reward: 0.570000
+
+iter=29600 : Reward: 0.520000
+
+iter=29700 : Reward: 0.510000
+
+iter=29800 : Reward: 0.410000
+
+iter=29900 : Reward: 0.540000
+
+iter=30000 : Reward: 0.530000
+
+ACCURACY: 0.49249998033
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_30000.ckpt
+--- 2842.0859609999998 CPU seconds ---
+iter=30100 : Reward: 0.460000
+
+iter=30200 : Reward: 0.490000
+
+iter=30300 : Reward: 0.500000
+
+iter=30400 : Reward: 0.560000
+
+iter=30500 : Reward: 0.530000
+
+iter=30600 : Reward: 0.440000
+
+iter=30700 : Reward: 0.530000
+
+iter=30800 : Reward: 0.550000
+
+iter=30900 : Reward: 0.530000
+
+iter=31000 : Reward: 0.460000
+
+ACCURACY: 0.504999983311
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_31000.ckpt
+--- 2936.3743839999997 CPU seconds ---
+iter=31100 : Reward: 0.490000
+
+iter=31200 : Reward: 0.540000
+
+iter=31300 : Reward: 0.530000
+
+iter=31400 : Reward: 0.550000
+
+iter=31500 : Reward: 0.430000
+
+iter=31600 : Reward: 0.490000
+
+iter=31700 : Reward: 0.530000
+
+iter=31800 : Reward: 0.560000
+
+iter=31900 : Reward: 0.470000
+
+iter=32000 : Reward: 0.530000
+
+ACCURACY: 0.490999980271
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_32000.ckpt
+--- 3030.5795759999996 CPU seconds ---
+iter=32100 : Reward: 0.500000
+
+iter=32200 : Reward: 0.470000
+
+iter=32300 : Reward: 0.470000
+
+iter=32400 : Reward: 0.520000
+
+iter=32500 : Reward: 0.510000
+
+iter=32600 : Reward: 0.480000
+
+iter=32700 : Reward: 0.520000
+
+iter=32800 : Reward: 0.500000
+
+iter=32900 : Reward: 0.500000
+
+iter=33000 : Reward: 0.460000
+
+ACCURACY: 0.497999979556
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_33000.ckpt
+--- 3126.132546 CPU seconds ---
+iter=33100 : Reward: 0.460000
+
+iter=33200 : Reward: 0.500000
+
+iter=33300 : Reward: 0.520000
+
+iter=33400 : Reward: 0.480000
+
+iter=33500 : Reward: 0.470000
+
+iter=33600 : Reward: 0.520000
+
+iter=33700 : Reward: 0.450000
+
+iter=33800 : Reward: 0.440000
+
+iter=33900 : Reward: 0.410000
+
+iter=34000 : Reward: 0.560000
+
+ACCURACY: 0.493499986827
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_34000.ckpt
+--- 3220.9451239999994 CPU seconds ---
+iter=34100 : Reward: 0.500000
+
+iter=34200 : Reward: 0.430000
+
+iter=34300 : Reward: 0.490000
+
+iter=34400 : Reward: 0.550000
+
+iter=34500 : Reward: 0.430000
+
+iter=34600 : Reward: 0.530000
+
+iter=34700 : Reward: 0.420000
+
+iter=34800 : Reward: 0.490000
+
+iter=34900 : Reward: 0.520000
+
+iter=35000 : Reward: 0.530000
+
+ACCURACY: 0.499499976635
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_35000.ckpt
+--- 3315.7531299999996 CPU seconds ---
+iter=35100 : Reward: 0.530000
+
+iter=35200 : Reward: 0.530000
+
+iter=35300 : Reward: 0.470000
+
+iter=35400 : Reward: 0.540000
+
+iter=35500 : Reward: 0.470000
+
+iter=35600 : Reward: 0.420000
+
+iter=35700 : Reward: 0.510000
+
+iter=35800 : Reward: 0.540000
+
+iter=35900 : Reward: 0.530000
+
+iter=36000 : Reward: 0.460000
+
+ACCURACY: 0.48299998045
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_36000.ckpt
+--- 3415.0222009999998 CPU seconds ---
+iter=36100 : Reward: 0.500000
+
+iter=36200 : Reward: 0.470000
+
+iter=36300 : Reward: 0.500000
+
+iter=36400 : Reward: 0.460000
+
+iter=36500 : Reward: 0.520000
+
+iter=36600 : Reward: 0.530000
+
+iter=36700 : Reward: 0.470000
+
+iter=36800 : Reward: 0.490000
+
+iter=36900 : Reward: 0.420000
+
+iter=37000 : Reward: 0.540000
+
+ACCURACY: 0.482999977469
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_37000.ckpt
+--- 3511.1381149999997 CPU seconds ---
+iter=37100 : Reward: 0.420000
+
+iter=37200 : Reward: 0.450000
+
+iter=37300 : Reward: 0.500000
+
+iter=37400 : Reward: 0.470000
+
+iter=37500 : Reward: 0.440000
+
+iter=37600 : Reward: 0.460000
+
+iter=37700 : Reward: 0.540000
+
+iter=37800 : Reward: 0.450000
+
+iter=37900 : Reward: 0.420000
+
+iter=38000 : Reward: 0.500000
+
+ACCURACY: 0.487999981642
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_38000.ckpt
+--- 3604.7398359999997 CPU seconds ---
+iter=38100 : Reward: 0.510000
+
+iter=38200 : Reward: 0.540000
+
+iter=38300 : Reward: 0.430000
+
+iter=38400 : Reward: 0.520000
+
+iter=38500 : Reward: 0.630000
+
+iter=38600 : Reward: 0.470000
+
+iter=38700 : Reward: 0.530000
+
+iter=38800 : Reward: 0.530000
+
+iter=38900 : Reward: 0.430000
+
+iter=39000 : Reward: 0.470000
+
+ACCURACY: 0.500999978185
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_39000.ckpt
+--- 3707.7386309999997 CPU seconds ---
+iter=39100 : Reward: 0.460000
+
+iter=39200 : Reward: 0.560000
+
+iter=39300 : Reward: 0.530000
+
+iter=39400 : Reward: 0.500000
+
+iter=39500 : Reward: 0.500000
+
+iter=39600 : Reward: 0.560000
+
+iter=39700 : Reward: 0.550000
+
+iter=39800 : Reward: 0.480000
+
+iter=39900 : Reward: 0.520000
+
+iter=40000 : Reward: 0.500000
+
+ACCURACY: 0.512999987602
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_40000.ckpt
+--- 3801.7231879999995 CPU seconds ---
+iter=40100 : Reward: 0.490000
+
+iter=40200 : Reward: 0.560000
+
+iter=40300 : Reward: 0.500000
+
+iter=40400 : Reward: 0.330000
+
+iter=40500 : Reward: 0.470000
+
+iter=40600 : Reward: 0.560000
+
+iter=40700 : Reward: 0.510000
+
+iter=40800 : Reward: 0.500000
+
+iter=40900 : Reward: 0.530000
+
+iter=41000 : Reward: 0.490000
+
+ACCURACY: 0.492499983311
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_41000.ckpt
+--- 3895.820568999999 CPU seconds ---
+iter=41100 : Reward: 0.590000
+
+iter=41200 : Reward: 0.490000
+
+iter=41300 : Reward: 0.580000
+
+iter=41400 : Reward: 0.510000
+
+iter=41500 : Reward: 0.600000
+
+iter=41600 : Reward: 0.480000
+
+iter=41700 : Reward: 0.580000
+
+iter=41800 : Reward: 0.480000
+
+iter=41900 : Reward: 0.530000
+
+iter=42000 : Reward: 0.580000
+
+ACCURACY: 0.496499979496
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_42000.ckpt
+--- 3990.8556119999994 CPU seconds ---
+iter=42100 : Reward: 0.450000
+
+iter=42200 : Reward: 0.540000
+
+iter=42300 : Reward: 0.560000
+
+iter=42400 : Reward: 0.540000
+
+iter=42500 : Reward: 0.490000
+
+iter=42600 : Reward: 0.500000
+
+iter=42700 : Reward: 0.470000
+
+iter=42800 : Reward: 0.480000
+
+iter=42900 : Reward: 0.410000
+
+iter=43000 : Reward: 0.440000
+
+ACCURACY: 0.522999979556
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_43000.ckpt
+--- 4085.811237 CPU seconds ---
+iter=43100 : Reward: 0.560000
+
+iter=43200 : Reward: 0.460000
+
+iter=43300 : Reward: 0.510000
+
+iter=43400 : Reward: 0.530000
+
+iter=43500 : Reward: 0.430000
+
+iter=43600 : Reward: 0.520000
+
+iter=43700 : Reward: 0.470000
+
+iter=43800 : Reward: 0.400000
+
+iter=43900 : Reward: 0.450000
+
+iter=44000 : Reward: 0.540000
+
+ACCURACY: 0.504499970376
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_44000.ckpt
+--- 4188.39059 CPU seconds ---
+iter=44100 : Reward: 0.460000
+
+iter=44200 : Reward: 0.410000
+
+iter=44300 : Reward: 0.390000
+
+iter=44400 : Reward: 0.450000
+
+iter=44500 : Reward: 0.530000
+
+iter=44600 : Reward: 0.520000
+
+iter=44700 : Reward: 0.500000
+
+iter=44800 : Reward: 0.440000
+
+iter=44900 : Reward: 0.520000
+
+iter=45000 : Reward: 0.490000
+
+ACCURACY: 0.498999977112
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_45000.ckpt
+--- 4282.1739370000005 CPU seconds ---
+iter=45100 : Reward: 0.540000
+
+iter=45200 : Reward: 0.520000
+
+iter=45300 : Reward: 0.470000
+
+iter=45400 : Reward: 0.570000
+
+iter=45500 : Reward: 0.470000
+
+iter=45600 : Reward: 0.470000
+
+iter=45700 : Reward: 0.540000
+
+iter=45800 : Reward: 0.600000
+
+iter=45900 : Reward: 0.430000
+
+iter=46000 : Reward: 0.480000
+
+ACCURACY: 0.486999984086
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_46000.ckpt
+--- 4375.840142 CPU seconds ---
+iter=46100 : Reward: 0.510000
+
+iter=46200 : Reward: 0.390000
+
+iter=46300 : Reward: 0.610000
+
+iter=46400 : Reward: 0.470000
+
+iter=46500 : Reward: 0.400000
+
+iter=46600 : Reward: 0.350000
+
+iter=46700 : Reward: 0.560000
+
+iter=46800 : Reward: 0.530000
+
+iter=46900 : Reward: 0.480000
+
+iter=47000 : Reward: 0.500000
+
+ACCURACY: 0.480499981344
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_47000.ckpt
+--- 4470.004808000001 CPU seconds ---
+iter=47100 : Reward: 0.450000
+
+iter=47200 : Reward: 0.520000
+
+iter=47300 : Reward: 0.490000
+
+iter=47400 : Reward: 0.520000
+
+iter=47500 : Reward: 0.510000
+
+iter=47600 : Reward: 0.430000
+
+iter=47700 : Reward: 0.460000
+
+iter=47800 : Reward: 0.510000
+
+iter=47900 : Reward: 0.430000
+
+iter=48000 : Reward: 0.460000
+
+ACCURACY: 0.502499984205
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_48000.ckpt
+--- 4564.025608 CPU seconds ---
+iter=48100 : Reward: 0.560000
+
+iter=48200 : Reward: 0.490000
+
+iter=48300 : Reward: 0.410000
+
+iter=48400 : Reward: 0.480000
+
+iter=48500 : Reward: 0.420000
+
+iter=48600 : Reward: 0.530000
+
+iter=48700 : Reward: 0.540000
+
+iter=48800 : Reward: 0.550000
+
+iter=48900 : Reward: 0.480000
+
+iter=49000 : Reward: 0.540000
+
+ACCURACY: 0.50649997592
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_49000.ckpt
+--- 4660.047727 CPU seconds ---
+iter=49100 : Reward: 0.560000
+
+iter=49200 : Reward: 0.500000
+
+iter=49300 : Reward: 0.450000
+
+iter=49400 : Reward: 0.450000
+
+iter=49500 : Reward: 0.440000
+
+iter=49600 : Reward: 0.500000
+
+iter=49700 : Reward: 0.560000
+
+iter=49800 : Reward: 0.560000
+
+iter=49900 : Reward: 0.430000
+
+iter=50000 : Reward: 0.490000
+
+ACCURACY: 0.512999981642
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_50000.ckpt
+--- 4755.58611 CPU seconds ---
+iter=50100 : Reward: 0.550000
+
+iter=50200 : Reward: 0.510000
+
+iter=50300 : Reward: 0.480000
+
+iter=50400 : Reward: 0.360000
+
+iter=50500 : Reward: 0.480000
+
+iter=50600 : Reward: 0.530000
+
+iter=50700 : Reward: 0.500000
+
+iter=50800 : Reward: 0.570000
+
+iter=50900 : Reward: 0.470000
+
+iter=51000 : Reward: 0.580000
+
+ACCURACY: 0.487999978662
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_51000.ckpt
+--- 4845.670716 CPU seconds ---
+iter=51100 : Reward: 0.550000
+
+iter=51200 : Reward: 0.510000
+
+iter=51300 : Reward: 0.440000
+
+iter=51400 : Reward: 0.510000
+
+iter=51500 : Reward: 0.570000
+
+iter=51600 : Reward: 0.470000
+
+iter=51700 : Reward: 0.550000
+
+iter=51800 : Reward: 0.430000
+
+iter=51900 : Reward: 0.430000
+
+iter=52000 : Reward: 0.520000
+
+ACCURACY: 0.502999976277
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_52000.ckpt
+--- 4923.214206 CPU seconds ---
+iter=52100 : Reward: 0.430000
+
+iter=52200 : Reward: 0.500000
+
+iter=52300 : Reward: 0.520000
+
+iter=52400 : Reward: 0.540000
+
+iter=52500 : Reward: 0.520000
+
+iter=52600 : Reward: 0.480000
+
+iter=52700 : Reward: 0.510000
+
+iter=52800 : Reward: 0.460000
+
+iter=52900 : Reward: 0.500000
+
+iter=53000 : Reward: 0.520000
+
+ACCURACY: 0.494999983907
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_53000.ckpt
+--- 4991.527913 CPU seconds ---
+iter=53100 : Reward: 0.560000
+
+iter=53200 : Reward: 0.450000
+
+iter=53300 : Reward: 0.510000
+
+iter=53400 : Reward: 0.600000
+
+iter=53500 : Reward: 0.600000
+
+iter=53600 : Reward: 0.450000
+
+iter=53700 : Reward: 0.410000
+
+iter=53800 : Reward: 0.460000
+
+iter=53900 : Reward: 0.410000
+
+iter=54000 : Reward: 0.490000
+
+ACCURACY: 0.489999982715
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_54000.ckpt
+--- 5059.505013 CPU seconds ---
+iter=54100 : Reward: 0.480000
+
+iter=54200 : Reward: 0.590000
+
+iter=54300 : Reward: 0.470000
+
+iter=54400 : Reward: 0.480000
+
+iter=54500 : Reward: 0.490000
+
+iter=54600 : Reward: 0.510000
+
+iter=54700 : Reward: 0.500000
+
+iter=54800 : Reward: 0.490000
+
+iter=54900 : Reward: 0.480000
+
+iter=55000 : Reward: 0.480000
+
+ACCURACY: 0.499999992549
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_55000.ckpt
+--- 5127.294773999999 CPU seconds ---
+iter=55100 : Reward: 0.530000
+
+iter=55200 : Reward: 0.490000
+
+iter=55300 : Reward: 0.480000
+
+iter=55400 : Reward: 0.410000
+
+iter=55500 : Reward: 0.480000
+
+iter=55600 : Reward: 0.530000
+
+iter=55700 : Reward: 0.460000
+
+iter=55800 : Reward: 0.510000
+
+iter=55900 : Reward: 0.570000
+
+iter=56000 : Reward: 0.420000
+
+ACCURACY: 0.505999983847
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_56000.ckpt
+--- 5194.414921 CPU seconds ---
+iter=56100 : Reward: 0.460000
+
+iter=56200 : Reward: 0.480000
+
+iter=56300 : Reward: 0.460000
+
+iter=56400 : Reward: 0.420000
+
+iter=56500 : Reward: 0.490000
+
+iter=56600 : Reward: 0.530000
+
+iter=56700 : Reward: 0.480000
+
+iter=56800 : Reward: 0.520000
+
+iter=56900 : Reward: 0.460000
+
+iter=57000 : Reward: 0.450000
+
+ACCURACY: 0.511999978125
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_57000.ckpt
+--- 5261.063063 CPU seconds ---
+iter=57100 : Reward: 0.410000
+
+iter=57200 : Reward: 0.590000
+
+iter=57300 : Reward: 0.400000
+
+iter=57400 : Reward: 0.450000
+
+iter=57500 : Reward: 0.520000
+
+iter=57600 : Reward: 0.560000
+
+iter=57700 : Reward: 0.490000
+
+iter=57800 : Reward: 0.480000
+
+iter=57900 : Reward: 0.470000
+
+iter=58000 : Reward: 0.500000
+
+ACCURACY: 0.494499978423
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_58000.ckpt
+--- 5331.651083999999 CPU seconds ---
+iter=58100 : Reward: 0.480000
+
+iter=58200 : Reward: 0.480000
+
+iter=58300 : Reward: 0.500000
+
+iter=58400 : Reward: 0.540000
+
+iter=58500 : Reward: 0.450000
+
+iter=58600 : Reward: 0.450000
+
+iter=58700 : Reward: 0.450000
+
+iter=58800 : Reward: 0.510000
+
+iter=58900 : Reward: 0.530000
+
+iter=59000 : Reward: 0.530000
+
+ACCURACY: 0.491499978304
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_59000.ckpt
+--- 5402.569240999999 CPU seconds ---
+iter=59100 : Reward: 0.530000
+
+iter=59200 : Reward: 0.500000
+
+iter=59300 : Reward: 0.560000
+
+iter=59400 : Reward: 0.500000
+
+iter=59500 : Reward: 0.520000
+
+iter=59600 : Reward: 0.500000
+
+iter=59700 : Reward: 0.440000
+
+iter=59800 : Reward: 0.450000
+
+iter=59900 : Reward: 0.520000
+
+iter=60000 : Reward: 0.530000
+
+ACCURACY: 0.488999983668
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_60000.ckpt
+--- 5468.829288999999 CPU seconds ---
+iter=60100 : Reward: 0.600000
+
+iter=60200 : Reward: 0.550000
+
+iter=60300 : Reward: 0.460000
+
+iter=60400 : Reward: 0.460000
+
+iter=60500 : Reward: 0.510000
+
+iter=60600 : Reward: 0.520000
+
+iter=60700 : Reward: 0.530000
+
+iter=60800 : Reward: 0.430000
+
+iter=60900 : Reward: 0.460000
+
+iter=61000 : Reward: 0.500000
+
+ACCURACY: 0.506999988854
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_61000.ckpt
+--- 5535.315352999999 CPU seconds ---
+iter=61100 : Reward: 0.450000
+
+iter=61200 : Reward: 0.500000
+
+iter=61300 : Reward: 0.490000
+
+iter=61400 : Reward: 0.470000
+
+iter=61500 : Reward: 0.560000
+
+iter=61600 : Reward: 0.530000
+
+iter=61700 : Reward: 0.460000
+
+iter=61800 : Reward: 0.500000
+
+iter=61900 : Reward: 0.530000
+
+iter=62000 : Reward: 0.580000
+
+ACCURACY: 0.4939999789
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_62000.ckpt
+--- 5606.981986999999 CPU seconds ---
+iter=62100 : Reward: 0.450000
+
+iter=62200 : Reward: 0.560000
+
+iter=62300 : Reward: 0.510000
+
+iter=62400 : Reward: 0.510000
+
+iter=62500 : Reward: 0.470000
+
+iter=62600 : Reward: 0.490000
+
+iter=62700 : Reward: 0.450000
+
+iter=62800 : Reward: 0.490000
+
+iter=62900 : Reward: 0.530000
+
+iter=63000 : Reward: 0.400000
+
+ACCURACY: 0.493499973416
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_63000.ckpt
+--- 5676.106288999999 CPU seconds ---
+iter=63100 : Reward: 0.500000
+
+iter=63200 : Reward: 0.500000
+
+iter=63300 : Reward: 0.450000
+
+iter=63400 : Reward: 0.570000
+
+iter=63500 : Reward: 0.520000
+
+iter=63600 : Reward: 0.510000
+
+iter=63700 : Reward: 0.460000
+
+iter=63800 : Reward: 0.450000
+
+iter=63900 : Reward: 0.500000
+
+iter=64000 : Reward: 0.550000
+
+ACCURACY: 0.4939999789
+Model saved in file: model_runs/zoe_5_10_blob/classifymodel_64000.ckpt
+--- 5744.100707999999 CPU seconds ---
+iter=64100 : Reward: 0.520000
+
+iter=64200 : Reward: 0.520000
+
