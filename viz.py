@@ -24,7 +24,7 @@ clear_output()
 b = Button(description="Loading...", icon="arrow", width=400)
 dropdown = Dropdown(
     options=['0', '1000', '2000', '3000', '4000', '5000', '10000', '20000', '30000', '50000', '100000', '200000', '300000', '400000', '500000'],
-    value='5000',
+    value='1000',
     description='Iteration:'
 )
 
@@ -41,7 +41,7 @@ def make_chart(i, j):
 #     bar2 = Bar(data=np.random.rand(10), title="Python Interpreters", plot_width=400, legend=False)
     name = "Last-Step" if j == 0 else "All-Step"
     title = "%s Classification %d" % (name, (i + 1))
-    p = figure(x_range=(-0.5, 10), y_range=(0, 1), width=200, height=200, tools="")
+    p = figure(x_range=(-0.5, 10), y_range=(0, 1), width=200, height=250, tools="")
     
     m = 0.1
     source = ColumnDataSource(data=dict(color=["lime"] * 10, top=np.zeros(10), bottom=np.zeros(10), left=np.arange(10) + m + 0.5, right=np.arange(1, 11) - m + 0.5))
@@ -59,7 +59,7 @@ def make_chart(i, j):
     return p, q
 
 def make_spacer():
-    p = figure(x_range=(-0.5, 10), y_range=(0, 1), width=100, height=200, tools="", border_fill_alpha=0, outline_line_alpha=0)
+    p = figure(x_range=(-0.5, 10), y_range=(0, 1), width=50, height=250, tools="", border_fill_alpha=0, outline_line_alpha=0)
     p.toolbar.logo = None
     p.toolbar_location = None
     p.border_fill_alpha = 0
@@ -85,7 +85,7 @@ def make_figure(color, i, j, smol=False):
 
     name = "Last-Step" if j == 0 else "All-Step"
     title = "%s Glimpse %d" % (name, (i + 1))
-    p = figure(x_range=(0, w), y_range=(w, 0), width=200, height=200, tools="", title=title)
+    p = figure(x_range=(0, w), y_range=(w, 0), width=200, height=250, tools="", title=title)
     
     p.toolbar.logo = None
     p.toolbar_location = None
@@ -95,7 +95,7 @@ def make_figure(color, i, j, smol=False):
     i_source = ColumnDataSource(data=dict(image=[im]))
 
 
-    iii = p.image(image=[im], x=0, y=w, dw=w, dh=w, palette="Greys256")
+    iii = p.image(image=[im], x=0, y=w, dw=w, dh=w, palette="Spectral9")#"Greys256")
     source = ColumnDataSource(data=dict(top=[0], bottom=[0], left=[0], right=[0]))
 #     source = ColumnDataSource(data=dict(top=[d["top"]], bottom=[d["bottom"]], left=[d["left"]], right=[d["right"]]))
     q = p.quad('left', 'right', 'top', 'bottom', source=source, color=color, fill_alpha=0, line_width=3)
@@ -135,16 +135,16 @@ def make_figure(color, i, j, smol=False):
     return p, iii, q;
 
 for i in range(glimpses):
-    if i % 10 == 0:
-        (machine, i1, q1), (human, i2, q2) = make_figure("pink", i, 0), make_figure("orange", i, 1)
-        machine_c, machine_cdata = make_chart(i, 0)
-        human_c, human_cdata = make_chart(i, 0)
-        figures.append([machine, machine_c, make_spacer(), human, human_c])
-        iqs.append([
-            (i1, q1),
-            (i2, q2)
-        ])
-        charts.append([machine_cdata, human_cdata])
+    #if i % 10 == 0:
+    (machine, i1, q1), (human, i2, q2) = make_figure("pink", i, 0), make_figure("orange", i, 1)
+    machine_c, machine_cdata = make_chart(i, 0)
+    human_c, human_cdata = make_chart(i, 0)
+    figures.append([machine, machine_c, make_spacer(), human, human_c])
+    iqs.append([
+        (i1, q1),
+        (i2, q2)
+    ])
+    charts.append([machine_cdata, human_cdata])
         
 data = None
     

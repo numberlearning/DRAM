@@ -9,7 +9,8 @@ import random
 from scipy import misc
 import time
 import sys
-from DRAMcopy12 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
+from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
+#batch_size = 1
 import load_input
 
 output_size = z_size
@@ -32,7 +33,7 @@ def random_image():
 
 
 def load_checkpoint(it, human):
-    path = "model_runs/bitty_blobs"
+    path = "model_runs/human_sequence"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -51,10 +52,7 @@ def classify_image(it, new_image):
     out["classifications"] = list()
     out["rects"] = list()
     out["rs"] = list()
-    out["centers"] = list()
     out["h_decs"] = list()
-
-
 
     load_checkpoint(it, human=False)
     machine_cs = sess.run(classifications, feed_dict={x: img.reshape(1, dims[0] * dims[1])})
@@ -101,11 +99,9 @@ def classify_image(it, new_image):
         out["rs"].append((np.flip(machine_cs[i]["r"].reshape(read_n, read_n), 0), np.flip(human_cs[i]["r"].reshape(read_n, read_n), 0)))
         out["classifications"].append((machine_cs[i]["classification"], human_cs[i]["classification"]))
         out["rects"].append((stats_to_rect(machine_cs[i]["stats"]), stats_to_rect(human_cs[i]["stats"])))
-        out["centers"].append((machine_cs[i]["more_stats"], human_cs[i]["more_stats"]))
         out["h_decs"].append((machine_cs[i]["h_dec"], human_cs[i]["h_dec"]))
 
     print(out["rects"])
-    print(out["centers"])
     print(out["h_decs"])
 
     # machine_cs = state_to_cell_array(machine_cs, "dec_state")

@@ -55,6 +55,8 @@ def generate_data(even=None):
             while count < num_blobs: 
                 height = random.randint(min_edge, max_edge)
                 width = random.randint(min_edge, max_edge)
+                #cX = random.randint(1 * num_blobs * 10, 50-width + num_blobs * 10)
+                #cY = random.randint(1 * num_blobs * 10, 50-height + num_blobs * 10)
                 cX = random.randint(1, 99-width)
                 cY = random.randint(1, 99-height)
                 h = height 

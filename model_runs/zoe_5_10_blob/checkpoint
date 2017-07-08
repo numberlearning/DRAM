@@ -1,2 +1,2 @@
-model_checkpoint_path: "classifymodel_64000.ckpt"
-all_model_checkpoint_paths: "classifymodel_64000.ckpt"
+model_checkpoint_path: "classifymodel_860000.ckpt"
+all_model_checkpoint_paths: "classifymodel_860000.ckpt"

@@ -15,7 +15,7 @@ import load_input
 from model_settings import learning_rate, glimpses, batch_size, min_edge, max_edge, min_blobs, max_blobs, model_name
 
 FLAGS = tf.flags.FLAGS
-
+tf.flags.DEFINE_boolean("read_attn", False, "enable attention for reader")
 
 def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
@@ -57,7 +57,7 @@ pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 25 # read glimpse grid width/height
+read_n = 10 # read glimpse grid width/height
 read_size = read_n*read_n
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -113,20 +113,24 @@ def attn_window(scope,h_dec,N, glimpse):
     gx=(dims[0]+1)/2*(gx_+1)
     gy=(dims[1]+1)/2*(gy_+1)
 
-    gx_list[glimpse + 1] = gx
-    gy_list[glimpse + 1] = gy
-    print(glimpse)
+    gx_list[glimpse] = gx
+    gy_list[glimpse] = gy
 
     sigma2=tf.exp(log_sigma2)
-    sigma_list[glimpse + 1] = sigma2
+    sigma_list[glimpse] = sigma2
 
     delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-    delta_list[glimpse + 1] = delta
+    delta_list[glimpse] = delta
 
     ret = list()
     ret.append(filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),))
     #ret.append((gx, gy, delta))
     return ret
+
+
+## READ ## 
+#def read_no_attn(x,x_hat,h_dec_prev):
+#    return x, stats
 
 
 def read(x, h_dec_prev, glimpse):
@@ -140,8 +144,10 @@ def read(x, h_dec_prev, glimpse):
         glimpse = tf.reshape(glimpse,[-1, N*N])
         return glimpse * tf.reshape(gamma, [-1,1])
 
-    x = filter_img(x, Fx, Fy, gamma, read_n) # batch x (read_n*read_n)
-    return x, stats # concat along feature axis
+    xr = filter_img(x, Fx, Fy, gamma, read_n) # batch_size x (read_n*read_n)
+    return xr, stats # concat along feature axis
+
+#read = read_attn if FLAGS.read_attn else read_no_attn
 
 
 def encode(input, state):
@@ -199,6 +205,7 @@ enc_state = lstm_enc.zero_state(batch_size, tf.float32)
 dec_state = lstm_dec.zero_state(batch_size, tf.float32)
 
 classifications = list()
+pqs = list()
 
 gx_list = [0] * glimpses 
 gy_list = [0] * glimpses
@@ -227,8 +234,12 @@ for glimpse in range(glimpses):
 
     REUSE=True
 
-predquality = tf.log(classification + 1e-5) * onehot_labels
-predquality = tf.reduce_mean(predquality, 0)
+    pq = tf.log(classification + 1e-5) * onehot_labels
+    pq = tf.reduce_mean(pq, 0)
+    pqs.append(pq)
+
+
+predquality = tf.reduce_mean(pqs)
 correct = tf.arg_max(onehot_labels, 1)
 prediction = tf.arg_max(classification, 1)
 
@@ -299,7 +310,7 @@ if __name__ == '__main__':
         results = sess.run(fetches2, feed_dict = {x: xtrain, onehot_labels: ytrain})
         reward_fetched, _ = results
 
-        if i%10==0:
+        if i%100==0:
             print("iter=%d : Reward: %f\n" % (i, reward_fetched))
             
             if i == 0:
@@ -319,21 +330,21 @@ if __name__ == '__main__':
                 print("len(delta_list): ", len(delta_list))
                 cont = input("Press ENTER to continue this program. ")
 
-            if i != 0:
-                for j in range(glimpses):
-                    print("At glimpse " + str(j + 1) + " of " + str(glimpses) + ": ")
-                    cont = input("Press ENTER to continue this program. ")
-                     
-                    for k in range(batch_size):
-                        print("At image " + str(k + 1) + " of " + str(batch_size) + " in this batch: ")
-                        cont = input("Press ENTER to continue this program. ")
-                        gx = gx_list[j][k, :]
-                        gy = gy_list[j][k, :]
-                        sigma2 = sigma_list[j][k, :]
-                        delta = delta_list[j][k, :]
-                        print("Here are the parameters (gx, gy, sigma2, delta): ")
-                        print(gx.eval(), gy.eval(), sigma2.eval(), delta.eval())
-                        cont = input("Press ENTER to continue this program. ")
+#             if i != 0:
+#                 for j in range(glimpses):
+#                     print("At glimpse " + str(j + 1) + " of " + str(glimpses) + ": ")
+#                     cont = input("Press ENTER to continue this program. ")
+#                      
+#                     for k in range(batch_size):
+#                         print("At image " + str(k + 1) + " of " + str(batch_size) + " in this batch: ")
+#                         cont = input("Press ENTER to continue this program. ")
+#                         gx = gx_list[j][k, :]
+#                         gy = gy_list[j][k, :]
+#                         sigma2 = sigma_list[j][k, :]
+#                         delta = delta_list[j][k, :]
+#                         print("Here are the parameters (gx, gy, sigma2, delta): ")
+#                         print(gx.eval(), gy.eval(), sigma2.eval(), delta.eval())
+#                         cont = input("Press ENTER to continue this program. ")
 
             sys.stdout.flush()
 
