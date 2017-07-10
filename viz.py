@@ -23,7 +23,7 @@ from analysis import classify_image, glimpses, read_n
 clear_output()
 b = Button(description="Loading...", icon="arrow", width=400)
 dropdown = Dropdown(
-    options=['0', '1000', '2000', '3000', '4000', '5000', '10000', '20000', '30000', '50000', '100000', '200000', '300000', '400000', '500000'],
+    options=['0', '1000', '2000', '3000', '4000', '5000', '10000', '20000', '30000', '40000', '50000', '60000', '70000', '80000', '90000', '100000', '110000', '120000', '130000', '140000', '150000', '160000', '170000', '180000', '190000', '200000', '250000', '300000', '400000', '500000'],
     value='1000',
     description='Iteration:'
 )
@@ -44,7 +44,7 @@ def make_chart(i, j):
     p = figure(x_range=(-0.5, 10), y_range=(0, 1), width=200, height=250, tools="")
     
     m = 0.1
-    source = ColumnDataSource(data=dict(color=["lime"] * 10, top=np.zeros(10), bottom=np.zeros(10), left=np.arange(10) + m + 0.5, right=np.arange(1, 11) - m + 0.5))
+    source = ColumnDataSource(data=dict(color=["lime"] * 10, top=np.zeros(10), bottom=np.zeros(10), left=np.arange(10) + m - 0.5, right=np.arange(1, 11) - m - 0.5))
     q = p.quad('left', 'right', 'top', 'bottom', source=source, color="color")
 
 

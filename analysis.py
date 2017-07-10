@@ -33,7 +33,7 @@ def random_image():
 
 
 def load_checkpoint(it, human):
-    path = "model_runs/human_sequence"
+    path = "model_runs/human_4_eps1"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -102,7 +102,7 @@ def classify_image(it, new_image):
         out["h_decs"].append((machine_cs[i]["h_dec"], human_cs[i]["h_dec"]))
 
     print(out["rects"])
-    print(out["h_decs"])
+    #print(out["h_decs"])
 
     # machine_cs = state_to_cell_array(machine_cs, "dec_state")
     # human_cs = state_to_cell_array(human_cs, "dec_state")

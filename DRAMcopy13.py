@@ -244,6 +244,8 @@ correct = tf.arg_max(onehot_labels, 1)
 prediction = tf.arg_max(classification, 1)
 
 # all-knower
+
+#R = tf.cast(1 - tf.abs(tf.divide(tf.subtract(correct, prediction), correct)), tf.float32)
 R = tf.cast(tf.equal(correct, prediction), tf.float32)
 
 reward = tf.reduce_mean(R)
@@ -277,7 +279,7 @@ predcost = -predquality
 ## OPTIMIZER #################################################
 
 
-optimizer = tf.train.AdamOptimizer(learning_rate, beta1=0.5)
+optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
 grads = optimizer.compute_gradients(predcost)
 
 for i, (g, v) in enumerate(grads):
@@ -311,9 +313,8 @@ if __name__ == '__main__':
         reward_fetched, _ = results
 
         if i%100==0:
-            print("iter=%d : Reward: %f\n" % (i, reward_fetched))
-            
-            if i == 0:
+            print("iter=%d : Reward: %f" % (i, reward_fetched))
+            if False:#i == 0:
                 print("gx_list: ", gx_list)
                 print("len(gx_list): ", len(gx_list))
                 cont = input("Press ENTER to continue this program. ")
