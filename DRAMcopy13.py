@@ -116,11 +116,12 @@ def attn_window(scope,h_dec,N, glimpse):
     gx_list[glimpse] = gx
     gy_list[glimpse] = gy
 
-    sigma2=tf.exp(log_sigma2)
-    sigma_list[glimpse] = sigma2
-
+    #  sigma2=tf.exp(log_sigma2)
     delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
+    sigma2=delta*delta/4 # sigma=delta/2
+
     delta_list[glimpse] = delta
+    sigma_list[glimpse] = sigma2
 
     ret = list()
     ret.append(filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),))
@@ -312,9 +313,9 @@ if __name__ == '__main__':
         results = sess.run(fetches2, feed_dict = {x: xtrain, onehot_labels: ytrain})
         reward_fetched, _ = results
 
-        if i%1000==0:
+        if i%100==0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
-            if False:#i == 0:
+            if i == 0:
                 print("gx_list: ", gx_list)
                 print("len(gx_list): ", len(gx_list))
                 cont = input("Press ENTER to continue this program. ")
@@ -331,21 +332,21 @@ if __name__ == '__main__':
                 print("len(delta_list): ", len(delta_list))
                 cont = input("Press ENTER to continue this program. ")
 
-#             if i != 0:
-#                 for j in range(glimpses):
-#                     print("At glimpse " + str(j + 1) + " of " + str(glimpses) + ": ")
-#                     cont = input("Press ENTER to continue this program. ")
-#                      
-#                     for k in range(batch_size):
-#                         print("At image " + str(k + 1) + " of " + str(batch_size) + " in this batch: ")
-#                         cont = input("Press ENTER to continue this program. ")
-#                         gx = gx_list[j][k, :]
-#                         gy = gy_list[j][k, :]
-#                         sigma2 = sigma_list[j][k, :]
-#                         delta = delta_list[j][k, :]
-#                         print("Here are the parameters (gx, gy, sigma2, delta): ")
-#                         print(gx.eval(), gy.eval(), sigma2.eval(), delta.eval())
-#                         cont = input("Press ENTER to continue this program. ")
+            if i != 0:
+                for j in range(glimpses):
+                    print("At glimpse " + str(j + 1) + " of " + str(glimpses) + ": ")
+                    cont = input("Press ENTER to continue this program. ")
+                     
+                    for k in range(batch_size):
+                        print("At image " + str(k + 1) + " of " + str(batch_size) + " in this batch: ")
+                        cont = input("Press ENTER to continue this program. ")
+                        gx = gx_list[j][k, :]
+                        gy = gy_list[j][k, :]
+                        sigma2 = sigma_list[j][k, :]
+                        delta = delta_list[j][k, :]
+                        print("Here are the parameters (gx, gy, sigma2, delta): ")
+                        print(gx.eval(), gy.eval(), sigma2.eval(), delta.eval())
+                        cont = input("Press ENTER to continue this program. ")
 
             sys.stdout.flush()
 
