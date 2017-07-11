@@ -33,7 +33,7 @@ def random_image():
 
 
 def load_checkpoint(it, human):
-    path = "model_runs/human_4_eps1"
+    path = "model_runs/2glimpse_9max_10N"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
