@@ -101,7 +101,7 @@ def classify_image(it, new_image):
         out["rects"].append((stats_to_rect(machine_cs[i]["stats"]), stats_to_rect(human_cs[i]["stats"])))
         out["h_decs"].append((machine_cs[i]["h_dec"], human_cs[i]["h_dec"]))
 
-    print(out["rects"])
+    #print(out["rects"])
     #print(out["h_decs"])
 
     # machine_cs = state_to_cell_array(machine_cs, "dec_state")

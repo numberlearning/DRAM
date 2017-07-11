@@ -1,1 +1,0 @@
-learning_rate = 0.001, glimpses = 10, batch_size = 100, min_edge = 15, max_edge = 20, min_blobs = 0, max_blobs = 1, 

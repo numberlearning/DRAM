@@ -194,19 +194,19 @@ def update_figures(handle, new_image=True):
                 colors.append("lime" if x else "red")
             return colors
         
-        print('data["label"]: ')
-        print(data["label"])
+        #print('data["label"]: ')
+        #print(data["label"])
         clabel = colorify(data["label"])
                 
         
         machine_cdata.data_source.data["top"] = data["classifications"][i][0][0]
 
-        print('data["classifications"][i][0][0]: ')
-        print(data["classifications"][i][0][0])
+        #print('data["classifications"][i][0][0]: ')
+        #print(data["classifications"][i][0][0])
 
-        print('data["rects"][i][j]: ')
+        #print('data["rects"][i][j]: ')
         # for glimpse in range(glimpses):
-        print(data["rects"][i][0])
+        #print(data["rects"][i][0])
 
         machine_cdata.data_source.data["color"] = clabel
         

@@ -312,7 +312,7 @@ if __name__ == '__main__':
         results = sess.run(fetches2, feed_dict = {x: xtrain, onehot_labels: ytrain})
         reward_fetched, _ = results
 
-        if i%100==0:
+        if i%1000==0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
             if False:#i == 0:
                 print("gx_list: ", gx_list)
@@ -353,7 +353,7 @@ if __name__ == '__main__':
                 train_data = load_input.InputData()
                 train_data.get_train(1)
      
-                if i %1000==0:
+                if i %10000==0:
                     start_evaluate = time.clock()
                     test_accuracy = evaluate()
                     saver = tf.train.Saver(tf.global_variables())
