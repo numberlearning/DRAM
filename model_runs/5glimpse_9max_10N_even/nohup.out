@@ -1046,3 +1046,22 @@ iter=781000 : Reward: 0.780000
 iter=782000 : Reward: 0.760000
 iter=783000 : Reward: 0.760000
 iter=784000 : Reward: 0.790000
+iter=785000 : Reward: 0.820000
+iter=786000 : Reward: 0.730000
+iter=787000 : Reward: 0.740000
+iter=788000 : Reward: 0.740000
+iter=789000 : Reward: 0.670000
+iter=790000 : Reward: 0.810000
+ACCURACY: 0.734599975944
+Model saved in file: model_runs/5glimpse_9max_10N/classifymodel_790000.ckpt
+--- 37910.66168900001 CPU seconds ---
+iter=791000 : Reward: 0.790000
+iter=792000 : Reward: 0.800000
+iter=793000 : Reward: 0.720000
+iter=794000 : Reward: 0.760000
+iter=795000 : Reward: 0.740000
+iter=796000 : Reward: 0.800000
+iter=797000 : Reward: 0.760000
+iter=798000 : Reward: 0.750000
+iter=799000 : Reward: 0.790000
+iter=800000 : Reward: 0.810000

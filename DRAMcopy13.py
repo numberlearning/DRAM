@@ -86,7 +86,7 @@ def linear(x,output_dim):
     return tf.matmul(x,w)+b
 
 
-def filterbank(gx, gy, sigma2,delta, N):
+def filterbank(gx, gy, sigma2, delta, N):
     grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
     mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
     mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
@@ -98,7 +98,7 @@ def filterbank(gx, gy, sigma2,delta, N):
     mu_y = tf.reshape(mu_y, [-1, N, 1])
     sigma2 = tf.reshape(sigma2, [-1, 1, 1])
     Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # 2*sigma2?
-    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch x N x B
+    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch_size x N x B
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
@@ -217,6 +217,7 @@ for glimpse in range(glimpses):
     r, stats = read(x, h_dec_prev, glimpse)
    
     h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state)
+
     with tf.variable_scope("z",reuse=REUSE):
         z = linear(h_enc, z_size)
     h_dec, dec_state = decode(z, dec_state)
@@ -315,7 +316,7 @@ if __name__ == '__main__':
 
         if i%100==0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
-            if i == 0:
+            if False:# i == 0:
                 print("gx_list: ", gx_list)
                 print("len(gx_list): ", len(gx_list))
                 cont = input("Press ENTER to continue this program. ")
@@ -332,7 +333,7 @@ if __name__ == '__main__':
                 print("len(delta_list): ", len(delta_list))
                 cont = input("Press ENTER to continue this program. ")
 
-            if i != 0:
+            if False:#i != 0:
                 for j in range(glimpses):
                     print("At glimpse " + str(j + 1) + " of " + str(glimpses) + ": ")
                     cont = input("Press ENTER to continue this program. ")

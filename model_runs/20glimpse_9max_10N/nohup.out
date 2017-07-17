@@ -380,3 +380,8 @@ ACCURACY: 0.639199979305
 Model saved in file: model_runs/20glimpse_9max_10N/classifymodel_270000.ckpt
 --- 74349.96987499998 CPU seconds ---
 iter=271000 : Reward: 0.660000
+iter=272000 : Reward: 0.640000
+iter=273000 : Reward: 0.670000
+iter=274000 : Reward: 0.670000
+iter=275000 : Reward: 0.660000
+iter=276000 : Reward: 0.620000

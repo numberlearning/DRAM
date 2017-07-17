@@ -387,3 +387,11 @@ iter=275000 : Reward: 0.900000
 iter=276000 : Reward: 0.960000
 iter=277000 : Reward: 0.910000
 iter=278000 : Reward: 0.900000
+iter=279000 : Reward: 0.930000
+iter=280000 : Reward: 0.970000
+ACCURACY: 0.922400023937
+Model saved in file: model_runs/20glimpse_4max_10N/classifymodel_280000.ckpt
+--- 75543.82334099998 CPU seconds ---
+iter=281000 : Reward: 0.970000
+iter=282000 : Reward: 0.970000
+iter=283000 : Reward: 0.950000

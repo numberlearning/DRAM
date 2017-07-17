@@ -1541,3 +1541,32 @@ iter=1162000 : Reward: 0.660000
 iter=1163000 : Reward: 0.690000
 iter=1164000 : Reward: 0.790000
 iter=1165000 : Reward: 0.710000
+iter=1166000 : Reward: 0.630000
+iter=1167000 : Reward: 0.690000
+iter=1168000 : Reward: 0.720000
+iter=1169000 : Reward: 0.660000
+iter=1170000 : Reward: 0.680000
+ACCURACY: 0.690999980569
+Model saved in file: model_runs/2glimpse_9max_10N/classifymodel_1170000.ckpt
+--- 38575.030629000015 CPU seconds ---
+iter=1171000 : Reward: 0.710000
+iter=1172000 : Reward: 0.690000
+iter=1173000 : Reward: 0.720000
+iter=1174000 : Reward: 0.720000
+iter=1175000 : Reward: 0.730000
+iter=1176000 : Reward: 0.630000
+iter=1177000 : Reward: 0.650000
+iter=1178000 : Reward: 0.660000
+iter=1179000 : Reward: 0.690000
+iter=1180000 : Reward: 0.760000
+ACCURACY: 0.676999978423
+Model saved in file: model_runs/2glimpse_9max_10N/classifymodel_1180000.ckpt
+--- 39032.67130600001 CPU seconds ---
+iter=1181000 : Reward: 0.650000
+iter=1182000 : Reward: 0.700000
+iter=1183000 : Reward: 0.720000
+iter=1184000 : Reward: 0.740000
+iter=1185000 : Reward: 0.650000
+iter=1186000 : Reward: 0.700000
+iter=1187000 : Reward: 0.650000
+iter=1188000 : Reward: 0.750000

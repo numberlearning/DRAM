@@ -1056,3 +1056,22 @@ ACCURACY: 0.950800007582
 Model saved in file: model_runs/5glimpse_4max_10N/classifymodel_790000.ckpt
 --- 37438.99972100001 CPU seconds ---
 iter=791000 : Reward: 0.960000
+iter=792000 : Reward: 0.980000
+iter=793000 : Reward: 0.990000
+iter=794000 : Reward: 1.000000
+iter=795000 : Reward: 0.950000
+iter=796000 : Reward: 0.980000
+iter=797000 : Reward: 0.990000
+iter=798000 : Reward: 0.980000
+iter=799000 : Reward: 0.990000
+iter=800000 : Reward: 0.990000
+ACCURACY: 0.945400007963
+Model saved in file: model_runs/5glimpse_4max_10N/classifymodel_800000.ckpt
+--- 38099.044751000016 CPU seconds ---
+iter=801000 : Reward: 0.980000
+iter=802000 : Reward: 0.990000
+iter=803000 : Reward: 0.990000
+iter=804000 : Reward: 0.990000
+iter=805000 : Reward: 1.000000
+iter=806000 : Reward: 0.990000
+iter=807000 : Reward: 0.990000

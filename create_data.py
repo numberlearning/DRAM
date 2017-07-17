@@ -57,8 +57,10 @@ def generate_data(even=None):
                 width = random.randint(min_edge, max_edge)
                 #cX = random.randint(1 * num_blobs * 10, 50-width + num_blobs * 10)
                 #cY = random.randint(1 * num_blobs * 10, 50-height + num_blobs * 10)
-                cX = random.randint(1, 99-width)
-                cY = random.randint(1, 99-height)
+                cX = count * 10
+                cY = 50
+                #cX = random.randint(1, 99-width)
+                #cY = random.randint(1, 99-height)
                 h = height 
                 w = width
                 
@@ -68,8 +70,10 @@ def generate_data(even=None):
                     if cX+width+1 <= used[index, 0] or used[index, 0]+1+used[index, 2] <= cX or used[index, 1]+1+used[index,3] <= cY or cY+height+1<=used[index,1]:
                         index = index + 1
                     else:
-                        cX = random.randint(1, 99-width)
-                        cY = random.randint(1, 99-height)
+                        cX = count * 10
+                        cY = 50
+                        #cX = random.randint(1, 99-width)
+                        #cY = random.randint(1, 99-height)
                         index = 0
     
                 used[index, 0] = cX

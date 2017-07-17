@@ -31,6 +31,7 @@ dropdown = Dropdown(
 figures = list()
 iqs = list()
 charts = list()
+curves = list()
 
 def make_chart(i, j):
     """
@@ -145,6 +146,9 @@ for i in range(glimpses):
         (i2, q2)
     ])
     charts.append([machine_cdata, human_cdata])
+
+    #curves.append([curve, curve_c])
+    
         
 data = None
     
@@ -174,7 +178,7 @@ def unhover(i, j):
     
 def update_figures(handle, new_image=True):
     global data
-    data = classify_image(int(dropdown.value), new_image=new_image)
+    data = classify_image(int(dropdown.value), new_image)
     for i, f in enumerate(figures):
         
         machine, machine_c, spacer, human, human_c = f
@@ -194,12 +198,10 @@ def update_figures(handle, new_image=True):
                 colors.append("lime" if x else "red")
             return colors
         
-        #print('data["label"]: ')
-        #print(data["label"])
         clabel = colorify(data["label"])
                 
         
-        machine_cdata.data_source.data["top"] = data["classifications"][i][0][0]
+        machine_cdata.data_source.data["top"] = data["classifications"][i][0]
 
         #print('data["classifications"][i][0][0]: ')
         #print(data["classifications"][i][0][0])
@@ -210,7 +212,7 @@ def update_figures(handle, new_image=True):
 
         machine_cdata.data_source.data["color"] = clabel
         
-        human_cdata.data_source.data["top"] = data["classifications"][i][1][0]
+        human_cdata.data_source.data["top"] = data["classifications"][i][1]
         human_cdata.data_source.data["color"] = clabel
 
                 
