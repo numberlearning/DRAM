@@ -12,6 +12,7 @@ import sys
 from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 #batch_size = 1
 import load_input
+import load_teacher
 
 output_size = z_size
 sess_config = tf.ConfigProto()
@@ -20,18 +21,27 @@ sess = tf.InteractiveSession(config=sess_config)
 
 saver = tf.train.Saver()
 
-data = load_input.InputData()
+data = load_teacher.Teacher()
 data.get_test(1)
 
 
 def random_imgs(num_imgs):
     """Get batch of random images from test set."""
 
-    data = load_input.InputData()
+    data = load_teacher.Teacher()
     data.get_test(1)
-    data.next_batch(num_imgs)
-    x_test, y_test = data.next_batch(num_imgs)
-    return x_test, y_test
+    x_test, _, _, count_test, y_test = data.next_explode_batch(num_imgs)
+    return x_test, count_test, y_test
+
+
+def random_count_image():
+    """Get batch of random images from test set."""
+
+    data = load_teacher.Teacher()
+    data.get_test(1)
+    x_test, _, _, count_test, y_test = data.next_explode_batch(1)
+    i = random.randrange(len(x_test))
+    return x_test[i], count_test[i], y_test[i]
 
 
 def random_image():
@@ -46,7 +56,7 @@ def random_image():
 
 
 def load_checkpoint(it, human):
-    path = "model_runs/lined_up"
+    path = "model_runs/test_new_model"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -80,6 +90,33 @@ def classify_imgs2(it, new_imgs, num_imgs):
             "class": np.argmax(labels[idx]),
             "label": labels[idx],
             "classifications": cs
+        }
+        out.append(item)
+    return out
+
+
+def count_blobs(it, new_image):
+    glimpses = 11
+    global last_image
+    if new_image or last_image is None:
+        last_image = random_count_image()
+    
+    imgs, cnts, poss = last_image
+
+    load_checkpoint(it, human=False)
+
+    feed_dict = { input_tensor: imgs, count_tensor: cnts, target_tensor: poss }
+    human_cs = machine_cs = sess.run(classifications, feed_dict=feed_dict)
+
+    out = dict()
+    for g in range(glimpses):
+        img = imgs[g]
+        flipped = np.flip(img.reshape(10, 10), 0)
+
+        item = {
+            "img": flipped,
+            "pos": machine_cs[g]["position"],
+            "cnt": machine_cs[g]["count"],
         }
         out.append(item)
     return out

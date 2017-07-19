@@ -7,4 +7,4 @@ learning_rate = 1e-3
 glimpses = 11
 batch_size = 77
 
-model_name = "test_new_model"
+model_name = "test_linear_split"

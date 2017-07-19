@@ -232,24 +232,26 @@ for glimpse in range(glimpses):
 
     with tf.variable_scope("hidden1",reuse=REUSE):
         hidden = tf.nn.relu(linear(h_dec_prev, 256))
-    with tf.variable_scope("output",reuse=REUSE):
-        #position = linear(hidden, 2)
-        #count = tf.nn.softmax(linear(hidden, z_size))
-        classification = linear(hidden, z_size + 2)
-        position = classification[:, z_size:]
-        count = tf.nn.softmax(classification[:, :-2])
-        classifications.append({
-            "position": position,
-            "count": count,
-            "stats": stats,
-            "r": r,
-            "h_dec": h_dec,
-        })
+    with tf.variable_scope("output/position",reuse=REUSE):
+        position = linear(hidden, 2)
+    with tf.variable_scope("output/count",reuse=REUSE):
+        count = tf.nn.softmax(linear(hidden, z_size))
+        # the above way is cleaner :D
+
+        #classification = linear(hidden, z_size + 2)
+        #position = classification[:, z_size:]
+        #count = tf.nn.softmax(classification[:, :-2])
+    classifications.append({
+        "position": position,
+        "count": count,
+        "r": r,
+        "h_dec": h_dec,
+    })
 
     REUSE=True
    
     position_error = target_tensor[:, glimpse] - position
-    position_error = tf.abs(position_error)
+    position_error = tf.square(position_error)
     position_error = tf.reduce_mean(position_error, 0)
     position_quality = position_error * -1
     position_qualities.append(position_quality)
@@ -354,14 +356,14 @@ if __name__ == '__main__':
         reward_fetched, _ = results
 
         if i%10==0:
-            print("iter=%d : Reward: %f" % (i, reward_fetched))
-            sys.stdout.flush()
+            train_data = load_teacher.Teacher()
+            train_data.get_train(1)
 
-            if i%10==0:
-                train_data = load_teacher.Teacher()
-                train_data.get_train(1)
+            if i%100 == 0:
+                print("iter=%d : Reward: %f" % (i, reward_fetched))
+                sys.stdout.flush()
      
-                if i %100==0:
+                if i%1000 == 0:
                     start_evaluate = time.clock()
                     test_accuracy = evaluate()
                     saver = tf.train.Saver(tf.global_variables())
