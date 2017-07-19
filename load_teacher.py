@@ -22,6 +22,7 @@ class Teacher(object):
         self.images = []
         self.explode_images = []
         self.labels = []
+        self.explode_lbls = []
         self.explode_labels = []
         self.traces = []
         self.explode_traces = []
@@ -34,6 +35,7 @@ class Teacher(object):
         """Generate and get train images and traces."""
 
         self.images, self.labels, self.traces = trace_data.get_my_teacher()
+        #print(self.labels)
         self.length = len(self.images)
         self.create_teacher()
 
@@ -107,8 +109,11 @@ class Teacher(object):
         np.random.shuffle(all_idx)
         batch_idx = all_idx[:batch_size]
         batch_imgs = [self.explode_images[i] for i in batch_idx]
+        batch_lbls = [self.explode_lbls[i] for i in batch_idx]
+        batch_labels = [self.explode_labels[i] for i in batch_idx]
+        batch_counts = [self.explode_counts[i] for i in batch_idx]
         batch_traces = [self.explode_traces[i] for i in batch_idx]
-        return batch_imgs, batch_traces
+        return batch_imgs, batch_lbls, batch_labels, batch_counts, batch_traces
 
 
     def print_img_at_idx(self, idx):
@@ -130,8 +135,16 @@ class Teacher(object):
         #words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
         z_size = 9
 
+        #print("self.length: ", self.length)
         for i, image in enumerate(self.images):
+            if False:#i % 2 == 0:
+                img = list(chunks(image, 10))
+                plt.imshow(img, interpolation="nearest", origin="upper")
+                plt.colorbar()
+                plt.title(self.labels[i])
+                plt.show()
             label = np.argmax(self.labels[i]) + 1
+            label_vector = self.labels[i]
             timesteps = label + 1
 
             for chain in list(self.traces[i]):
@@ -149,7 +162,14 @@ class Teacher(object):
                     input_tensor.append(image)
                     target_tensor.append(list(link))
 
-                self.explode_labels.append(label)
+                # Fill in the rest of the list with the same
+                for cont in range(count + 1, z_size + 1):
+                    count_tensor.append(count_vector)
+                    input_tensor.append(image)
+                    target_tensor.append(list(link))
+
+                self.explode_lbls.append(label)
+                self.explode_labels.append(label_vector)
                 self.explode_counts.append(count_tensor)
                 self.explode_images.append(input_tensor)
                 self.explode_traces.append(target_tensor)
@@ -241,19 +261,21 @@ def test_this():
     """Test out this class."""
     myData = Teacher()
     myData.get_train()
-    print("total number of images: ", myData.get_length())
-    print("total number of traces: ", myData.get_explode_length())
-    x_train, y_train = myData.next_explode_batch(4)
+    print("myData.get_length(): ", myData.get_length())
+    print("myData.get_explode_length(): ", myData.get_explode_length())
+    x_train, explode_lbls, explode_labels, explode_counts, y_train = myData.next_explode_batch(3)
     for i, img in enumerate(x_train):
         print("\n")
+
         print("new image=================================\n")
         for f, frame in enumerate(img):
             print(frame)
             print("position: ", y_train[i][f])
-            print("label: ", myData.explode_labels[i])
-            print("count: ", myData.explode_counts[i][f])
+            print("lbl: ", explode_lbls[i])
+            print("label: ", explode_labels[i])
+            print("count: ", explode_counts[i][f])
             print("\n")
-            #print_img(frame)
+            print_img(frame)
 
 
 def chunks(l, n):

@@ -1,10 +1,10 @@
-min_edge = 2
-max_edge = 5
-min_blobs = 0
+min_edge = 1
+max_edge = 1
+min_blobs = 1
 max_blobs = 9
 
 learning_rate = 1e-3
-glimpses = 5
-batch_size = 10000
+glimpses = 11
+batch_size = 77
 
-model_name = "lined_up"
+model_name = "test_new_model"
