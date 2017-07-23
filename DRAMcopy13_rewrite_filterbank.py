@@ -134,7 +134,7 @@ def attn_window(scope,h_dec,N, glimpse):
     tdelta2=tf.convert_to_tensor(delta2)
     tdelta3=tf.convert_to_tensor(delta3)
                     
-    delta=tf.reshape(tf.cast(tf.concat([tdelta2,tdelta1,tdelta3],0)*delta0, tf.float32), [1,-1])
+    delta=tf.reshape(tf.cast((tf.concat([tdelta2,tdelta1,tdelta3],0)*delta0)*tf.exp(log_delta), tf.float32), [1,-1])
                     
     sigma2=delta*delta/4 # sigma=delta/2
 
