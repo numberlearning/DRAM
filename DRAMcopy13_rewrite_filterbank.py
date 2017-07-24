@@ -91,7 +91,6 @@ def filterbank(gx, gy, sigma2, delta, N):
     grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
     mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
     mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
-
     a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1])
     b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1])
 
@@ -120,22 +119,22 @@ def attn_window(scope,h_dec,N, glimpse):
     #  sigma2=tf.exp(log_sigma2)
     #  delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
     delta0=max(dims[0],dims[1])/12
-    delta1=linspace(-1,1,9)
+    delta1=abs(linspace(-1,1,9))
     delta2=zeros(8)
     delta3=zeros(8)
     
     for i in range(9,-1,1):
-        delta2[i-1]=pow(-1.25,i)
-            
+        delta2[i-1]=pow(1.25,i)
     for i in range(1,9):
         delta3[i-1]=pow(1.25,i)
                     
     tdelta1=tf.convert_to_tensor(delta1)    
     tdelta2=tf.convert_to_tensor(delta2)
     tdelta3=tf.convert_to_tensor(delta3)
-                    
-    delta=tf.reshape(tf.cast((tf.concat([tdelta2,tdelta1,tdelta3],0)*delta0)*tf.exp(log_delta), tf.float32), [1,-1])
-                    
+    
+    # edelta=tf.cast(tf.ones(25)*(tf.cast(tf.exp(log_delta), tf.float32)), tf.float32)
+    edelta=tf.transpose(tf.cast(tf.exp(log_delta), tf.float32))
+    delta=tf.transpose(tf.reshape(tf.cast(tf.concat([tdelta2,tdelta1,tdelta3],0)*delta0, tf.float32)*edelta, [1,-1]))
     sigma2=delta*delta/4 # sigma=delta/2
 
     delta_list[glimpse] = delta
