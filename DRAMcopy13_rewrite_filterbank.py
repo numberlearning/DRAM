@@ -89,8 +89,20 @@ def linear(x,output_dim):
 
 def filterbank(gx, gy, sigma2, delta, N):
     grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
-    mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
-    mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
+    # mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
+    # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
+   
+    mu_x = [gx[0] - tf.reduce_sum(delta[0:14])]
+    mu_x = tf.reshape(mu_x, [-1])
+    for i in range(1,14):
+        mu_xx = tf.reshape(gx[i] - tf.reduce_sum(delta[i:14]), [-1])
+        mu_x = tf.concat([mu_x, mu_xx], 0)
+    for i in range(14,25):
+        mu_xx = tf.reshape(gx[i] - tf.reduce_sum(delta[13:i]), [-1])
+        mu_x = tf.concat([mu_x, mu_xx], 0)
+    
+    mu_y = mu_x
+    
     a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1])
     b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1])
 
@@ -118,25 +130,30 @@ def attn_window(scope,h_dec,N, glimpse):
 
     #  sigma2=tf.exp(log_sigma2)
     #  delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-    delta0=max(dims[0],dims[1])/12
-    delta1=abs(linspace(-1,1,9))
-    delta2=zeros(8)
-    delta3=zeros(8)
-    
-    for i in range(9,-1,1):
-        delta2[i-1]=pow(1.25,i)
+    dis0=max(dims[0],dims[1])/12
+    dis1=linspace(-1,1,9)
+    dis2=zeros(8)
+    dis3=zeros(8)
     for i in range(1,9):
-        delta3[i-1]=pow(1.25,i)
-                    
-    tdelta1=tf.convert_to_tensor(delta1)    
-    tdelta2=tf.convert_to_tensor(delta2)
-    tdelta3=tf.convert_to_tensor(delta3)
+        dis2[i-1]= -pow(1.25,9-i)
+    for i in range(1,9):
+        dis3[i-1]=pow(1.25,i)
     
-    # edelta=tf.cast(tf.ones(25)*(tf.cast(tf.exp(log_delta), tf.float32)), tf.float32)
-    edelta=tf.transpose(tf.cast(tf.exp(log_delta), tf.float32))
-    delta=tf.transpose(tf.reshape(tf.cast(tf.concat([tdelta2,tdelta1,tdelta3],0)*delta0, tf.float32)*edelta, [1,-1]))
+    dis=np.append(np.append(dis2,dis1),dis3)*dis0
+    
+    delta=zeros(25)
+    for j  in range(1,14):
+        delta[j-1]=dis[j]-dis[j-1]
+    delta[13]=0
+    for j in range(14,25):
+        delta[j]=dis[j]-dis[j-1]
+    
+    tdelta=tf.cast(tf.convert_to_tensor(delta), tf.float32)
+    delta=tdelta*tf.transpose(tf.exp(log_delta))
+    
     sigma2=delta*delta/4 # sigma=delta/2
-
+    # delta=[delta] * batch_size
+    # sigma2=[sigma2] * batch_size
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
@@ -145,9 +162,8 @@ def attn_window(scope,h_dec,N, glimpse):
     #ret.append((gx, gy, delta))
     return ret
 
-
-## READ ## 
-#def read_no_attn(x,x_hat,h_dec_prev):
+## READ ##
+#  def read_no_attn(x,x_hat,h_dec_prev):
 #    return x, stats
 
 
