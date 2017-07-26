@@ -92,13 +92,13 @@ def filterbank(gx, gy, sigma2, delta, N):
     # mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
     # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
    
-    mu_x = [gx[0] - tf.reduce_sum(delta[0:14])]
+    mu_x = [gx[0] - tf.reduce_sum((delta[0])[0:14])]
     mu_x = tf.reshape(mu_x, [-1])
     for i in range(1,14):
-        mu_xx = tf.reshape(gx[i] - tf.reduce_sum(delta[i:14]), [-1])
+        mu_xx = tf.reshape(gx[0] - tf.reduce_sum((delta[0])[i:14]), [-1])
         mu_x = tf.concat([mu_x, mu_xx], 0)
     for i in range(14,25):
-        mu_xx = tf.reshape(gx[i] - tf.reduce_sum(delta[13:i]), [-1])
+        mu_xx = tf.reshape(gx[0] + tf.reduce_sum((delta[0])[14:i+1]), [-1])
         mu_x = tf.concat([mu_x, mu_xx], 0)
     
     mu_y = mu_x
@@ -108,9 +108,12 @@ def filterbank(gx, gy, sigma2, delta, N):
 
     mu_x = tf.reshape(mu_x, [-1, N, 1])
     mu_y = tf.reshape(mu_y, [-1, N, 1])
-    sigma2 = tf.reshape(sigma2, [-1, 1, 1])
-    Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # 2*sigma2?
-    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch_size x N x B
+    # sigma2 = tf.reshape(sigma2, [-1, 1, 1])
+    ssigma2 = tf.reshape(sigma2[0], [-1,1])
+    Fx = tf.exp(-tf.square((a - mu_x) / (2*ssigma2))) # 2*sigma2?
+    Fy = tf.exp(-tf.square((b - mu_y) / (2*ssigma2))) # batch_size x N x B
+    Fx = tf.reshape([Fx]*batch_size, [batch_size, N, -1])
+    Fy = tf.reshape([Fy]*batch_size, [batch_size, N, -1])
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
@@ -119,9 +122,17 @@ def filterbank(gx, gy, sigma2, delta, N):
 
 def attn_window(scope,h_dec,N, glimpse):
     with tf.variable_scope(scope,reuse=REUSE):
-        params=linear(h_dec,5)
-    gx_,gy_,log_sigma2,log_delta,log_gamma=tf.split(params, 5, 1)
-
+        params=linear(h_dec,3+2*N)
+    split=tf.split(params, 3+2*N, 1)
+    gx_=split[0]
+    gy_=split[1]
+    log_sigma2=tf.reshape(split[2:2+N], [-1, N])
+    log_delta=tf.reshape(split[2+N:2+2*N], [-1, N])
+    log_gamma=split[2+2*N]
+    print("gx_:",gx_)
+    print("log_sigma2:",log_sigma2)
+    print("log_delta:", log_delta)
+    print("log_gamma:", log_gamma)
     gx=(dims[0]+1)/2*(gx_+1)
     gy=(dims[1]+1)/2*(gy_+1)
 
@@ -148,12 +159,12 @@ def attn_window(scope,h_dec,N, glimpse):
     for j in range(14,25):
         delta[j]=dis[j]-dis[j-1]
     
-    tdelta=tf.cast(tf.convert_to_tensor(delta), tf.float32)
-    delta=tdelta*tf.transpose(tf.exp(log_delta))
+    tdelta=tf.reshape(tf.cast(tf.convert_to_tensor(delta), tf.float32), [1, -1])
+    delta=tdelta*tf.exp(log_delta[0])
     
     sigma2=delta*delta/4 # sigma=delta/2
-    # delta=[delta] * batch_size
-    # sigma2=[sigma2] * batch_size
+    delta=[delta] * batch_size
+    sigma2=[sigma2] * batch_size
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
