@@ -129,10 +129,6 @@ def attn_window(scope,h_dec,N, glimpse):
     log_sigma2=tf.reshape(split[2:2+N], [-1, N])
     log_delta=tf.reshape(split[2+N:2+2*N], [-1, N])
     log_gamma=split[2+2*N]
-    print("gx_:",gx_)
-    print("log_sigma2:",log_sigma2)
-    print("log_delta:", log_delta)
-    print("log_gamma:", log_gamma)
     gx=(dims[0]+1)/2*(gx_+1)
     gy=(dims[1]+1)/2*(gy_+1)
 
