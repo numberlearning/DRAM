@@ -159,6 +159,7 @@ def attn_window(scope,h_dec,N, glimpse):
     delta=tdelta*tf.exp(log_delta[0])
     
     sigma2=delta*delta/4 # sigma=delta/2
+    sigma2=sigma2+0.001*tf.reduce_min(sigma2[0,0:12])
     delta=[delta] * batch_size
     sigma2=[sigma2] * batch_size
     delta_list[glimpse] = delta
