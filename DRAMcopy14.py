@@ -4,7 +4,7 @@ warnings.filterwarnings('ignore')
 
 
 import tensorflow as tf
-from tensorflow.examples.tutorials import mnist
+#from tensorflow.examples.tutorials import mnist
 import numpy as np
 import os
 import random
@@ -70,12 +70,14 @@ start_non_restored_from_random = str2bool(sys.argv[15])
 
 REUSE = None
 
-#input_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, img_size))
+input_tensor = tf.placeholder(tf.float32, shape=(77, 11, img_size))
 #count_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, z_size))
-#target_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, 2))
-input_tensor = tf.placeholder(tf.float32, shape=(77, glimpses, img_size))
-count_tensor = tf.placeholder(tf.float32, shape=(77, glimpses, z_size))
-target_tensor = tf.placeholder(tf.float32, shape=(77, glimpses, 2))
+target_tensor = tf.placeholder(tf.float32, shape=(77, 11, 2))
+
+#batch_size is 77 when running DRAM
+#input_tensor = tf.placeholder(tf.float32, shape=(77, glimpses, img_size))
+#count_tensor = tf.placeholder(tf.float32, shape=(77, glimpses, z_size))
+#target_tensor = tf.placeholder(tf.float32, shape=(77, glimpses, 2))
 
 lstm_enc = tf.contrib.rnn.LSTMCell(enc_size, state_is_tuple=True) # encoder Op
 lstm_dec = tf.contrib.rnn.LSTMCell(dec_size, state_is_tuple=True) # decoder Op
@@ -87,7 +89,6 @@ def linear(x,output_dim):
     """
     w=tf.get_variable("w", [x.get_shape()[1], output_dim], initializer=tf.random_normal_initializer())
     b=tf.get_variable("b", [output_dim], initializer=tf.constant_initializer(0.0))
-    #b=tf.get_variable("b", [output_dim], initializer=tf.random_normal_initializer())
     return tf.matmul(x,w)+b
 
 
@@ -110,28 +111,28 @@ def filterbank(gx, gy, sigma2, delta, N):
     return Fx,Fy
 
 
-def attn_window(scope,h_dec,N, glimpse):
+def attn_window(scope,h_dec,N, position=None):
     with tf.variable_scope(scope,reuse=REUSE):
         params=linear(h_dec,5)
-    gx_,gy_,log_sigma2,log_delta,log_gamma=tf.split(params, 5, 1)
+    gx_, gy_, log_sigma2,log_delta,log_gamma=tf.split(params, 5, 1)
 
     gx=(dims[0]+1)/2*(gx_+1)
     gy=(dims[1]+1)/2*(gy_+1)
 
-    gx_list[glimpse] = gx
-    gy_list[glimpse] = gy
+    if position is not None:
+        gx=tf.reshape(position[:, 0], [77, 1])
+        gy=tf.reshape(position[:, 1], [77, 1])
 
     #  sigma2=tf.exp(log_sigma2)
     delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
     sigma2=delta*delta/4 # sigma=delta/2
 
-    delta_list[glimpse] = delta
-    sigma_list[glimpse] = sigma2
+    #delta_list[glimpse] = delta
+    #sigma_list[glimpse] = sigma2
 
-    ret = list()
-    ret.append(filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),))
-    #ret.append((gx, gy, delta))
-    return ret
+    Fx, Fy = filterbank(gx, gy, sigma2, delta, N)
+    gamma = tf.exp(log_gamma)
+    return Fx, Fy, gamma, gx, gy, delta
 
 
 ## READ ## 
@@ -139,9 +140,13 @@ def attn_window(scope,h_dec,N, glimpse):
 #    return x, stats
 
 
-def read(x, h_dec_prev, glimpse):
-    att_ret = attn_window("read", h_dec_prev, read_n, glimpse)
-    stats = Fx, Fy, gamma = att_ret[0]
+def read(x, h_dec_prev, position=None):
+    if position is not None:
+        Fx, Fy, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n, position)
+        stats = Fx, Fy, gamma
+        new_stats = gx, gy, delta
+    else:
+        Fx, Fy, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n)
 
     def filter_img(img, Fx, Fy, gamma, N):
         Fxt = tf.transpose(Fx, perm=[0,2,1])
@@ -151,7 +156,7 @@ def read(x, h_dec_prev, glimpse):
         return glimpse * tf.reshape(gamma, [-1,1])
 
     xr = filter_img(x, Fx, Fy, gamma, read_n) # batch_size x (read_n*read_n)
-    return xr, stats # concat along feature axis
+    return xr, new_stats # concat along feature axis
 
 #read = read_attn if FLAGS.read_attn else read_no_attn
 
@@ -159,8 +164,8 @@ def read(x, h_dec_prev, glimpse):
 def encode(input, state):
     """
     run LSTM
-    state: previous encoder state
     input: cat(read, h_dec_prev)
+    state: previous encoder state
     returns: (output, new_state)
     """
 
@@ -171,8 +176,8 @@ def encode(input, state):
 def decode(input, state):
     """
     run LSTM
-    state: previous decoder state
     input: cat(write, h_dec_prev)
+    state: previous decoder state
     returns: (output, new_state)
     """
 
@@ -203,79 +208,140 @@ def dense_to_one_hot(labels_dense, num_classes=z_size):
 
 
 ## STATE VARIABLES ##############
-outputs = [0] * glimpses
+#outputs = [0] * glimpses
 
 # initial states
 h_dec_prev = tf.zeros((batch_size,dec_size))
 enc_state = lstm_enc.zero_state(batch_size, tf.float32)
 dec_state = lstm_dec.zero_state(batch_size, tf.float32)
 
-classifications = list()
-pqs = list()
+#classifications = list()
+#position_qualities = list()
+#count_qualities = list()
+viz_data = list()
 
-position_qualities = list()
-count_qualities = list()
-gx_list = [0] * glimpses 
-gy_list = [0] * glimpses
-sigma_list = [0] * glimpses
-delta_list = [0] * glimpses
+#gx_list = [0] * glimpses 
+#gy_list = [0] * glimpses
+#sigma_list = [0] * glimpses
+#delta_list = [0] * glimpses
 
-for glimpse in range(glimpses):
-    r, stats = read(input_tensor[:, glimpse], h_dec_prev, glimpse)
-   
-    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state)
+#Using w and b to predict the starting point
+with tf.variable_scope("starting_position"):
+    predict_x, predict_y = tf.split(linear(input_tensor[:, 0], 2), 2, 1)
 
-    with tf.variable_scope("z",reuse=REUSE):
+current_index = 0
+current_blob = target_tensor[:, current_index]
+trace_length = tf.size(target_tensor[0])
+
+while current_index < 11:
+
+    target_x = tf.reshape(current_blob[:, 0], [77, 1])
+    target_y = tf.reshape(current_blob[:, 1], [77, 1])
+
+    reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((predict_x - target_x)**2 + (predict_y - target_y)**2 - max_edge**2)/max_edge)
+    posquality = reward
+    
+    #set current attn window center to current blob center and perform read
+    r, new_stats = read(input_tensor[:, current_index], h_dec_prev, current_blob)
+
+    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
+
+    with tf.variable_scope("z", reuse=REUSE):
         z = linear(h_enc, z_size)
     h_dec, dec_state = decode(z, dec_state)
     h_dec_prev = h_dec
-
-    with tf.variable_scope("hidden1",reuse=REUSE):
+    with tf.variable_scope("hidden1", reuse=REUSE):
         hidden = tf.nn.relu(linear(h_dec_prev, 256))
-    with tf.variable_scope("output/position",reuse=REUSE):
-        position = linear(hidden, 2)
-    with tf.variable_scope("output/count",reuse=REUSE):
-        count = tf.nn.softmax(linear(hidden, z_size))
-        # the above way is cleaner :D
+    
+    with tf.variable_scope("position", reuse=REUSE):
+        predict_x, predict_y  = tf.split(linear(hidden, 2), 2, 1)
+        viz_data.append({
+            "r": r,
+            "h_dec": h_dec,
+            "predict_x": predict_x,
+            "predict_y": predict_y,
+            "stats": new_stats,
+        })  
 
-        #classification = linear(hidden, z_size + 2)
-        #position = classification[:, z_size:]
-        #count = tf.nn.softmax(classification[:, :-2])
-    classifications.append({
-        "position": position,
-        "count": count,
-        "r": r,
-        "h_dec": h_dec,
-    })
+    current_index = current_index + 1
+    if current_index < 11:
+        current_blob = target_tensor[:,current_index]
 
     REUSE=True
-   
-    position_error = target_tensor[:, glimpse] - position
-    position_error = tf.square(position_error)
-    position_error = tf.reduce_mean(position_error, 0)
-    position_quality = position_error * -1
-    position_qualities.append(position_quality)
-    
-    count_quality = tf.log(count + 1e-5) * count_tensor[:, glimpse]
-    count_quality = tf.reduce_mean(count_quality, 0)
-    count_qualities.append(count_quality)
 
-
-posquality = tf.reduce_mean(position_qualities)
-cntquality = tf.reduce_mean(count_qualities)
-
-predquality = tf.reduce_mean([posquality, cntquality])
-correct = tf.arg_max(count_tensor[:, glimpse], 1)
-prediction = tf.arg_max(count, 1)
-
-# all-knower
-
-#R = tf.cast(1 - tf.abs(tf.divide(tf.subtract(correct, prediction), correct)), tf.float32)
-R = tf.cast(tf.equal(correct, prediction), tf.float32)
-
-reward = tf.reduce_mean(R)
-
-
+#
+#for glimpse in range(glimpses):
+#    if target_tensor[:, glimpse] == target_tensor[:, glimpse - 1]:
+#        break
+#    r, stats = read(input_tensor[:, glimpse], h_dec_prev, target_tensor[:, glimpse], glimpse)
+#    gx, gy, delta = stats
+#
+#    correct_position = target_tensor[:, glimpse]
+#    actual_network_output_position = (gx, gy)
+#  
+#    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state)
+#
+#    with tf.variable_scope("z",reuse=REUSE):
+#        z = linear(h_enc, z_size)
+#
+#    h_dec, dec_state = decode(z, dec_state)
+#
+#    h_dec_prev = h_dec
+#
+#    with tf.variable_scope("hidden1",reuse=REUSE):
+#        hidden = tf.nn.relu(linear(h_dec_prev, 256))
+#
+#    with tf.variable_scope("output/position",reuse=REUSE):
+#        position = linear(hidden, 2)
+#
+#    position_prev = position
+#    #with tf.variable_scope("output/count",reuse=REUSE):
+#    #    count = tf.nn.softmax(linear(hidden, z_size))
+#    # the above way is cleaner :D ^_^
+#    #classification = linear(hidden, z_size + 2)
+#    #position = classification[:, z_size:]
+#    #count = tf.nn.softmax(classification[:, :-2])
+#
+#    classifications.append({
+#        "position": position,
+#    #    "count": count,
+#        "r": r,
+#        "h_dec": h_dec,
+#    })
+#
+#    REUSE=True
+#   
+#    #print("target_tensor: ", target_tensor[:, glimpse]) # batch_size x 2
+#    #print("position: ", position) # batch_size x 2
+#    position_error = target_tensor[:, glimpse] - position # batch_size x 2
+#    position_error = tf.clip_by_value(position_error, eps, 10 - eps)
+#    position_error = tf.abs(position_error)
+#    position_error = tf.reduce_sum(position_error, 1) # distance per img in batch
+#    position_quality = position_error * -1
+#    position_qualities.append(position_quality)
+#    
+#    count_quality = tf.log(count + 1e-5) * count_tensor[:, glimpse]
+#    count_quality = tf.reduce_mean(count_quality, 0)
+#    count_qualities.append(count_quality)
+#
+#
+#print(position_qualities)
+#posquality = tf.reduce_mean(position_qualities)
+#cntquality = tf.reduce_mean(count_qualities)
+#
+#print(posquality)
+#predquality = tf.reduce_mean([posquality, cntquality])
+#correct = tf.arg_max(count_tensor[:, glimpse], 1)
+#prediction = tf.arg_max(count, 1)
+#
+## all-knower
+#
+##R = tf.cast(1 - tf.abs(tf.divide(tf.subtract(correct, prediction), correct)), tf.float32)
+#R = tf.cast(tf.equal(correct, prediction), tf.float32)
+#
+##reward = posquality
+#reward = tf.reduce_mean(R)
+#
 def binary_crossentropy(t,o):
     return -(t*tf.log(o+eps) + (1.0-t)*tf.log(1.0-o+eps))
 
@@ -298,7 +364,7 @@ def evaluate():
     return accuracy
 
 
-predcost = -predquality
+predcost = -posquality
 
 
 ## OPTIMIZER #################################################
@@ -334,53 +400,36 @@ if __name__ == '__main__':
 
     for i in range(start_restore_index, train_iters):
         xtrain, _, _, explode_counts, ytrain = train_data.next_explode_batch(batch_size)
-
-        # print("len(xtrain): ", len(xtrain))
-        # print("len(explode_counts): ", len(explode_counts))
-        # print("len(ytrain): ", len(ytrain))
-
-        # print("len(xtrain[0]): ", len(xtrain[0]))
-        # print("len(explode_counts[0]): ", len(explode_counts[0]))
-        # print("len(ytrain[0]): ", len(ytrain[0]))
-
-        # print("len(xtrain[0][0]): ", len(xtrain[0][0]))
-        # print("len(explode_counts[0][0]): ", len(explode_counts[0][0]))
-        # print("len(ytrain[0][0]): ", len(ytrain[0][0]))
-
-        # print("xtrain[0][0][0]: ", xtrain[0][0][0])
-        # print("explode_counts[0][0][0]: ", explode_counts[0][0][0])
-        # print("ytrain[0][0][0]: ", ytrain[0][0][0])
-        feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
-        # print("feed_dict: ", feed_dict)
+        #feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
+        feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
         results = sess.run(fetches2, feed_dict=feed_dict) 
         reward_fetched, _ = results
 
-        if i%10==0:
+        if i%100 == 0:
+            print("iter=%d : Reward: %f" % (i, reward_fetched))
+            sys.stdout.flush()
+ 
             train_data = load_teacher.Teacher()
             train_data.get_train(1)
 
-            if i%100 == 0:
-                print("iter=%d : Reward: %f" % (i, reward_fetched))
-                sys.stdout.flush()
-     
-                if i%1000 == 0:
-                    start_evaluate = time.clock()
-                    test_accuracy = evaluate()
-                    saver = tf.train.Saver(tf.global_variables())
-                    print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
-                    extra_time = extra_time + time.clock() - start_evaluate
-                    print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
-                    if i == 0:
-                        log_file = open(log_filename, 'w')
-                        settings_file = open(settings_filename, "w")
-                        settings_file.write("learning_rate = " + str(learning_rate) + ", ")
-                        settings_file.write("glimpses = " + str(glimpses) + ", ")
-                        settings_file.write("batch_size = " + str(batch_size) + ", ")
-                        settings_file.write("min_edge = " + str(min_edge) + ", ")
-                        settings_file.write("max_edge = " + str(max_edge) + ", ")
-                        settings_file.write("min_blobs = " + str(min_blobs) + ", ")
-                        settings_file.write("max_blobs = " + str(max_blobs) + ", ")
-                        settings_file.close()
-                    else:
-                        log_file = open(log_filename, 'a')
-                    log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
+            if i%1000 == 0:
+                start_evaluate = time.clock()
+                test_accuracy = evaluate()
+                saver = tf.train.Saver(tf.global_variables())
+                print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
+                extra_time = extra_time + time.clock() - start_evaluate
+                print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
+                if i == 0:
+                    log_file = open(log_filename, 'w')
+                    settings_file = open(settings_filename, "w")
+                    settings_file.write("learning_rate = " + str(learning_rate) + ", ")
+                    settings_file.write("glimpses = " + str(glimpses) + ", ")
+                    settings_file.write("batch_size = " + str(batch_size) + ", ")
+                    settings_file.write("min_edge = " + str(min_edge) + ", ")
+                    settings_file.write("max_edge = " + str(max_edge) + ", ")
+                    settings_file.write("min_blobs = " + str(min_blobs) + ", ")
+                    settings_file.write("max_blobs = " + str(max_blobs) + ", ")
+                    settings_file.close()
+                else:
+                    log_file = open(log_filename, 'a')
+                log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")

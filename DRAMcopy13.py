@@ -123,10 +123,9 @@ def attn_window(scope,h_dec,N, glimpse):
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
-    ret = list()
-    ret.append(filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),))
-    #ret.append((gx, gy, delta))
-    return ret
+    Fx, Fy = filterbank(gx, gy, sigma2, delta, N)
+    gamma = tf.exp(log_gamma)
+    return Fx, Fy, gamma, gx, gy, delta
 
 
 ## READ ## 
@@ -135,8 +134,9 @@ def attn_window(scope,h_dec,N, glimpse):
 
 
 def read(x, h_dec_prev, glimpse):
-    att_ret = attn_window("read", h_dec_prev, read_n, glimpse)
-    stats = Fx, Fy, gamma = att_ret[0]
+    Fx, Fy, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n, glimpse)
+    stats = Fx, Fy, gamma
+    new_stats = gx, gy, delta
 
     def filter_img(img, Fx, Fy, gamma, N):
         Fxt = tf.transpose(Fx, perm=[0,2,1])
@@ -146,7 +146,7 @@ def read(x, h_dec_prev, glimpse):
         return glimpse * tf.reshape(gamma, [-1,1])
 
     xr = filter_img(x, Fx, Fy, gamma, read_n) # batch_size x (read_n*read_n)
-    return xr, stats # concat along feature axis
+    return xr, new_stats # concat along feature axis
 
 #read = read_attn if FLAGS.read_attn else read_no_attn
 
@@ -198,8 +198,6 @@ def dense_to_one_hot(labels_dense, num_classes=z_size):
 
 
 ## STATE VARIABLES ##############
-outputs = [0] * glimpses
-
 # initial states
 h_dec_prev = tf.zeros((batch_size,dec_size))
 enc_state = lstm_enc.zero_state(batch_size, tf.float32)

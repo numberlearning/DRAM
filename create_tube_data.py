@@ -30,11 +30,9 @@ def generate_data(even=None):
     i = 0
     if even is None:
         train = np.zeros([total, 10000])
-      # blobs = []
         label = np.zeros([total, n_labels])
     else:
         train = np.zeros([1000 * n_labels, 10000])
-      # blobs = []
         label = np.zeros([1000 * n_labels, n_labels])
         
     while (num_blobs < max_blobs + 1):
@@ -54,12 +52,17 @@ def generate_data(even=None):
             count = 0
             used = np.zeros((num_blobs, 4))
     
+            x = []
             while count < num_blobs: 
                 height = random.randint(min_edge, max_edge)
                 width = random.randint(min_edge, max_edge)
-                #cX = random.randint(1 * num_blobs * 10, 50-width + num_blobs * 10)
-                #cY = random.randint(1 * num_blobs * 10, 50-height + num_blobs * 10)
-                cX = random.randint(1, 99-width)
+                cX = random.randint(1 * num_blobs * 10, 50-width + num_blobs * 10)
+                cY = random.randint(1 * num_blobs * 10, 50-height + num_blobs * 10)
+
+                # Lined Up Blobs
+                #cX = count * 10
+                #cY = 50
+                cX = 40#random.randint(1, 99-width)
                 cY = random.randint(1, 99-height)
                 h = height 
                 w = width
@@ -70,12 +73,16 @@ def generate_data(even=None):
                     if cX+width+1 <= used[index, 0] or used[index, 0]+1+used[index, 2] <= cX or used[index, 1]+1+used[index,3] <= cY or cY+height+1<=used[index,1]:
                         index = index + 1
                     else:
-                        cX = random.randint(1, 99-width)
+                        # Lined Up Blobs
+                        #cX = count * 10
+                        #cY = 50
+                        cX = 40#random.randint(1, 99-width)
                         cY = random.randint(1, 99-height)
                         index = 0
     
                 used[index, 0] = cX
                 used[index, 1] = cY
+                x.append(cY)
                 used[index, 2] = width
                 used[index, 3] = height
 
@@ -84,9 +91,13 @@ def generate_data(even=None):
                         a[p*100+q] = 255
                 count = count + 1
           
+            if len(x) > 0:
+                x.sort()
+                min_x = x[0]
+                max_x = x[-1]
+                for cor in range(min_x, max_x):
+                    a[43*100 + cor] = 255
             train[i] = a
-        #   blob_info = (index, used)
-        #   blobs.append(blob_info)
             if min_blobs == 0:
                 label[i, num_blobs] = 1
             elif min_blobs == 1:
@@ -107,4 +118,3 @@ def generate_data(even=None):
 #            label = np.vstack((label, empty_label))
 
     return train, label
-#,blob
