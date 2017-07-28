@@ -92,10 +92,9 @@ def filterbank(gx, gy, sigma2, delta, N):
     # mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
     # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
    
-    mu_x = [gx[0] - tf.reduce_sum((delta[0])[0:14])]
-    mu_x = tf.reshape(mu_x, [-1])
+    mu_x = [gx[0][0] - tf.reduce_sum((delta[0])[0:14])]
     for i in range(1,14):
-        mu_xx = tf.reshape(gx[0] - tf.reduce_sum((delta[0])[i:14]), [-1])
+        mu_xx = tf.reshape(gx[0][0] - tf.reduce_sum((delta[0])[i:14]), [-1])
         mu_x = tf.concat([mu_x, mu_xx], 0)
     for i in range(14,25):
         mu_xx = tf.reshape(gx[0] + tf.reduce_sum((delta[0])[14:i+1]), [-1])
