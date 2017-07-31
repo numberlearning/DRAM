@@ -18,7 +18,7 @@ import numpy as np
 
 from bokeh.charts import Bar, Histogram
 
-from analysis import classify_image, glimpses, read_n, classify_imgs2
+from analysis import count_blobs, glimpses, read_n
 
 clear_output()
 b = Button(description="Loading...", icon="arrow", width=400)
@@ -59,17 +59,6 @@ def make_chart(i, j):
     
     return p, q
 
-def make_spacer():
-    p = figure(x_range=(-0.5, 10), y_range=(0, 1), width=50, height=250, tools="", border_fill_alpha=0, outline_line_alpha=0)
-    p.toolbar.logo = None
-    p.toolbar_location = None
-    p.border_fill_alpha = 0
-    p.outline_line_alpha = 0
-    
-    p.axis.visible = False
-    p.grid.visible = False
-    
-    return p
 
 def make_figure(color, i, j, smol=False):
     """
@@ -137,18 +126,12 @@ def make_figure(color, i, j, smol=False):
 
 for i in range(glimpses):
     #if i % 10 == 0:
-    (machine, i1, q1), (human, i2, q2) = make_figure("pink", i, 0), make_figure("orange", i, 1)
+    (machine, i1, q1) = make_figure("pink", i, 0)
     machine_c, machine_cdata = make_chart(i, 0)
-    human_c, human_cdata = make_chart(i, 0)
-    figures.append([machine, machine_c, make_spacer(), human, human_c])
-    iqs.append([
-        (i1, q1),
-        (i2, q2)
-    ])
-    charts.append([machine_cdata, human_cdata])
+    figures.append([machine, machine_c])
+    iqs.append((i1, q1))
+    charts.append([machine_cdata])
 
-    #curves.append([curve, curve_c])
-    
         
 data = None
     
@@ -178,44 +161,8 @@ def unhover(i, j):
     
 def update_figures(handle, new_image=True):
     global data
-    data = classify_image(int(dropdown.value), new_image)
-    for i, f in enumerate(figures):
-        
-        machine, machine_c, spacer, human, human_c = f
-        
-        (machine_i, machine_q), (human_i, human_q) = iqs[i]
-        machine_i.data_source.data["image"][0] = data["img"]#data["rs"][i][0]
-        human_i.data_source.data["image"][0] = data["img"] #data["rs"][i][1]
-        
-        machine_q.data_source.data = data["rects"][i][0]
-        human_q.data_source.data = data["rects"][i][1]
-        
-        machine_cdata, human_cdata = charts[i]
-        
-        def colorify(ar):
-            colors = []
-            for x in ar:
-                colors.append("lime" if x else "red")
-            return colors
-        
-        clabel = colorify(data["label"])
-                
-        
-        machine_cdata.data_source.data["top"] = data["classifications"][i][0]
-
-        #print('data["classifications"][i][0][0]: ')
-        #print(data["classifications"][i][0][0])
-
-        #print('data["rects"][i][j]: ')
-        # for glimpse in range(glimpses):
-        #print(data["rects"][i][0])
-
-        machine_cdata.data_source.data["color"] = clabel
-        
-        human_cdata.data_source.data["top"] = data["classifications"][i][1]
-        human_cdata.data_source.data["color"] = clabel
-
-                
+    data = count_blobs(int(dropdown.value), new_image)
+    #print(data)
     push_notebook(handle=handle)
     
 def on_click(b, new_image=True):

@@ -10,6 +10,7 @@ from scipy import misc
 import time
 import sys
 from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
+#from DRAMcopy14 import convertTranslated, classifications, input_tensor, count_tensor, target_tensor, batch_size, glimpses, z_size, dims, read_n 
 #batch_size = 1
 import load_input
 import load_teacher
@@ -21,17 +22,17 @@ sess = tf.InteractiveSession(config=sess_config)
 
 saver = tf.train.Saver()
 
-data = load_teacher.Teacher()
+data = load_input.InputData()
 data.get_test(1)
 
 
 def random_imgs(num_imgs):
     """Get batch of random images from test set."""
 
-    data = load_teacher.Teacher()
+    data = load_input.InputData()
     data.get_test(1)
-    x_test, _, _, count_test, y_test = data.next_explode_batch(num_imgs)
-    return x_test, count_test, y_test
+    x_test, y_test = data.next_batch(num_imgs)
+    return x_test, y_test
 
 
 def random_count_image():
@@ -56,7 +57,7 @@ def random_image():
 
 
 def load_checkpoint(it, human):
-    path = "model_runs/test_new_model"
+    path = "model_runs/5glimpse_9max_10N"#tube"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -103,27 +104,30 @@ def count_blobs(it, new_image):
     
     imgs, cnts, poss = last_image
 
+    # dims [11, 100] => [1, 11, 100]
+    imgs = np.expand_dims(imgs, axis=0)
+    cnts = np.expand_dims(cnts, axis=0)
+    poss = np.expand_dims(poss, axis=0)
+
     load_checkpoint(it, human=False)
-
     feed_dict = { input_tensor: imgs, count_tensor: cnts, target_tensor: poss }
-    human_cs = machine_cs = sess.run(classifications, feed_dict=feed_dict)
+    cs = sess.run(classifications, feed_dict=feed_dict)
 
-    out = dict()
+    out = list()
     for g in range(glimpses):
-        img = imgs[g]
+        img = imgs[0][g]
         flipped = np.flip(img.reshape(10, 10), 0)
-
         item = {
             "img": flipped,
-            "pos": machine_cs[g]["position"],
-            "cnt": machine_cs[g]["count"],
+            "pos": cs[g]["position"],
+            "cnt": cs[g]["count"],
         }
         out.append(item)
     return out
 
 
 def classify_image(it, new_image):
-    batch_size = 10000
+    batch_size = 1#10000#100
     out = dict()
     global last_image
     if new_image or last_image is None:
@@ -145,6 +149,8 @@ def classify_image(it, new_image):
     load_checkpoint(it, human=False)
     human_cs = machine_cs = sess.run(classifications, feed_dict={x: imgs.reshape(batch_size, dims[0] * dims[1])})
 
+    print(len(machine_cs)) # glimpses
+
     for i in range(len(machine_cs)):
 
         out["rs"].append((np.flip(machine_cs[i]["r"][0].reshape(read_n, read_n), 0), np.flip(human_cs[i]["r"][0].reshape(read_n, read_n), 0)))
@@ -156,6 +162,10 @@ def classify_image(it, new_image):
         
         out["rects"].append((stats_to_rect((machine_cs[i]["stats"][0][0], machine_cs[i]["stats"][1][0], machine_cs[i]["stats"][2][0])), stats_to_rect((human_cs[i]["stats"][0][0], human_cs[i]["stats"][1][0], human_cs[i]["stats"][2][0]))))
 
+        gx, gy, delta = machine_cs[i]["stats"]
+        print("gx: ", gx)
+        print("gy: ", gy)
+        print("delta: ", delta)
         out["h_decs"].append((machine_cs[i]["h_dec"][0], human_cs[i]["h_dec"][0]))
 
 
@@ -196,45 +206,27 @@ def accuracy_stats(it, human):
 
 
 def stats_to_rect(stats):
-    Fx, Fy, gamma = stats
-    
-    def min_max(ar):
-        minI = None
-        maxI = None
-        for i in range(100):
-            if np.any(ar[:, i]):
-                minI = i
-                break
-                
-        for i in reversed(range(100)):
-            if np.any(ar[:, i]):
-                maxI = i
-                break
-                
-        return minI, maxI
+    """Draw attention window based on gx, gy, and delta."""
 
-    minX, maxX = min_max(Fx)
-    minY, maxY = min_max(Fy)
-    
-    if minX == 0:
+    gx, gy, delta = stats
+    minY = dims[0] - gy + read_n/2.0 * delta
+    maxY = dims[0] - gy - read_n/2.0 * delta
+
+    minX = gx - read_n/2.0 * delta
+    maxX = gx + read_n/2.0 * delta
+
+    if minX < 1:
         minX = 1
-        
-    if minY == 0:
-        minY = 1
-        
-    if maxX == 100:
-        maxX = 99
-        
-    if maxY == 100:
-        maxY = 99
-    
-    return dict(
-        top=[minY],
-        bottom=[maxY],
-        left=[minX],
-        right=[maxX]
-    )
 
+    if maxY < 1:
+        maxY = 1
 
+    if maxX > dims[0] - 1:
+        maxX = dims[0] - 1
+
+    if minY > dims[1] - 1:
+        minY = dims[1] - 1
+
+    return dict(top=[int(minY)], bottom=[int(maxY)], left=[int(minX)], right=[int(maxX)])
 
 print("analysis.py")
