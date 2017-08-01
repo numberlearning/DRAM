@@ -15,7 +15,6 @@ import load_teacher
 from model_settings import learning_rate, glimpses, batch_size, min_edge, max_edge, min_blobs, max_blobs, model_name
 
 FLAGS = tf.flags.FLAGS
-tf.flags.DEFINE_boolean("read_attn", False, "enable attention for reader")
 
 def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
@@ -108,7 +107,7 @@ def filterbank(gx, gy, sigma2, delta, N):
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
-    return Fx,Fy
+    return Fx,Fy, mu_x, mu_y
 
 
 def attn_window(scope,h_dec,N, position=None):
@@ -130,9 +129,9 @@ def attn_window(scope,h_dec,N, position=None):
     #delta_list[glimpse] = delta
     #sigma_list[glimpse] = sigma2
 
-    Fx, Fy = filterbank(gx, gy, sigma2, delta, N)
+    Fx, Fy, mu_x, mu_y = filterbank(gx, gy, sigma2, delta, N)
     gamma = tf.exp(log_gamma)
-    return Fx, Fy, gamma, gx, gy, delta
+    return Fx, Fy, mu_x, mu_y, gamma, gx, gy, delta
 
 
 ## READ ## 
@@ -142,9 +141,9 @@ def attn_window(scope,h_dec,N, position=None):
 
 def read(x, h_dec_prev, position=None):
     if position is not None:
-        Fx, Fy, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n, position)
+        Fx, Fy, mu_x, mu_y, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n, position)
         stats = Fx, Fy, gamma
-        new_stats = gx, gy, delta
+        new_stats = mu_x, mu_y, gx, gy, delta
     else:
         Fx, Fy, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n)
 
@@ -234,7 +233,7 @@ current_blob = target_tensor[:, current_index]
 trace_length = tf.size(target_tensor[0])
 rewards = list()
 train_ops = list()
-relus = list()
+#relus = list()
 predict_x_list = list()
 target_x_list = list()
 
@@ -249,23 +248,23 @@ while current_index < glimpses:
 
     reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((predict_x - target_x)**2 + (predict_y - target_y)**2 - max_edge**2)/100)
     #reward = predict_x - predict_y
-    #print("Shape of current_blob: ")
-    #print(current_blob.get_shape())
-    #print("Shape of input_tensor: ")
-    #print(input_tensor.get_shape())
-    #print("Shape of input_tensor[:, 0]: ")
-    #print(input_tensor[:, 0].get_shape())
-    #print("Shape of predict_x: ")
-    #print(predict_x.get_shape())
-    #print("Shape of target_x: ")
-    #print(target_x.get_shape())
-    #print("Shape of target_y: ")
-    #print(target_y.get_shape())
+    print("Shape of current_blob: (batch_size x 2)")
+    print(current_blob.get_shape())
+    print("Shape of input_tensor: (batch_size x 10 x 100)")
+    print(input_tensor.get_shape())
+    print("Shape of input_tensor[:, 0]: (batch_size x 100)")
+    print(input_tensor[:, 0].get_shape())
+    print("Shape of predict_x: (batch_size x 1)")
+    print(predict_x.get_shape())
+    print("Shape of target_x: (batch_size x 1)")
+    print(target_x.get_shape())
+    print("Shape of target_y: (batch_size x 1)")
+    print(target_y.get_shape())
     predict_x_list.append(predict_x[0])
     target_x_list.append(target_x[0])
-    #print("Shape of relu(predict_x-target_x): ")
-    #print(tf.nn.relu(predict_x-target_x).get_shape())
-    relus.append(tf.nn.relu(((predict_x-target_x)**2 + (predict_y-target_y)**2 - max_edge**2)100))
+    print("Shape of relu(predict_x-target_x): (batch_size x 1)")
+    print(tf.nn.relu(predict_x-target_x).get_shape())
+#    relus.append(tf.nn.relu(((predict_x-target_x)**2 + (predict_y-target_y)**2 - max_edge**2)100))
     #print(reward)
     rewards.append(reward)
  
@@ -285,12 +284,17 @@ while current_index < glimpses:
     
     with tf.variable_scope("position", reuse=REUSE):
         predict_x, predict_y  = tf.split(linear(hidden, 2), 2, 1)
+
+        mu_x, mu_y, gx, gy, delta = new_stats
+        stats = gx, gy, delta
         viz_data.append({
             "r": r,
             "h_dec": h_dec,
             "predict_x": predict_x,
             "predict_y": predict_y,
-            "stats": new_stats,
+            "stats": stats,
+            "mu_x": mu_x,
+            "mu_y": mu_y,
         })
     
     predcost = -posquality
@@ -313,16 +317,16 @@ while current_index < glimpses:
     REUSE=True
 
 print("len(train_ops): ", len(train_ops))
-print("shape of predict_x_list: ", len(predict_x_list))
+print("len of predict_x_list (glimpses): ", len(predict_x_list))
 avg_reward = tf.reduce_mean(rewards)
 #one_reward = tf.reshape(rewards[0][0], [1])
-print("shape of rewards: ", len(rewards))
+print("len of rewards (glimpses): ", len(rewards))
 print("shape of rewards[0]: ", rewards[1].get_shape())
-relu_num = tf.reduce_mean(relus)
-print("shape of target_x_list: ", len(target_x_list))
+#relu_num = tf.reduce_mean(relus)
+print("len of target_x_list (glimpses): ", len(target_x_list))
 predict_x_average = tf.reduce_mean(tf.convert_to_tensor(predict_x_list))
 target_x_average = tf.reduce_mean(tf.convert_to_tensor(target_x_list))
-print("predict_x_average", tf.reduce_mean(tf.convert_to_tensor(predict_x_list)))
+#print("predict_x_average", tf.reduce_mean(tf.convert_to_tensor(predict_x_list)))
 #avg_reward = tf.constant(1, shape=[1], dtype=tf.float32)
 
 def binary_crossentropy(t,o):
@@ -365,7 +369,8 @@ if __name__ == '__main__':
     train_data = load_teacher.Teacher()
     train_data.get_train(1)
     fetches2=[]
-    fetches2.extend([avg_reward, train_op, relu_num, predict_x_average, target_x_average, train_ops])
+    fetches2.extend([avg_reward, train_op, predict_x_average, target_x_average, train_ops])
+    #fetches2.extend([avg_reward, train_op, relu_num, predict_x_average, target_x_average, train_ops])
 
     start_time = time.clock()
     extra_time = 0
@@ -375,12 +380,13 @@ if __name__ == '__main__':
         #feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
         feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
         results = sess.run(fetches2, feed_dict=feed_dict) 
-        reward_fetched, _, relu_fetched, prex, tarx, _ = results
+        #reward_fetched, _, relu_fetched, prex, tarx, _ = results
+        reward_fetched, _, prex, tarx, _ = results
 
         if i%100 == 0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
             #print("One of the rewards: %f" % a_reward_fetched)
-            print("Average relu: %f" % relu_fetched)
+            #print("Average relu: %f" % relu_fetched)
             print("Predict x average: %f" % prex)
             print("Target x average: %f" % tarx)
             sys.stdout.flush()

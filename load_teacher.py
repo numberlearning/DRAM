@@ -163,7 +163,8 @@ class Teacher(object):
                     target_tensor.append(list(link))
 
                 # Fill in the rest of the list with the same
-                for cont in range(count + 1, z_size):
+                #for cont in range(count + 1, z_size):
+                for cont in range(count + 1, z_size + 1):
                     count_tensor.append(count_vector)
                     input_tensor.append(image)
                     target_tensor.append(list(link))
@@ -175,12 +176,7 @@ class Teacher(object):
                 self.explode_counts.append(count_tensor)
                 self.explode_images.append(input_tensor)
                 self.explode_traces.append(target_tensor)
-                print(count_tensor)
-                print(len(count_tensor))
-                print(input_tensor)
-                print(len(input_tensor))
                 print(target_tensor)
-                print(len(target_tensor))
 
         
         
