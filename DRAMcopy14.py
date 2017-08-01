@@ -226,19 +226,36 @@ viz_data = list()
 #delta_list = [0] * glimpses
 
 #Using w and b to predict the starting point
-with tf.variable_scope("starting_position"):
-    predict_x, predict_y = tf.split(linear(input_tensor[:, 0], 2), 2, 1)
+predict_x, predict_y = tf.split(linear(input_tensor[:, 0], 2), 2, 1)
 
 current_index = 0
 current_blob = target_tensor[:, current_index]
 trace_length = tf.size(target_tensor[0])
+rewards = list()
+train_ops = list()
+relus = list()
+predict_x_list = list()
+target_x_list = list()
 
-while current_index < 11:
+while current_index < 1:
 
-    target_x = tf.reshape(current_blob[:, 0], [77, 1])
+    with tf.variable_scope("target", reuse=REUSE):
+        target_x = tf.expand_dims(target_tensor[:, 0, 0], 1)
+
+        #target_x = tf.reshape(current_blob[:, 0], [77, 1])
+    
     target_y = tf.reshape(current_blob[:, 1], [77, 1])
 
     reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((predict_x - target_x)**2 + (predict_y - target_y)**2 - max_edge**2)/max_edge)
+    #reward = predict_x - predict_y
+    print(predict_x)
+    print(target_x)
+    predict_x_list.append(predict_x[0])
+    target_x_list.append(target_x[0])
+    print(tf.nn.relu(predict_x-target_x))
+    relus.append(tf.nn.relu((predict_x-target_x)**2))
+    print(reward)
+    rewards.append(reward)
     posquality = reward
     
     #set current attn window center to current blob center and perform read
@@ -261,87 +278,35 @@ while current_index < 11:
             "predict_x": predict_x,
             "predict_y": predict_y,
             "stats": new_stats,
-        })  
+        })
+    
+    predcost = -posquality
 
+    ## OPTIMIZER #################################################
+    with tf.variable_scope("optimizer" + str(current_index), reuse=None):
+        optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
+        grads = optimizer.compute_gradients(predcost)
+
+        for i, (g, v) in enumerate(grads):
+            if g is not None:
+                grads[i] = (tf.clip_by_norm(g, 5), v)
+        train_op = optimizer.apply_gradients(grads)
+        train_ops.append(train_op)
+ 
     current_index = current_index + 1
     if current_index < 11:
         current_blob = target_tensor[:,current_index]
 
     REUSE=True
 
-#
-#for glimpse in range(glimpses):
-#    if target_tensor[:, glimpse] == target_tensor[:, glimpse - 1]:
-#        break
-#    r, stats = read(input_tensor[:, glimpse], h_dec_prev, target_tensor[:, glimpse], glimpse)
-#    gx, gy, delta = stats
-#
-#    correct_position = target_tensor[:, glimpse]
-#    actual_network_output_position = (gx, gy)
-#  
-#    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state)
-#
-#    with tf.variable_scope("z",reuse=REUSE):
-#        z = linear(h_enc, z_size)
-#
-#    h_dec, dec_state = decode(z, dec_state)
-#
-#    h_dec_prev = h_dec
-#
-#    with tf.variable_scope("hidden1",reuse=REUSE):
-#        hidden = tf.nn.relu(linear(h_dec_prev, 256))
-#
-#    with tf.variable_scope("output/position",reuse=REUSE):
-#        position = linear(hidden, 2)
-#
-#    position_prev = position
-#    #with tf.variable_scope("output/count",reuse=REUSE):
-#    #    count = tf.nn.softmax(linear(hidden, z_size))
-#    # the above way is cleaner :D ^_^
-#    #classification = linear(hidden, z_size + 2)
-#    #position = classification[:, z_size:]
-#    #count = tf.nn.softmax(classification[:, :-2])
-#
-#    classifications.append({
-#        "position": position,
-#    #    "count": count,
-#        "r": r,
-#        "h_dec": h_dec,
-#    })
-#
-#    REUSE=True
-#   
-#    #print("target_tensor: ", target_tensor[:, glimpse]) # batch_size x 2
-#    #print("position: ", position) # batch_size x 2
-#    position_error = target_tensor[:, glimpse] - position # batch_size x 2
-#    position_error = tf.clip_by_value(position_error, eps, 10 - eps)
-#    position_error = tf.abs(position_error)
-#    position_error = tf.reduce_sum(position_error, 1) # distance per img in batch
-#    position_quality = position_error * -1
-#    position_qualities.append(position_quality)
-#    
-#    count_quality = tf.log(count + 1e-5) * count_tensor[:, glimpse]
-#    count_quality = tf.reduce_mean(count_quality, 0)
-#    count_qualities.append(count_quality)
-#
-#
-#print(position_qualities)
-#posquality = tf.reduce_mean(position_qualities)
-#cntquality = tf.reduce_mean(count_qualities)
-#
-#print(posquality)
-#predquality = tf.reduce_mean([posquality, cntquality])
-#correct = tf.arg_max(count_tensor[:, glimpse], 1)
-#prediction = tf.arg_max(count, 1)
-#
-## all-knower
-#
-##R = tf.cast(1 - tf.abs(tf.divide(tf.subtract(correct, prediction), correct)), tf.float32)
-#R = tf.cast(tf.equal(correct, prediction), tf.float32)
-#
-##reward = posquality
-#reward = tf.reduce_mean(R)
-#
+print("len(train_ops): ", len(train_ops))
+avg_reward = tf.reduce_mean(rewards)
+one_reward = tf.reshape(rewards[0][0], [1])
+relu_num = tf.reduce_mean(relus)
+predict_x_average = tf.reduce_mean(predict_x_list)
+target_x_average = tf.reduce_mean(target_x_list)
+#avg_reward = tf.constant(1, shape=[1], dtype=tf.float32)
+
 def binary_crossentropy(t,o):
     return -(t*tf.log(o+eps) + (1.0-t)*tf.log(1.0-o+eps))
 
@@ -354,8 +319,9 @@ def evaluate():
     
     for i in range(batches_in_epoch):
         xtrain, _, _, explode_counts, ytrain = train_data.next_explode_batch(batch_size)
-        feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
-        r = sess.run(reward, feed_dict=feed_dict)
+        #feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
+        feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
+        r = sess.run(avg_reward, feed_dict=feed_dict)
         accuracy += r
     
     accuracy /= batches_in_epoch
@@ -364,20 +330,8 @@ def evaluate():
     return accuracy
 
 
-predcost = -posquality
 
 
-## OPTIMIZER #################################################
-
-
-optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
-grads = optimizer.compute_gradients(predcost)
-
-for i, (g, v) in enumerate(grads):
-    if g is not None:
-        grads[i] = (tf.clip_by_norm(g, 5), v)
-train_op = optimizer.apply_gradients(grads)
-    
 
 if __name__ == '__main__':
     sess_config = tf.ConfigProto()
@@ -393,7 +347,7 @@ if __name__ == '__main__':
     train_data = load_teacher.Teacher()
     train_data.get_train(1)
     fetches2=[]
-    fetches2.extend([reward, train_op])
+    fetches2.extend([avg_reward, train_op, one_reward, relu_num, predict_x_average, target_x_average, train_ops])
 
     start_time = time.clock()
     extra_time = 0
@@ -403,10 +357,14 @@ if __name__ == '__main__':
         #feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
         feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
         results = sess.run(fetches2, feed_dict=feed_dict) 
-        reward_fetched, _ = results
+        reward_fetched, _, a_reward_fetched, relu_fetched, prex, tarx, _ = results
 
         if i%100 == 0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
+            print("One of the rewards: %f" % a_reward_fetched)
+            print("Average relu: %f" % relu_fetched)
+            print("Predict x average: %f" % prex)
+            print("Target x average: %f" % tarx)
             sys.stdout.flush()
  
             train_data = load_teacher.Teacher()

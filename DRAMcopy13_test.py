@@ -6,7 +6,6 @@ warnings.filterwarnings('ignore')
 import tensorflow as tf
 from tensorflow.examples.tutorials import mnist
 import numpy as np
-from numpy import *
 import os
 import random
 from scipy import misc
@@ -58,7 +57,7 @@ pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 25 # read glimpse grid width/height
+read_n = 30 # read glimpse grid width/height
 read_size = read_n*read_n
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -88,77 +87,38 @@ def linear(x,output_dim):
 
 
 def filterbank(gx, gy, sigma2, delta, N):
-    # grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
-    # mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
-    # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
-   
-    
-    mu_x = gx - tf.reduce_sum(delta[0][0:14])
-    for i in range(1,14):
-        mu_xx = gx - tf.reduce_sum(delta[0][i:14])
-        mu_x = tf.concat([mu_x, mu_xx], 1)
-    for i in range(14,25):
-        mu_xx = gx + tf.reduce_sum(delta[0][14:i+1])
-        mu_x = tf.concat([mu_x, mu_xx], 1)
-    
-    mu_y = mu_x
+    grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
+    mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
+    mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
 
     a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1])
     b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1])
 
     mu_x = tf.reshape(mu_x, [-1, N, 1])
     mu_y = tf.reshape(mu_y, [-1, N, 1])
-    # sigma2 = tf.reshape(sigma2, [-1, 1, 1])
-    Fx = tf.exp(-tf.square((a - mu_x) / (2*tf.transpose(sigma2)))) # 2*sigma2?
-    Fy = tf.exp(-tf.square((b - mu_y) / (2*tf.transpose(sigma2)))) # batch_size x N x B
+    sigma2 = tf.reshape(sigma2, [-1, 1, 1])
+    Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # 2*sigma2?
+    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch_size x N x B
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
+    # print("Fx:",Fx)
     return Fx,Fy
 
 
 def attn_window(scope,h_dec,N, glimpse):
     with tf.variable_scope(scope,reuse=REUSE):
-        params=linear(h_dec,3+2*N)
-    split=tf.split(params, 3+2*N, 1)
-    gx_=split[0]
-    gy_=split[1]
-    log_sigma2=tf.transpose(tf.reshape(split[2:2+N], [N, -1]))
-    log_delta=tf.transpose(tf.reshape(split[2+N:2+2*N], [N, -1]))
-    log_gamma=split[2+2*N]
+        params=linear(h_dec,5)
+    gx_,gy_,log_sigma2,log_delta,log_gamma=tf.split(params, 5, 1)
     gx=(dims[0]+1)/2*(gx_+1)
     gy=(dims[1]+1)/2*(gy_+1)
-    
     gx_list[glimpse] = gx
     gy_list[glimpse] = gy
 
     #  sigma2=tf.exp(log_sigma2)
-    #  delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-    dis0=max(dims[0],dims[1])/12
-    dis1=linspace(-1,1,9)
-    dis2=zeros(8)
-    dis3=zeros(8)
-    for i in range(1,9):
-        dis2[i-1]= -pow(1.25,9-i)
-    for i in range(1,9):
-        dis3[i-1]=pow(1.25,i)
-    
-    dis=np.append(np.append(dis2,dis1),dis3)*dis0
-    
-    delta=zeros(25)
-    for j  in range(1,14):
-        delta[j-1]=dis[j]-dis[j-1]
-    delta[13]=0
-    for j in range(14,25):
-        delta[j]=dis[j]-dis[j-1]
-    
-    tdelta=tf.reshape(tf.cast(tf.convert_to_tensor(delta), tf.float32), [1, -1])
-    delta=tdelta*tf.exp(log_delta[0])
-    
+    delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
     sigma2=delta*delta/4 # sigma=delta/2
-    sigma2=sigma2+0.0001*tf.reduce_min(sigma2[0,0:12])
-    # delta=[delta] * batch_size
-    # sigma2=[sigma2] * batch_size
+    print("delta:",delta)
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
@@ -167,8 +127,9 @@ def attn_window(scope,h_dec,N, glimpse):
     #ret.append((gx, gy, delta))
     return ret
 
-## READ ##
-#  def read_no_attn(x,x_hat,h_dec_prev):
+
+## READ ## 
+#def read_no_attn(x,x_hat,h_dec_prev):
 #    return x, stats
 
 
