@@ -110,17 +110,22 @@ def filterbank(gx, gy, sigma2, delta, N):
     return Fx,Fy, mu_x, mu_y
 
 
-def attn_window(scope,h_dec,N, position=None):
-    with tf.variable_scope(scope,reuse=REUSE):
-        params=linear(h_dec,5)
+def attn_window(scope,h_dec,N, predx=None, predy=None, DO_SHARE=False):
+    if DO_SHARE:
+        with tf.variable_scope(scope,reuse=True):
+            params=linear(h_dec,5)
+    else:
+        with tf.variable_scope(scope,reuse=REUSE):
+            params=linear(h_dec,5)
+
     gx_, gy_, log_sigma2,log_delta,log_gamma=tf.split(params, 5, 1)
 
     gx=(dims[0]+1)/2*(gx_+1)
     gy=(dims[1]+1)/2*(gy_+1)
 
-    if position is not None:
-        gx=tf.reshape(position[:, 0], [batch_size, 1])
-        gy=tf.reshape(position[:, 1], [batch_size, 1])
+    if predx is not None and predy is not None:
+        gx=tf.reshape(predx, [batch_size, 1])
+        gy=tf.reshape(predy, [batch_size, 1])
 
     #  sigma2=tf.exp(log_sigma2)
     delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
@@ -139,13 +144,12 @@ def attn_window(scope,h_dec,N, position=None):
 #    return x, stats
 
 
-def read(x, h_dec_prev, position=None):
-    if position is not None:
-        Fx, Fy, mu_x, mu_y, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n, position)
-        stats = Fx, Fy, gamma
-        new_stats = mu_x, mu_y, gx, gy, delta
-    else:
-        Fx, Fy, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n)
+#def read(x, h_dec_prev, position=None):
+def read(x, h_dec_prev, pred_x=None, pred_y=None):
+
+    Fx, Fy, mu_x, mu_y, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n, pred_x, pred_y)
+    stats = Fx, Fy, gamma
+    new_stats = mu_x, mu_y, gx, gy, delta
 
     def filter_img(img, Fx, Fy, gamma, N):
         Fxt = tf.transpose(Fx, perm=[0,2,1])
@@ -248,22 +252,8 @@ while current_index < glimpses:
 
     reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((predict_x - target_x)**2 + (predict_y - target_y)**2 - max_edge**2)/100)
     #reward = predict_x - predict_y
-    print("Shape of current_blob: (batch_size x 2)")
-    print(current_blob.get_shape())
-    print("Shape of input_tensor: (batch_size x 10 x 100)")
-    print(input_tensor.get_shape())
-    print("Shape of input_tensor[:, 0]: (batch_size x 100)")
-    print(input_tensor[:, 0].get_shape())
-    print("Shape of predict_x: (batch_size x 1)")
-    print(predict_x.get_shape())
-    print("Shape of target_x: (batch_size x 1)")
-    print(target_x.get_shape())
-    print("Shape of target_y: (batch_size x 1)")
-    print(target_y.get_shape())
     predict_x_list.append(predict_x[0])
     target_x_list.append(target_x[0])
-    print("Shape of relu(predict_x-target_x): (batch_size x 1)")
-    print(tf.nn.relu(predict_x-target_x).get_shape())
 #    relus.append(tf.nn.relu(((predict_x-target_x)**2 + (predict_y-target_y)**2 - max_edge**2)100))
     #print(reward)
     rewards.append(reward)
@@ -271,7 +261,8 @@ while current_index < glimpses:
     posquality = reward
     
     #set current attn window center to current blob center and perform read
-    r, new_stats = read(input_tensor[:, current_index], h_dec_prev, current_blob)
+    r, new_stats = read(input_tensor[:, current_index], h_dec_prev, target_x, target_y)
+    #r, new_stats = read(input_tensor[:, current_index], h_dec_prev, predict_x, predict_y)
 
     h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
 
@@ -279,22 +270,24 @@ while current_index < glimpses:
         z = linear(h_enc, z_size)
     h_dec, dec_state = decode(z, dec_state)
     h_dec_prev = h_dec
-    with tf.variable_scope("hidden1", reuse=REUSE):
-        hidden = tf.nn.relu(linear(h_dec_prev, 256))
+    _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
+    #r1, new_stats1 = read(input_tensor[:, current_index], h_dec_prev)
+    #_, _, _, gx, gy, _, = new_stats1
     
     with tf.variable_scope("position", reuse=REUSE):
-        predict_x, predict_y  = tf.split(linear(hidden, 2), 2, 1)
+        #predict_x, predict_y  = tf.split(linear(hidden, 2), 2, 1)
+        predict_x, predict_y  = attn_x, attn_y
 
         mu_x, mu_y, gx, gy, delta = new_stats
         stats = gx, gy, delta
         viz_data.append({
-            "r": r,
-            "h_dec": h_dec,
+            #"r": r,
+            #"h_dec": h_dec,
             "predict_x": predict_x,
             "predict_y": predict_y,
             "stats": stats,
-            "mu_x": mu_x,
-            "mu_y": mu_y,
+            "mu_x": tf.squeeze(mu_x, 2)[0], # batch_size x N
+            "mu_y": tf.squeeze(mu_x, 2)[0],
         })
     
     predcost = -posquality
@@ -316,14 +309,9 @@ while current_index < glimpses:
 
     REUSE=True
 
-print("len(train_ops): ", len(train_ops))
-print("len of predict_x_list (glimpses): ", len(predict_x_list))
 avg_reward = tf.reduce_mean(rewards)
 #one_reward = tf.reshape(rewards[0][0], [1])
-print("len of rewards (glimpses): ", len(rewards))
-print("shape of rewards[0]: ", rewards[1].get_shape())
 #relu_num = tf.reduce_mean(relus)
-print("len of target_x_list (glimpses): ", len(target_x_list))
 predict_x_average = tf.reduce_mean(tf.convert_to_tensor(predict_x_list))
 target_x_average = tf.reduce_mean(tf.convert_to_tensor(target_x_list))
 #print("predict_x_average", tf.reduce_mean(tf.convert_to_tensor(predict_x_list)))

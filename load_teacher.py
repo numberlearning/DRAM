@@ -176,7 +176,7 @@ class Teacher(object):
                 self.explode_counts.append(count_tensor)
                 self.explode_images.append(input_tensor)
                 self.explode_traces.append(target_tensor)
-                print(target_tensor)
+                #print(target_tensor)
 
         
         
