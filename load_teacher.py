@@ -152,9 +152,9 @@ class Teacher(object):
                 input_tensor = list()
                 target_tensor = list()
                 
-                count_tensor.append([0] * z_size)
-                input_tensor.append(image)
-                target_tensor.append([None, None])
+                #count_tensor.append([0] * z_size)
+                #input_tensor.append(image)
+                #target_tensor.append([None, None])
                 
                 for count, link in enumerate(chain):
                     count_vector = [0 if x is not count else 1 for x in range(z_size)]
@@ -163,16 +163,26 @@ class Teacher(object):
                     target_tensor.append(list(link))
 
                 # Fill in the rest of the list with the same
-                for cont in range(count + 1, z_size + 1):
+                for cont in range(count + 1, z_size):
                     count_tensor.append(count_vector)
                     input_tensor.append(image)
                     target_tensor.append(list(link))
+
+                
 
                 self.explode_lbls.append(label)
                 self.explode_labels.append(label_vector)
                 self.explode_counts.append(count_tensor)
                 self.explode_images.append(input_tensor)
                 self.explode_traces.append(target_tensor)
+                print(count_tensor)
+                print(len(count_tensor))
+                print(input_tensor)
+                print(len(input_tensor))
+                print(target_tensor)
+                print(len(target_tensor))
+
+        
         
         self.explode_length = len(self.explode_images)
 
@@ -275,7 +285,7 @@ def test_this():
             print("label: ", explode_labels[i])
             print("count: ", explode_counts[i][f])
             print("\n")
-            print_img(frame)
+            #print_img(frame)
 
 
 def chunks(l, n):
