@@ -93,24 +93,30 @@ def filterbank(gx, gy, sigma2, delta, N):
     # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
    
     
-    mu_x = gx - tf.reduce_sum(delta[0][0:14])
-    for i in range(1,14):
-        mu_xx = gx - tf.reduce_sum(delta[0][i:14])
+    mu_x = gx - tf.reduce_sum(delta[0][0:13])
+    for i in range(1,13):
+        mu_xx = gx - tf.reduce_sum(delta[0][i:13])
         mu_x = tf.concat([mu_x, mu_xx], 1)
-    for i in range(14,25):
-        mu_xx = gx + tf.reduce_sum(delta[0][14:i+1])
+    for i in range(13,25):
+        mu_xx = gx + tf.reduce_sum(delta[0][13:i+1])
         mu_x = tf.concat([mu_x, mu_xx], 1)
     
-    mu_y = mu_x
+    mu_y = gy - tf.reduce_sum(delta[0][0:13])
+    for i in range(1,13):
+        mu_yy = gy - tf.reduce_sum(delta[0][i:13])
+        mu_y = tf.concat([mu_y, mu_yy], 1)
+    for i in range(13,25):
+        mu_yy = gy + tf.reduce_sum(delta[0][13:i+1])
+        mu_y = tf.concat([mu_y, mu_yy], 1)
+    
+    a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[0]
+    b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[1] 
 
-    a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1])
-    b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1])
-
-    mu_x = tf.reshape(mu_x, [-1, N, 1])
+    mu_x = tf.reshape(mu_x, [-1, N, 1]) # batch_size x N x 1
     mu_y = tf.reshape(mu_y, [-1, N, 1])
-    # sigma2 = tf.reshape(sigma2, [-1, 1, 1])
-    Fx = tf.exp(-tf.square((a - mu_x) / (2*tf.transpose(sigma2)))) # 2*sigma2?
-    Fy = tf.exp(-tf.square((b - mu_y) / (2*tf.transpose(sigma2)))) # batch_size x N x B
+    sigma2 = tf.reshape(sigma2, [-1, N, 1]) # batch_size x N x 1
+    Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # batch_size x N x dims[0]
+    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch_size x N x dims[1]
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
@@ -119,19 +125,15 @@ def filterbank(gx, gy, sigma2, delta, N):
 
 def attn_window(scope,h_dec,N, glimpse):
     with tf.variable_scope(scope,reuse=REUSE):
-        params=linear(h_dec,3+2*N)
-    split=tf.split(params, 3+2*N, 1)
-    gx_=split[0]
-    gy_=split[1]
-    log_sigma2=tf.transpose(tf.reshape(split[2:2+N], [N, -1]))
-    log_delta=tf.transpose(tf.reshape(split[2+N:2+2*N], [N, -1]))
-    log_gamma=split[2+2*N]
-    gx=(dims[0]+1)/2*(gx_+1)
+        params=linear(h_dec,4) # batch_size x 4
+    gx_,gy_,log_delta,log_gamma=tf.split(params, 4, 1) # batch_size x 1
+    
+    gx=(dims[0]+1)/2*(gx_+1) # batch_size x 1
     gy=(dims[1]+1)/2*(gy_+1)
     
     gx_list[glimpse] = gx
     gy_list[glimpse] = gy
-
+     
     #  sigma2=tf.exp(log_sigma2)
     #  delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
     dis0=max(dims[0],dims[1])/12
@@ -139,26 +141,29 @@ def attn_window(scope,h_dec,N, glimpse):
     dis2=zeros(8)
     dis3=zeros(8)
     for i in range(1,9):
-        dis2[i-1]= -pow(1.25,9-i)
+        dis2[i-1] = -pow(1.25,9-i)
     for i in range(1,9):
-        dis3[i-1]=pow(1.25,i)
+        dis3[i-1] = pow(1.25,i)
     
     dis=np.append(np.append(dis2,dis1),dis3)*dis0
     
     delta=zeros(25)
-    for j  in range(1,14):
+    for j  in range(1,13):
         delta[j-1]=dis[j]-dis[j-1]
-    delta[13]=0
-    for j in range(14,25):
+    delta[12]=0
+    for j in range(13,25):
         delta[j]=dis[j]-dis[j-1]
     
     tdelta=tf.reshape(tf.cast(tf.convert_to_tensor(delta), tf.float32), [1, -1])
-    delta=tdelta*tf.exp(log_delta[0])
+    delta=tdelta*tf.exp(log_delta) # batch_size x N
     
     sigma2=delta*delta/4 # sigma=delta/2
-    sigma2=sigma2+0.0001*tf.reduce_min(sigma2[0,0:12])
-    # delta=[delta] * batch_size
-    # sigma2=[sigma2] * batch_size
+    ss=tf.cast(tf.convert_to_tensor(zeros(12)), tf.float32)
+    ss=tf.reshape([ss]*batch_size, [batch_size, -1])
+    smin=tf.reshape(tf.reduce_min(sigma2[:,0:12], 1), [-1, 1])
+    ss_=tf.concat([tf.concat([ss,smin/2],1),ss],1)
+    sigma2=sigma2+ss_  # batch_size x N
+
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
@@ -397,6 +402,7 @@ if __name__ == '__main__':
                     start_evaluate = time.clock()
                     test_accuracy = evaluate()
                     saver = tf.train.Saver(tf.global_variables())
+                    # saver.restore(sess, "model_runs/rewrite_filterbank_test001/classifymodel_60000.ckpt") 
                     print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
                     extra_time = extra_time + time.clock() - start_evaluate
                     print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
