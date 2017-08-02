@@ -129,6 +129,12 @@ def attn_window(scope,h_dec,N, predx=None, predy=None, DO_SHARE=False):
 
     #  sigma2=tf.exp(log_sigma2)
     delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
+
+    max_deltas = np.array([5] * batch_size) # where 5 is the max delta
+    tmax_deltas = tf.convert_to_tensor(max_deltas, dtype=tf.float32)
+
+    delta = tf.minimum(delta, tmax_deltas)
+
     sigma2=delta*delta/4 # sigma=delta/2
 
     #delta_list[glimpse] = delta
