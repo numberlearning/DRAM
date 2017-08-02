@@ -9,8 +9,9 @@ import random
 from scipy import misc
 import time
 import sys
-from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
+#from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 #from DRAMcopy14 import convertTranslated, classifications, input_tensor, count_tensor, target_tensor, batch_size, glimpses, z_size, dims, read_n 
+from DRAMcopy15 import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
 #batch_size = 1
 import load_input
 import load_teacher
@@ -56,16 +57,79 @@ def random_image():
     return translated[0], data.labels[i]
 
 
-def load_checkpoint(it, human):
-    path = "model_runs/5glimpse_9max_10N"#tube"
+def load_checkpoint(it, human=False):
+    path = "model_runs/attn_window_positions"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
-def classify_imgs(it, new_imgs, num_imgs):
-    out_imgs = list()
-    for i in range(num_imgs):
-        out_imgs.append(classify_image(it, new_imgs))
-    return out_imgs
+def read_img(it, new_image):
+    """Read image and visualize filterbanks."""
+
+    batch_size = 1
+    out = dict()
+    global last_image
+    if new_image or last_image is None:
+        last_image = random_count_image()
+    imgs, _, poss = last_image
+
+    # dims [10, 100] => [1, 10, 100]
+    imgs = np.expand_dims(imgs, axis=0)
+    poss = np.expand_dims(poss, axis=0)
+
+    feed_dict = { input_tensor: imgs, target_tensor: poss }
+
+    img = imgs[0][0]
+    flipped = np.flip(img.reshape(dims[0], dims[1]), 0)
+    out = {
+        "img": flipped,
+        "dots": list(),
+    }
+
+    load_checkpoint(it)
+    cs = sess.run(viz_data, feed_dict=feed_dict)
+
+    for i in range(len(cs)):
+        mu_x = list(cs[i]["mu_x"])
+        mu_y = list(cs[i]["mu_y"])
+        print("prediction (x, y): ", cs[i]["predict_x"], ", ", cs[i]["predict_y"])
+        out["dots"].append(list_to_dots(mu_x, mu_y))
+
+    return out
+
+
+def read_img2(it, new_image):
+    """Read image and visualize filterbanks."""
+
+    batch_size = 1
+    out = dict()
+    global last_image
+    if new_image or last_image is None:
+        last_image = random_count_image()
+    imgs, _, poss = last_image
+
+    # dims [10, 100] => [1, 10, 100]
+    imgs = np.expand_dims(imgs, axis=0)
+    poss = np.expand_dims(poss, axis=0)
+
+    feed_dict = { input_tensor: imgs, target_tensor: poss }
+
+    img = imgs[0][0]
+    flipped = np.flip(img.reshape(dims[0], dims[1]), 0)
+    out = {
+        "img": flipped,
+        "dots": list(),
+    }
+
+    load_checkpoint(it)
+    cs = sess.run(viz_data, feed_dict=feed_dict)
+
+    for i in range(len(cs)):
+        gx = list(cs[i]["gx"])
+        gy = list(cs[i]["gy"])
+        print("prediction (x, y): ", cs[i]["predict_x"], ", ", cs[i]["predict_y"])
+        out["dots"].append(list_to_dots(gx * 25, gy * 25))
+
+    return out
 
 
 def classify_imgs2(it, new_imgs, num_imgs):
@@ -228,5 +292,14 @@ def stats_to_rect(stats):
         minY = dims[1] - 1
 
     return dict(top=[int(minY)], bottom=[int(maxY)], left=[int(minX)], right=[int(maxX)])
+
+
+def list_to_dots(mu_x, mu_y):
+    """Draw filterbank based on mu_x and mu_y."""
+
+    mu_x_list = mu_x * read_n
+    mu_y_list = [val for val in mu_y for _ in range(0, read_n)]
+ 
+    return dict(mu_x_list=mu_x_list, mu_y_list=mu_y_list)
 
 print("analysis.py")
