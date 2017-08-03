@@ -10,8 +10,10 @@ from scipy import misc
 import time
 import sys
 #from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
+#from DRAMcopy13_rewrite_filterbank import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 #from DRAMcopy14 import convertTranslated, classifications, input_tensor, count_tensor, target_tensor, batch_size, glimpses, z_size, dims, read_n 
-from DRAMcopy15 import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
+#from DRAMcopy15 import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
+from DRAMtest import classification, classifications, x, batch_size, glimpses, z_size, dims, read_n
 #batch_size = 1
 import load_input
 import load_teacher
@@ -58,7 +60,9 @@ def random_image():
 
 
 def load_checkpoint(it, human=False):
-    path = "model_runs/max_delta"
+    #path = "model_runs/regimen"
+    #path = "model_runs/rewrite_filterbank"
+    path = "model_runs/DRAM_test_square"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 

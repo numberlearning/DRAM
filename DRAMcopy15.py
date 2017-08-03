@@ -245,30 +245,26 @@ rewards = list()
 train_ops = list()
 predict_x_list = list()
 target_x_list = list()
+testing = False
 
 while current_index < glimpses:
 
     target_x, target_y = tf.split(current_blob, num_or_size_splits=2, axis=1)
 
-    reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((predict_x - target_x)**2 + (predict_y - target_y)**2 - max_edge**2)/100)
+    # change reward so that multiple traces are rewarded
+    reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((tf.abs(predict_x - target_x) - max_edge/2)**2 + (tf.abs(predict_y - target_y)-max_edge)**2)/(dims[0]*dims[1]))
 
-    # Subtract max_edge before squaring!!!
-    # Max value could be 50.
-    #reward = tf.constant(1, shape=[77,1], dtype=tf.float32) - tf.nn.relu((tf.min((predict_x - target_x - max_edge / 2) ** 2, (predict_x - target_x + max_edge / 2)**2) + (predict_y - target_y)**2 - max_edge**2)/100)
-    
-
-
-
-    #reward = predict_x - predict_y
     predict_x_list.append(predict_x[0])
     target_x_list.append(target_x[0])
     rewards.append(reward)
  
     posquality = reward
     
-    #set current attn window center to current blob center and perform read
-    r, new_stats = read(input_tensor[:, current_index], h_dec_prev, target_x, target_y) # when testing, target_x and target_y are None
-    #r, new_stats = read(input_tensor[:, current_index], h_dec_prev, predict_x, predict_y)
+    if testing:
+        r, new_stats = read(input_tensor[:, current_index], h_dec_prev) # when testing, target_x and target_y are None
+    else:
+        #set current attn window center to current blob center and perform read
+        r, new_stats = read(input_tensor[:, current_index], h_dec_prev, target_x, target_y)
 
     h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
 
@@ -278,9 +274,6 @@ while current_index < glimpses:
     _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
     predict_x, predict_y  = attn_x, attn_y
     
-    #with tf.variable_scope("position", reuse=REUSE):
-    #    predict_x, predict_y = tf.split(linear(h_dec, 2), 2, 1)
-
     mu_x, mu_y, gx, gy, delta = new_stats
     stats = gx, gy, delta
     viz_data.append({
@@ -328,6 +321,7 @@ def binary_crossentropy(t,o):
 
 
 def evaluate():
+    testing = True
     data = load_teacher.Teacher()
     data.get_test(1)
     batches_in_epoch = len(data.explode_images) // batch_size
@@ -343,6 +337,7 @@ def evaluate():
     accuracy /= batches_in_epoch
 
     print("ACCURACY: " + str(accuracy))
+    testing = False
     return accuracy
 
 
