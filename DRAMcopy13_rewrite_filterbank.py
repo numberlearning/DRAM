@@ -58,7 +58,7 @@ pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 25 # read glimpse grid width/height
+read_n = 25 # odd number (>9) read glimpse grid width/height
 read_size = read_n*read_n
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -93,20 +93,20 @@ def filterbank(gx, gy, sigma2, delta, N):
     # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
    
     
-    mu_x = gx - tf.reduce_sum(delta[0][0:13])
-    for i in range(1,13):
-        mu_xx = gx - tf.reduce_sum(delta[0][i:13])
+    mu_x = gx - tf.reduce_sum(delta[0][0:N//2 + 1])
+    for i in range(1,N//2 + 1):
+        mu_xx = gx - tf.reduce_sum(delta[0][i:N//2 + 1])
         mu_x = tf.concat([mu_x, mu_xx], 1)
-    for i in range(13,25):
-        mu_xx = gx + tf.reduce_sum(delta[0][13:i+1])
+    for i in range(N//2 + 1,N):
+        mu_xx = gx + tf.reduce_sum(delta[0][N//2 + 1:i+1])
         mu_x = tf.concat([mu_x, mu_xx], 1)
     
-    mu_y = gy - tf.reduce_sum(delta[0][0:13])
-    for i in range(1,13):
-        mu_yy = gy - tf.reduce_sum(delta[0][i:13])
+    mu_y = gy - tf.reduce_sum(delta[0][0:N//2 + 1])
+    for i in range(1,N//2 + 1):
+        mu_yy = gy - tf.reduce_sum(delta[0][i:N//2 + 1])
         mu_y = tf.concat([mu_y, mu_yy], 1)
-    for i in range(13,25):
-        mu_yy = gy + tf.reduce_sum(delta[0][13:i+1])
+    for i in range(N//2 + 1,N):
+        mu_yy = gy + tf.reduce_sum(delta[0][N//2 + 1:i+1])
         mu_y = tf.concat([mu_y, mu_yy], 1)
     
     a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[0]
@@ -138,29 +138,29 @@ def attn_window(scope,h_dec,N, glimpse):
     #  delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
     dis0=max(dims[0],dims[1])/12
     dis1=linspace(-1,1,9)
-    dis2=zeros(8)
-    dis3=zeros(8)
-    for i in range(1,9):
-        dis2[i-1] = -pow(1.25,9-i)
-    for i in range(1,9):
+    dis2=zeros((N-9)//2)
+    dis3=zeros((N-9)//2)
+    for i in range(1,(N-9)//2+1):
+        dis2[i-1] = -pow(1.25,(N-9)//2+1-i)
+    for i in range(1,(N-9)//2+1):
         dis3[i-1] = pow(1.25,i)
     
     dis=np.append(np.append(dis2,dis1),dis3)*dis0
     
-    delta=zeros(25)
-    for j  in range(1,13):
+    delta=zeros(N)
+    for j  in range(1,N//2 + 1):
         delta[j-1]=dis[j]-dis[j-1]
-    delta[12]=0
-    for j in range(13,25):
+    delta[N//2]=0
+    for j in range(N//2 + 1, N):
         delta[j]=dis[j]-dis[j-1]
     
     tdelta=tf.reshape(tf.cast(tf.convert_to_tensor(delta), tf.float32), [1, -1])
     delta=tdelta*tf.exp(log_delta) # batch_size x N
     
     sigma2=delta*delta/4 # sigma=delta/2
-    ss=tf.cast(tf.convert_to_tensor(zeros(12)), tf.float32)
+    ss=tf.cast(tf.convert_to_tensor(zeros(N//2)), tf.float32)
     ss=tf.reshape([ss]*batch_size, [batch_size, -1])
-    smin=tf.reshape(tf.reduce_min(sigma2[:,0:12], 1), [-1, 1])
+    smin=tf.reshape(tf.reduce_min(sigma2[:,0:N//2], 1), [-1, 1])
     ss_=tf.concat([tf.concat([ss,smin/2],1),ss],1)
     sigma2=sigma2+ss_  # batch_size x N
 
