@@ -54,7 +54,7 @@ pretrain = str2bool(sys.argv[11]) #False
 classify = str2bool(sys.argv[12]) #True
 pretrain_restore = False
 translated = str2bool(sys.argv[13])
-dims = [10, 10]
+dims = [40, 200]#[10, 10]
 img_size = dims[1]*dims[0] # canvas size
 read_n = 10 # read glimpse grid width/height
 read_size = read_n*read_n
@@ -243,31 +243,23 @@ current_blob = target_tensor[:, current_index]
 trace_length = tf.size(target_tensor[0])
 rewards = list()
 train_ops = list()
-#relus = list()
 predict_x_list = list()
 target_x_list = list()
 
 while current_index < glimpses:
 
-    #with tf.variable_scope("target", reuse=REUSE):
-    #    target_x = tf.expand_dims(target_tensor[:, 0, 0], 1)
-
-        #target_x = tf.reshape(current_blob[:, 0], [77, 1])
     target_x, target_y = tf.split(current_blob, num_or_size_splits=2, axis=1)
-    #target_y = tf.reshape(current_blob[:, 1], [77, 1])
 
     reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((predict_x - target_x)**2 + (predict_y - target_y)**2 - max_edge**2)/100)
     #reward = predict_x - predict_y
     predict_x_list.append(predict_x[0])
     target_x_list.append(target_x[0])
-#    relus.append(tf.nn.relu(((predict_x-target_x)**2 + (predict_y-target_y)**2 - max_edge**2)100))
-    #print(reward)
     rewards.append(reward)
  
     posquality = reward
     
     #set current attn window center to current blob center and perform read
-    r, new_stats = read(input_tensor[:, current_index], h_dec_prev, target_x, target_y)
+    r, new_stats = read(input_tensor[:, current_index], h_dec_prev, target_x, target_y) # when testing, target_x and target_y are None
     #r, new_stats = read(input_tensor[:, current_index], h_dec_prev, predict_x, predict_y)
 
     h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
@@ -275,20 +267,17 @@ while current_index < glimpses:
     with tf.variable_scope("z", reuse=REUSE):
         z = linear(h_enc, z_size)
     h_dec, dec_state = decode(z, dec_state)
-    h_dec_prev = h_dec
-    _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
-    #r1, new_stats1 = read(input_tensor[:, current_index], h_dec_prev)
-    #_, _, _, gx, gy, _, = new_stats1
+    #_, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
     
     with tf.variable_scope("position", reuse=REUSE):
-        #predict_x, predict_y  = tf.split(linear(hidden, 2), 2, 1)
-        predict_x, predict_y  = attn_x, attn_y
+        predict_x, predict_y = tf.split(linear(h_dec, 2), 2, 1)
+        #predict_x, predict_y  = attn_x, attn_y
 
         mu_x, mu_y, gx, gy, delta = new_stats
         stats = gx, gy, delta
         viz_data.append({
-            #"r": r,
-            #"h_dec": h_dec,
+            "r": r,
+            "h_dec": h_dec,
             "predict_x": predict_x,
             "predict_y": predict_y,
             "stats": stats,
@@ -299,6 +288,8 @@ while current_index < glimpses:
     predcost = -posquality
 
     ## OPTIMIZER #################################################
+    #why can't we use the same optimizer at all the glimpses? 
+    #with tf.variable_scope("optimizer", reuse=REUSE):
     with tf.variable_scope("optimizer" + str(current_index), reuse=None):
         optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
         grads = optimizer.compute_gradients(predcost)
@@ -314,6 +305,7 @@ while current_index < glimpses:
         current_blob = target_tensor[:,current_index]
 
     REUSE=True
+    h_dec_prev = h_dec
 
 avg_reward = tf.reduce_mean(rewards)
 #one_reward = tf.reshape(rewards[0][0], [1])
@@ -372,6 +364,12 @@ if __name__ == '__main__':
     for i in range(start_restore_index, train_iters):
         xtrain, _, _, explode_counts, ytrain = train_data.next_explode_batch(batch_size)
         #feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
+        print("len of xtrain: ")
+        print(len(xtrain))
+
+        print("len of ytrain: ")
+        print(len(ytrain))
+
         feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
         results = sess.run(fetches2, feed_dict=feed_dict) 
         #reward_fetched, _, relu_fetched, prex, tarx, _ = results

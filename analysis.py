@@ -58,7 +58,7 @@ def random_image():
 
 
 def load_checkpoint(it, human=False):
-    path = "model_runs/attn_window_positions"
+    path = "model_runs/max_delta"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 

@@ -1,9 +1,12 @@
 import numpy as np
 import matplotlib as mpl
-import trace_data
+#import trace_data
+import trace_data_new as trace_data
 
 mpl.use('Agg')
 import matplotlib.pyplot as plt
+
+z_size = 15
 
 
 class Teacher(object):
@@ -34,7 +37,8 @@ class Teacher(object):
     def get_train(self, even=None):
         """Generate and get train images and traces."""
 
-        self.images, self.labels, self.traces = trace_data.get_my_teacher()
+        #self.images, self.labels, self.traces = trace_data.get_my_teacher()
+        _, self.images, self.labels, self.traces, _ = trace_data.get_my_teacher()
         #print(self.labels)
         self.length = len(self.images)
         self.create_teacher()
@@ -133,7 +137,6 @@ class Teacher(object):
         """Create target tensor with fixation positions at each timestep."""
 
         #words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-        z_size = 9
 
         #print("self.length: ", self.length)
         for i, image in enumerate(self.images):

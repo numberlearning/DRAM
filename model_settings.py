@@ -1,9 +1,11 @@
 #e.g. 5, 5, 0, 9
-#1, 1, 1, 9 for load_teacher
+#1, 1, 1, 9 or 15 for load_teacher
+# 9 for trace_data
+# 15 for trace_data_new
 min_edge = 1
 max_edge = 1
 min_blobs = 1
-max_blobs = 9
+max_blobs = 15
 
 learning_rate = 1e-3
 
@@ -18,4 +20,4 @@ glimpses = max_blobs + 1#11
 batch_size = 77#100#77
 
 #change this whenever DRAM is run (before running nohup, make sure to make a directory in model_runs)
-model_name = "max_delta"
+model_name = "regimen"
