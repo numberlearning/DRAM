@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 
 #np.set_printoptions(threshold=np.nan)
 
+"""
+This program outputs 40x200 images with traces.
+"""
 
 def get_my_teacher():
     min_edge = 7
