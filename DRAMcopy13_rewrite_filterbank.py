@@ -58,7 +58,7 @@ pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 25 # odd number (>9) read glimpse grid width/height
+read_n = 37  # odd number (>9) read glimpse grid width/height
 read_size = read_n*read_n
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -93,21 +93,22 @@ def filterbank(gx, gy, sigma2, delta, N):
     # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
    
     
-    mu_x = gx - tf.reduce_sum(delta[0][0:N//2 + 1])
+    mu_x = gx - tf.reshape(tf.reduce_sum(delta[:,0:N//2 + 1],1),[batch_size,1])
     for i in range(1,N//2 + 1):
-        mu_xx = gx - tf.reduce_sum(delta[0][i:N//2 + 1])
+        mu_xx = gx - tf.reshape(tf.reduce_sum(delta[:,i:N//2 + 1],1),[batch_size,1])
         mu_x = tf.concat([mu_x, mu_xx], 1)
     for i in range(N//2 + 1,N):
-        mu_xx = gx + tf.reduce_sum(delta[0][N//2 + 1:i+1])
+        mu_xx = gx + tf.reshape(tf.reduce_sum(delta[:,N//2 + 1:i+1],1),[batch_size,1])
         mu_x = tf.concat([mu_x, mu_xx], 1)
     
-    mu_y = gy - tf.reduce_sum(delta[0][0:N//2 + 1])
+    mu_y = gy - tf.reshape(tf.reduce_sum(delta[:,0:N//2 + 1],1),[batch_size,1])
     for i in range(1,N//2 + 1):
-        mu_yy = gy - tf.reduce_sum(delta[0][i:N//2 + 1])
+        mu_yy = gy - tf.reshape(tf.reduce_sum(delta[:,i:N//2 + 1],1),[batch_size,1])
         mu_y = tf.concat([mu_y, mu_yy], 1)
     for i in range(N//2 + 1,N):
-        mu_yy = gy + tf.reduce_sum(delta[0][N//2 + 1:i+1])
+        mu_yy = gy + tf.reshape(tf.reduce_sum(delta[:,N//2 + 1:i+1],1),[batch_size,1])
         mu_y = tf.concat([mu_y, mu_yy], 1)
+    
     
     a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[0]
     b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[1] 
