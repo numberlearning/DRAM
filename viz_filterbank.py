@@ -23,8 +23,8 @@ from analysis import read_img, read_img2, glimpses, read_n
 clear_output()
 b = Button(description="Loading...", icon="arrow", width=400)
 dropdown = Dropdown(
-    options=['0', '1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '9000', '10000', '11000', '12000', '13000', '14000', '15000', '16000', '17000', '18000', '19000', '20000', '21000', '22000', '23000', '24000', '25000', '26000', '27000', '28000', '29000', '30000', '31000', '32000', '33000', '34000', '35000', '36000', '37000', '38000', '39000'],
-    value='2000',
+    options=['0', '1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '9000', '10000', '11000', '12000', '13000', '14000', '15000', '16000', '17000', '18000', '19000', '20000', '21000', '22000', '23000', '24000', '25000', '26000', '27000', '28000', '29000', '30000', '31000', '32000', '33000', '34000', '35000', '36000', '37000', '38000', '39000', '40000', '41000', '42000', '43000'],
+    value='18000',
     description='Iteration:'
 )
 
@@ -44,26 +44,56 @@ def make_figure(color, i):
     color: attention window color
     i: glimpse number
     """
+    img_width = 200
+    img_height = 40
 
-    w = 28
     name = "Draw"
     title = "%s Glimpse %d" % (name, (i + 1))
-    p = figure(x_range=(0, w), y_range=(w, 0), width=200, height=200, tools="", title=title, background_fill_color="#111111")
+    # change the width and height for different input image dimensions!
+    p = figure(x_range=(0, img_width), y_range=(img_height, 0), width=200, height=70, tools="", title=title, background_fill_color="#111111")
     
     p.toolbar.logo = None
     p.toolbar_location = None
     p.axis.visible = False
     p.border_fill_color = "#111111"
     p.title.text_color = "#DDDDDD"
-    im = np.zeros((w, w))
+    im = np.zeros((img_height, img_width))
     i_source = ColumnDataSource(data=dict(image=[im]))
 
-    iii = p.image(image=[im], x=0, y=w, dw=w, dh=w, palette="Greys256")#"Spectral9")#"Greys256")
+    iii = p.image(image=[im], x=0, y=img_height, dw=img_width, dh=img_height, palette="Greys256")#"Spectral9")#"Greys256")
 
     dots_source = ColumnDataSource(data=dict(mu_x_list=[0]*625, mu_y_list=[0]*625))
     d = p.circle("mu_x_list", "mu_y_list", source=dots_source, size=5, color="orange", alpha=0.5)
-
-
+        
+    callback = CustomJS(code="""
+    console.log(cb_data);
+    if (IPython.notebook.kernel !== undefined) {
+        var kernel = IPython.notebook.kernel;
+        var i = %d;
+        if (!this.hovered) {
+            cmd = "hover(" + i + ")";
+            kernel.execute(cmd, {}, {});
+            this.hovered = true;
+        }
+        
+        var that = this;
+        
+        
+        document.querySelectorAll(".bk-plot-layout.bk-layout-fixed").forEach(function(x) {
+            x.onmouseleave = function() {
+                if (!that.hovered) {
+                    return;
+                }
+                that.hovered = false;
+                cmd = "unhover(" + i + ")";
+                kernel.execute(cmd, {}, {});
+            }
+        })
+        
+    }
+    """ % i)
+    p.add_tools(HoverTool(tooltips=None, callback=callback, renderers=[iii, d]))
+ 
     return p, iii, d;
 
 
@@ -76,6 +106,35 @@ for i in range(glimpses):
         
 data = None
     
+
+def hover(i):
+    """
+    Show attention window image when figure is hovered over.
+    i: glimpse number
+    ids: list of images and filterbanks
+    """
+    ids[i][0].data_source.data["image"][0] = data["rs"][i]
+    ids[i][1].data_source.data = dict(mu_x_list=[0]*625, mu_y_list=[0]*625)
+    push_notebook(handle=handle)
+
+
+def unhover(i):
+    """
+    Show figure image when figure is unhovered.
+    i: glimpse number
+    ids: list of images and filterbanks 
+    """
+    ids[i][0].data_source.data["image"][0] = data["img"]
+
+    if action_dropdown.value is 'filters':
+        ids[i][1].data_source.data = data["dots"][i]
+
+    if action_dropdown.value is 'center':
+        ids[i][1].data_source.data = data["dot"][i]
+
+    push_notebook(handle=handle)
+    
+     
     
 def update_figures(handle, new_image=True):
     """Display figures at new iteration number."""
@@ -84,22 +143,18 @@ def update_figures(handle, new_image=True):
     data = read_img(int(dropdown.value), new_image)
 
     if action_dropdown.value is 'filters':
-
         for i, f in enumerate(figures):
             picture = f
             picture_i, picture_d = ids[i]
             picture_i.data_source.data["image"][0] = data["img"]
-            #print(data["dots"][i]['mu_x_list'])
             picture_d.data_source.data = data["dots"][i]
 
     if action_dropdown.value is 'center':
-
         for i, f in enumerate(figures):
             picture = f
             picture_i, picture_d = ids[i]
             picture_i.data_source.data["image"][0] = data["img"]
-            #print(data["dots"][i]['mu_x_list'])
-            picture_d.data_source.data = data["dots"][i]
+            picture_d.data_source.data = data["dot"][i]
 
     push_notebook(handle=handle)
     
