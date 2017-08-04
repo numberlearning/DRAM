@@ -239,7 +239,7 @@ with tf.variable_scope("starting_point", reuse=None):
     predict_x, predict_y = tf.split(linear(input_tensor[:, 0], 2), 2, 1)
 
 current_index = 0
-current_blob = target_tensor[:, current_index]
+current_blob_position = target_tensor[:, current_index]
 trace_length = tf.size(target_tensor[0])
 rewards = list()
 train_ops = list()
@@ -249,7 +249,7 @@ testing = False
 
 while current_index < glimpses:
 
-    target_x, target_y = tf.split(current_blob, num_or_size_splits=2, axis=1)
+    target_x, target_y = tf.split(current_blob_position, num_or_size_splits=2, axis=1)
 
     # change reward so that multiple traces are rewarded
     reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((tf.abs(predict_x - target_x) - max_edge/2)**2 + (tf.abs(predict_y - target_y)-max_edge)**2)/(dims[0]*dims[1]))
@@ -275,15 +275,18 @@ while current_index < glimpses:
     predict_x, predict_y  = attn_x, attn_y
     
     mu_x, mu_y, gx, gy, delta = new_stats
+    #print(tf.equal(gx, target_x))
     stats = gx, gy, delta
     viz_data.append({
         "r": r,
         "h_dec": h_dec,
         "predict_x": predict_x,
         "predict_y": predict_y,
+        "gx": gx,
+        "gy": gy,
         "stats": stats,
         "mu_x": tf.squeeze(mu_x, 2)[0], # batch_size x N
-        "mu_y": tf.squeeze(mu_x, 2)[0],
+        "mu_y": tf.squeeze(mu_y, 2)[0],
     })
 
     predcost = -posquality
@@ -303,7 +306,7 @@ while current_index < glimpses:
  
     current_index = current_index + 1
     if current_index < glimpses:
-        current_blob = target_tensor[:,current_index]
+        current_blob_position = target_tensor[:,current_index]
 
     REUSE=True
     h_dec_prev = h_dec

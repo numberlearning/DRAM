@@ -29,7 +29,7 @@ dropdown = Dropdown(
 )
 
 action_dropdown = Dropdown(
-    options=['filters', 'center'],
+    options=['filters', 'center', 'prediction'],
     value='filters',
     description='Action:'
 )
@@ -50,7 +50,7 @@ def make_figure(color, i):
     name = "Draw"
     title = "%s Glimpse %d" % (name, (i + 1))
     # change the width and height for different input image dimensions!
-    p = figure(x_range=(0, img_width), y_range=(img_height, 0), width=200, height=70, tools="", title=title, background_fill_color="#111111")
+    p = figure(x_range=(0, img_width), y_range=(img_height, 0), width=500, height=150, tools="", title=title, background_fill_color="#111111")
     
     p.toolbar.logo = None
     p.toolbar_location = None
@@ -126,10 +126,10 @@ def unhover(i):
     """
     ids[i][0].data_source.data["image"][0] = data["img"]
 
-    if action_dropdown.value is 'filters':
+    if action_dropdown.value is 'filters' or action_dropdown.value is 'center':
         ids[i][1].data_source.data = data["dots"][i]
 
-    if action_dropdown.value is 'center':
+    if action_dropdown.value is 'prediction':
         ids[i][1].data_source.data = data["dot"][i]
 
     push_notebook(handle=handle)
@@ -140,9 +140,9 @@ def update_figures(handle, new_image=True):
     """Display figures at new iteration number."""
 
     global data
-    data = read_img(int(dropdown.value), new_image)
 
     if action_dropdown.value is 'filters':
+        data = read_img(int(dropdown.value), new_image)
         for i, f in enumerate(figures):
             picture = f
             picture_i, picture_d = ids[i]
@@ -150,11 +150,22 @@ def update_figures(handle, new_image=True):
             picture_d.data_source.data = data["dots"][i]
 
     if action_dropdown.value is 'center':
+        data = read_img2(int(dropdown.value), new_image)
+        for i, f in enumerate(figures):
+            picture = f
+            picture_i, picture_d = ids[i]
+            picture_i.data_source.data["image"][0] = data["img"]
+            picture_d.data_source.data = data["dots"][i]
+
+    if action_dropdown.value is 'prediction':
+        data = read_img(int(dropdown.value), new_image)
         for i, f in enumerate(figures):
             picture = f
             picture_i, picture_d = ids[i]
             picture_i.data_source.data["image"][0] = data["img"]
             picture_d.data_source.data = data["dot"][i]
+
+
 
     push_notebook(handle=handle)
     
@@ -179,5 +190,5 @@ def on_change(change):
 dropdown.observe(on_change)
 action_dropdown.observe(on_change)
 display(HBox([b, dropdown, action_dropdown]))
-handle = show(row(figures), notebook_handle=True)
+handle = show(column(figures), notebook_handle=True)
 on_click(b)

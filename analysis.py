@@ -12,8 +12,8 @@ import sys
 #from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 #from DRAMcopy13_rewrite_filterbank import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 #from DRAMcopy14 import convertTranslated, classifications, input_tensor, count_tensor, target_tensor, batch_size, glimpses, z_size, dims, read_n 
-from DRAMcopy15 import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
-#from DRAMtest import classification, classifications, x, batch_size, glimpses, z_size, dims, read_n
+from DRAM_move_attn import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
+#from DRAM_classify_blobs import classification, classifications, x, batch_size, glimpses, z_size, dims, read_n
 #batch_size = 1
 import load_input
 import load_teacher
@@ -81,6 +81,7 @@ def read_img(it, new_image):
     imgs = np.expand_dims(imgs, axis=0)
     poss = np.expand_dims(poss, axis=0)
 
+    #feed_dict = { input_tensor: imgs } # testing doesn't work yet :(
     feed_dict = { input_tensor: imgs, target_tensor: poss }
 
     img = imgs[0][0]
@@ -133,10 +134,10 @@ def read_img2(it, new_image):
     cs = sess.run(viz_data, feed_dict=feed_dict)
 
     for i in range(len(cs)):
-        gx = list(cs[i]["gx"])
-        gy = list(cs[i]["gy"])
-        print("prediction (x, y): ", cs[i]["predict_x"], ", ", cs[i]["predict_y"])
-        out["dots"].append(list_to_dots(gx * 25, gy * 25))
+        gx = list(cs[i]["gx"])[0]
+        gy = list(cs[i]["gy"])[0]
+        print("gx: ", cs[i]["gx"], ", gy: ", cs[i]["gy"])
+        out["dots"].append(dict(mu_x_list=gx, mu_y_list=gy))
 
     return out
 
