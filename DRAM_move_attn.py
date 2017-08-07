@@ -246,13 +246,22 @@ train_ops = list()
 predict_x_list = list()
 target_x_list = list()
 testing = False
+#testing = True
 
 while current_index < glimpses:
 
     target_x, target_y = tf.split(current_blob_position, num_or_size_splits=2, axis=1)
 
     # change reward so that multiple traces are rewarded
-    reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((tf.abs(predict_x - target_x) - max_edge/2)**2 + (tf.abs(predict_y - target_y)-max_edge)**2)/(dims[0]*dims[1]))
+    #reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((tf.abs(predict_x - target_x) - max_edge/2)**2 + (tf.abs(predict_y - target_y)-max_edge)**2)/(dims[0]*dims[1]))
+
+    # new reward 
+    in_blob_x = tf.logical_and(tf.less(target_x - max_edge/2, predict_x), tf.less(predict_x, target_x + max_edge/2))
+    in_blob_y = tf.logical_and(tf.less(target_y - max_edge/2, predict_y), tf.less(predict_y, target_y + max_edge/2))
+    in_blob = tf.logical_and(in_blob_x, in_blob_y)
+    intensity = (predict_x - target_x)**2 + (predict_y - target_y)**2
+    reward = tf.where(in_blob, 200 - intensity, -200 - intensity)
+    #reward = tf.cond(in_blob, lambda: tf.nn.relu((predict_x - target_x)**2 + (predict_y - target_y)**2 - (max_edge/2)**2),  lambda: -200-tf.nn.relu((predict_x - target_x)**2 + (predict_y - target_y)**2 - (max_edge/2)**2))
 
     predict_x_list.append(predict_x[0])
     target_x_list.append(target_x[0])
