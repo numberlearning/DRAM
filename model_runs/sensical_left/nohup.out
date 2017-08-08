@@ -4623,3 +4623,36 @@ Target x average: 56.000000
 iter=139200 : Reward: -50.707367
 Predict x average: 73.469635
 Target x average: 73.800003
+iter=139300 : Reward: -38.268559
+Predict x average: 46.671967
+Target x average: 46.000000
+iter=139400 : Reward: -51.599483
+Predict x average: 73.309357
+Target x average: 79.599998
+iter=139500 : Reward: -38.029556
+Predict x average: 77.160454
+Target x average: 76.199997
+iter=139600 : Reward: -38.492073
+Predict x average: 72.137215
+Target x average: 69.000000
+iter=139700 : Reward: -26.741426
+Predict x average: 69.870758
+Target x average: 68.800003
+iter=139800 : Reward: -37.876404
+Predict x average: 59.777012
+Target x average: 58.800003
+iter=139900 : Reward: -37.247368
+Predict x average: 67.658844
+Target x average: 66.599998
+iter=140000 : Reward: -29.192432
+Predict x average: 47.773392
+Target x average: 48.000000
+ACCURACY: -28.3268303011
+Model saved in file: model_runs/sensical_left/classifymodel_140000.ckpt
+--- 9810.267726999991 CPU seconds ---
+iter=140100 : Reward: -54.369076
+Predict x average: 83.080406
+Target x average: 85.199997
+iter=140200 : Reward: -26.520313
+Predict x average: 73.365250
+Target x average: 66.400002

@@ -5,8 +5,8 @@ do
     MODELNAME="DRAM_classify_blobs_run_${i}"
     echo "model_name = '$MODELNAME'" >> model_settings.py
 
-    #mkdir "model_runs/$MODELNAME"
-    #nohup python3 -u DRAM_classify_blobs.py > "model_runs/$MODELNAME/nohup.out&"
+    mkdir "model_runs/$MODELNAME"
+    nohup python3 -u DRAM_classify_blobs.py > "model_runs/$MODELNAME/nohup.out&"
 done
 
 ls -lah  
