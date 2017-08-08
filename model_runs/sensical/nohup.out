@@ -1,0 +1,41 @@
+['DRAM_move_attn.py', 'true', 'true', 'true', 'true', 'true', 'true', 'model_runs/sensical/classify_log.csv', 'model_runs/sensical/classifymodel_0.ckpt', 'model_runs/sensical/classifymodel_', 'model_runs/sensical/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+2017-08-07 17:27:24.051304: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-07 17:27:24.051336: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-07 17:27:24.051340: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-07 17:27:24.051342: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-07 17:27:24.051345: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-07 17:27:24.163752: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-07 17:27:24.164172: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 6.17GiB
+2017-08-07 17:27:24.164315: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x7acf570
+2017-08-07 17:27:24.281347: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-07 17:27:24.281701: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 6.83GiB
+2017-08-07 17:27:24.281861: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-08-07 17:27:24.281869: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-08-07 17:27:24.281873: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-08-07 17:27:24.281880: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-08-07 17:27:24.281885: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: -1919.270508
+Predict x average: 37.455299
+Target x average: 62.199997
+ACCURACY: -1634.76119964
+Model saved in file: model_runs/sensical/classifymodel_0.ckpt
+--- 3.4411939999999994 CPU seconds ---
+iter=100 : Reward: -792.876709
+Predict x average: 47.943932
+Target x average: 45.200001
+iter=200 : Reward: -681.457153
+Predict x average: 57.700237
+Target x average: 35.200001
+iter=300 : Reward: -642.716003
+Predict x average: 62.015442
+Target x average: 83.199997

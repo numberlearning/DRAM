@@ -6,6 +6,7 @@ warnings.filterwarnings('ignore')
 import tensorflow as tf
 #from tensorflow.examples.tutorials import mnist
 import numpy as np
+from numpy import *
 import os
 import random
 from scipy import misc

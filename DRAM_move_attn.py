@@ -127,15 +127,30 @@ def attn_window(scope,h_dec,N, predx=None, predy=None, DO_SHARE=False):
         gx=tf.reshape(predx, [batch_size, 1])
         gy=tf.reshape(predy, [batch_size, 1])
 
+    # Bound delta, and thus sigma
     #  sigma2=tf.exp(log_sigma2)
     delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-
-    max_deltas = np.array([5]) # batch_size x 1, where 5 is the max delta
+    max_deltas = np.array([7]) # batch_size x 1, where 5 is the max delta
     tmax_deltas = tf.convert_to_tensor(max_deltas, dtype=tf.float32)
-
     delta = tf.minimum(delta, tmax_deltas)
-
     sigma2=delta*delta/4 # sigma=delta/2
+
+    # Bound gx and gy inside image
+    max_gx = np.array([dims[1]])
+    min_gx = np.array([0])
+    tmax_gx = tf.convert_to_tensor(max_gx, dtype=tf.float32)
+    tmin_gx = tf.convert_to_tensor(min_gx, dtype=tf.float32)
+    gx = tf.minimum(gx, tmax_gx)
+    gx = tf.maximum(gx, tmin_gx)
+
+    max_gy = np.array([dims[0]])
+    min_gy = np.array([0])
+    tmax_gy = tf.convert_to_tensor(max_gy, dtype=tf.float32)
+    tmin_gy = tf.convert_to_tensor(min_gy, dtype=tf.float32)
+    gy = tf.minimum(gy, tmax_gy)
+    gy = tf.maximum(gy, tmin_gy)
+
+
 
     #delta_list[glimpse] = delta
     #sigma_list[glimpse] = sigma2
@@ -235,12 +250,13 @@ viz_data = list()
 #delta_list = [0] * glimpses
 
 #Using w and b to predict the starting point
-with tf.variable_scope("starting_point", reuse=None):
-    predict_x, predict_y = tf.split(linear(input_tensor[:, 0], 2), 2, 1)
+#with tf.variable_scope("starting_point", reuse=None):
+#    predict_x, predict_y = tf.split(linear(input_tensor[:, 0], 2), 2, 1)
 
-current_index = 0
-current_blob_position = target_tensor[:, current_index]
-trace_length = tf.size(target_tensor[0])
+current_blob = target_tensor[:, 0]
+current_x, current_y = tf.split(current_blob, num_or_size_splits=2, axis=1)
+next_index = 1
+next_blob_position = target_tensor[:, next_index]
 rewards = list()
 train_ops = list()
 predict_x_list = list()
@@ -248,9 +264,24 @@ target_x_list = list()
 testing = False
 #testing = True
 
-while current_index < glimpses:
+while next_index < glimpses:
 
-    target_x, target_y = tf.split(current_blob_position, num_or_size_splits=2, axis=1)
+    target_x, target_y = tf.split(next_blob_position, num_or_size_splits=2, axis=1)
+
+    if testing:
+        r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev) # when testing, target_x and target_y are None
+    else:            
+        #set current attn window center to current blob center and perform read
+        r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev, current_x, current_y)
+
+    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
+
+    with tf.variable_scope("z", reuse=REUSE):
+        z = linear(h_enc, z_size)
+    h_dec, dec_state = decode(z, dec_state)
+    _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
+    predict_x, predict_y  = attn_x, attn_y
+
 
     # change reward so that multiple traces are rewarded
     #reward = tf.constant(1, shape=[77,1], dtype=tf.float32)  - tf.nn.relu(((tf.abs(predict_x - target_x) - max_edge/2)**2 + (tf.abs(predict_y - target_y)-max_edge)**2)/(dims[0]*dims[1]))
@@ -263,25 +294,12 @@ while current_index < glimpses:
     reward = tf.where(in_blob, 200 - intensity, -200 - intensity)
     #reward = tf.cond(in_blob, lambda: tf.nn.relu((predict_x - target_x)**2 + (predict_y - target_y)**2 - (max_edge/2)**2),  lambda: -200-tf.nn.relu((predict_x - target_x)**2 + (predict_y - target_y)**2 - (max_edge/2)**2))
 
+
     predict_x_list.append(predict_x[0])
     target_x_list.append(target_x[0])
     rewards.append(reward)
  
     posquality = reward
-    
-    if testing:
-        r, new_stats = read(input_tensor[:, current_index], h_dec_prev) # when testing, target_x and target_y are None
-    else:
-        #set current attn window center to current blob center and perform read
-        r, new_stats = read(input_tensor[:, current_index], h_dec_prev, target_x, target_y)
-
-    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
-
-    with tf.variable_scope("z", reuse=REUSE):
-        z = linear(h_enc, z_size)
-    h_dec, dec_state = decode(z, dec_state)
-    _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
-    predict_x, predict_y  = attn_x, attn_y
     
     mu_x, mu_y, gx, gy, delta = new_stats
     #print(tf.equal(gx, target_x))
@@ -303,7 +321,7 @@ while current_index < glimpses:
     ## OPTIMIZER #################################################
     #why can't we use the same optimizer at all the glimpses? 
     #with tf.variable_scope("optimizer", reuse=REUSE):
-    with tf.variable_scope("optimizer" + str(current_index), reuse=None):
+    with tf.variable_scope("optimizer" + str(next_index), reuse=None):
         optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
         grads = optimizer.compute_gradients(predcost)
 
@@ -313,9 +331,11 @@ while current_index < glimpses:
         train_op = optimizer.apply_gradients(grads)
         train_ops.append(train_op)
  
-    current_index = current_index + 1
-    if current_index < glimpses:
-        current_blob_position = target_tensor[:,current_index]
+    next_index = next_index + 1
+    if next_index < glimpses:
+        current_x = target_x
+        current_y = target_y
+        next_blob_position = target_tensor[:,next_index]
 
     REUSE=True
     h_dec_prev = h_dec
