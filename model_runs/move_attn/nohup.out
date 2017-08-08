@@ -6385,3 +6385,9 @@ Target x average: 34.312500
 iter=193200 : Reward: -0.375194
 Predict x average: -5.868597
 Target x average: 23.312500
+iter=193300 : Reward: -0.670652
+Predict x average: 53.753849
+Target x average: 75.437500
+iter=193400 : Reward: -0.967905
+Predict x average: 83.958656
+Target x average: 81.250000
