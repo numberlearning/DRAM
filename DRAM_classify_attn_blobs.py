@@ -6,7 +6,6 @@ warnings.filterwarnings('ignore')
 import tensorflow as tf
 from tensorflow.examples.tutorials import mnist
 import numpy as np
-from numpy import *
 import os
 import random
 from scipy import misc
@@ -58,7 +57,7 @@ pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 25  # odd number (>9) read glimpse grid width/height
+read_n = 10 # read glimpse grid width/height
 read_size = read_n*read_n
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -87,37 +86,19 @@ def linear(x,output_dim):
     return tf.matmul(x,w)+b
 
 
-def filterbank(gx, gy, sigma2, delta, N):
-    # grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
-    # mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
-    # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
-   
-    
-    mu_x = gx - tf.reshape(tf.reduce_sum(delta[:,0:N//2 + 1],1),[batch_size,1])
-    for i in range(1,N//2 + 1):
-        mu_xx = gx - tf.reshape(tf.reduce_sum(delta[:,i:N//2 + 1],1),[batch_size,1])
-        mu_x = tf.concat([mu_x, mu_xx], 1)
-    for i in range(N//2 + 1,N):
-        mu_xx = gx + tf.reshape(tf.reduce_sum(delta[:,N//2 + 1:i+1],1),[batch_size,1])
-        mu_x = tf.concat([mu_x, mu_xx], 1)
-    
-    mu_y = gy - tf.reshape(tf.reduce_sum(delta[:,0:N//2 + 1],1),[batch_size,1])
-    for i in range(1,N//2 + 1):
-        mu_yy = gy - tf.reshape(tf.reduce_sum(delta[:,i:N//2 + 1],1),[batch_size,1])
-        mu_y = tf.concat([mu_y, mu_yy], 1)
-    for i in range(N//2 + 1,N):
-        mu_yy = gy + tf.reshape(tf.reduce_sum(delta[:,N//2 + 1:i+1],1),[batch_size,1])
-        mu_y = tf.concat([mu_y, mu_yy], 1)
-    
-    
-    a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[0]
-    b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[1] 
+def filterbank(gx, gy, sigma2,delta, N):
+    grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
+    mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
+    mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
 
-    mu_x = tf.reshape(mu_x, [-1, N, 1]) # batch_size x N x 1
+    a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1])
+    b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1])
+
+    mu_x = tf.reshape(mu_x, [-1, N, 1])
     mu_y = tf.reshape(mu_y, [-1, N, 1])
-    sigma2 = tf.reshape(sigma2, [-1, N, 1]) # batch_size x N x 1
-    Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # batch_size x N x dims[0]
-    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch_size x N x dims[1]
+    sigma2 = tf.reshape(sigma2, [-1, 1, 1])
+    Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # 2*sigma2?
+    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch x N x B
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
@@ -126,61 +107,35 @@ def filterbank(gx, gy, sigma2, delta, N):
 
 def attn_window(scope,h_dec,N, glimpse):
     with tf.variable_scope(scope,reuse=REUSE):
-        params=linear(h_dec,4) # batch_size x 4
-    gx_,gy_,log_delta,log_gamma=tf.split(params, 4, 1) # batch_size x 1
-    
-    gx=(dims[0]+1)/2*(gx_+1) # batch_size x 1
+        params=linear(h_dec,5)
+    gx_,gy_,log_sigma2,log_delta,log_gamma=tf.split(params, 5, 1)
+
+    gx=(dims[0]+1)/2*(gx_+1)
     gy=(dims[1]+1)/2*(gy_+1)
-    
+
     gx_list[glimpse] = gx
     gy_list[glimpse] = gy
-     
-    #  sigma2=tf.exp(log_sigma2)
-    #  delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-    dis0=max(dims[0],dims[1])/12
-    dis1=linspace(-1,1,9)
-    dis2=zeros((N-9)//2)
-    dis3=zeros((N-9)//2)
-    for i in range(1,(N-9)//2+1):
-        dis2[i-1] = -pow(1.25,(N-9)//2+1-i)
-    for i in range(1,(N-9)//2+1):
-        dis3[i-1] = pow(1.25,i)
-    
-    dis=np.append(np.append(dis2,dis1),dis3)*dis0
-    
-    delta=zeros(N)
-    for j  in range(1,N//2 + 1):
-        delta[j-1]=dis[j]-dis[j-1]
-    delta[N//2]=0
-    for j in range(N//2 + 1, N):
-        delta[j]=dis[j]-dis[j-1]
-    
-    tdelta=tf.reshape(tf.cast(tf.convert_to_tensor(delta), tf.float32), [1, -1])
-    delta=tdelta*tf.exp(log_delta) # batch_size x N
-    
-    sigma2=delta*delta/4 # sigma=delta/2
-    ss=tf.cast(tf.convert_to_tensor(zeros(N//2)), tf.float32)
-    ss=tf.reshape([ss]*batch_size, [batch_size, -1])
-    smin=tf.reshape(tf.reduce_min(sigma2[:,0:N//2], 1), [-1, 1])
-    ss_=tf.concat([tf.concat([ss,smin/2],1),ss],1)
-    sigma2=sigma2+ss_  # batch_size x N
+
+    sigma2=tf.exp(log_sigma2)
+    delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
+    #sigma2=delta*delta/4 # sigma=delta/2
 
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
-    ret = list()
-    ret.append(filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),))
-    #ret.append((gx, gy, delta))
-    return ret
+    Fx, Fy = filterbank(gx, gy, sigma2, delta, N)
+    gamma = tf.exp(log_gamma)
+    return Fx, Fy, gamma, gx, gy, delta
 
-## READ ##
-#  def read_no_attn(x,x_hat,h_dec_prev):
+
+## READ ## 
+#def read_no_attn(x,x_hat,h_dec_prev):
 #    return x, stats
 
 
 def read(x, h_dec_prev, glimpse):
     att_ret = attn_window("read", h_dec_prev, read_n, glimpse)
-    stats = Fx, Fy, gamma = att_ret[0]
+    stats = Fx, Fy, gamma, gx, gy, delta
 
     def filter_img(img, Fx, Fy, gamma, N):
         Fxt = tf.transpose(Fx, perm=[0,2,1])
@@ -259,9 +214,9 @@ delta_list = [0] * glimpses
 
 for glimpse in range(glimpses):
     r, stats = read(x, h_dec_prev, glimpse)
-   
-    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state)
+     
 
+    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state)
     with tf.variable_scope("z",reuse=REUSE):
         z = linear(h_enc, z_size)
     h_dec, dec_state = decode(z, dec_state)
@@ -270,7 +225,7 @@ for glimpse in range(glimpses):
     with tf.variable_scope("hidden1",reuse=REUSE):
         hidden = tf.nn.relu(linear(h_dec_prev, 256))
     with tf.variable_scope("output",reuse=REUSE):
-        classification = tf.nn.softmax(linear(hidden, z_size))
+        classification = tf.nn.softmax(linear(hidden, 2)) # output size is 2
         classifications.append({
             "classification": classification,
             "stats": stats,
@@ -302,7 +257,7 @@ def binary_crossentropy(t,o):
 
 
 def evaluate():
-    data = load_input.InputData()
+    data = load_input_test.InputData()
     data.get_test(1)
     batches_in_epoch = len(data.images) // batch_size
     accuracy = 0
@@ -345,8 +300,8 @@ if __name__ == '__main__':
     if restore:
         saver.restore(sess, load_file)
 
-    train_data = load_input.InputData()
-    train_data.get_train(1)
+    train_data = load_input_test.InputData()
+    train_data.get_train()
     fetches2=[]
     fetches2.extend([reward, train_op])
 
@@ -377,7 +332,7 @@ if __name__ == '__main__':
                 print("len(delta_list): ", len(delta_list))
                 cont = input("Press ENTER to continue this program. ")
 
-            if False:#i != 0:
+            if False:# i != 0:
                 for j in range(glimpses):
                     print("At glimpse " + str(j + 1) + " of " + str(glimpses) + ": ")
                     cont = input("Press ENTER to continue this program. ")
@@ -396,14 +351,13 @@ if __name__ == '__main__':
             sys.stdout.flush()
 
             if i%1000==0:
-                train_data = load_input.InputData()
-                train_data.get_train(1)
+                train_data = load_input_test.InputData()
+                train_data.get_train()
      
                 if i %10000==0:
                     start_evaluate = time.clock()
                     test_accuracy = evaluate()
                     saver = tf.train.Saver(tf.global_variables())
-                    # saver.restore(sess, "model_runs/rewrite_filterbank_test001/classifymodel_60000.ckpt") 
                     print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
                     extra_time = extra_time + time.clock() - start_evaluate
                     print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))

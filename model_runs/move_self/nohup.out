@@ -370,3 +370,6 @@ Target x average: 109.562500
 iter=11000 : Reward: -80.024986
 Predict x average: -173.976532
 Target x average: 138.812500
+ACCURACY: -74.0310131239
+Model saved in file: model_runs/move_attn2/classifymodel_11000.ckpt
+--- 170431.738397 CPU seconds ---
