@@ -1,0 +1,287 @@
+['DRAM_move_attn.py', 'true', 'true', 'true', 'true', 'true', 'true', 'model_runs/sensical_left/classify_log.csv', 'model_runs/sensical_left/classifymodel_0.ckpt', 'model_runs/sensical_left/classifymodel_', 'model_runs/sensical_left/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+2017-08-08 13:15:54.514406: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-08 13:15:54.514430: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-08 13:15:54.514433: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-08 13:15:54.514435: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-08 13:15:54.514438: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-08 13:15:54.603159: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-08 13:15:54.603448: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 7.02GiB
+2017-08-08 13:15:54.603496: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x69db1e0
+2017-08-08 13:15:54.697525: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-08 13:15:54.697806: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.48GiB
+2017-08-08 13:15:54.697931: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-08-08 13:15:54.697937: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-08-08 13:15:54.697939: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-08-08 13:15:54.697944: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-08-08 13:15:54.697947: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: -1272.149658
+Predict x average: 38.800171
+Target x average: 72.199997
+ACCURACY: -1278.47402293
+Model saved in file: model_runs/sensical_left/classifymodel_0.ckpt
+--- 2.373559 CPU seconds ---
+iter=100 : Reward: -372.492706
+Predict x average: 56.669403
+Target x average: 65.600006
+iter=200 : Reward: -394.412567
+Predict x average: 67.333992
+Target x average: 72.600006
+iter=300 : Reward: -337.052734
+Predict x average: 70.734604
+Target x average: 64.400002
+iter=400 : Reward: -418.436096
+Predict x average: 56.970459
+Target x average: 61.000000
+iter=500 : Reward: -326.474396
+Predict x average: 45.710304
+Target x average: 34.000000
+iter=600 : Reward: -288.855042
+Predict x average: 64.257706
+Target x average: 74.000000
+iter=700 : Reward: -217.215729
+Predict x average: 67.769646
+Target x average: 72.200005
+iter=800 : Reward: -283.253357
+Predict x average: 43.096436
+Target x average: 34.000000
+iter=900 : Reward: -253.867081
+Predict x average: 61.726810
+Target x average: 79.800003
+iter=1000 : Reward: -292.422852
+Predict x average: 61.345253
+Target x average: 65.599998
+ACCURACY: -271.972663879
+Model saved in file: model_runs/sensical_left/classifymodel_1000.ckpt
+--- 71.274914 CPU seconds ---
+iter=1100 : Reward: -257.638489
+Predict x average: 67.744278
+Target x average: 75.600006
+iter=1200 : Reward: -243.834351
+Predict x average: 60.568317
+Target x average: 53.000000
+iter=1300 : Reward: -241.674545
+Predict x average: 61.778034
+Target x average: 74.199997
+iter=1400 : Reward: -253.232925
+Predict x average: 59.203087
+Target x average: 66.199997
+iter=1500 : Reward: -250.570862
+Predict x average: 54.147438
+Target x average: 52.799999
+iter=1600 : Reward: -261.639679
+Predict x average: 52.349747
+Target x average: 50.000000
+iter=1700 : Reward: -205.742981
+Predict x average: 68.405930
+Target x average: 78.400009
+iter=1800 : Reward: -237.262024
+Predict x average: 59.253334
+Target x average: 66.400002
+iter=1900 : Reward: -199.777847
+Predict x average: 67.781830
+Target x average: 64.800003
+iter=2000 : Reward: -214.553665
+Predict x average: 59.596214
+Target x average: 67.600006
+ACCURACY: -211.993569128
+Model saved in file: model_runs/sensical_left/classifymodel_2000.ckpt
+--- 139.02400999999998 CPU seconds ---
+iter=2100 : Reward: -228.335587
+Predict x average: 57.336212
+Target x average: 57.000000
+iter=2200 : Reward: -196.222275
+Predict x average: 66.222862
+Target x average: 52.599998
+iter=2300 : Reward: -232.102402
+Predict x average: 66.623161
+Target x average: 63.400002
+iter=2400 : Reward: -215.744339
+Predict x average: 67.520401
+Target x average: 63.200001
+iter=2500 : Reward: -224.197693
+Predict x average: 65.644760
+Target x average: 79.000000
+iter=2600 : Reward: -232.830261
+Predict x average: 54.465244
+Target x average: 74.600006
+iter=2700 : Reward: -188.184219
+Predict x average: 70.642197
+Target x average: 65.399994
+iter=2800 : Reward: -183.246750
+Predict x average: 68.106903
+Target x average: 62.800003
+iter=2900 : Reward: -172.818817
+Predict x average: 71.392395
+Target x average: 75.000000
+iter=3000 : Reward: -155.541946
+Predict x average: 68.341705
+Target x average: 72.800003
+ACCURACY: -186.347502325
+Model saved in file: model_runs/sensical_left/classifymodel_3000.ckpt
+--- 217.78366099999997 CPU seconds ---
+iter=3100 : Reward: -204.419891
+Predict x average: 68.761658
+Target x average: 76.800003
+iter=3200 : Reward: -207.723053
+Predict x average: 64.553177
+Target x average: 63.599998
+iter=3300 : Reward: -201.472977
+Predict x average: 58.974464
+Target x average: 47.000000
+iter=3400 : Reward: -170.948166
+Predict x average: 57.600380
+Target x average: 55.000000
+iter=3500 : Reward: -168.294891
+Predict x average: 71.757797
+Target x average: 75.400002
+iter=3600 : Reward: -158.670105
+Predict x average: 65.824036
+Target x average: 56.400002
+iter=3700 : Reward: -203.246231
+Predict x average: 39.148964
+Target x average: 29.000002
+iter=3800 : Reward: -195.408386
+Predict x average: 77.964111
+Target x average: 79.400002
+iter=3900 : Reward: -191.010696
+Predict x average: 85.959862
+Target x average: 77.600006
+iter=4000 : Reward: -145.862686
+Predict x average: 71.873116
+Target x average: 71.600006
+ACCURACY: -167.10892868
+Model saved in file: model_runs/sensical_left/classifymodel_4000.ckpt
+--- 286.968724 CPU seconds ---
+iter=4100 : Reward: -162.854279
+Predict x average: 67.457489
+Target x average: 77.800003
+iter=4200 : Reward: -210.635757
+Predict x average: 59.293427
+Target x average: 63.000000
+iter=4300 : Reward: -185.487595
+Predict x average: 66.666634
+Target x average: 81.400002
+iter=4400 : Reward: -180.738281
+Predict x average: 57.264004
+Target x average: 68.000000
+iter=4500 : Reward: -159.536774
+Predict x average: 69.972153
+Target x average: 65.000000
+iter=4600 : Reward: -149.759369
+Predict x average: 56.923389
+Target x average: 50.000000
+iter=4700 : Reward: -139.209778
+Predict x average: 53.839622
+Target x average: 60.000000
+iter=4800 : Reward: -182.096817
+Predict x average: 64.193359
+Target x average: 52.599998
+iter=4900 : Reward: -183.374847
+Predict x average: 69.020500
+Target x average: 67.000000
+iter=5000 : Reward: -173.427460
+Predict x average: 72.650909
+Target x average: 70.000000
+ACCURACY: -190.179097677
+Model saved in file: model_runs/sensical_left/classifymodel_5000.ckpt
+--- 353.163163 CPU seconds ---
+iter=5100 : Reward: -124.463562
+Predict x average: 71.563477
+Target x average: 75.800003
+iter=5200 : Reward: -133.078262
+Predict x average: 69.858032
+Target x average: 84.000000
+iter=5300 : Reward: -140.448288
+Predict x average: 58.812901
+Target x average: 47.000000
+iter=5400 : Reward: -142.075027
+Predict x average: 67.492981
+Target x average: 68.800003
+iter=5500 : Reward: -130.875351
+Predict x average: 34.265778
+Target x average: 29.000002
+iter=5600 : Reward: -198.742859
+Predict x average: 61.612099
+Target x average: 56.199997
+iter=5700 : Reward: -177.049042
+Predict x average: 59.565125
+Target x average: 66.800003
+iter=5800 : Reward: -144.804749
+Predict x average: 73.067818
+Target x average: 67.199997
+iter=5900 : Reward: -147.242157
+Predict x average: 38.499542
+Target x average: 37.000000
+iter=6000 : Reward: -148.983795
+Predict x average: 68.915886
+Target x average: 65.400002
+ACCURACY: -152.478704669
+Model saved in file: model_runs/sensical_left/classifymodel_6000.ckpt
+--- 422.766961 CPU seconds ---
+iter=6100 : Reward: -152.869827
+Predict x average: 54.165260
+Target x average: 49.000000
+iter=6200 : Reward: -136.220459
+Predict x average: 53.696075
+Target x average: 53.000000
+iter=6300 : Reward: -134.540527
+Predict x average: 45.152184
+Target x average: 46.000000
+iter=6400 : Reward: -136.075943
+Predict x average: 68.820740
+Target x average: 79.000000
+iter=6500 : Reward: -135.050705
+Predict x average: 35.075222
+Target x average: 29.000002
+iter=6600 : Reward: -158.681015
+Predict x average: 75.112633
+Target x average: 70.200005
+iter=6700 : Reward: -177.316772
+Predict x average: 72.058296
+Target x average: 72.200005
+iter=6800 : Reward: -129.351349
+Predict x average: 36.335037
+Target x average: 36.000000
+iter=6900 : Reward: -146.570129
+Predict x average: 67.094986
+Target x average: 66.199997
+iter=7000 : Reward: -118.396820
+Predict x average: 71.913452
+Target x average: 74.600006
+ACCURACY: -135.819458086
+Model saved in file: model_runs/sensical_left/classifymodel_7000.ckpt
+--- 494.9951779999999 CPU seconds ---
+iter=7100 : Reward: -195.929871
+Predict x average: 53.063103
+Target x average: 49.200005
+iter=7200 : Reward: -132.466812
+Predict x average: 54.968441
+Target x average: 50.000000
+iter=7300 : Reward: -138.338043
+Predict x average: 42.542831
+Target x average: 45.000000
+iter=7400 : Reward: -131.699097
+Predict x average: 73.867508
+Target x average: 65.599998
+iter=7500 : Reward: -150.047958
+Predict x average: 67.771286
+Target x average: 62.400002
+iter=7600 : Reward: -152.626907
+Predict x average: 73.744629
+Target x average: 64.400009
+iter=7700 : Reward: -138.536133
+Predict x average: 36.121887
+Target x average: 31.000000
+iter=7800 : Reward: -139.411743
+Predict x average: 38.681862
+Target x average: 39.000000

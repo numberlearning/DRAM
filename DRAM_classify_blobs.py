@@ -257,7 +257,7 @@ def binary_crossentropy(t,o):
 
 
 def evaluate():
-    data = load_input_test.InputData()
+    data = load_input.InputData()
     data.get_test(1)
     batches_in_epoch = len(data.images) // batch_size
     accuracy = 0
@@ -300,7 +300,7 @@ if __name__ == '__main__':
     if restore:
         saver.restore(sess, load_file)
 
-    train_data = load_input_test.InputData()
+    train_data = load_input.InputData()
     train_data.get_train()
     fetches2=[]
     fetches2.extend([reward, train_op])
@@ -351,7 +351,7 @@ if __name__ == '__main__':
             sys.stdout.flush()
 
             if i%1000==0:
-                train_data = load_input_test.InputData()
+                train_data = load_input.InputData()
                 train_data.get_train()
      
                 if i %10000==0:

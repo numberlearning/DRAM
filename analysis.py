@@ -63,7 +63,7 @@ def load_checkpoint(it, human=False):
     #path = "model_runs/regimen"
     #path = "model_runs/rewrite_filterbank"
     #path = "model_runs/DRAM_test_square"
-    path = "model_runs/move_attn"
+    path = "model_runs/sensical"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
