@@ -1,0 +1,372 @@
+['DRAM_move_attn.py', 'true', 'true', 'true', 'true', 'true', 'true', 'model_runs/move_attn2/classify_log.csv', 'model_runs/move_attn2/classifymodel_0.ckpt', 'model_runs/move_attn2/classifymodel_', 'model_runs/move_attn2/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+2017-08-07 10:47:53.451540: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-07 10:47:53.451611: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-07 10:47:53.451624: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-07 10:47:53.451636: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-07 10:47:53.451649: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+iter=0 : Reward: -571.504333
+Predict x average: -379.398743
+Target x average: 81.500000
+ACCURACY: -629.679184332
+Model saved in file: model_runs/move_attn2/classifymodel_0.ckpt
+--- 108.99771499999997 CPU seconds ---
+iter=100 : Reward: -574.993835
+Predict x average: 45.278847
+Target x average: 82.187500
+iter=200 : Reward: -570.757935
+Predict x average: 105.971329
+Target x average: 50.562500
+iter=300 : Reward: -583.724060
+Predict x average: 64.328819
+Target x average: 41.875000
+iter=400 : Reward: -516.406738
+Predict x average: 20.851318
+Target x average: 98.250000
+iter=500 : Reward: -480.783569
+Predict x average: 912.448853
+Target x average: 137.812500
+iter=600 : Reward: -556.843994
+Predict x average: 254.689346
+Target x average: 107.937500
+iter=700 : Reward: -550.589722
+Predict x average: 526.552795
+Target x average: 156.812500
+iter=800 : Reward: -545.211365
+Predict x average: 989.501648
+Target x average: 111.625000
+iter=900 : Reward: -370.191406
+Predict x average: 180.030853
+Target x average: 62.625000
+iter=1000 : Reward: -338.416687
+Predict x average: -446.285889
+Target x average: 132.312500
+ACCURACY: -377.005030572
+Model saved in file: model_runs/move_attn2/classifymodel_1000.ckpt
+--- 15496.583962 CPU seconds ---
+iter=1100 : Reward: -303.003387
+Predict x average: 383.837036
+Target x average: 147.062500
+iter=1200 : Reward: -269.534485
+Predict x average: 222.459167
+Target x average: 172.875000
+iter=1300 : Reward: -352.682404
+Predict x average: 128.702789
+Target x average: 123.562500
+iter=1400 : Reward: -302.554169
+Predict x average: 298.425812
+Target x average: 62.625000
+iter=1500 : Reward: -299.322388
+Predict x average: 384.302734
+Target x average: 112.187500
+iter=1600 : Reward: -254.493301
+Predict x average: -41.032925
+Target x average: 67.187500
+iter=1700 : Reward: -296.103149
+Predict x average: -332.355560
+Target x average: 132.562500
+iter=1800 : Reward: -261.923553
+Predict x average: -354.620300
+Target x average: 118.250000
+iter=1900 : Reward: -253.273849
+Predict x average: -11.178101
+Target x average: 66.250000
+iter=2000 : Reward: -253.020477
+Predict x average: 425.449554
+Target x average: 128.500000
+ACCURACY: -284.033269126
+Model saved in file: model_runs/move_attn2/classifymodel_2000.ckpt
+--- 30995.17113100001 CPU seconds ---
+iter=2100 : Reward: -328.956573
+Predict x average: 227.493408
+Target x average: 94.375000
+iter=2200 : Reward: -340.617706
+Predict x average: 171.287308
+Target x average: 58.812500
+iter=2300 : Reward: -253.586594
+Predict x average: -5.069702
+Target x average: 154.812500
+iter=2400 : Reward: -241.892532
+Predict x average: 299.924774
+Target x average: 143.937500
+iter=2500 : Reward: -269.370056
+Predict x average: -248.719604
+Target x average: 97.812500
+iter=2600 : Reward: -252.438950
+Predict x average: 431.137390
+Target x average: 138.437500
+iter=2700 : Reward: -210.044800
+Predict x average: 59.280098
+Target x average: 62.187500
+iter=2800 : Reward: -287.280701
+Predict x average: -110.905891
+Target x average: 140.500000
+iter=2900 : Reward: -293.200256
+Predict x average: 66.044174
+Target x average: 137.000000
+iter=3000 : Reward: -258.318542
+Predict x average: 111.990120
+Target x average: 126.062500
+ACCURACY: -227.953942775
+Model saved in file: model_runs/move_attn2/classifymodel_3000.ckpt
+--- 46295.77509100002 CPU seconds ---
+iter=3100 : Reward: -229.228485
+Predict x average: 613.276489
+Target x average: 134.562500
+iter=3200 : Reward: -196.550629
+Predict x average: -122.493050
+Target x average: 108.625000
+iter=3300 : Reward: -220.162064
+Predict x average: -347.115326
+Target x average: 65.312500
+iter=3400 : Reward: -213.678085
+Predict x average: -1.246159
+Target x average: 173.687500
+iter=3500 : Reward: -222.905457
+Predict x average: 436.337402
+Target x average: 56.625000
+iter=3600 : Reward: -204.179947
+Predict x average: 286.081726
+Target x average: 87.250000
+iter=3700 : Reward: -225.981934
+Predict x average: 223.282837
+Target x average: 75.875000
+iter=3800 : Reward: -209.393967
+Predict x average: -25.658195
+Target x average: 152.875000
+iter=3900 : Reward: -180.287140
+Predict x average: 176.574402
+Target x average: 101.312500
+iter=4000 : Reward: -173.232544
+Predict x average: 442.905273
+Target x average: 147.187500
+ACCURACY: -180.437241859
+Model saved in file: model_runs/move_attn2/classifymodel_4000.ckpt
+--- 61603.211645 CPU seconds ---
+iter=4100 : Reward: -197.554504
+Predict x average: 19.140427
+Target x average: 69.187500
+iter=4200 : Reward: -125.505630
+Predict x average: 231.349030
+Target x average: 42.375000
+iter=4300 : Reward: -208.076752
+Predict x average: 135.652405
+Target x average: 37.187500
+iter=4400 : Reward: -162.301620
+Predict x average: 250.847260
+Target x average: 115.000000
+iter=4500 : Reward: -184.844009
+Predict x average: -120.535583
+Target x average: 63.500000
+iter=4600 : Reward: -165.236008
+Predict x average: 301.352722
+Target x average: 156.750000
+iter=4700 : Reward: -167.305405
+Predict x average: -305.035583
+Target x average: 76.000000
+iter=4800 : Reward: -135.897141
+Predict x average: 119.924667
+Target x average: 169.437500
+iter=4900 : Reward: -139.855499
+Predict x average: 375.271759
+Target x average: 128.250000
+iter=5000 : Reward: -147.913712
+Predict x average: 54.137199
+Target x average: 66.562500
+ACCURACY: -157.160228337
+Model saved in file: model_runs/move_attn2/classifymodel_5000.ckpt
+--- 76945.299538 CPU seconds ---
+iter=5100 : Reward: -160.832947
+Predict x average: -123.742477
+Target x average: 70.250000
+iter=5200 : Reward: -140.061493
+Predict x average: 108.183250
+Target x average: 128.500000
+iter=5300 : Reward: -178.186676
+Predict x average: 23.808556
+Target x average: 60.375000
+iter=5400 : Reward: -132.410217
+Predict x average: -128.345169
+Target x average: 81.437500
+iter=5500 : Reward: -142.347504
+Predict x average: 25.885580
+Target x average: 97.500000
+iter=5600 : Reward: -143.564056
+Predict x average: 117.572624
+Target x average: 99.375000
+iter=5700 : Reward: -152.566620
+Predict x average: 20.704357
+Target x average: 70.187500
+iter=5800 : Reward: -137.843414
+Predict x average: -222.643845
+Target x average: 138.812500
+iter=5900 : Reward: -109.469940
+Predict x average: 117.391846
+Target x average: 136.062500
+iter=6000 : Reward: -120.875381
+Predict x average: -3.278316
+Target x average: 78.437500
+ACCURACY: -132.214045097
+Model saved in file: model_runs/move_attn2/classifymodel_6000.ckpt
+--- 92380.070526 CPU seconds ---
+iter=6100 : Reward: -132.029556
+Predict x average: 103.663055
+Target x average: 62.062500
+iter=6200 : Reward: -131.337769
+Predict x average: 115.433807
+Target x average: 73.937500
+iter=6300 : Reward: -150.325439
+Predict x average: -77.070335
+Target x average: 139.625000
+iter=6400 : Reward: -156.077637
+Predict x average: 43.786125
+Target x average: 136.687500
+iter=6500 : Reward: -122.721031
+Predict x average: 271.282776
+Target x average: 170.437500
+iter=6600 : Reward: -96.640549
+Predict x average: 173.278625
+Target x average: 124.500000
+iter=6700 : Reward: -109.057503
+Predict x average: 295.698181
+Target x average: 72.375000
+iter=6800 : Reward: -142.630356
+Predict x average: 174.599457
+Target x average: 124.687500
+iter=6900 : Reward: -97.722023
+Predict x average: -182.700027
+Target x average: 31.750000
+iter=7000 : Reward: -99.093788
+Predict x average: 120.423607
+Target x average: 108.625000
+ACCURACY: -116.744149351
+Model saved in file: model_runs/move_attn2/classifymodel_7000.ckpt
+--- 107871.49948200001 CPU seconds ---
+iter=7100 : Reward: -149.614716
+Predict x average: -60.144604
+Target x average: 156.125000
+iter=7200 : Reward: -104.195549
+Predict x average: 56.904575
+Target x average: 41.750000
+iter=7300 : Reward: -99.578072
+Predict x average: 269.528931
+Target x average: 65.937500
+iter=7400 : Reward: -111.276825
+Predict x average: 94.322899
+Target x average: 76.125000
+iter=7500 : Reward: -118.269836
+Predict x average: 508.739349
+Target x average: 121.062500
+iter=7600 : Reward: -93.609283
+Predict x average: 347.590637
+Target x average: 114.750000
+iter=7700 : Reward: -118.617996
+Predict x average: 9.367680
+Target x average: 83.875000
+iter=7800 : Reward: -108.514000
+Predict x average: -44.128883
+Target x average: 88.062500
+iter=7900 : Reward: -116.398003
+Predict x average: 43.447762
+Target x average: 72.562500
+iter=8000 : Reward: -87.642273
+Predict x average: 129.594330
+Target x average: 60.000000
+ACCURACY: -102.187789902
+Model saved in file: model_runs/move_attn2/classifymodel_8000.ckpt
+--- 123456.35717200002 CPU seconds ---
+iter=8100 : Reward: -109.338333
+Predict x average: 62.386101
+Target x average: 127.562500
+iter=8200 : Reward: -106.053078
+Predict x average: -84.403290
+Target x average: 124.687500
+iter=8300 : Reward: -110.385895
+Predict x average: -80.989357
+Target x average: 33.312500
+iter=8400 : Reward: -88.341469
+Predict x average: 133.633759
+Target x average: 58.062500
+iter=8500 : Reward: -67.238449
+Predict x average: 107.406944
+Target x average: 30.187500
+iter=8600 : Reward: -90.511436
+Predict x average: -146.188171
+Target x average: 42.000000
+iter=8700 : Reward: -90.863647
+Predict x average: -208.498016
+Target x average: 128.687500
+iter=8800 : Reward: -68.073662
+Predict x average: 231.673294
+Target x average: 135.937500
+iter=8900 : Reward: -97.570747
+Predict x average: 166.259079
+Target x average: 67.125000
+iter=9000 : Reward: -90.431580
+Predict x average: 174.353607
+Target x average: 151.187500
+ACCURACY: -89.1883333302
+Model saved in file: model_runs/move_attn2/classifymodel_9000.ckpt
+--- 138978.9211 CPU seconds ---
+iter=9100 : Reward: -89.221107
+Predict x average: -170.793015
+Target x average: 78.312500
+iter=9200 : Reward: -99.242744
+Predict x average: 231.431839
+Target x average: 84.375000
+iter=9300 : Reward: -87.438545
+Predict x average: -29.235275
+Target x average: 109.062500
+iter=9400 : Reward: -76.523888
+Predict x average: -52.905720
+Target x average: 57.000000
+iter=9500 : Reward: -73.848442
+Predict x average: -43.070213
+Target x average: 148.812500
+iter=9600 : Reward: -77.507484
+Predict x average: 194.968628
+Target x average: 47.562500
+iter=9700 : Reward: -69.833527
+Predict x average: 186.451416
+Target x average: 115.062500
+iter=9800 : Reward: -85.889442
+Predict x average: -30.431744
+Target x average: 148.812500
+iter=9900 : Reward: -82.761024
+Predict x average: -251.429932
+Target x average: 79.625000
+iter=10000 : Reward: -81.568016
+Predict x average: 80.643661
+Target x average: 129.312500
+ACCURACY: -81.6984765833
+Model saved in file: model_runs/move_attn2/classifymodel_10000.ckpt
+--- 154614.483952 CPU seconds ---
+iter=10100 : Reward: -87.728531
+Predict x average: 332.878418
+Target x average: 116.812500
+iter=10200 : Reward: -80.751549
+Predict x average: 215.126923
+Target x average: 132.500000
+iter=10300 : Reward: -77.473488
+Predict x average: -115.095078
+Target x average: 64.687500
+iter=10400 : Reward: -72.227173
+Predict x average: 102.276611
+Target x average: 62.875000
+iter=10500 : Reward: -80.694794
+Predict x average: 461.340637
+Target x average: 147.000000
+iter=10600 : Reward: -82.747467
+Predict x average: -138.885956
+Target x average: 154.250000
+iter=10700 : Reward: -76.562080
+Predict x average: 241.781372
+Target x average: 25.437500
+iter=10800 : Reward: -76.223198
+Predict x average: 80.779137
+Target x average: 171.437500
+iter=10900 : Reward: -80.878624
+Predict x average: 12.408051
+Target x average: 109.562500
+iter=11000 : Reward: -80.024986
+Predict x average: -173.976532
+Target x average: 138.812500

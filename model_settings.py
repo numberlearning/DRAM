@@ -20,4 +20,4 @@ glimpses = max_blobs + 1#11
 batch_size = 77#77
 
 #change this whenever DRAM is run (before running nohup, make sure to make a directory in model_runs)
-model_name = "move_attn"
+model_name = "move_attn2"
