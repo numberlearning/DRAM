@@ -285,3 +285,45 @@ Target x average: 31.000000
 iter=7800 : Reward: -139.411743
 Predict x average: 38.681862
 Target x average: 39.000000
+iter=7900 : Reward: -125.444809
+Predict x average: 69.643158
+Target x average: 63.200001
+iter=8000 : Reward: -138.687317
+Predict x average: 52.606022
+Target x average: 53.000000
+ACCURACY: -142.447588498
+Model saved in file: model_runs/sensical_left/classifymodel_8000.ckpt
+--- 564.2155879999999 CPU seconds ---
+iter=8100 : Reward: -139.598312
+Predict x average: 73.474991
+Target x average: 72.400002
+iter=8200 : Reward: -189.756149
+Predict x average: 64.421585
+Target x average: 69.000000
+iter=8300 : Reward: -126.969048
+Predict x average: 65.683395
+Target x average: 60.599998
+iter=8400 : Reward: -97.172104
+Predict x average: 60.953411
+Target x average: 60.599998
+iter=8500 : Reward: -134.375214
+Predict x average: 53.879135
+Target x average: 52.599998
+iter=8600 : Reward: -113.626411
+Predict x average: 71.452698
+Target x average: 75.200005
+iter=8700 : Reward: -127.448914
+Predict x average: 56.643822
+Target x average: 54.200005
+iter=8800 : Reward: -119.101402
+Predict x average: 53.764503
+Target x average: 52.000000
+iter=8900 : Reward: -124.332085
+Predict x average: 51.885395
+Target x average: 54.000000
+iter=9000 : Reward: -140.806274
+Predict x average: 61.176086
+Target x average: 63.400002
+ACCURACY: -131.424475483
+Model saved in file: model_runs/sensical_left/classifymodel_9000.ckpt
+--- 636.1915989999999 CPU seconds ---

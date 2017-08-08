@@ -15570,3 +15570,36 @@ Target x average: 46.200001
 iter=471000 : Reward: 21.427603
 Predict x average: 44.138954
 Target x average: 43.400002
+ACCURACY: 30.113512505
+Model saved in file: model_runs/sensical/classifymodel_471000.ckpt
+--- 67146.04234400012 CPU seconds ---
+iter=471100 : Reward: 11.845872
+Predict x average: 77.000748
+Target x average: 82.399994
+iter=471200 : Reward: 1.494135
+Predict x average: 72.290878
+Target x average: 76.600006
+iter=471300 : Reward: 39.386105
+Predict x average: 32.539684
+Target x average: 30.000000
+iter=471400 : Reward: 39.277370
+Predict x average: 38.330334
+Target x average: 37.000000
+iter=471500 : Reward: 17.987928
+Predict x average: 43.414097
+Target x average: 47.400002
+iter=471600 : Reward: 39.024662
+Predict x average: 31.545197
+Target x average: 31.000000
+iter=471700 : Reward: 57.014309
+Predict x average: 45.705597
+Target x average: 47.400002
+iter=471800 : Reward: 56.292355
+Predict x average: 74.106194
+Target x average: 73.400002
+iter=471900 : Reward: 32.534714
+Predict x average: 78.154022
+Target x average: 83.000000
+iter=472000 : Reward: 50.559280
+Predict x average: 78.089447
+Target x average: 80.199997
