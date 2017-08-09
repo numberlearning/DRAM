@@ -22778,3 +22778,44 @@ iter=690000 : Reward: 41.271278
 Predict x average: 64.551819
 Target x average: 62.200001
 ACCURACY: 49.6915815491
+Model saved in file: model_runs/sensical_hydra/classifymodel_690000.ckpt
+--- 1734047.1117569995 CPU seconds ---
+iter=690100 : Reward: 57.170151
+Predict x average: 77.889481
+Target x average: 79.599998
+iter=690200 : Reward: 53.541718
+Predict x average: 43.502083
+Target x average: 43.799999
+iter=690300 : Reward: 17.607681
+Predict x average: 43.946663
+Target x average: 44.200001
+iter=690400 : Reward: 36.781677
+Predict x average: 35.848873
+Target x average: 35.799999
+iter=690500 : Reward: 31.942436
+Predict x average: 40.069077
+Target x average: 37.799999
+iter=690600 : Reward: 67.509598
+Predict x average: 73.713806
+Target x average: 77.599998
+iter=690700 : Reward: 53.401512
+Predict x average: 33.457832
+Target x average: 35.000000
+iter=690800 : Reward: 47.693878
+Predict x average: 42.367981
+Target x average: 43.599998
+iter=690900 : Reward: 63.863800
+Predict x average: 33.961796
+Target x average: 33.000000
+iter=691000 : Reward: 51.713341
+Predict x average: 41.369392
+Target x average: 39.799999
+ACCURACY: 48.5061694126
+Model saved in file: model_runs/sensical_hydra/classifymodel_691000.ckpt
+--- 1736440.3323079995 CPU seconds ---
+iter=691100 : Reward: 38.386883
+Predict x average: 58.815357
+Target x average: 55.400002
+iter=691200 : Reward: 45.440254
+Predict x average: 41.344448
+Target x average: 38.599998

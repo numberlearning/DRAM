@@ -8,3 +8,9 @@ iter=0 : Reward: 0.090000
 ACCURACY: 0.111666666882
 Model saved in file: model_runs/DRAM_classify_blobs_run_7/classifymodel_0.ckpt
 --- 10.701572999999996 CPU seconds ---
+iter=100 : Reward: 0.090000
+iter=200 : Reward: 0.100000
+ACCURACY: 0.110666666718
+Model saved in file: model_runs/DRAM_classify_blobs_run_7/classifymodel_250.ckpt
+--- 751.665164 CPU seconds ---
+iter=300 : Reward: 0.120000
