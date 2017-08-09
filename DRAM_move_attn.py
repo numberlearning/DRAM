@@ -255,8 +255,10 @@ viz_data = list()
 
 current_blob = target_tensor[:, 0]
 current_x, current_y = tf.split(current_blob, num_or_size_splits=2, axis=1)
+current_cnt = count_tensor[:, 0]
 next_index = 1
 next_blob_position = target_tensor[:, next_index]
+next_blob_cnt = count_tensor[:, next_index]
 rewards = list()
 train_ops = list()
 predict_x_list = list()
@@ -267,12 +269,14 @@ testing = False
 while next_index < glimpses:
 
     target_x, target_y = tf.split(next_blob_position, num_or_size_splits=2, axis=1)
+    target_cnt = next_blob_cnt
 
     if testing:
         r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev) # when testing, target_x and target_y are None
     else:            
         #set current attn window center to current blob center and perform read
         r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev, current_x, current_y)
+        c = linear(tf.concat([input_tensor[:, next_index-1], h_dec_prev, current_cnt], 1), 1)
 
     h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
 
@@ -281,6 +285,18 @@ while next_index < glimpses:
     h_dec, dec_state = decode(z, dec_state)
     _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
     predict_x, predict_y  = attn_x, attn_y
+    with tf.variable_scope("hidden", reuse=REUSE):
+        hidden = tf.nn.relu(linear(tf.concat([c, h_dec], 1), 256))
+
+    with tf.variable_scope("count", reuse=REUSE):
+        predict_cnt = tf.nn.softmax(linear(hidden, max_blobs - min_blobs + 1))
+
+    #count_quality = tf.log(predict_cnt + 1e-5) * target_cnt
+    pred_cnt_idx = tf.arg_max(predict_cnt)
+    targ_cnt_idx = tf.arg_max(target_cnt)
+    reward_cnt = tf.cast(tf.equal(pred_cnt_idx, targ_cnt_idx), tf.float32)
+    cntquality = reward_cnt
+    
 
 
     # change reward so that multiple traces are rewarded
@@ -309,6 +325,7 @@ while next_index < glimpses:
         "h_dec": h_dec,
         "predict_x": predict_x,
         "predict_y": predict_y,
+        "predict_cnt": predict_cnt,
         "gx": gx,
         "gy": gy,
         "stats": stats,
@@ -316,26 +333,39 @@ while next_index < glimpses:
         "mu_y": tf.squeeze(mu_y, 2)[0],
     })
 
-    predcost = -posquality
+    poscost = -posquality
+    cntcost = -cntquality
 
     ## OPTIMIZER #################################################
     #why can't we use the same optimizer at all the glimpses? 
     #with tf.variable_scope("optimizer", reuse=REUSE):
-    with tf.variable_scope("optimizer" + str(next_index), reuse=None):
+    with tf.variable_scope("pos_optimizer" + str(next_index), reuse=None):
         optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
-        grads = optimizer.compute_gradients(predcost)
+        grads = optimizer.compute_gradients(poscost)
 
         for i, (g, v) in enumerate(grads):
             if g is not None:
                 grads[i] = (tf.clip_by_norm(g, 5), v)
         train_op = optimizer.apply_gradients(grads)
         train_ops.append(train_op)
+
+    with tf.variable_scope("cnt_optimizer" + str(next_index), reuse=None):
+        optimizer2 = tf.train.AdamOptimizer(learning_rate, epsilon=1)
+        grads2 = optimizer.compute_gradients()
+
+        for i, (g, v) in enumerate(grads2):
+            if g is not None:
+                grads2[i] = (tf.clip_by_norm(g, 5), v)
+        train_op2 = optimizer.apply_gradients(grads)
+        train_ops2.append(train_op2)
  
     next_index = next_index + 1
     if next_index < glimpses:
         current_x = target_x
         current_y = target_y
+        current_cnt = target_cnt
         next_blob_position = target_tensor[:,next_index]
+        next_blob_cnt = count_tensor[:, next_index]
 
     REUSE=True
     h_dec_prev = h_dec
@@ -361,8 +391,8 @@ def evaluate():
     
     for i in range(batches_in_epoch):
         xtrain, _, _, explode_counts, ytrain = train_data.next_explode_batch(batch_size)
-        #feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
-        feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
+        feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
+        #feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
         r = sess.run(avg_reward, feed_dict=feed_dict)
         accuracy += r
     
@@ -398,8 +428,8 @@ if __name__ == '__main__':
 
     for i in range(start_restore_index, train_iters):
         xtrain, _, _, explode_counts, ytrain = train_data.next_explode_batch(batch_size)
-        #feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
-        feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
+        feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
+        #feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
         results = sess.run(fetches2, feed_dict=feed_dict) 
         #reward_fetched, _, relu_fetched, prex, tarx, _ = results
         reward_fetched, _, prex, tarx, _ = results
