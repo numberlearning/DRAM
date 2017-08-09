@@ -354,25 +354,25 @@ if __name__ == '__main__':
                 train_data = load_input.InputData()
                 train_data.get_train()
      
-                if i %10000==0:
-                    start_evaluate = time.clock()
-                    test_accuracy = evaluate()
-                    saver = tf.train.Saver(tf.global_variables())
-                    print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
-                    extra_time = extra_time + time.clock() - start_evaluate
-                    print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
-                    if i == 0:
-                        log_file = open(log_filename, 'w')
-                        settings_file = open(settings_filename, "w")
-                        settings_file.write("learning_rate = " + str(learning_rate) + ", ")
-                        settings_file.write("glimpses = " + str(glimpses) + ", ")
-                        settings_file.write("batch_size = " + str(batch_size) + ", ")
-                        settings_file.write("min_edge = " + str(min_edge) + ", ")
-                        settings_file.write("max_edge = " + str(max_edge) + ", ")
-                        settings_file.write("min_blobs = " + str(min_blobs) + ", ")
-                        settings_file.write("max_blobs = " + str(max_blobs) + ", ")
-                        settings_file.close()
-                    else:
-                        log_file = open(log_filename, 'a')
-                    log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
-                    log_file.close()
+        if i %10000==0 or i in [250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000]:
+            start_evaluate = time.clock()
+            test_accuracy = evaluate()
+            saver = tf.train.Saver(tf.global_variables())
+            print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
+            extra_time = extra_time + time.clock() - start_evaluate
+            print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
+            if i == 0:
+                log_file = open(log_filename, 'w')
+                settings_file = open(settings_filename, "w")
+                settings_file.write("learning_rate = " + str(learning_rate) + ", ")
+                settings_file.write("glimpses = " + str(glimpses) + ", ")
+                settings_file.write("batch_size = " + str(batch_size) + ", ")
+                settings_file.write("min_edge = " + str(min_edge) + ", ")
+                settings_file.write("max_edge = " + str(max_edge) + ", ")
+                settings_file.write("min_blobs = " + str(min_blobs) + ", ")
+                settings_file.write("max_blobs = " + str(max_blobs) + ", ")
+                settings_file.close()
+            else:
+                log_file = open(log_filename, 'a')
+            log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
+            log_file.close()

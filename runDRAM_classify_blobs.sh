@@ -6,7 +6,7 @@ do
     echo "model_name = '$MODELNAME'" >> model_settings.py
 
     mkdir "model_runs/$MODELNAME"
-    nohup python3 -u DRAM_classify_blobs.py > "model_runs/$MODELNAME/nohup.out&"
+    nohup python3 -u DRAM_classify_blobs.py > "model_runs/$MODELNAME/nohup.out" &
 done
 
 ls -lah  
