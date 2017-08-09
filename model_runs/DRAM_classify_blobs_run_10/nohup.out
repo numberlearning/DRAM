@@ -14,3 +14,4 @@ ACCURACY: 0.124111111338
 Model saved in file: model_runs/DRAM_classify_blobs_run_10/classifymodel_250.ckpt
 --- 763.4361040000001 CPU seconds ---
 iter=300 : Reward: 0.240000
+iter=400 : Reward: 0.210000
