@@ -12,8 +12,8 @@ import sys
 #from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 #from DRAMcopy13_rewrite_filterbank import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 #from DRAMcopy14 import convertTranslated, classifications, input_tensor, count_tensor, target_tensor, batch_size, glimpses, z_size, dims, read_n 
-from DRAM_move_attn import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
-#from DRAM_classify_blobs import classification, classifications, x, batch_size, glimpses, z_size, dims, read_n
+#from DRAM_move_attn import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
+from DRAM_classify_blobs import classification, classifications, x, batch_size, glimpses, z_size, dims, read_n
 #batch_size = 1
 import load_input
 import load_teacher
@@ -59,11 +59,12 @@ def random_image():
     return translated[0], data.labels[i]
 
 
-def load_checkpoint(it, human=False):
+def load_checkpoint(it, human=False, path=None):
     #path = "model_runs/regimen"
     #path = "model_runs/rewrite_filterbank"
-    #path = "model_runs/DRAM_test_square"
-    path = "model_runs/sensical"
+    if path is None:
+        path = "model_runs/DRAM_test_square"
+    #path = "model_runs/sensical"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -142,7 +143,7 @@ def read_img2(it, new_image):
     return out
 
 
-def classify_imgs2(it, new_imgs, num_imgs):
+def classify_imgs2(it, new_imgs, num_imgs, path=None):
     out = list()
     global last_imgs
     if new_imgs or last_imgs is None:
@@ -151,7 +152,7 @@ def classify_imgs2(it, new_imgs, num_imgs):
     imgs, labels = last_imgs
     imgs = np.asarray(imgs)
 
-    load_checkpoint(it, human=False)
+    load_checkpoint(it, human=False, path=path)
     human_cs = machine_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
     for idx in range(num_imgs):
         img = imgs[idx]
