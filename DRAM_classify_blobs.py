@@ -24,9 +24,9 @@ def str2bool(v):
 if not os.path.exists("model_runs"):
     os.makedirs("model_runs")
 
-# folder_name = "model_runs/baby_blobs"
-
-# folder_name = "model_runs/number_learning_test_graph"
+if sys.argv[1] is not None:
+    model_name = sys.argv[1]
+    
 folder_name = "model_runs/" + model_name
 
 if not os.path.exists(folder_name):
@@ -34,7 +34,7 @@ if not os.path.exists(folder_name):
 
 start_restore_index = 0 
 
-sys.argv = [sys.argv[0], "true", "true", "true", "true", "true", "true",
+sys.argv = [sys.argv[0], sys.argv[1], "true", "true", "true", "true", "true",
 folder_name + "/classify_log.csv",
 folder_name + "/classifymodel_" + str(start_restore_index) + ".ckpt",
 folder_name + "/classifymodel_",
