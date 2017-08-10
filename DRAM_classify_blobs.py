@@ -24,9 +24,9 @@ def str2bool(v):
 if not os.path.exists("model_runs"):
     os.makedirs("model_runs")
 
-# folder_name = "model_runs/baby_blobs"
-
-# folder_name = "model_runs/number_learning_test_graph"
+if sys.argv[1] is not None:
+    model_name = sys.argv[1]
+    
 folder_name = "model_runs/" + model_name
 
 if not os.path.exists(folder_name):
@@ -34,7 +34,7 @@ if not os.path.exists(folder_name):
 
 start_restore_index = 0 
 
-sys.argv = [sys.argv[0], "true", "true", "true", "true", "true", "true",
+sys.argv = [sys.argv[0], sys.argv[1], "true", "true", "true", "true", "true",
 folder_name + "/classify_log.csv",
 folder_name + "/classifymodel_" + str(start_restore_index) + ".ckpt",
 folder_name + "/classifymodel_",
@@ -354,25 +354,25 @@ if __name__ == '__main__':
                 train_data = load_input.InputData()
                 train_data.get_train()
      
-                if i %10000==0:
-                    start_evaluate = time.clock()
-                    test_accuracy = evaluate()
-                    saver = tf.train.Saver(tf.global_variables())
-                    print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
-                    extra_time = extra_time + time.clock() - start_evaluate
-                    print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
-                    if i == 0:
-                        log_file = open(log_filename, 'w')
-                        settings_file = open(settings_filename, "w")
-                        settings_file.write("learning_rate = " + str(learning_rate) + ", ")
-                        settings_file.write("glimpses = " + str(glimpses) + ", ")
-                        settings_file.write("batch_size = " + str(batch_size) + ", ")
-                        settings_file.write("min_edge = " + str(min_edge) + ", ")
-                        settings_file.write("max_edge = " + str(max_edge) + ", ")
-                        settings_file.write("min_blobs = " + str(min_blobs) + ", ")
-                        settings_file.write("max_blobs = " + str(max_blobs) + ", ")
-                        settings_file.close()
-                    else:
-                        log_file = open(log_filename, 'a')
-                    log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
-                    log_file.close()
+        if i %10000==0 or i in [250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000]:
+            start_evaluate = time.clock()
+            test_accuracy = evaluate()
+            saver = tf.train.Saver(tf.global_variables())
+            print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
+            extra_time = extra_time + time.clock() - start_evaluate
+            print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
+            if i == 0:
+                log_file = open(log_filename, 'w')
+                settings_file = open(settings_filename, "w")
+                settings_file.write("learning_rate = " + str(learning_rate) + ", ")
+                settings_file.write("glimpses = " + str(glimpses) + ", ")
+                settings_file.write("batch_size = " + str(batch_size) + ", ")
+                settings_file.write("min_edge = " + str(min_edge) + ", ")
+                settings_file.write("max_edge = " + str(max_edge) + ", ")
+                settings_file.write("min_blobs = " + str(min_blobs) + ", ")
+                settings_file.write("max_blobs = " + str(max_blobs) + ", ")
+                settings_file.close()
+            else:
+                log_file = open(log_filename, 'a')
+            log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
+            log_file.close()

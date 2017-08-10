@@ -3,10 +3,10 @@
 #7, 7, 1, 5 for sensical
 # 9 for trace_data
 # 15 for trace_data_new
-min_edge = 7
-max_edge = 7
+min_edge = 2
+max_edge = 5
 min_blobs = 1
-max_blobs = 5
+max_blobs = 9
 
 learning_rate = 1e-3
 
