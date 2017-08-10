@@ -18,7 +18,7 @@ glimpses = max_blobs + 1#11
 #77 when running DRAMcopy14
 #100 when running DRAMcopy13 (and 1 for viz?)
 #10000 (or 9000) when running update_curves, classify_imgs2, match num_imgs
-batch_size = 9000
+batch_size = 100
 
 #change this whenever DRAM is run (before running nohup, make sure to make a directory in model_runs)
-model_name = "sensical_left"
+model_name = "DRAM_classify_blobs_run_10"

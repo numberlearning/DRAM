@@ -645,3 +645,9 @@ iter=59500 : Reward: 0.600000
 iter=59600 : Reward: 0.540000
 iter=59700 : Reward: 0.620000
 iter=59800 : Reward: 0.580000
+iter=59900 : Reward: 0.550000
+iter=60000 : Reward: 0.530000
+ACCURACY: 0.432666662998
+Model saved in file: model_runs/DRAM_classify_blobs_run_4/classifymodel_60000.ckpt
+--- 183830.49695800003 CPU seconds ---
+iter=60100 : Reward: 0.550000
