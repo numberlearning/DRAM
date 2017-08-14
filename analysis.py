@@ -59,11 +59,12 @@ def random_image():
     return translated[0], data.labels[i]
 
 
-def load_checkpoint(it, human=False):
+def load_checkpoint(it, human=False, path=None):
     #path = "model_runs/regimen"
     #path = "model_runs/rewrite_filterbank"
+<<<<<<< HEAD
     #path = "model_runs/DRAM_test_square"
-    path = "model_runs/rewrite_filterbank_test_N=25"
+    path = "model_runs/rewrite_filterbank3_test"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -81,6 +82,7 @@ def read_img(it, new_image):
     imgs = np.expand_dims(imgs, axis=0)
     poss = np.expand_dims(poss, axis=0)
 
+    #feed_dict = { input_tensor: imgs } # testing doesn't work yet :(
     feed_dict = { input_tensor: imgs, target_tensor: poss }
 
     img = imgs[0][0]
@@ -133,15 +135,15 @@ def read_img2(it, new_image):
     cs = sess.run(viz_data, feed_dict=feed_dict)
 
     for i in range(len(cs)):
-        gx = list(cs[i]["gx"])
-        gy = list(cs[i]["gy"])
-        print("prediction (x, y): ", cs[i]["predict_x"], ", ", cs[i]["predict_y"])
-        out["dots"].append(list_to_dots(gx * 25, gy * 25))
+        gx = list(cs[i]["gx"])[0]
+        gy = list(cs[i]["gy"])[0]
+        print("gx: ", cs[i]["gx"], ", gy: ", cs[i]["gy"])
+        out["dots"].append(dict(mu_x_list=gx, mu_y_list=gy))
 
     return out
 
 
-def classify_imgs2(it, new_imgs, num_imgs):
+def classify_imgs2(it, new_imgs, num_imgs, path=None):
     out = list()
     global last_imgs
     if new_imgs or last_imgs is None:
@@ -150,7 +152,7 @@ def classify_imgs2(it, new_imgs, num_imgs):
     imgs, labels = last_imgs
     imgs = np.asarray(imgs)
 
-    load_checkpoint(it, human=False)
+    load_checkpoint(it, human=False, path=path)
     human_cs = machine_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
     for idx in range(num_imgs):
         img = imgs[idx]

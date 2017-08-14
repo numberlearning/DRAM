@@ -1,5 +1,6 @@
 #e.g. 5, 5, 0, 9
 #1, 1, 1, 9 or 15 for load_teacher
+#7, 7, 1, 5 for sensical
 # 9 for trace_data
 # 15 for trace_data_new
 min_edge = 2
@@ -20,4 +21,4 @@ glimpses = max_blobs + 1#11
 batch_size = 1 #77
 
 #change this whenever DRAM is run (before running nohup, make sure to make a directory in model_runs)
-model_name = "rewrite_filterbank_test_N=25"
+model_name = "rewrite_filterbank3_test"

@@ -23,13 +23,16 @@ from analysis import read_img, read_img2, glimpses, read_n
 clear_output()
 b = Button(description="Loading...", icon="arrow", width=400)
 dropdown = Dropdown(
-    options=['0', '1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '9000', '10000', '11000', '12000', '13000', '14000', '15000', '16000', '17000', '18000', '19000', '20000', '21000', '22000', '23000', '24000', '25000', '26000', '27000', '28000', '29000', '30000', '31000', '32000', '33000', '34000', '35000', '36000', '37000', '38000', '39000', '40000', '41000', '42000', '43000'],
-    value='18000',
+    options=[str(i) for i in range(0, 400000, 1000)],
+#    options=['0', '1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '9000', '10000', '11000', '12000', '13000', '14000', '15000', '16000', '17000', '18000', '19000', '20000', '21000', '22000', '23000', '24000', '25000', '26000', '27000', '28000', '29000', '30000', '31000', '32000', '33000', '34000', '35000', '36000', '37000', '38000', '39000', '40000', '41000', '42000', '43000', '44000', '45000', '46000', '47000', '48000', '49000', '50000', '51000', '52000', '53000', '54000', '55000', '56000', '57000', '58000', '59000','60000', '61000', '62000', '63000', '64000', '65000', '66000', '67000', '68000', '69000', '70000', '71000', '72000', '73000', '74000', '75000', '76000', '77000', '78000', '79000'],
+    value='364000',
     description='Iteration:'
 )
 
+
+
 action_dropdown = Dropdown(
-    options=['filters', 'center'],
+    options=['filters', 'center', 'prediction'],
     value='filters',
     description='Action:'
 )
@@ -50,7 +53,7 @@ def make_figure(color, i):
     name = "Draw"
     title = "%s Glimpse %d" % (name, (i + 1))
     # change the width and height for different input image dimensions!
-    p = figure(x_range=(0, img_width), y_range=(img_height, 0), width=200, height=70, tools="", title=title, background_fill_color="#111111")
+    p = figure(x_range=(0, img_width), y_range=(img_height, 0), width=500, height=150, tools="", title=title, background_fill_color="#111111")
     
     p.toolbar.logo = None
     p.toolbar_location = None
@@ -62,7 +65,7 @@ def make_figure(color, i):
 
     iii = p.image(image=[im], x=0, y=img_height, dw=img_width, dh=img_height, palette="Greys256")#"Spectral9")#"Greys256")
 
-    dots_source = ColumnDataSource(data=dict(mu_x_list=[0]*625, mu_y_list=[0]*625))
+    dots_source = ColumnDataSource(data=dict(mu_x_list=[0], mu_y_list=[0]))
     d = p.circle("mu_x_list", "mu_y_list", source=dots_source, size=5, color="orange", alpha=0.5)
         
     callback = CustomJS(code="""
@@ -97,7 +100,7 @@ def make_figure(color, i):
     return p, iii, d;
 
 
-for i in range(glimpses):
+for i in range(1, glimpses):
     if True:#i % 2 == 0:
         (p1, i1, d1) = make_figure("pink", i)
         figures.append(p1)
@@ -113,8 +116,13 @@ def hover(i):
     i: glimpse number
     ids: list of images and filterbanks
     """
-    ids[i][0].data_source.data["image"][0] = data["rs"][i]
-    ids[i][1].data_source.data = dict(mu_x_list=[0]*625, mu_y_list=[0]*625)
+    global data
+    for i, f in enumerate(figures):
+        picture = f
+        picture_i, picture_d = ids[i]
+        picture_i.data_source.data["image"][0] = data["rs"]
+        picture_d.data_source.data = dict(mu_x_list=[0], mu_y_list=[0])
+
     push_notebook(handle=handle)
 
 
@@ -124,23 +132,7 @@ def unhover(i):
     i: glimpse number
     ids: list of images and filterbanks 
     """
-    ids[i][0].data_source.data["image"][0] = data["img"]
-
-    if action_dropdown.value is 'filters':
-        ids[i][1].data_source.data = data["dots"][i]
-
-    if action_dropdown.value is 'center':
-        ids[i][1].data_source.data = data["dot"][i]
-
-    push_notebook(handle=handle)
-    
-     
-    
-def update_figures(handle, new_image=True):
-    """Display figures at new iteration number."""
-
     global data
-    data = read_img(int(dropdown.value), new_image)
 
     if action_dropdown.value is 'filters':
         for i, f in enumerate(figures):
@@ -154,7 +146,49 @@ def update_figures(handle, new_image=True):
             picture = f
             picture_i, picture_d = ids[i]
             picture_i.data_source.data["image"][0] = data["img"]
+            picture_d.data_source.data = data["dots"][i]
+
+    if action_dropdown.value is 'prediction':
+        for i, f in enumerate(figures):
+            picture = f
+            picture_i, picture_d = ids[i]
+            picture_i.data_source.data["image"][0] = data["img"]
             picture_d.data_source.data = data["dot"][i]
+
+    push_notebook(handle=handle)
+    
+     
+    
+def update_figures(handle, new_image=True):
+    """Display figures at new iteration number."""
+
+    global data
+
+    if action_dropdown.value is 'filters':
+        data = read_img(int(dropdown.value), new_image)
+        for i, f in enumerate(figures):
+            picture = f
+            picture_i, picture_d = ids[i]
+            picture_i.data_source.data["image"][0] = data["img"]
+            picture_d.data_source.data = data["dots"][i]
+
+    if action_dropdown.value is 'center':
+        data = read_img2(int(dropdown.value), new_image)
+        for i, f in enumerate(figures):
+            picture = f
+            picture_i, picture_d = ids[i]
+            picture_i.data_source.data["image"][0] = data["img"]
+            picture_d.data_source.data = data["dots"][i]
+
+    if action_dropdown.value is 'prediction':
+        data = read_img(int(dropdown.value), new_image)
+        for i, f in enumerate(figures):
+            picture = f
+            picture_i, picture_d = ids[i]
+            picture_i.data_source.data["image"][0] = data["img"]
+            picture_d.data_source.data = data["dot"][i]
+
+
 
     push_notebook(handle=handle)
     
@@ -179,5 +213,5 @@ def on_change(change):
 dropdown.observe(on_change)
 action_dropdown.observe(on_change)
 display(HBox([b, dropdown, action_dropdown]))
-handle = show(row(figures), notebook_handle=True)
+handle = show(column(figures), notebook_handle=True)
 on_click(b)

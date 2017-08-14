@@ -14,7 +14,7 @@ def get_my_teacher():
     min_edge = 7
     max_edge = 7
     min_blobs = 1
-    max_blobs = 15
+    max_blobs = 5
 
         
     c = min_blobs
@@ -60,7 +60,11 @@ def get_my_teacher():
             while count < num_blobs:       
                 height = random.randint(min_edge, max_edge)
                 width = random.randint(min_edge, max_edge)
-                lx = random.randint(edge_vertical_space, img_width - edge_horizontal_space - width)
+                if count is 0:
+                    lx = random.randint(25, 35)
+                else:
+                    lx = random.randint(used[count-1, 0]+10, used[count-1, 0]+20)
+                #lx = random.randint(edge_vertical_space, img_width - edge_horizontal_space - width)
                 ly = random.randint(edge_vertical_space, img_height - edge_vertical_space - height)
                 h = height
                 w = width
@@ -68,6 +72,7 @@ def get_my_teacher():
                 index = 0
 
                 #find valid positions for the blobs
+                """
                 while index < count:
                     if lx+width+1 <= used[index, 0] or used[index, 0]+1+used[index,2] <= lx or used[index, 1]+1+used[index,3] <= ly or ly+height+1<=used[index,1]:
                         if index == count-1:
@@ -92,7 +97,8 @@ def get_my_teacher():
                                     break
                                 position = position - 1
                             if index < count:
-                                lx = random.randint(edge_horizontal_space, img_width - edge_horizontal_space - width)
+                                #lx = random.randint(
+                                #lx = random.randint(edge_horizontal_space, img_width - edge_horizontal_space - width)
                                 ly = random.randint(edge_vertical_space, img_height - edge_vertical_space - height)
                                 index = 0
                         else:
@@ -107,13 +113,14 @@ def get_my_teacher():
                         lx = random.randint(edge_horizontal_space, img_width - edge_horizontal_space - width)
                         ly = random.randint(edge_vertical_space, img_height - edge_vertical_space - height)
                         index = 0
+                    """
 
-                used[index, 0] = lx
-                used[index, 1] = ly 
+                used[count, 0] = lx
+                used[count, 1] = ly 
                 lxly_list.append((lx + int(width/2), ly + int(height/2)))
                # print(lxly_list)
-                used[index, 2] = width
-                used[index, 3] = height
+                used[count, 2] = width
+                used[count, 3] = height
 
                 for p in range(ly, ly+height):
                     for q in range(lx, lx+width):
@@ -135,11 +142,11 @@ def get_my_teacher():
             for t in range(num_blobs):
                 #trace_current = []
                 l1 = lxly_list
-                if t % 2 == 0:
-                    l1.sort(key=lambda tup:tup[0])
+                #if t % 2 == 0:
+                #    l1.sort(key=lambda tup:tup[0])
                 #    l1.sort(key=lambda tup:tup[1])
-                if t % 2 == 1:
-                    l1.sort(key=lambda tup:tup[0], reverse=True)
+                #if t % 2 == 1:
+                #    l1.sort(key=lambda tup:tup[0], reverse=True)
                 #if t % 4 == 2:
                 #    l1.sort(key=lambda tup:tup[0])
                 #    l1.sort(key=lambda tup:tup[1], reverse=True)
@@ -148,16 +155,16 @@ def get_my_teacher():
                 #    l1.sort(key=lambda tup:tup[1], reverse=True)
                 #for index in range(num_blobs):
                     #trace_current.append(l1[index])
-                    minimum = 10000000000
-                    for p in range(1,num_blobs-index):   
-                        diff = (l1[index+p][0]-l1[index][0])**2 + (l1[index+p][1]-l1[index][1])**2
-                        if diff < minimum:
-                            minimum = diff
-                            temp = l1[index+1]
-                            l1[index+1] = l1[index+p]
-                            l1[index+p] = temp
-                        p = p + 1
-                    index = index+1
+                #    minimum = 10000000000
+                #    for p in range(1,num_blobs-index):   
+                #        diff = (l1[index+p][0]-l1[index][0])**2 + (l1[index+p][1]-l1[index][1])**2
+                #        if diff < minimum:
+                #            minimum = diff
+                #            temp = l1[index+1]
+                #            l1[index+1] = l1[index+p]
+                #            l1[index+p] = temp
+                #        p = p + 1
+                #    index = index+1
                 v =int(255 / num_blobs)
                 im = np.zeros((img_height, img_width))
                 for j in range(num_blobs):
