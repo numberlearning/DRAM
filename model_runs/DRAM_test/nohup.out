@@ -1,0 +1,437 @@
+['DRAMtest.py', 'true', 'true', 'true', 'true', 'true', 'true', 'model_runs/DRAM_test/classify_log.csv', 'model_runs/DRAM_test/classifymodel_0.ckpt', 'model_runs/DRAM_test/classifymodel_', 'model_runs/DRAM_test/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+2017-08-02 15:49:36.425746: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-02 15:49:36.425774: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-02 15:49:36.425779: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-02 15:49:36.425783: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-02 15:49:36.425787: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-02 15:49:36.538142: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-02 15:49:36.538435: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 5.79GiB
+2017-08-02 15:49:36.538491: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x6a6ebe0
+2017-08-02 15:49:36.642785: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-02 15:49:36.643185: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.26GiB
+2017-08-02 15:49:36.643658: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-08-02 15:49:36.643668: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-08-02 15:49:36.643673: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-08-02 15:49:36.643680: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-08-02 15:49:36.643685: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: 0.130000
+ACCURACY: 0.116111106674
+Model saved in file: model_runs/DRAM_test/classifymodel_0.ckpt
+--- 2.65864 CPU seconds ---
+iter=100 : Reward: 0.090000
+iter=200 : Reward: 0.130000
+iter=300 : Reward: 0.160000
+iter=400 : Reward: 0.170000
+iter=500 : Reward: 0.190000
+iter=600 : Reward: 0.220000
+iter=700 : Reward: 0.240000
+iter=800 : Reward: 0.270000
+iter=900 : Reward: 0.330000
+iter=1000 : Reward: 0.190000
+iter=1100 : Reward: 0.260000
+iter=1200 : Reward: 0.250000
+iter=1300 : Reward: 0.410000
+iter=1400 : Reward: 0.260000
+iter=1500 : Reward: 0.360000
+iter=1600 : Reward: 0.380000
+iter=1700 : Reward: 0.340000
+iter=1800 : Reward: 0.250000
+iter=1900 : Reward: 0.410000
+iter=2000 : Reward: 0.370000
+iter=2100 : Reward: 0.330000
+iter=2200 : Reward: 0.400000
+iter=2300 : Reward: 0.410000
+iter=2400 : Reward: 0.190000
+iter=2500 : Reward: 0.380000
+iter=2600 : Reward: 0.280000
+iter=2700 : Reward: 0.360000
+iter=2800 : Reward: 0.360000
+iter=2900 : Reward: 0.350000
+iter=3000 : Reward: 0.320000
+iter=3100 : Reward: 0.280000
+iter=3200 : Reward: 0.300000
+iter=3300 : Reward: 0.260000
+iter=3400 : Reward: 0.300000
+iter=3500 : Reward: 0.280000
+iter=3600 : Reward: 0.330000
+iter=3700 : Reward: 0.300000
+iter=3800 : Reward: 0.360000
+iter=3900 : Reward: 0.270000
+iter=4000 : Reward: 0.280000
+iter=4100 : Reward: 0.380000
+iter=4200 : Reward: 0.300000
+iter=4300 : Reward: 0.310000
+iter=4400 : Reward: 0.400000
+iter=4500 : Reward: 0.320000
+iter=4600 : Reward: 0.400000
+iter=4700 : Reward: 0.310000
+iter=4800 : Reward: 0.280000
+iter=4900 : Reward: 0.340000
+iter=5000 : Reward: 0.200000
+iter=5100 : Reward: 0.300000
+iter=5200 : Reward: 0.330000
+iter=5300 : Reward: 0.260000
+iter=5400 : Reward: 0.330000
+iter=5500 : Reward: 0.280000
+iter=5600 : Reward: 0.330000
+iter=5700 : Reward: 0.320000
+iter=5800 : Reward: 0.330000
+iter=5900 : Reward: 0.410000
+iter=6000 : Reward: 0.140000
+iter=6100 : Reward: 0.390000
+iter=6200 : Reward: 0.330000
+iter=6300 : Reward: 0.320000
+iter=6400 : Reward: 0.370000
+iter=6500 : Reward: 0.450000
+iter=6600 : Reward: 0.330000
+iter=6700 : Reward: 0.310000
+iter=6800 : Reward: 0.340000
+iter=6900 : Reward: 0.350000
+iter=7000 : Reward: 0.370000
+iter=7100 : Reward: 0.400000
+iter=7200 : Reward: 0.320000
+iter=7300 : Reward: 0.380000
+iter=7400 : Reward: 0.420000
+iter=7500 : Reward: 0.370000
+iter=7600 : Reward: 0.400000
+iter=7700 : Reward: 0.320000
+iter=7800 : Reward: 0.380000
+iter=7900 : Reward: 0.410000
+iter=8000 : Reward: 0.370000
+iter=8100 : Reward: 0.300000
+iter=8200 : Reward: 0.270000
+iter=8300 : Reward: 0.380000
+iter=8400 : Reward: 0.350000
+iter=8500 : Reward: 0.360000
+iter=8600 : Reward: 0.440000
+iter=8700 : Reward: 0.330000
+iter=8800 : Reward: 0.360000
+iter=8900 : Reward: 0.310000
+iter=9000 : Reward: 0.290000
+iter=9100 : Reward: 0.370000
+iter=9200 : Reward: 0.220000
+iter=9300 : Reward: 0.490000
+iter=9400 : Reward: 0.340000
+iter=9500 : Reward: 0.370000
+iter=9600 : Reward: 0.340000
+iter=9700 : Reward: 0.270000
+iter=9800 : Reward: 0.410000
+iter=9900 : Reward: 0.390000
+iter=10000 : Reward: 0.340000
+ACCURACY: 0.170555549281
+Model saved in file: model_runs/DRAM_test/classifymodel_10000.ckpt
+--- 1440.128226 CPU seconds ---
+iter=10100 : Reward: 0.400000
+iter=10200 : Reward: 0.380000
+iter=10300 : Reward: 0.420000
+iter=10400 : Reward: 0.390000
+iter=10500 : Reward: 0.270000
+iter=10600 : Reward: 0.350000
+iter=10700 : Reward: 0.300000
+iter=10800 : Reward: 0.340000
+iter=10900 : Reward: 0.260000
+iter=11000 : Reward: 0.390000
+iter=11100 : Reward: 0.390000
+iter=11200 : Reward: 0.410000
+iter=11300 : Reward: 0.300000
+iter=11400 : Reward: 0.390000
+iter=11500 : Reward: 0.480000
+iter=11600 : Reward: 0.440000
+iter=11700 : Reward: 0.320000
+iter=11800 : Reward: 0.370000
+iter=11900 : Reward: 0.180000
+iter=12000 : Reward: 0.440000
+iter=12100 : Reward: 0.390000
+iter=12200 : Reward: 0.330000
+iter=12300 : Reward: 0.340000
+iter=12400 : Reward: 0.270000
+iter=12500 : Reward: 0.350000
+iter=12600 : Reward: 0.370000
+iter=12700 : Reward: 0.380000
+iter=12800 : Reward: 0.350000
+iter=12900 : Reward: 0.280000
+iter=13000 : Reward: 0.390000
+iter=13100 : Reward: 0.330000
+iter=13200 : Reward: 0.340000
+iter=13300 : Reward: 0.310000
+iter=13400 : Reward: 0.350000
+iter=13500 : Reward: 0.390000
+iter=13600 : Reward: 0.320000
+iter=13700 : Reward: 0.350000
+iter=13800 : Reward: 0.270000
+iter=13900 : Reward: 0.360000
+iter=14000 : Reward: 0.450000
+iter=14100 : Reward: 0.350000
+iter=14200 : Reward: 0.400000
+iter=14300 : Reward: 0.400000
+iter=14400 : Reward: 0.330000
+iter=14500 : Reward: 0.260000
+iter=14600 : Reward: 0.420000
+iter=14700 : Reward: 0.350000
+iter=14800 : Reward: 0.380000
+iter=14900 : Reward: 0.420000
+iter=15000 : Reward: 0.340000
+iter=15100 : Reward: 0.370000
+iter=15200 : Reward: 0.290000
+iter=15300 : Reward: 0.310000
+iter=15400 : Reward: 0.280000
+iter=15500 : Reward: 0.370000
+iter=15600 : Reward: 0.430000
+iter=15700 : Reward: 0.320000
+iter=15800 : Reward: 0.410000
+iter=15900 : Reward: 0.420000
+iter=16000 : Reward: 0.490000
+iter=16100 : Reward: 0.300000
+iter=16200 : Reward: 0.290000
+iter=16300 : Reward: 0.410000
+iter=16400 : Reward: 0.280000
+iter=16500 : Reward: 0.360000
+iter=16600 : Reward: 0.350000
+iter=16700 : Reward: 0.430000
+iter=16800 : Reward: 0.340000
+iter=16900 : Reward: 0.370000
+iter=17000 : Reward: 0.400000
+iter=17100 : Reward: 0.370000
+iter=17200 : Reward: 0.450000
+iter=17300 : Reward: 0.410000
+iter=17400 : Reward: 0.360000
+iter=17500 : Reward: 0.310000
+iter=17600 : Reward: 0.310000
+iter=17700 : Reward: 0.440000
+iter=17800 : Reward: 0.380000
+iter=17900 : Reward: 0.350000
+iter=18000 : Reward: 0.350000
+iter=18100 : Reward: 0.530000
+iter=18200 : Reward: 0.500000
+iter=18300 : Reward: 0.340000
+iter=18400 : Reward: 0.330000
+iter=18500 : Reward: 0.430000
+iter=18600 : Reward: 0.360000
+iter=18700 : Reward: 0.450000
+iter=18800 : Reward: 0.280000
+iter=18900 : Reward: 0.430000
+iter=19000 : Reward: 0.370000
+iter=19100 : Reward: 0.430000
+iter=19200 : Reward: 0.410000
+iter=19300 : Reward: 0.460000
+iter=19400 : Reward: 0.370000
+iter=19500 : Reward: 0.390000
+iter=19600 : Reward: 0.370000
+iter=19700 : Reward: 0.420000
+iter=19800 : Reward: 0.430000
+iter=19900 : Reward: 0.500000
+iter=20000 : Reward: 0.460000
+ACCURACY: 0.191555548542
+Model saved in file: model_runs/DRAM_test/classifymodel_20000.ckpt
+--- 2884.7773879999995 CPU seconds ---
+iter=20100 : Reward: 0.380000
+iter=20200 : Reward: 0.390000
+iter=20300 : Reward: 0.380000
+iter=20400 : Reward: 0.430000
+iter=20500 : Reward: 0.420000
+iter=20600 : Reward: 0.350000
+iter=20700 : Reward: 0.330000
+iter=20800 : Reward: 0.380000
+iter=20900 : Reward: 0.420000
+iter=21000 : Reward: 0.450000
+iter=21100 : Reward: 0.320000
+iter=21200 : Reward: 0.400000
+iter=21300 : Reward: 0.490000
+iter=21400 : Reward: 0.360000
+iter=21500 : Reward: 0.460000
+iter=21600 : Reward: 0.370000
+iter=21700 : Reward: 0.450000
+iter=21800 : Reward: 0.390000
+iter=21900 : Reward: 0.400000
+iter=22000 : Reward: 0.430000
+iter=22100 : Reward: 0.450000
+iter=22200 : Reward: 0.490000
+iter=22300 : Reward: 0.410000
+iter=22400 : Reward: 0.390000
+iter=22500 : Reward: 0.410000
+iter=22600 : Reward: 0.380000
+iter=22700 : Reward: 0.410000
+iter=22800 : Reward: 0.430000
+iter=22900 : Reward: 0.450000
+iter=23000 : Reward: 0.390000
+iter=23100 : Reward: 0.410000
+iter=23200 : Reward: 0.380000
+iter=23300 : Reward: 0.360000
+iter=23400 : Reward: 0.430000
+iter=23500 : Reward: 0.490000
+iter=23600 : Reward: 0.390000
+iter=23700 : Reward: 0.420000
+iter=23800 : Reward: 0.380000
+iter=23900 : Reward: 0.370000
+iter=24000 : Reward: 0.510000
+iter=24100 : Reward: 0.400000
+iter=24200 : Reward: 0.430000
+iter=24300 : Reward: 0.410000
+iter=24400 : Reward: 0.490000
+iter=24500 : Reward: 0.480000
+iter=24600 : Reward: 0.430000
+iter=24700 : Reward: 0.410000
+iter=24800 : Reward: 0.480000
+iter=24900 : Reward: 0.490000
+iter=25000 : Reward: 0.450000
+iter=25100 : Reward: 0.390000
+iter=25200 : Reward: 0.400000
+iter=25300 : Reward: 0.420000
+iter=25400 : Reward: 0.430000
+iter=25500 : Reward: 0.480000
+iter=25600 : Reward: 0.550000
+iter=25700 : Reward: 0.550000
+iter=25800 : Reward: 0.430000
+iter=25900 : Reward: 0.500000
+iter=26000 : Reward: 0.530000
+iter=26100 : Reward: 0.390000
+iter=26200 : Reward: 0.560000
+iter=26300 : Reward: 0.420000
+iter=26400 : Reward: 0.430000
+iter=26500 : Reward: 0.500000
+iter=26600 : Reward: 0.580000
+iter=26700 : Reward: 0.440000
+iter=26800 : Reward: 0.540000
+iter=26900 : Reward: 0.530000
+iter=27000 : Reward: 0.420000
+iter=27100 : Reward: 0.490000
+iter=27200 : Reward: 0.490000
+iter=27300 : Reward: 0.550000
+iter=27400 : Reward: 0.550000
+iter=27500 : Reward: 0.530000
+iter=27600 : Reward: 0.520000
+iter=27700 : Reward: 0.500000
+iter=27800 : Reward: 0.560000
+iter=27900 : Reward: 0.530000
+iter=28000 : Reward: 0.590000
+iter=28100 : Reward: 0.530000
+iter=28200 : Reward: 0.570000
+iter=28300 : Reward: 0.510000
+iter=28400 : Reward: 0.500000
+iter=28500 : Reward: 0.470000
+iter=28600 : Reward: 0.620000
+iter=28700 : Reward: 0.530000
+iter=28800 : Reward: 0.610000
+iter=28900 : Reward: 0.510000
+iter=29000 : Reward: 0.540000
+iter=29100 : Reward: 0.540000
+iter=29200 : Reward: 0.550000
+iter=29300 : Reward: 0.490000
+iter=29400 : Reward: 0.430000
+iter=29500 : Reward: 0.610000
+iter=29600 : Reward: 0.650000
+iter=29700 : Reward: 0.540000
+iter=29800 : Reward: 0.550000
+iter=29900 : Reward: 0.580000
+iter=30000 : Reward: 0.670000
+ACCURACY: 0.390666654209
+Model saved in file: model_runs/DRAM_test/classifymodel_30000.ckpt
+--- 4325.393848 CPU seconds ---
+iter=30100 : Reward: 0.610000
+iter=30200 : Reward: 0.530000
+iter=30300 : Reward: 0.680000
+iter=30400 : Reward: 0.640000
+iter=30500 : Reward: 0.550000
+iter=30600 : Reward: 0.540000
+iter=30700 : Reward: 0.610000
+iter=30800 : Reward: 0.560000
+iter=30900 : Reward: 0.520000
+iter=31000 : Reward: 0.610000
+iter=31100 : Reward: 0.610000
+iter=31200 : Reward: 0.650000
+iter=31300 : Reward: 0.610000
+iter=31400 : Reward: 0.610000
+iter=31500 : Reward: 0.600000
+iter=31600 : Reward: 0.530000
+iter=31700 : Reward: 0.580000
+iter=31800 : Reward: 0.580000
+iter=31900 : Reward: 0.680000
+iter=32000 : Reward: 0.570000
+iter=32100 : Reward: 0.640000
+iter=32200 : Reward: 0.640000
+iter=32300 : Reward: 0.690000
+iter=32400 : Reward: 0.580000
+iter=32500 : Reward: 0.550000
+iter=32600 : Reward: 0.640000
+iter=32700 : Reward: 0.560000
+iter=32800 : Reward: 0.610000
+iter=32900 : Reward: 0.630000
+iter=33000 : Reward: 0.620000
+iter=33100 : Reward: 0.580000
+iter=33200 : Reward: 0.570000
+iter=33300 : Reward: 0.650000
+iter=33400 : Reward: 0.670000
+iter=33500 : Reward: 0.610000
+iter=33600 : Reward: 0.690000
+iter=33700 : Reward: 0.630000
+iter=33800 : Reward: 0.580000
+iter=33900 : Reward: 0.630000
+iter=34000 : Reward: 0.650000
+iter=34100 : Reward: 0.630000
+iter=34200 : Reward: 0.680000
+iter=34300 : Reward: 0.620000
+iter=34400 : Reward: 0.580000
+iter=34500 : Reward: 0.640000
+iter=34600 : Reward: 0.580000
+iter=34700 : Reward: 0.620000
+iter=34800 : Reward: 0.530000
+iter=34900 : Reward: 0.590000
+iter=35000 : Reward: 0.520000
+iter=35100 : Reward: 0.590000
+iter=35200 : Reward: 0.620000
+iter=35300 : Reward: 0.630000
+iter=35400 : Reward: 0.550000
+iter=35500 : Reward: 0.640000
+iter=35600 : Reward: 0.520000
+iter=35700 : Reward: 0.660000
+iter=35800 : Reward: 0.590000
+iter=35900 : Reward: 0.700000
+iter=36000 : Reward: 0.630000
+iter=36100 : Reward: 0.620000
+iter=36200 : Reward: 0.650000
+iter=36300 : Reward: 0.720000
+iter=36400 : Reward: 0.590000
+iter=36500 : Reward: 0.560000
+iter=36600 : Reward: 0.660000
+iter=36700 : Reward: 0.720000
+iter=36800 : Reward: 0.670000
+iter=36900 : Reward: 0.610000
+iter=37000 : Reward: 0.580000
+iter=37100 : Reward: 0.580000
+iter=37200 : Reward: 0.600000
+iter=37300 : Reward: 0.650000
+iter=37400 : Reward: 0.640000
+iter=37500 : Reward: 0.720000
+iter=37600 : Reward: 0.630000
+iter=37700 : Reward: 0.640000
+iter=37800 : Reward: 0.670000
+iter=37900 : Reward: 0.630000
+iter=38000 : Reward: 0.530000
+iter=38100 : Reward: 0.550000
+iter=38200 : Reward: 0.670000
+iter=38300 : Reward: 0.690000
+iter=38400 : Reward: 0.600000
+iter=38500 : Reward: 0.660000
+iter=38600 : Reward: 0.690000
+iter=38700 : Reward: 0.570000
+iter=38800 : Reward: 0.590000
+iter=38900 : Reward: 0.680000
+iter=39000 : Reward: 0.610000
+Traceback (most recent call last):
+  File "DRAMtest.py", line 355, in <module>
+    train_data.get_train()
+  File "/home/zzhou1/DRAM/load_input_test.py", line 27, in get_train
+    self.images, self.labels = create_data.generate_data(even)
+  File "/home/zzhou1/DRAM/create_data.py", line 32, in generate_data
+    train = np.zeros([total, 10000])
+MemoryError
