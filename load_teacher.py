@@ -160,9 +160,10 @@ class Teacher(object):
                 #target_tensor.append([None, None])
 
                 #count_padding = [0 for x in range(z_size)]
+                count_end = [1 if x is -1 else 0 for x in range(-1, z_size)]
                 
                 for count, link in enumerate(chain):
-                    count_vector = [0 if x is not count else 1 for x in range(z_size)]
+                    count_vector = [0 if x is not count else 1 for x in range(-1, z_size)]
                     count_tensor.append(count_vector)
                     x, y = link
                     image[y*200+x] = 255
@@ -170,10 +171,11 @@ class Teacher(object):
                     target_tensor.append(list(link))
 
                 # Fill in the rest of the list with the same (current one doe
-                #for cont in range(count + 1, z_size):
+                #for cont in range(count + 1, z_size): # try this?
                 for cont in range(count + 1, z_size + 1):
                     #count_tensor.append(count_padding)
-                    count_tensor.append(count_vector)
+                    count_tensor.append(count_end)
+                    #count_tensor.append(count_vector)
                     input_tensor.append(image)
                     target_tensor.append(list(link))
 
