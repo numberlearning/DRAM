@@ -28,9 +28,10 @@ class InputData(object):
         self.length = len(self.images)
 
 
-    def get_test(self, even=None):
-        """Generate and get train images and labels."""
-        self.get_train(even)
+    def get_test(self, even=None, max_blobs=max_blobs):
+        """Generate and get test images and labels."""
+        self.images, self.labels = create_data.generate_data(even, max_blobs)
+        self.length = len(self.images)
 
 
     def load_sample(self):
