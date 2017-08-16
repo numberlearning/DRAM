@@ -258,7 +258,7 @@ def binary_crossentropy(t,o):
 
 def evaluate():
     data = load_input.InputData()
-    data.get_test(1)
+    data.get_test(1, 9)
     batches_in_epoch = len(data.images) // batch_size
     accuracy = 0
     
@@ -354,7 +354,7 @@ if __name__ == '__main__':
                 train_data = load_input.InputData()
                 train_data.get_train()
      
-        if i %10000==0 or i in [250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000]:
+        if i in [0, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000]:
             start_evaluate = time.clock()
             test_accuracy = evaluate()
             saver = tf.train.Saver(tf.global_variables())

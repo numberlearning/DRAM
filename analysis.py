@@ -10,10 +10,10 @@ from scipy import misc
 import time
 import sys
 #from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
-from DRAMcopy13_rewrite_filterbank3 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
+#from DRAMcopy13_rewrite_filterbank import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 #from DRAMcopy14 import convertTranslated, classifications, input_tensor, count_tensor, target_tensor, batch_size, glimpses, z_size, dims, read_n 
-#from DRAMcopy15 import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
-#from DRAMtest import classification, classifications, x, batch_size, glimpses, z_size, dims, read_n
+#from DRAM_move_attn import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
+from DRAM_classify_blobs import classification, classifications, x, batch_size, glimpses, z_size, dims, read_n
 #batch_size = 1
 import load_input
 import load_teacher
@@ -33,7 +33,7 @@ def random_imgs(num_imgs):
     """Get batch of random images from test set."""
 
     data = load_input.InputData()
-    data.get_test(1)
+    data.get_test(1, 9)
     x_test, y_test = data.next_batch(num_imgs)
     return x_test, y_test
 
@@ -62,9 +62,9 @@ def random_image():
 def load_checkpoint(it, human=False, path=None):
     #path = "model_runs/regimen"
     #path = "model_runs/rewrite_filterbank"
-<<<<<<< HEAD
-    #path = "model_runs/DRAM_test_square"
-    path = "model_runs/rewrite_filterbank3_test"
+    if path is None:
+        path = "model_runs/DRAM_test_square"
+    #path = "model_runs/sensical"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -235,15 +235,12 @@ def classify_image(it, new_image):
         stats_arr1 = np.asarray(machine_cs)
         stats_arr = stats_arr1[i]["stats"]
         
-        out["rects"].append((stats_to_rect((machine_cs[i]["stats"][3][0], machine_cs[i]["stats"][4][0], machine_cs[i]["stats"][5][0])), stats_to_rect((human_cs[i]["stats"][3][0], human_cs[i]["stats"][4][0], human_cs[i]["stats"][5][0]))))
+        out["rects"].append((stats_to_rect((machine_cs[i]["stats"][0][0], machine_cs[i]["stats"][1][0], machine_cs[i]["stats"][2][0])), stats_to_rect((human_cs[i]["stats"][0][0], human_cs[i]["stats"][1][0], human_cs[i]["stats"][2][0]))))
 
-        _, _, _, gx, gy, delta = machine_cs[i]["stats"]
+        gx, gy, delta = machine_cs[i]["stats"]
         print("gx: ", gx)
         print("gy: ", gy)
         print("delta: ", delta)
-        print("gx_shape:", tf.shape(gx)) 
-        print("delta_shape", tf.shape(delta))
-        print("sum:",sum(delta[0][0:12]))
         out["h_decs"].append((machine_cs[i]["h_dec"][0], human_cs[i]["h_dec"][0]))
 
 
@@ -287,13 +284,11 @@ def stats_to_rect(stats):
     """Draw attention window based on gx, gy, and delta."""
 
     gx, gy, delta = stats
+    minY = dims[0] - gy + read_n/2.0 * delta
+    maxY = dims[0] - gy - read_n/2.0 * delta
 
-    minX = sum(delta[0][0:read_n//2])
-    maxX = 99#gx[0] + sum(delta[0:read_n//2])
-
-    minY = 2#gy[0] - sum(delta[0:read_n//2])
-    maxY = 99#gy[0] + sum(delta[0:read_n//2])
-
+    minX = gx - read_n/2.0 * delta
+    maxX = gx + read_n/2.0 * delta
 
     if minX < 1:
         minX = 1
