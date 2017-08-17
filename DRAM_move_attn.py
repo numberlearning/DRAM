@@ -23,9 +23,6 @@ def str2bool(v):
 if not os.path.exists("model_runs"):
     os.makedirs("model_runs")
 
-# folder_name = "model_runs/baby_blobs"
-
-# folder_name = "model_runs/number_learning_test_graph"
 folder_name = "model_runs/" + model_name
 
 if not os.path.exists(folder_name):
@@ -70,7 +67,7 @@ start_non_restored_from_random = str2bool(sys.argv[15])
 REUSE = None
 
 input_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, img_size))
-count_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, z_size))
+count_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, z_size + 1))
 target_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, 2))
 
 #batch_size is 77 when running DRAM
@@ -128,16 +125,16 @@ def attn_window(scope,h_dec,N, predx=None, predy=None, DO_SHARE=False):
         gy=tf.reshape(predy, [batch_size, 1])
 
     # Unbounded delta and sigma
-#    sigma2 = tf.exp(log_sigma2)
-#    delta = (max(dims[0], dims[1])-1)/(N-1)*tf.exp(log_delta)
+    sigma2 = tf.exp(log_sigma2)
+    delta = (max(dims[0], dims[1])-1)/(N-1)*tf.exp(log_delta)
 
     # Bound delta, and thus sigma
     #  sigma2=tf.exp(log_sigma2)
-    delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-    max_deltas = np.array([7]) # batch_size x 1, where 5 is the max delta
-    tmax_deltas = tf.convert_to_tensor(max_deltas, dtype=tf.float32)
-    delta = tf.minimum(delta, tmax_deltas)
-    sigma2=delta*delta/4 # sigma=delta/2
+#    delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
+#    max_deltas = np.array([7]) # batch_size x 1, where 7 is the max delta
+#    tmax_deltas = tf.convert_to_tensor(max_deltas, dtype=tf.float32)
+#    delta = tf.minimum(delta, tmax_deltas)
+#    sigma2=delta*delta/4 # sigma=delta/2
 
     # Bound gx and gy inside image
     max_gx = np.array([dims[1]])
@@ -262,7 +259,7 @@ viz_data = list()
 #current_cnt = count_tensor[:, 0]
 current_x = tf.constant(10, dtype=tf.float32, shape=[77,1])
 current_y = tf.constant(10, dtype=tf.float32, shape=[77,1])
-current_cnt = tf.zeros(dtype=tf.float32, shape=[77,5])
+current_cnt = tf.zeros(dtype=tf.float32, shape=[77, z_size + 1])
 next_index = 0
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
@@ -281,8 +278,7 @@ testing = False
 while next_index < glimpses:
 
     target_x, target_y = tf.split(next_blob_position, num_or_size_splits=2, axis=1)
-    target_cnt = next_blob_cnt
-  
+    target_cnt = next_blob_cnt  
 
     if testing:
         r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev) # when testing, target_x and target_y are None
@@ -294,6 +290,7 @@ while next_index < glimpses:
     h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
 
     with tf.variable_scope("z", reuse=REUSE):
+        #z = linear(tf.concat([current_cnt, h_enc], 1), z_size)
         z = linear(h_enc, z_size)
     h_dec, dec_state = decode(z, dec_state)
     _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
@@ -303,8 +300,9 @@ while next_index < glimpses:
         #hidden = tf.nn.relu(linear(h_dec, 256))
 
     with tf.variable_scope("count", reuse=REUSE):
-        predict_cnt = tf.nn.softmax(linear(hidden, z_size))
+        predict_cnt = tf.nn.softmax(linear(hidden, z_size + 1))
 
+    #pred_cnt_idx = tf.arg_max(predict_cnt, 1) * tf.cast(tf.reduce_sum(target_cnt), dtype=tf.int64)
     pred_cnt_idx = tf.arg_max(predict_cnt, 1)
     targ_cnt_idx = tf.arg_max(target_cnt, 1)
     target_cnt_list.append(targ_cnt_idx)
@@ -312,9 +310,13 @@ while next_index < glimpses:
     
     cnt_precision = tf.log(predict_cnt + 1e-5) * target_cnt
     reward_cnt = tf.reduce_sum(cnt_precision, 1)
-    accuracy_cnt = tf.cast(tf.equal(pred_cnt_idx, targ_cnt_idx), tf.float32)
     cntquality = reward_cnt
     reward_count_list.append(reward_cnt)
+    
+    accuracy_weight = tf.reduce_sum(target_cnt)
+    #accuracy_weight = tf.cast(accuracy_weight, dtype=tf.float32)
+    #accuracy_cnt = tf.cast(tf.equal(pred_cnt_idx, targ_cnt_idx), tf.float32)*accuracy_weight
+    accuracy_cnt = tf.cast(tf.equal(pred_cnt_idx, targ_cnt_idx), dtype=tf.float32)
     accuracy_count_list.append(accuracy_cnt)
     
 
@@ -352,22 +354,24 @@ while next_index < glimpses:
         "mu_y": tf.squeeze(mu_y, 2)[0],
     })
 
-    poscost = -posquality
-    cntcost = -cntquality
+    #poscost = -posquality
+    #cntcost = -cntquality
+    cost = -posquality/10 - cntquality
 
     ## OPTIMIZER #################################################
     #why can't we use the same optimizer at all the glimpses? 
     #with tf.variable_scope("optimizer", reuse=REUSE):
     with tf.variable_scope("pos_optimizer" + str(next_index), reuse=None):
         optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
-        grads = optimizer.compute_gradients(poscost)
+        grads = optimizer.compute_gradients(cost)
 
         for i, (g, v) in enumerate(grads):
             if g is not None:
                 grads[i] = (tf.clip_by_norm(g, 5), v)
         train_op = optimizer.apply_gradients(grads)
         train_ops.append(train_op)
-
+    
+    """
     with tf.variable_scope("cnt_optimizer" + str(next_index), reuse=None):
         optimizer2 = tf.train.AdamOptimizer(learning_rate, epsilon=1)
         grads2 = optimizer.compute_gradients(cntcost)
@@ -377,6 +381,7 @@ while next_index < glimpses:
                 grads2[i] = (tf.clip_by_norm(g, 5), v)
         train_op2 = optimizer.apply_gradients(grads)
         train_ops2.append(train_op2)
+    """
  
     next_index = next_index + 1
     if next_index < glimpses:
@@ -447,7 +452,8 @@ if __name__ == '__main__':
 
     train_data = load_teacher.Teacher()
     train_data.get_train(1)
-    fetches2=[]
+    fetches2=[] 
+    #fetches2.extend([predict_cnt_list, target_cnt_list, avg_position_reward, avg_count_reward, train_op, train_op2, predict_x_average, target_x_average, train_ops, train_ops2])
     fetches2.extend([predict_cnt_list, target_cnt_list, avg_position_reward, avg_count_reward, train_op, predict_x_average, target_x_average, train_ops])
     #fetches2.extend([avg_reward, train_op, relu_num, predict_x_average, target_x_average, train_ops])
 
@@ -461,7 +467,8 @@ if __name__ == '__main__':
         results = sess.run(fetches2, feed_dict=feed_dict) 
         #reward_fetched, _, relu_fetched, prex, tarx, _ = results
         predict_count_list, target_cnt_list, reward_position_fetched, reward_count_fetched, _, prex, tarx, _ = results
-
+        #predict_count_list, target_cnt_list, reward_position_fetched, reward_count_fetched, _, _, prex, tarx, _, _= results
+        
         if i%100 == 0:
             print(predict_count_list)
             #print(target_cnt_list)
