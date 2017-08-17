@@ -4,16 +4,20 @@ import random
 from model_settings import min_edge, max_edge, min_blobs, max_blobs
 n_labels = max_blobs - min_blobs + 1
 
-c = min_blobs
-total = 0
-while (c < max_blobs + 1):
-   if c == 0:
-       total = total + 1000
+def get_total(max_blobs):
+    """Get total number of images."""
+
+    c = min_blobs
+    total = 0
+    while (c < max_blobs + 1):
+       if c == 0:
+           total = total + 1000
+           c = c + 1
+           continue
+       cN = int(10000/(c**2))
+       total = total + cN
        c = c + 1
-       continue
-   cN = int(10000/c)
-   total = total + cN
-   c = c + 1
+    return total
 
 
 def set_size(num_blobs, even=None):
@@ -21,11 +25,12 @@ def set_size(num_blobs, even=None):
         if num_blobs == 0:
             return 1000
         else:
-            return int(10000/num_blobs)
+            return int(10000/(num_blobs**2))
     else:
         return 1000
  
-def generate_data(even=None):      
+def generate_data(even=None, max_blobs=max_blobs):      
+    total = get_total(max_blobs)
     num_blobs = min_blobs
     i = 0
     if even is None:

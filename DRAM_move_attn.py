@@ -23,15 +23,12 @@ def str2bool(v):
 if not os.path.exists("model_runs"):
     os.makedirs("model_runs")
 
-# folder_name = "model_runs/baby_blobs"
-
-# folder_name = "model_runs/number_learning_test_graph"
 folder_name = "model_runs/" + model_name
 
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
 
-start_restore_index = 43000 
+start_restore_index = 0 
 
 sys.argv = [sys.argv[0], "true", "true", "true", "true", "true", "true",
 folder_name + "/classify_log.csv",
@@ -70,7 +67,7 @@ start_non_restored_from_random = str2bool(sys.argv[15])
 REUSE = None
 
 input_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, img_size))
-count_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, z_size))
+count_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, z_size + 1))
 target_tensor = tf.placeholder(tf.float32, shape=(batch_size, glimpses, 2))
 
 #batch_size is 77 when running DRAM
@@ -134,7 +131,7 @@ def attn_window(scope,h_dec,N, predx=None, predy=None, DO_SHARE=False):
     # Bound delta, and thus sigma
     #  sigma2=tf.exp(log_sigma2)
 #    delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-#    max_deltas = np.array([7]) # batch_size x 1, where 5 is the max delta
+#    max_deltas = np.array([7]) # batch_size x 1, where 7 is the max delta
 #    tmax_deltas = tf.convert_to_tensor(max_deltas, dtype=tf.float32)
 #    delta = tf.minimum(delta, tmax_deltas)
 #    sigma2=delta*delta/4 # sigma=delta/2
@@ -262,7 +259,7 @@ viz_data = list()
 #current_cnt = count_tensor[:, 0]
 current_x = tf.constant(10, dtype=tf.float32, shape=[77,1])
 current_y = tf.constant(10, dtype=tf.float32, shape=[77,1])
-current_cnt = tf.zeros(dtype=tf.float32, shape=[77,5])
+current_cnt = tf.zeros(dtype=tf.float32, shape=[77, z_size + 1])
 next_index = 0
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
@@ -303,7 +300,7 @@ while next_index < glimpses:
         #hidden = tf.nn.relu(linear(h_dec, 256))
 
     with tf.variable_scope("count", reuse=REUSE):
-        predict_cnt = tf.nn.softmax(linear(hidden, z_size))
+        predict_cnt = tf.nn.softmax(linear(hidden, z_size + 1))
 
     #pred_cnt_idx = tf.arg_max(predict_cnt, 1) * tf.cast(tf.reduce_sum(target_cnt), dtype=tf.int64)
     pred_cnt_idx = tf.arg_max(predict_cnt, 1)
