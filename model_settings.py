@@ -6,7 +6,7 @@
 min_edge = 2#7
 max_edge = 5#7
 min_blobs = 1
-max_blobs = 15
+max_blobs = 9
 
 learning_rate = 1e-2
 
@@ -18,7 +18,7 @@ glimpses = max_blobs + 1#11
 #77 when running DRAMcopy14
 #100 when running DRAMcopy13 (and 1 for viz?)
 #10000 when running update_curves, classify_imgs2, match num_imgs
-batch_size = 9000
+batch_size = 100
 
 #change this whenever DRAM is run (before running nohup, make sure to make a directory in model_runs)
-model_name = "0done"
+model_name = "teacher_shiny_0done"
