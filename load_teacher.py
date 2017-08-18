@@ -6,7 +6,7 @@ import trace_data_new as trace_data
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 
-z_size = 5
+z_size = 9
 
 
 class Teacher(object):

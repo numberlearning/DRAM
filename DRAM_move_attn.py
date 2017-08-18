@@ -53,7 +53,7 @@ pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [40, 200]#[10, 10]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 10 # read glimpse grid width/height
+read_n = 15 # read glimpse grid width/height
 read_size = read_n*read_n
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -89,75 +89,103 @@ def linear(x,output_dim):
 
 
 def filterbank(gx, gy, sigma2, delta, N):
-    grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
-    mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
-    mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
+    min_dim = min(dims[0],dims[1])    
+    mu_x = np.zeros([N,N])
+    for i in range((N+1)//2):
+        mu_x[i,i:N-i] = np.linspace(-sum(delta[i:(N-1)//2]), sum(delta[i:(N-1)//2]), N-2*i)
+        mu_x[i+1:(N+1)//2,i] = mu_x[i,i]
+        mu_x[i+1:(N+1)//2,N-1-i] = mu_x[i,N-1-i]
+    
+    mu_x[(N-1)//2,(N-1)//2]=0
 
-    a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1])
-    b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1])
+    for i in range((N+1)//2,N):
+        mu_x[i,:] = mu_x[N-1-i,:]
 
-    mu_x = tf.reshape(mu_x, [-1, N, 1])
-    mu_y = tf.reshape(mu_y, [-1, N, 1])
-    sigma2 = tf.reshape(sigma2, [-1, 1, 1])
-    Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # 2*sigma2?
-    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch_size x N x B
+    mu_y = np.zeros([N,N])
+    for i in range((N+1)//2):
+        mu_y[i,i:N-i] = -sum(delta[i:(N-1)//2])
+        mu_y[i:(N+1)//2,i] = np.linspace(-sum(delta[i:(N-1)//2]), 0, (N+1)//2 - i)
+        mu_y[i:(N+1)//2,N-1-i] = np.linspace(-sum(delta[i:(N-1)//2]), 0, (N+1)//2 - i)
+                                                    
+    mu_y[(N-1)//2,(N-1)//2]=0
+
+    for i in range((N+1)//2,N):
+        mu_y[i,:] = -mu_y[N-1-i,:]
+   
+    # mu_x = np.reshape([mu_x]*batch_size, (batch_size, N, N))
+    # gx = tf.reshape(gx, [batch_size, 1, 1])
+    mu_x = gx + mu_x # batch_size x N x N
+    
+    # mu_y = np.reshape([mu_y]*batch_size, (batch_size, N, N))
+    # gy = tf.reshape(gy, [batch_size, 1, 1])
+    mu_y = gy + mu_y # batch_size x N x N
+    
+    a = tf.reshape([tf.cast(tf.range(dims[0]), tf.float32)]*N, [N, 1, -1])
+    b = tf.reshape([tf.cast(tf.range(dims[1]), tf.float32)]*N, [N, 1, -1])
+
+    mu_x = tf.reshape(mu_x, [N, N, 1])
+    mu_y = tf.reshape(mu_y, [N, N, 1])
+    sigma2 = tf.cast(tf.reshape(sigma2, [-1, N, 1]), tf.float32)
+    
+    Fx = tf.exp(-tf.square(a - mu_x) / (2*sigma2)) # N x N x dims[0]
+    Fy = tf.exp(-tf.square(b - mu_y) / (2*sigma2)) # N x N x dims[1]
+    #Fx = tf.reshape(Fx, [batch_size, N, dims[0]]) # batch_size x N x A
+    #Fy = tf.reshape(Fy, [batch_size, N, dims[1]]) # batch_size x N x B
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
-    return Fx,Fy, mu_x, mu_y
+    return Fx, Fy, mu_x, mu_y
 
 
 def attn_window(scope,h_dec,N, predx=None, predy=None, DO_SHARE=False):
     if DO_SHARE:
         with tf.variable_scope(scope,reuse=True):
-            params=linear(h_dec,5)
+            params=linear(h_dec, 3)
     else:
         with tf.variable_scope(scope,reuse=REUSE):
-            params=linear(h_dec,5)
+            params=linear(h_dec, 3)
 
-    gx_, gy_, log_sigma2,log_delta,log_gamma=tf.split(params, 5, 1)
-
-    gx=(dims[0]+1)/2*(gx_+1)
-    gy=(dims[1]+1)/2*(gy_+1)
-
+    gx_,gy_,log_gamma=tf.split(params, 3, 1) # batch_size x 1
+    gx = (dims[0]+1)/2*(gx_+1)
+    gy = (dims[1]+1)/2*(gy_+1)
+   
     if predx is not None and predy is not None:
         gx=tf.reshape(predx, [batch_size, 1])
         gy=tf.reshape(predy, [batch_size, 1])
 
-    # Unbounded delta and sigma
-    sigma2 = tf.exp(log_sigma2)
-    delta = (max(dims[0], dims[1])-1)/(N-1)*tf.exp(log_delta)
-
-    # Bound delta, and thus sigma
-    #  sigma2=tf.exp(log_sigma2)
-#    delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-#    max_deltas = np.array([7]) # batch_size x 1, where 7 is the max delta
-#    tmax_deltas = tf.convert_to_tensor(max_deltas, dtype=tf.float32)
-#    delta = tf.minimum(delta, tmax_deltas)
-#    sigma2=delta*delta/4 # sigma=delta/2
-
-    # Bound gx and gy inside image
-    max_gx = np.array([dims[1]])
-    min_gx = np.array([0])
+    # constrain gx and gy
+    max_gx = np.array([dims[0]]) 
     tmax_gx = tf.convert_to_tensor(max_gx, dtype=tf.float32)
-    tmin_gx = tf.convert_to_tensor(min_gx, dtype=tf.float32)
     gx = tf.minimum(gx, tmax_gx)
+
+    min_gx = np.array([0]) 
+    tmin_gx = tf.convert_to_tensor(min_gx, dtype=tf.float32)
     gx = tf.maximum(gx, tmin_gx)
 
-    max_gy = np.array([dims[0]])
-    min_gy = np.array([0])
+    max_gy = np.array([dims[1]]) 
     tmax_gy = tf.convert_to_tensor(max_gy, dtype=tf.float32)
-    tmin_gy = tf.convert_to_tensor(min_gy, dtype=tf.float32)
     gy = tf.minimum(gy, tmax_gy)
-    gy = tf.maximum(gy, tmin_gy)
 
+    min_gy = np.array([0]) 
+    tmin_gy = tf.convert_to_tensor(min_gy, dtype=tf.float32)
+    gy = tf.maximum(gy, tmin_gy) 
+    
+    #gx_list[glimpse] = gx
+    #gy_list[glimpse] = gy
 
-
+    pdelta=np.logspace(1, (N-1)//2 - 2, (N-1)//2 - 2, base=1.3)
+    pdelta=np.append(1,(np.append(1,pdelta)))
+    delta=pow(3,pdelta)
+    delta=np.append(np.append(delta[::-1],delta[0]), delta) # sum(delta[0:7])=109.89
+    sigma2=delta*delta/4 # sigma=delta/2
+    
     #delta_list[glimpse] = delta
     #sigma_list[glimpse] = sigma2
 
     Fx, Fy, mu_x, mu_y = filterbank(gx, gy, sigma2, delta, N)
     gamma = tf.exp(log_gamma)
+    delta = tf.reshape(tf.convert_to_tensor(delta), [1,-1])
+    sigma2 = tf.reshape(tf.convert_to_tensor(sigma2), [1,-1])
     return Fx, Fy, mu_x, mu_y, gamma, gx, gy, delta
 
 
@@ -174,10 +202,13 @@ def read(x, h_dec_prev, pred_x=None, pred_y=None):
     new_stats = mu_x, mu_y, gx, gy, delta
 
     def filter_img(img, Fx, Fy, gamma, N):
-        Fxt = tf.transpose(Fx, perm=[0,2,1])
+        glimpse = tf.reshape(img[0][0], [1,1,1]) 
         img = tf.reshape(img,[-1, dims[1], dims[0]])
-        glimpse = tf.matmul(Fy, tf.matmul(img, Fxt))
-        glimpse = tf.reshape(glimpse,[-1, N*N])
+        for i in range(N):
+            for j in range(N):
+                gg=tf.matmul(tf.reshape(Fy[i][j][:], [1,1,-1]), tf.matmul(img, tf.reshape(Fx[i][j][:], [1,-1,1])))
+                glimpse = tf.concat([glimpse,gg], 0)
+        glimpse = tf.reshape(glimpse,[-1, N*N+1])[0, 1:N*N+1]
         return glimpse * tf.reshape(gamma, [-1,1])
 
     xr = filter_img(x, Fx, Fy, gamma, read_n) # batch_size x (read_n*read_n)
@@ -257,9 +288,9 @@ viz_data = list()
 #current_blob = target_tensor[:, 0]
 #current_x, current_y = tf.split(current_blob, num_or_size_splits=2, axis=1)
 #current_cnt = count_tensor[:, 0]
-current_x = tf.constant(10, dtype=tf.float32, shape=[77,1])
-current_y = tf.constant(10, dtype=tf.float32, shape=[77,1])
-current_cnt = tf.zeros(dtype=tf.float32, shape=[77, z_size + 1])
+current_x = tf.constant(10, dtype=tf.float32, shape=[batch_size, 1])
+current_y = tf.constant(10, dtype=tf.float32, shape=[batch_size, 1])
+current_cnt = tf.zeros(dtype=tf.float32, shape=[batch_size, z_size + 1])
 next_index = 0
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
@@ -378,10 +409,6 @@ while next_index < glimpses:
         current_cnt = target_cnt
         
         next_blob_position = target_tensor[:,next_index]
-"""
-        next_img = input_tensor[:, next_index]
-        next_img[current_x, current_y] = 255
-"""
         next_blob_cnt = count_tensor[:, next_index]
 
     REUSE=True
@@ -410,7 +437,7 @@ def evaluate():
     accuracy_count = 0
     
     for i in range(batches_in_epoch):
-        xtrain, _, _, explode_counts, ytrain = train_data.next_explode_batch(batch_size)
+        xtrain, _, _, explode_counts, ytrain = data.next_explode_batch(batch_size)
         feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
         #feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
         fetch_accuracy = []
