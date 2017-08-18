@@ -1,3 +1,5 @@
+# Only works for 1 batch_size now
+
 #!/usr/bin/env python
 import warnings
 warnings.filterwarnings('ignore')
@@ -56,9 +58,9 @@ pretrain = str2bool(sys.argv[11]) #False
 classify = str2bool(sys.argv[12]) #True
 pretrain_restore = False
 translated = str2bool(sys.argv[13])
-dims = [100, 100]
+dims = [100,100]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 11  # read glimpse grid width/height
+read_n = 15 # read glimpse grid width/height read_n>5 odd number
 read_size = read_n*read_n
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -88,36 +90,48 @@ def linear(x,output_dim):
 
 
 def filterbank(gx, gy, sigma2, delta, N):
-    # grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
-    # mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
-    # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
+    min_dim = min(dims[0],dims[1])    
+    mu_x = zeros([N,N])
+    for i in range((N+1)//2):
+        mu_x[i,i:N-i] = linspace(-sum(delta[i:(N-1)//2]), sum(delta[i:(N-1)//2]), N-2*i)
+        mu_x[i+1:(N+1)//2,i] = mu_x[i,i]
+        mu_x[i+1:(N+1)//2,N-1-i] = mu_x[i,N-1-i]
+    
+    mu_x[(N-1)//2,(N-1)//2]=0
+
+    for i in range((N+1)//2,N):
+        mu_x[i,:] = mu_x[N-1-i,:]
+
+    mu_y = zeros([N,N])
+    for i in range((N+1)//2):
+        mu_y[i,i:N-i] = -sum(delta[i:(N-1)//2])
+        mu_y[i:(N+1)//2,i] = linspace(-sum(delta[i:(N-1)//2]), 0, (N+1)//2 - i)
+        mu_y[i:(N+1)//2,N-1-i] = linspace(-sum(delta[i:(N-1)//2]), 0, (N+1)//2 - i)
+                                                    
+    mu_y[(N-1)//2,(N-1)//2]=0
+
+    for i in range((N+1)//2,N):
+        mu_y[i,:] = -mu_y[N-1-i,:]
    
+    # mu_x = np.reshape([mu_x]*batch_size, (batch_size, N, N))
+    # gx = tf.reshape(gx, [batch_size, 1, 1])
+    mu_x = gx + mu_x # batch_size x N x N
     
-    mu_x = gx - tf.reduce_sum(delta[0][0:6])
-    for i in range(1,6):
-        mu_xx = gx - tf.reduce_sum(delta[0][i:6])
-        mu_x = tf.concat([mu_x, mu_xx], 1)
-    for i in range(6,11):
-        mu_xx = gx + tf.reduce_sum(delta[0][6:i+1])
-        mu_x = tf.concat([mu_x, mu_xx], 1)
+    # mu_y = np.reshape([mu_y]*batch_size, (batch_size, N, N))
+    # gy = tf.reshape(gy, [batch_size, 1, 1])
+    mu_y = gy + mu_y # batch_size x N x N
     
-    mu_y = gy - tf.reduce_sum(delta[0][0:6])
-    for i in range(1,6):
-        mu_yy = gy - tf.reduce_sum(delta[0][i:6])
-        mu_y = tf.concat([mu_y, mu_yy], 1)
-    for i in range(6,11):
-        mu_yy = gy + tf.reduce_sum(delta[0][6:i+1])
-        mu_y = tf.concat([mu_y, mu_yy], 1)
-    
+    a = tf.reshape([tf.cast(tf.range(dims[0]), tf.float32)]*N, [N, 1, -1])
+    b = tf.reshape([tf.cast(tf.range(dims[1]), tf.float32)]*N, [N, 1, -1])
 
-    a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1])
-    b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1])
-
-    mu_x = tf.reshape(mu_x, [-1, N, 1])
-    mu_y = tf.reshape(mu_y, [-1, N, 1])
-    sigma2 = tf.reshape(sigma2, [-1, N, 1])
-    Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # 2*sigma2?
-    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) 
+    mu_x = tf.reshape(mu_x, [N, N, 1])
+    mu_y = tf.reshape(mu_y, [N, N, 1])
+    sigma2 = tf.cast(tf.reshape(sigma2, [-1, N, 1]), tf.float32)
+    
+    Fx = tf.exp(-tf.square(a - mu_x) / (2*sigma2)) # N x N x dims[0]
+    Fy = tf.exp(-tf.square(b - mu_y) / (2*sigma2)) # N x N x dims[1]
+    #Fx = tf.reshape(Fx, [batch_size, N, dims[0]]) # batch_size x N x A
+    #Fy = tf.reshape(Fy, [batch_size, N, dims[1]]) # batch_size x N x B
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
@@ -126,50 +140,45 @@ def filterbank(gx, gy, sigma2, delta, N):
 
 def attn_window(scope,h_dec,N, glimpse):
     with tf.variable_scope(scope,reuse=REUSE):
-        params=linear(h_dec,4)
-    gx_,gy_,log_delta,log_gamma=tf.split(params, 4, 1)
-    gx=(dims[0]+1)/2*(gx_+1)
-    gy=(dims[1]+1)/2*(gy_+1)
+        params=linear(h_dec,3)
+    gx_,gy_,log_gamma=tf.split(params, 3, 1) # batch_size x 1
+    gx = (dims[0]+1)/2*(gx_+1)
+    gy = (dims[1]+1)/2*(gy_+1)
+   
+    # constrain gx and gy
+    max_gx = np.array([dims[0]]) 
+    tmax_gx = tf.convert_to_tensor(max_gx, dtype=tf.float32)
+    gx = tf.minimum(gx, tmax_gx)
+
+    min_gx = np.array([0]) 
+    tmin_gx = tf.convert_to_tensor(min_gx, dtype=tf.float32)
+    gx = tf.maximum(gx, tmin_gx)
+
+    max_gy = np.array([dims[1]]) 
+    tmax_gy = tf.convert_to_tensor(max_gy, dtype=tf.float32)
+    gy = tf.minimum(gy, tmax_gy)
+
+    min_gy = np.array([0]) 
+    tmin_gy = tf.convert_to_tensor(min_gy, dtype=tf.float32)
+    gy = tf.maximum(gy, tmin_gy) 
     
     gx_list[glimpse] = gx
     gy_list[glimpse] = gy
 
-    #  sigma2=tf.exp(log_sigma2)
-    #  delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-    dis0=max(dims[0],dims[1])/12
-    dis1=linspace(-1,1,5)
-    dis2=zeros(3)
-    dis3=zeros(3)
-    for i in range(1,4):
-        dis2[i-1] = -pow(1.75,3-i)
-    for i in range(1,4):
-        dis3[i-1] = pow(1.75,i)
-    
-    dis=np.append(np.append(dis2,dis1),dis3)*dis0
-    
-    delta=zeros(11)
-    for j  in range(1,6):
-        delta[j-1]=dis[j]-dis[j-1]
-    delta[5]=0
-    for j in range(6,11):
-        delta[j]=dis[j]-dis[j-1]
-    
-    tdelta=tf.reshape(tf.cast(tf.convert_to_tensor(delta), tf.float32), [1, -1])
-    delta=tdelta*tf.exp(log_delta)
-    
+    pdelta=np.logspace(1, (N-1)//2 - 2, (N-1)//2 - 2, base=1.3)
+    pdelta=np.append(1,(np.append(1,pdelta)))
+    delta=pow(3,pdelta)
+    delta=np.append(np.append(delta[::-1],delta[0]), delta) # sum(delta[0:7])=109.89
     sigma2=delta*delta/4 # sigma=delta/2
-    ss=tf.cast(tf.convert_to_tensor(zeros(5)), tf.float32)
-    ss=tf.reshape([ss]*batch_size, [batch_size, -1])
-    smin=tf.reshape(tf.reduce_min(sigma2[:,0:5], 1), [-1, 1])
-    ss_=tf.concat([tf.concat([ss,smin/2],1),ss],1)
-    sigma2=sigma2+ss_  # batch_size x N 
-    # sigma2=sigma2+0.001*tf.reshape(tf.reduce_min(sigma2[:,0:5],1), [-1, 1]) # batch_size x N
+    
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
     ret = list()
-    ret.append(filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),))
-    #ret.append((gx, gy, delta))
+    Fx, Fy = filterbank(gx,gy,sigma2,delta,N)
+    delta = tf.reshape(tf.convert_to_tensor(delta), [1,-1])
+    sigma2 = tf.reshape(tf.convert_to_tensor(sigma2), [1,-1])
+    ret.append((Fx,)+(Fy,)+(tf.exp(log_gamma),)+(gx,)+(gy,)+(delta,))
     return ret
 
 ## READ ##
@@ -179,13 +188,16 @@ def attn_window(scope,h_dec,N, glimpse):
 
 def read(x, h_dec_prev, glimpse):
     att_ret = attn_window("read", h_dec_prev, read_n, glimpse)
-    stats = Fx, Fy, gamma = att_ret[0]
+    stats = Fx, Fy, gamma, gx, gy, delta = att_ret[0]
 
     def filter_img(img, Fx, Fy, gamma, N):
-        Fxt = tf.transpose(Fx, perm=[0,2,1])
+        glimpse = tf.reshape(img[0][0], [1,1,1]) 
         img = tf.reshape(img,[-1, dims[1], dims[0]])
-        glimpse = tf.matmul(Fy, tf.matmul(img, Fxt))
-        glimpse = tf.reshape(glimpse,[-1, N*N])
+        for i in range(N):
+            for j in range(N):
+                gg=tf.matmul(tf.reshape(Fy[i][j][:], [1,1,-1]), tf.matmul(img, tf.reshape(Fx[i][j][:], [1,-1,1])))
+                glimpse = tf.concat([glimpse,gg], 0)
+        glimpse = tf.reshape(glimpse,[-1, N*N+1])[0, 1:N*N+1]
         return glimpse * tf.reshape(gamma, [-1,1])
 
     xr = filter_img(x, Fx, Fy, gamma, read_n) # batch_size x (read_n*read_n)
@@ -200,8 +212,7 @@ def encode(input, state):
     state: previous encoder state
     input: cat(read, h_dec_prev)
     returns: (output, new_state)
-    """
-
+    """ 
     with tf.variable_scope("encoder/LSTMCell", reuse=REUSE):
         return lstm_enc(input, state)
 
@@ -357,7 +368,7 @@ if __name__ == '__main__':
         results = sess.run(fetches2, feed_dict = {x: xtrain, onehot_labels: ytrain})
         reward_fetched, _ = results
 
-        if i%100==0:
+        if i%1000==0:
             print("iter=%d : Reward: %f" % (i, reward_fetched))
             if False:# i == 0:
                 print("gx_list: ", gx_list)
@@ -402,6 +413,7 @@ if __name__ == '__main__':
                     start_evaluate = time.clock()
                     test_accuracy = evaluate()
                     saver = tf.train.Saver(tf.global_variables())
+                    #saver.restore(sess, "model_runs/rewrite_filterbank_test001/classifymodel_60000.ckpt") 
                     print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
                     extra_time = extra_time + time.clock() - start_evaluate
                     print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
