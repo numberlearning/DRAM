@@ -23,6 +23,9 @@ def str2bool(v):
 if not os.path.exists("model_runs"):
     os.makedirs("model_runs")
 
+if sys.argv[1] is not None:
+    model_name = sys.argv[1]
+
 folder_name = "model_runs/" + model_name
 
 if not os.path.exists(folder_name):
@@ -30,7 +33,7 @@ if not os.path.exists(folder_name):
 
 start_restore_index = 0 
 
-sys.argv = [sys.argv[0], "true", "true", "true", "true", "true", "true",
+sys.argv = [sys.argv[0], model_name, "true", "true", "true", "true", "true",
 folder_name + "/classify_log.csv",
 folder_name + "/classifymodel_" + str(start_restore_index) + ".ckpt",
 folder_name + "/classifymodel_",
@@ -404,13 +407,13 @@ def binary_crossentropy(t,o):
 def evaluate():
     testing = True
     data = load_teacher.Teacher()
-    data.get_test(1)
+    data.get_test(even=1, shiny=True, done_vector="end")
     batches_in_epoch = len(data.explode_images) // batch_size
     accuracy_position = 0
     accuracy_count = 0
     
     for i in range(batches_in_epoch):
-        xtrain, _, _, explode_counts, ytrain = train_data.next_explode_batch(batch_size)
+        xtrain, _, _, explode_counts, ytrain = data.next_explode_batch(batch_size)
         feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
         #feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
         fetch_accuracy = []
@@ -444,7 +447,8 @@ if __name__ == '__main__':
         saver.restore(sess, load_file)
 
     train_data = load_teacher.Teacher()
-    train_data.get_train(1)
+    train_data.get_train(even=1, shiny=True, done_vector="end")
+
     fetches2=[] 
     #fetches2.extend([predict_cnt_list, target_cnt_list, avg_position_reward, avg_count_reward, train_op, train_op2, predict_x_average, target_x_average, train_ops, train_ops2])
     fetches2.extend([predict_cnt_list, target_cnt_list, avg_position_reward, avg_count_reward, train_op, predict_x_average, target_x_average, train_ops])
@@ -473,8 +477,7 @@ if __name__ == '__main__':
             print("Target x average: %f" % tarx)
             sys.stdout.flush()
  
-            train_data = load_teacher.Teacher()
-            train_data.get_train(1)
+            train_data.get_train(even=1, shiny=True, done_vector="end")
 
             if i%1000 == 0:
                 start_evaluate = time.clock()

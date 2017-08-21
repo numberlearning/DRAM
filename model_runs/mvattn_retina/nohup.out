@@ -14908,3 +14908,298 @@ iter=275500 : Reward: -2825.400146
 iter=275500 : Reward: -4.605165
 Predict x average: 40.000000
 Target x average: 82.200005
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=275600 : Reward: -2325.300293
+iter=275600 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 75.200012
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=275700 : Reward: -2371.100098
+iter=275700 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 76.100006
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=275800 : Reward: -2816.200195
+iter=275800 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 82.100006
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=275900 : Reward: -1708.500000
+iter=275900 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 68.800003
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276000 : Reward: -904.100037
+iter=276000 : Reward: -2.302577
+Predict x average: 40.000000
+Target x average: 54.800003
+POSITION ACCURACY: -1637.35919846
+COUNT ACCURACY: 0.735693353057
+Model saved in file: model_runs/mvattn_retina/classifymodel_276000.ckpt
+--- 37659.4097729997 CPU seconds ---
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276100 : Reward: -2773.100098
+iter=276100 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 80.399994
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276200 : Reward: -1562.500000
+iter=276200 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 64.700005
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276300 : Reward: -718.500000
+iter=276300 : Reward: -1.151284
+Predict x average: 40.000000
+Target x average: 37.900002
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276400 : Reward: -957.000000
+iter=276400 : Reward: 0.000010
+Predict x average: 40.000000
+Target x average: 31.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276500 : Reward: -1935.700195
+iter=276500 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 71.699997
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276600 : Reward: -2292.000000
+iter=276600 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 79.200012
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276700 : Reward: -1397.400146
+iter=276700 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 67.400002
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276800 : Reward: -2104.500000
+iter=276800 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 74.099998
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=276900 : Reward: -1348.999878
+iter=276900 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 66.100006
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277000 : Reward: -2189.899902
+iter=277000 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 73.599998
+POSITION ACCURACY: -1659.32572581
+COUNT ACCURACY: 0.733346686506
+Model saved in file: model_runs/mvattn_retina/classifymodel_277000.ckpt
+--- 37860.458296999626 CPU seconds ---
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277100 : Reward: -898.900024
+iter=277100 : Reward: -1.151284
+Predict x average: 40.000000
+Target x average: 45.500000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277200 : Reward: -1004.399963
+iter=277200 : Reward: -2.302577
+Predict x average: 40.000000
+Target x average: 59.200001
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277300 : Reward: -484.500031
+iter=277300 : Reward: -1.151284
+Predict x average: 40.000000
+Target x average: 48.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277400 : Reward: -1972.300049
+iter=277400 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 73.199997
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277500 : Reward: -1487.599976
+iter=277500 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 63.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277600 : Reward: -1870.099976
+iter=277600 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 74.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277700 : Reward: -1271.300049
+iter=277700 : Reward: -2.302577
+Predict x average: 40.000000
+Target x average: 59.799999
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277800 : Reward: -2655.300293
+iter=277800 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 80.099998
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=277900 : Reward: -1153.899902
+iter=277900 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 60.599998
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278000 : Reward: -858.200012
+iter=278000 : Reward: -2.302577
+Predict x average: 40.000000
+Target x average: 55.900002
+POSITION ACCURACY: -1654.81055385
+COUNT ACCURACY: 0.732186686707
+Model saved in file: model_runs/mvattn_retina/classifymodel_278000.ckpt
+--- 38065.995943999675 CPU seconds ---
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278100 : Reward: -2295.999756
+iter=278100 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 76.199997
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278200 : Reward: -1688.900146
+iter=278200 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 70.199997
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278300 : Reward: -766.200012
+iter=278300 : Reward: -1.151284
+Predict x average: 40.000000
+Target x average: 42.700001
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278400 : Reward: -682.000000
+iter=278400 : Reward: 0.000010
+Predict x average: 40.000000
+Target x average: 29.000002
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278500 : Reward: -1556.500000
+iter=278500 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 64.600006
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278600 : Reward: -2680.000000
+iter=278600 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 80.600006
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278700 : Reward: -3020.899902
+iter=278700 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 82.300003
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278800 : Reward: -1620.300049
+iter=278800 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 69.800003
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=278900 : Reward: -1425.700073
+iter=278900 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 63.400002
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279000 : Reward: -1436.900024
+iter=279000 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 65.900002
+POSITION ACCURACY: -1644.50398336
+COUNT ACCURACY: 0.731833353523
+Model saved in file: model_runs/mvattn_retina/classifymodel_279000.ckpt
+--- 38230.871392999776 CPU seconds ---
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279100 : Reward: -1769.100098
+iter=279100 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 72.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279200 : Reward: -2249.100098
+iter=279200 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 76.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279300 : Reward: -1715.099976
+iter=279300 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 72.199997
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279400 : Reward: -496.000000
+iter=279400 : Reward: 0.000010
+Predict x average: 40.000000
+Target x average: 30.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279500 : Reward: -1061.399902
+iter=279500 : Reward: -2.302577
+Predict x average: 40.000000
+Target x average: 53.800003
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279600 : Reward: -3130.700195
+iter=279600 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 85.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279700 : Reward: -1811.899902
+iter=279700 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 70.199997
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279800 : Reward: -2124.200195
+iter=279800 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 72.800003
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=279900 : Reward: -592.200012
+iter=279900 : Reward: -1.151284
+Predict x average: 40.000000
+Target x average: 49.299999
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280000 : Reward: -960.900024
+iter=280000 : Reward: -2.302577
+Predict x average: 40.000000
+Target x average: 56.700001
+POSITION ACCURACY: -1643.06269582
+COUNT ACCURACY: 0.734640019739
+Model saved in file: model_runs/mvattn_retina/classifymodel_280000.ckpt
+--- 38387.1023719997 CPU seconds ---
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280100 : Reward: -1728.500122
+iter=280100 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 70.199997
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280200 : Reward: -2347.000000
+iter=280200 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 78.199997
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280300 : Reward: -1386.199951
+iter=280300 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 63.800003
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280400 : Reward: -2471.200195
+iter=280400 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 78.600006
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280500 : Reward: -1691.399902
+iter=280500 : Reward: -3.453871
+Predict x average: 40.000000
+Target x average: 69.800003
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280600 : Reward: -941.100098
+iter=280600 : Reward: -2.302577
+Predict x average: 40.000000
+Target x average: 58.500000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280700 : Reward: -793.000000
+iter=280700 : Reward: 0.000010
+Predict x average: 40.000000
+Target x average: 32.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280800 : Reward: -2547.300293
+iter=280800 : Reward: -4.605165
+Predict x average: 40.000000
+Target x average: 80.000000
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=280900 : Reward: -760.799988
+iter=280900 : Reward: -1.151284
+Predict x average: 40.000000
+Target x average: 50.200001
+[array([1]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0]), array([0])]
+iter=281000 : Reward: -811.099976
+iter=281000 : Reward: -1.151284
+Predict x average: 40.000000
+Target x average: 41.800003
