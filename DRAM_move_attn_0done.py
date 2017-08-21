@@ -260,7 +260,7 @@ viz_data = list()
 current_x = tf.constant(10, dtype=tf.float32, shape=[77,1])
 current_y = tf.constant(10, dtype=tf.float32, shape=[77,1])
 current_cnt = tf.zeros(dtype=tf.float32, shape=[77, z_size + 1])
-next_index = 0
+next_index = 1
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
 reward_position_list = list()
@@ -275,7 +275,7 @@ target_x_list = list()
 testing = False
 #testing = True
 
-while next_index < glimpses:
+while next_index < glimpses + 1:
 
     target_x, target_y = tf.split(next_blob_position, num_or_size_splits=2, axis=1)
     target_cnt = next_blob_cnt  
@@ -291,10 +291,10 @@ while next_index < glimpses:
 
     with tf.variable_scope("z", reuse=REUSE):
         #z = linear(tf.concat([current_cnt, h_enc], 1), z_size)
-        z = linear(h_enc, z_size)
+        z = linear(h_enc, z_size) # what if output dimension was z_size + 1?
     h_dec, dec_state = decode(z, dec_state)
     _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
-    predict_x, predict_y  = attn_x, attn_y
+    predict_x, predict_y = attn_x, attn_y
     with tf.variable_scope("hidden", reuse=REUSE):
         hidden = tf.nn.relu(linear(tf.concat([current_cnt, h_dec], 1), 256))
         #hidden = tf.nn.relu(linear(h_dec, 256))
@@ -359,7 +359,7 @@ while next_index < glimpses:
     cost = -posquality/10 - cntquality
 
     ## OPTIMIZER #################################################
-    #why can't we use the same optimizer at all the glimpses? 
+    #why can't we use the same optimizer across all the glimpses? 
     #with tf.variable_scope("optimizer", reuse=REUSE):
     with tf.variable_scope("pos_optimizer" + str(next_index), reuse=None):
         optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
@@ -372,7 +372,7 @@ while next_index < glimpses:
         train_ops.append(train_op)
     
     next_index = next_index + 1
-    if next_index < glimpses:
+    if next_index < glimpses + 1:
         current_x = target_x
         current_y = target_y
         current_cnt = target_cnt

@@ -263,7 +263,7 @@ viz_data = list()
 current_x = tf.constant(100, dtype=tf.float32, shape=[77,1])
 current_y = tf.constant(20, dtype=tf.float32, shape=[77,1])
 current_cnt = tf.zeros(dtype=tf.float32, shape=[77,5])
-next_index = 0
+next_index = 1
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
 reward_position_list = list()
@@ -278,7 +278,7 @@ target_x_list = list()
 testing = False
 #testing = True
 
-while next_index < glimpses:
+while next_index < glimpses + 1:
 
     target_x, target_y = tf.split(next_blob_position, num_or_size_splits=2, axis=1)
     target_cnt = next_blob_cnt  
@@ -297,13 +297,13 @@ while next_index < glimpses:
         z = linear(h_enc, z_size)
     h_dec, dec_state = decode(z, dec_state)
     _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
-    predict_x, predict_y  = attn_x, attn_y
+    predict_x, predict_y = attn_x, attn_y
     with tf.variable_scope("hidden", reuse=REUSE):
         hidden = tf.nn.relu(linear(tf.concat([current_cnt, h_dec], 1), 256))
         #hidden = tf.nn.relu(linear(h_dec, 256))
 
     with tf.variable_scope("count", reuse=REUSE):
-        predict_cnt = tf.nn.softmax(linear(hidden, z_size))
+        predict_cnt = tf.nn.sigmoid(linear(hidden, z_size))
 
     #current_cnt = predict_cnt
 
@@ -313,7 +313,7 @@ while next_index < glimpses:
     target_cnt_list.append(targ_cnt_idx)
     predict_cnt_list.append(pred_cnt_idx)
     
-    cnt_precision = tf.log(predict_cnt + 1e-5) * target_cnt + (1-target_cnt)*tf.log(1 - predict_cnt + 1e-5)
+    cnt_precision = tf.log(predict_cnt + 1e-5) * target_cnt + (1-target_cnt)*tf.log(1 - predict_cnt + 1e-5) # sigmoid cross entropy
     reward_cnt = tf.reduce_sum(cnt_precision, 1)
     cntquality = reward_cnt
     reward_count_list.append(reward_cnt)
@@ -364,7 +364,7 @@ while next_index < glimpses:
     cost = -posquality/10 - cntquality
 
     ## OPTIMIZER #################################################
-    #why can't we use the same optimizer at all the glimpses? 
+    #why can't we use the same optimizer across all the glimpses? 
     #with tf.variable_scope("optimizer", reuse=REUSE):
     with tf.variable_scope("pos_optimizer" + str(next_index), reuse=None):
         optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
@@ -376,20 +376,8 @@ while next_index < glimpses:
         train_op = optimizer.apply_gradients(grads)
         train_ops.append(train_op)
     
-    """
-    with tf.variable_scope("cnt_optimizer" + str(next_index), reuse=None):
-        optimizer2 = tf.train.AdamOptimizer(learning_rate, epsilon=1)
-        grads2 = optimizer.compute_gradients(cntcost)
-
-        for i, (g, v) in enumerate(grads2):
-            if g is not None:
-                grads2[i] = (tf.clip_by_norm(g, 5), v)
-        train_op2 = optimizer.apply_gradients(grads)
-        train_ops2.append(train_op2)
-    """
- 
     next_index = next_index + 1
-    if next_index < glimpses:
+    if next_index < glimpses + 1:
         current_x = target_x
         current_y = target_y
         current_cnt = target_cnt

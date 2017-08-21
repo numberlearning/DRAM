@@ -291,7 +291,7 @@ viz_data = list()
 current_x = tf.constant(10, dtype=tf.float32, shape=[batch_size, 1])
 current_y = tf.constant(10, dtype=tf.float32, shape=[batch_size, 1])
 current_cnt = tf.zeros(dtype=tf.float32, shape=[batch_size, z_size + 1])
-next_index = 0
+next_index = 1#0
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
 reward_position_list = list()
@@ -315,6 +315,8 @@ while next_index < glimpses:
         r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev) # when testing, target_x and target_y are None
     else:            
         #set current attn window center to current blob center and perform read
+
+        # don't have to use the same weights and matrices as in attn_window below
         r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev, current_x, current_y)
         #c = linear(tf.concat([input_tensor[:, next_index-1], h_dec_prev, current_cnt], 1), 1)
 
@@ -325,7 +327,7 @@ while next_index < glimpses:
         z = linear(h_enc, z_size)
     h_dec, dec_state = decode(z, dec_state)
     _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
-    predict_x, predict_y  = attn_x, attn_y
+    predict_x, predict_y = attn_x, attn_y
     with tf.variable_scope("hidden", reuse=REUSE):
         hidden = tf.nn.relu(linear(tf.concat([current_cnt, h_dec], 1), 256))
         #hidden = tf.nn.relu(linear(h_dec, 256))
@@ -339,7 +341,7 @@ while next_index < glimpses:
     target_cnt_list.append(targ_cnt_idx)
     predict_cnt_list.append(pred_cnt_idx)
     
-    cnt_precision = tf.log(predict_cnt + 1e-5) * target_cnt
+    cnt_precision = tf.log(predict_cnt + 1e-5) * target_cnt # softmax cross entropy
     reward_cnt = tf.reduce_sum(cnt_precision, 1)
     cntquality = reward_cnt
     reward_count_list.append(reward_cnt)
@@ -390,7 +392,7 @@ while next_index < glimpses:
     cost = -posquality/10 - cntquality
 
     ## OPTIMIZER #################################################
-    #why can't we use the same optimizer at all the glimpses? 
+    #why can't we use the same optimizer across all the glimpses?
     #with tf.variable_scope("optimizer", reuse=REUSE):
     with tf.variable_scope("pos_optimizer" + str(next_index), reuse=None):
         optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
@@ -410,6 +412,8 @@ while next_index < glimpses:
         
         next_blob_position = target_tensor[:,next_index]
         next_blob_cnt = count_tensor[:, next_index]
+
+    REUSE=True
 
     REUSE=True
     h_dec_prev = h_dec
@@ -496,8 +500,6 @@ if __name__ == '__main__':
             print("iter=%d : Reward: %f" % (i, reward_count_fetched))
             #print("One of the rewards: %f" % a_reward_fetched)
             #print("Average relu: %f" % relu_fetched)
-            print("Predict x average: %f" % prex)
-            print("Target x average: %f" % tarx)
             sys.stdout.flush()
  
             train_data = load_teacher.Teacher()

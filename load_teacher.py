@@ -167,8 +167,8 @@ class Teacher(object):
                     count_tensor.append(count_vector)
 
                     # Mark teacher pointer
-                    #x, y = link
-                    #image[y*200+x] = 255
+                    x, y = link
+                    image[y*200+x] = 255
 
                     input_tensor.append(image)
                     target_tensor.append(list(link))
