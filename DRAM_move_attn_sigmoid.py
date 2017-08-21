@@ -278,7 +278,7 @@ target_x_list = list()
 testing = False
 #testing = True
 
-while next_index < glimpses + 1:
+while next_index < glimpses:
 
     target_x, target_y = tf.split(next_blob_position, num_or_size_splits=2, axis=1)
     target_cnt = next_blob_cnt  
@@ -377,7 +377,7 @@ while next_index < glimpses + 1:
         train_ops.append(train_op)
     
     next_index = next_index + 1
-    if next_index < glimpses + 1:
+    if next_index < glimpses:
         current_x = target_x
         current_y = target_y
         current_cnt = target_cnt

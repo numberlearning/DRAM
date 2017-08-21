@@ -1,0 +1,34 @@
+['DRAM_move_attn_sigmoid.py', 'DRAM_move_attn_sigmoid/run_4', 'true', 'true', 'true', 'true', 'true', 'model_runs/DRAM_move_attn_sigmoid/run_4/classify_log.csv', 'model_runs/DRAM_move_attn_sigmoid/run_4/classifymodel_0.ckpt', 'model_runs/DRAM_move_attn_sigmoid/run_4/classifymodel_', 'model_runs/DRAM_move_attn_sigmoid/run_4/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py", line 671, in _call_cpp_shape_fn_impl
+    input_tensors_as_shapes, status)
+  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/errors_impl.py", line 466, in raise_exception_on_not_ok_status
+    pywrap_tensorflow.TF_GetCode(status))
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Cannot reshape a tensor with 77 elements to shape [100,1] (100 elements) for 'Reshape' (op: 'Reshape') with input shapes: [77,1], [2] and with input tensors computed as partial shapes: input[1] = [100,1].
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "DRAM_move_attn_sigmoid.py", line 290, in <module>
+    r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev, current_x, current_y)
+  File "DRAM_move_attn_sigmoid.py", line 175, in read
+    Fx, Fy, mu_x, mu_y, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n, pred_x, pred_y)
+  File "DRAM_move_attn_sigmoid.py", line 127, in attn_window
+    gx=tf.reshape(predx, [batch_size, 1])
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_array_ops.py", line 2510, in reshape
+    name=name)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/op_def_library.py", line 768, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 2338, in create_op
+    set_shapes_for_outputs(ret)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 1719, in set_shapes_for_outputs
+    shapes = shape_func(op)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 1669, in call_with_requiring
+    return call_cpp_shape_fn(op, require_shape_fn=True)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py", line 610, in call_cpp_shape_fn
+    debug_python_shape_fn, require_shape_fn)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py", line 676, in _call_cpp_shape_fn_impl
+    raise ValueError(err.message)
+ValueError: Cannot reshape a tensor with 77 elements to shape [100,1] (100 elements) for 'Reshape' (op: 'Reshape') with input shapes: [77,1], [2] and with input tensors computed as partial shapes: input[1] = [100,1].
