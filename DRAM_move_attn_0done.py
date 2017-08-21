@@ -497,3 +497,9 @@ if __name__ == '__main__':
                     settings_file.write("min_edge = " + str(min_edge) + ", ")
                     settings_file.write("max_edge = " + str(max_edge) + ", ")
                     settings_file.write("min_blobs = " + str(min_blobs) + ", ")
+                    settings_file.write("max_blobs = " + str(max_blobs) + ", ")
+                    settings_file.close()
+            else:
+                log_file = open(log_filename, 'a')
+            log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
+            log_file.close()
