@@ -6,7 +6,7 @@ import trace_data_new as trace_data
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 
-z_size = 5
+z_size = 9
 
 
 class Teacher(object):
@@ -34,20 +34,18 @@ class Teacher(object):
         self.explode_length = 0
 
 
-    def get_train(self, even=None):
+    def get_train(self, even=None, shiny=False, done_vector=None):
         """Generate and get train images and traces."""
 
-        #self.images, self.labels, self.traces = trace_data.get_my_teacher()
         _, self.images, self.labels, self.traces, _ = trace_data.get_my_teacher()
-        #print(self.labels)
         self.length = len(self.images)
-        self.create_teacher()
+        self.create_teacher(shiny=shiny, done_vector=done_vector)
 
 
-    def get_test(self, even=None):
+    def get_test(self, even=None, shiny=False, done_vector=None):
         """Generate and get train images and traces."""
 
-        self.get_train(even)
+        self.get_train(even=even, shiny=shiny, done_vector=done_vector)
 
 
     def load_sample(self):
@@ -133,12 +131,9 @@ class Teacher(object):
         return self.traces[idx]
 
 
-    def create_teacher(self):
+    def create_teacher(self, shiny=False, done_vector=None):
         """Create target tensor with fixation positions at each timestep."""
 
-        #words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-
-        #print("self.length: ", self.length)
         for i, image in enumerate(self.images):
             if False:#i % 2 == 0:
                 img = list(chunks(image, 10))
@@ -158,28 +153,35 @@ class Teacher(object):
                 #count_tensor.append([0] * z_size)
                 #input_tensor.append(image)
                 #target_tensor.append([None, None])
-
-                #count_padding = [0 for x in range(z_size)]
-                count_end = [1 if x is -1 else 0 for x in range(-1, z_size)]
                 
                 for count, link in enumerate(chain):
-                    count_vector = [0 if x is not count else 1 for x in range(-1, z_size)]
+                    if done_vector is "end":
+                        count_vector = [0 if x is not count else 1 for x in range(-1, z_size)]
+                    else:
+                        count_vector = [0 if x is not count else 1 for x in range(z_size)]
+
                     count_tensor.append(count_vector)
-                    x, y = link
-                    image[y*200+x] = 255
+
+                    # Mark teacher pointer
+                    if shiny:
+                        x, y = link
+                        image[y*200+x] = 255
+
                     input_tensor.append(image)
                     target_tensor.append(list(link))
 
-                # Fill in the rest of the list with the same (current one doe
+                if done_vector is not None:
+                    if done_vector is "end":
+                        count_vector = [1 if x is -1 else 0 for x in range(-1, z_size)]
+                    elif done_vector is "padding":
+                        count_vector = [0 for x in range(z_size)]
+
+                # Fill in the rest of the list with the same
                 #for cont in range(count + 1, z_size): # try this?
                 for cont in range(count + 1, z_size + 1):
-                    #count_tensor.append(count_padding)
-                    count_tensor.append(count_end)
-                    #count_tensor.append(count_vector)
+                    count_tensor.append(count_vector)
                     input_tensor.append(image)
                     target_tensor.append(list(link))
-
-                
 
                 self.explode_lbls.append(label)
                 self.explode_labels.append(label_vector)
@@ -188,8 +190,6 @@ class Teacher(object):
                 self.explode_traces.append(target_tensor)
                 #print(target_tensor)
 
-        
-        
         self.explode_length = len(self.explode_images)
 
 

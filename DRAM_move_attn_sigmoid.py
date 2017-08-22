@@ -23,9 +23,9 @@ def str2bool(v):
 if not os.path.exists("model_runs"):
     os.makedirs("model_runs")
 
-# folder_name = "model_runs/baby_blobs"
+if sys.argv[1] is not None:
+    model_name = sys.argv[1]
 
-# folder_name = "model_runs/number_learning_test_graph"
 folder_name = "model_runs/" + model_name
 
 if not os.path.exists(folder_name):
@@ -33,7 +33,7 @@ if not os.path.exists(folder_name):
 
 start_restore_index = 0 
 
-sys.argv = [sys.argv[0], "true", "true", "true", "true", "true", "true",
+sys.argv = [sys.argv[0], model_name, "true", "true", "true", "true", "true",
 folder_name + "/classify_log.csv",
 folder_name + "/classifymodel_" + str(start_restore_index) + ".ckpt",
 folder_name + "/classifymodel_",
@@ -262,8 +262,8 @@ viz_data = list()
 #current_cnt = count_tensor[:, 0]
 current_x = tf.constant(100, dtype=tf.float32, shape=[77,1])
 current_y = tf.constant(20, dtype=tf.float32, shape=[77,1])
-current_cnt = tf.zeros(dtype=tf.float32, shape=[77,5])
-next_index = 0
+current_cnt = tf.zeros(dtype=tf.float32, shape=[77,z_size])
+next_index = 1
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
 reward_position_list = list()
@@ -297,13 +297,13 @@ while next_index < glimpses:
         z = linear(h_enc, z_size)
     h_dec, dec_state = decode(z, dec_state)
     _, _, _, _, _, attn_x, attn_y, _ = attn_window("read", h_dec, read_n, DO_SHARE=True)
-    predict_x, predict_y  = attn_x, attn_y
+    predict_x, predict_y = attn_x, attn_y
     with tf.variable_scope("hidden", reuse=REUSE):
         hidden = tf.nn.relu(linear(tf.concat([current_cnt, h_dec], 1), 256))
         #hidden = tf.nn.relu(linear(h_dec, 256))
 
     with tf.variable_scope("count", reuse=REUSE):
-        predict_cnt = tf.nn.softmax(linear(hidden, z_size))
+        predict_cnt = tf.nn.sigmoid(linear(hidden, z_size))
 
     #current_cnt = predict_cnt
 
@@ -313,7 +313,7 @@ while next_index < glimpses:
     target_cnt_list.append(targ_cnt_idx)
     predict_cnt_list.append(pred_cnt_idx)
     
-    cnt_precision = tf.log(predict_cnt + 1e-5) * target_cnt + (1-target_cnt)*tf.log(1 - predict_cnt + 1e-5)
+    cnt_precision = tf.log(predict_cnt + 1e-5) * target_cnt + (1-target_cnt)*tf.log(1 - predict_cnt + 1e-5) # sigmoid cross entropy
     reward_cnt = tf.reduce_sum(cnt_precision, 1)
     cntquality = reward_cnt
     reward_count_list.append(reward_cnt)
@@ -364,7 +364,7 @@ while next_index < glimpses:
     cost = -posquality/10 - cntquality
 
     ## OPTIMIZER #################################################
-    #why can't we use the same optimizer at all the glimpses? 
+    #why can't we use the same optimizer across all the glimpses? 
     #with tf.variable_scope("optimizer", reuse=REUSE):
     with tf.variable_scope("pos_optimizer" + str(next_index), reuse=None):
         optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
@@ -376,18 +376,6 @@ while next_index < glimpses:
         train_op = optimizer.apply_gradients(grads)
         train_ops.append(train_op)
     
-    """
-    with tf.variable_scope("cnt_optimizer" + str(next_index), reuse=None):
-        optimizer2 = tf.train.AdamOptimizer(learning_rate, epsilon=1)
-        grads2 = optimizer.compute_gradients(cntcost)
-
-        for i, (g, v) in enumerate(grads2):
-            if g is not None:
-                grads2[i] = (tf.clip_by_norm(g, 5), v)
-        train_op2 = optimizer.apply_gradients(grads)
-        train_ops2.append(train_op2)
-    """
- 
     next_index = next_index + 1
     if next_index < glimpses:
         current_x = target_x
@@ -416,13 +404,13 @@ def binary_crossentropy(t,o):
 def evaluate():
     testing = True
     data = load_teacher.Teacher()
-    data.get_test(1)
+    data.get_test(even=1, shiny=True, done_vector="padding")
     batches_in_epoch = len(data.explode_images) // batch_size
     accuracy_position = 0
     accuracy_count = 0
     
     for i in range(batches_in_epoch):
-        xtrain, _, _, explode_counts, ytrain = train_data.next_explode_batch(batch_size)
+        xtrain, _, _, explode_counts, ytrain = data.next_explode_batch(batch_size)
         feed_dict = { input_tensor: xtrain, count_tensor: explode_counts, target_tensor: ytrain }
         #feed_dict = { input_tensor: xtrain, target_tensor: ytrain }
         fetch_accuracy = []
@@ -456,7 +444,8 @@ if __name__ == '__main__':
         saver.restore(sess, load_file)
 
     train_data = load_teacher.Teacher()
-    train_data.get_train(1)
+    train_data.get_train(even=1, shiny=True, done_vector="padding")
+
     fetches2=[] 
     #fetches2.extend([predict_cnt_list, target_cnt_list, avg_position_reward, avg_count_reward, train_op, train_op2, predict_x_average, target_x_average, train_ops, train_ops2])
     fetches2.extend([predict_cnt_list, target_cnt_list, avg_position_reward, avg_count_reward, train_op, predict_x_average, target_x_average, train_ops])
@@ -475,7 +464,7 @@ if __name__ == '__main__':
         #predict_count_list, target_cnt_list, reward_position_fetched, reward_count_fetched, _, _, prex, tarx, _, _= results
         
         if i%100 == 0:
-            print(predict_count_list)
+            #print(predict_count_list)
             #print(target_cnt_list)
             print("iter=%d : Reward: %f" % (i, reward_position_fetched))
             print("iter=%d : Reward: %f" % (i, reward_count_fetched))
@@ -485,8 +474,7 @@ if __name__ == '__main__':
             print("Target x average: %f" % tarx)
             sys.stdout.flush()
  
-            train_data = load_teacher.Teacher()
-            train_data.get_train(1)
+            train_data.get_train(even=1, shiny=True, done_vector="padding")
 
             if i%1000 == 0:
                 start_evaluate = time.clock()
@@ -506,3 +494,11 @@ if __name__ == '__main__':
                     settings_file.write("min_edge = " + str(min_edge) + ", ")
                     settings_file.write("max_edge = " + str(max_edge) + ", ")
                     settings_file.write("min_blobs = " + str(min_blobs) + ", ")
+                    settings_file.write("max_edge = " + str(max_edge) + ", ")
+                    settings_file.write("min_blobs = " + str(min_blobs) + ", ")
+                    settings_file.write("max_blobs = " + str(max_blobs) + ", ")
+                    settings_file.close()
+            else:
+                log_file = open(log_filename, 'a')
+                log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
+                log_file.close()

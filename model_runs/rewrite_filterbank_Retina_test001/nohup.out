@@ -194,3 +194,9 @@ Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel
 --- 32787.851810000015 CPU seconds ---
 iter=91000 : Reward: 0.000000
 iter=92000 : Reward: 0.000000
+iter=93000 : Reward: 0.000000
+iter=94000 : Reward: 0.000000
+iter=95000 : Reward: 1.000000
+iter=96000 : Reward: 0.000000
+iter=97000 : Reward: 0.000000
+iter=98000 : Reward: 0.000000

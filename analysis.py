@@ -99,7 +99,8 @@ def read_img(it, new_image):
     for i in range(len(cs)):
         mu_x = list(cs[i]["mu_x"])
         mu_y = list(cs[i]["mu_y"])
-        out["dots"].append(list_to_dots(mu_x, mu_y))
+        out["dots"].append(list_to_dots(mu_x, mu_y, True)) # already has all coordinates
+        #out["dots"].append(list_to_dots(mu_x, mu_y))
 
         predict_x = list(cs[i]["predict_x"])[0]
         predict_y = list(cs[i]["predict_y"])[0]
@@ -313,12 +314,19 @@ def stats_to_rect(stats):
     return dict(top=[int(minY)], bottom=[int(maxY)], left=[int(minX)], right=[int(maxX)])
 
 
-def list_to_dots(mu_x, mu_y):
+def list_to_dots(mu_x, mu_y, full_list=False):
     """Draw filterbank based on mu_x and mu_y."""
 
-    mu_x_list = mu_x * read_n
-    mu_y_list = [val for val in mu_y for _ in range(0, read_n)]
- 
+    if full_list:
+        mu_x_list = np.reshape(mu_x, (1, read_n*read_n))
+        mu_y_list = np.reshape(mu_y, (1, read_n*read_n))
+    else:
+        mu_x_list = mu_x * read_n
+        mu_y_list = [val for val in mu_y for _ in range(0, read_n)]
+
     return dict(mu_x_list=mu_x_list, mu_y_list=mu_y_list)
+
+
+
 
 print("analysis.py")
