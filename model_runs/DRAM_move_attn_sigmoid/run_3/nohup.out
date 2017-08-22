@@ -1,34 +1,42 @@
 ['DRAM_move_attn_sigmoid.py', 'DRAM_move_attn_sigmoid/run_3', 'true', 'true', 'true', 'true', 'true', 'model_runs/DRAM_move_attn_sigmoid/run_3/classify_log.csv', 'model_runs/DRAM_move_attn_sigmoid/run_3/classifymodel_0.ckpt', 'model_runs/DRAM_move_attn_sigmoid/run_3/classifymodel_', 'model_runs/DRAM_move_attn_sigmoid/run_3/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py", line 671, in _call_cpp_shape_fn_impl
-    input_tensors_as_shapes, status)
-  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
-    next(self.gen)
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/errors_impl.py", line 466, in raise_exception_on_not_ok_status
-    pywrap_tensorflow.TF_GetCode(status))
-tensorflow.python.framework.errors_impl.InvalidArgumentError: Cannot reshape a tensor with 77 elements to shape [100,1] (100 elements) for 'Reshape' (op: 'Reshape') with input shapes: [77,1], [2] and with input tensors computed as partial shapes: input[1] = [100,1].
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "DRAM_move_attn_sigmoid.py", line 290, in <module>
-    r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev, current_x, current_y)
-  File "DRAM_move_attn_sigmoid.py", line 175, in read
-    Fx, Fy, mu_x, mu_y, gamma, gx, gy, delta = attn_window("read", h_dec_prev, read_n, pred_x, pred_y)
-  File "DRAM_move_attn_sigmoid.py", line 127, in attn_window
-    gx=tf.reshape(predx, [batch_size, 1])
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_array_ops.py", line 2510, in reshape
-    name=name)
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/op_def_library.py", line 768, in apply_op
-    op_def=op_def)
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 2338, in create_op
-    set_shapes_for_outputs(ret)
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 1719, in set_shapes_for_outputs
-    shapes = shape_func(op)
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 1669, in call_with_requiring
-    return call_cpp_shape_fn(op, require_shape_fn=True)
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py", line 610, in call_cpp_shape_fn
-    debug_python_shape_fn, require_shape_fn)
-  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py", line 676, in _call_cpp_shape_fn_impl
-    raise ValueError(err.message)
-ValueError: Cannot reshape a tensor with 77 elements to shape [100,1] (100 elements) for 'Reshape' (op: 'Reshape') with input shapes: [77,1], [2] and with input tensors computed as partial shapes: input[1] = [100,1].
+2017-08-21 18:05:29.682606: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:29.682630: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:29.682636: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:29.682640: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:29.682643: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:30.098636: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-21 18:05:30.099701: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 7.03GiB
+2017-08-21 18:05:30.099788: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0xc0b97b0
+2017-08-21 18:05:30.523819: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-21 18:05:30.524193: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.14GiB
+2017-08-21 18:05:30.524374: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-08-21 18:05:30.524383: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-08-21 18:05:30.524388: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-08-21 18:05:30.524396: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-08-21 18:05:30.524402: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: -6316.348145
+iter=0 : Reward: -54.166107
+Predict x average: 137.969910
+Target x average: 61.888889
+POSITION ACCURACY: -5712.78988301
+COUNT ACCURACY: 0.0767989169192
+Model saved in file: model_runs/DRAM_move_attn_sigmoid/run_3/classifymodel_0.ckpt
+--- 10.180530000000005 CPU seconds ---
+iter=100 : Reward: -801.337097
+iter=100 : Reward: -2.753186
+Predict x average: 85.069466
+Target x average: 86.000000
+iter=200 : Reward: -650.633118
+iter=200 : Reward: -2.640057
+Predict x average: 80.009132
+Target x average: 88.222221

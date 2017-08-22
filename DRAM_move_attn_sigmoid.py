@@ -262,7 +262,7 @@ viz_data = list()
 #current_cnt = count_tensor[:, 0]
 current_x = tf.constant(100, dtype=tf.float32, shape=[77,1])
 current_y = tf.constant(20, dtype=tf.float32, shape=[77,1])
-current_cnt = tf.zeros(dtype=tf.float32, shape=[77,5])
+current_cnt = tf.zeros(dtype=tf.float32, shape=[77,z_size])
 next_index = 1
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
@@ -445,6 +445,7 @@ if __name__ == '__main__':
 
     train_data = load_teacher.Teacher()
     train_data.get_train(even=1, shiny=True, done_vector="padding")
+
     fetches2=[] 
     #fetches2.extend([predict_cnt_list, target_cnt_list, avg_position_reward, avg_count_reward, train_op, train_op2, predict_x_average, target_x_average, train_ops, train_ops2])
     fetches2.extend([predict_cnt_list, target_cnt_list, avg_position_reward, avg_count_reward, train_op, predict_x_average, target_x_average, train_ops])
@@ -463,7 +464,7 @@ if __name__ == '__main__':
         #predict_count_list, target_cnt_list, reward_position_fetched, reward_count_fetched, _, _, prex, tarx, _, _= results
         
         if i%100 == 0:
-            print(predict_count_list)
+            #print(predict_count_list)
             #print(target_cnt_list)
             print("iter=%d : Reward: %f" % (i, reward_position_fetched))
             print("iter=%d : Reward: %f" % (i, reward_count_fetched))

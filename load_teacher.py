@@ -155,7 +155,11 @@ class Teacher(object):
                 #target_tensor.append([None, None])
                 
                 for count, link in enumerate(chain):
-                    count_vector = [0 if x is not count else 1 for x in range(-1, z_size)]
+                    if done_vector is "end":
+                        count_vector = [0 if x is not count else 1 for x in range(-1, z_size)]
+                    else:
+                        count_vector = [0 if x is not count else 1 for x in range(z_size)]
+
                     count_tensor.append(count_vector)
 
                     # Mark teacher pointer

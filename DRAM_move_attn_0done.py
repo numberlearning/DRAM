@@ -465,7 +465,7 @@ if __name__ == '__main__':
         #predict_count_list, target_cnt_list, reward_position_fetched, reward_count_fetched, _, _, prex, tarx, _, _= results
         
         if i%100 == 0:
-            print(predict_count_list)
+            #print(predict_count_list)
             #print(target_cnt_list)
             print("iter=%d : Reward: %f" % (i, reward_position_fetched))
             print("iter=%d : Reward: %f" % (i, reward_count_fetched))
