@@ -131,7 +131,7 @@ class Teacher(object):
         return self.traces[idx]
 
 
-    def create_teacher(self, shiny=False, done_tensor=None):
+    def create_teacher(self, shiny=False, done_vector=None):
         """Create target tensor with fixation positions at each timestep."""
 
         for i, image in enumerate(self.images):

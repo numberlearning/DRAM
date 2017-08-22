@@ -499,5 +499,5 @@ if __name__ == '__main__':
                     settings_file.close()
             else:
                 log_file = open(log_filename, 'a')
-            log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
-            log_file.close()
+                log_file.write(str(time.clock() - start_time - extra_time) + "," + str(test_accuracy) + "\n")
+                log_file.close()
