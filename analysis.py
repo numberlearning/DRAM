@@ -284,11 +284,19 @@ def stats_to_rect(stats):
     """Draw attention window based on gx, gy, and delta."""
 
     gx, gy, delta = stats
+
     minY = dims[0] - gy + read_n/2.0 * delta
     maxY = dims[0] - gy - read_n/2.0 * delta
 
     minX = gx - read_n/2.0 * delta
     maxX = gx + read_n/2.0 * delta
+   
+   # minX = gx - sum(delta[0:read_n//2])
+   # maxX = gx + sum(delta[0:read_n//2])
+
+   # minY = gy - sum(delta[0:read_n//2])
+   # maxY = gy + sum(delta[0:read_n//2])
+
 
     if minX < 1:
         minX = 1

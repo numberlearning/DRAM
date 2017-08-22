@@ -1,0 +1,196 @@
+['DRAMcopy13_rewrite_filterbank_Retina.py', 'true', 'true', 'true', 'true', 'true', 'true', 'model_runs/rewrite_filtebank_Retina_test001/classify_log.csv', 'model_runs/rewrite_filtebank_Retina_test001/classifymodel_0.ckpt', 'model_runs/rewrite_filtebank_Retina_test001/classifymodel_', 'model_runs/rewrite_filtebank_Retina_test001/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+2017-08-21 21:51:02.435447: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 21:51:02.435471: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 21:51:02.435475: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 21:51:02.435478: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 21:51:02.435480: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 21:51:02.586975: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-21 21:51:02.587279: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 7.79GiB
+2017-08-21 21:51:02.587326: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x3a7c8f40
+2017-08-21 21:51:02.679450: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-21 21:51:02.679735: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.81GiB
+2017-08-21 21:51:02.680552: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-08-21 21:51:02.680561: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-08-21 21:51:02.680563: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-08-21 21:51:02.680569: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-08-21 21:51:02.680572: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: 0.000000
+ACCURACY: 0.0630666666667
+Model saved in file: model_runs/rewrite_filtebank_Retina_test001/classifymodel_0.ckpt
+--- 21.6640010000001 CPU seconds ---
+iter=1000 : Reward: 0.000000
+iter=2000 : Reward: 0.000000
+iter=3000 : Reward: 0.000000
+iter=4000 : Reward: 0.000000
+iter=5000 : Reward: 0.000000
+iter=6000 : Reward: 0.000000
+iter=7000 : Reward: 0.000000
+iter=8000 : Reward: 0.000000
+iter=9000 : Reward: 1.000000
+iter=10000 : Reward: 0.000000
+ACCURACY: 0.101066666667
+Traceback (most recent call last):
+  File "DRAMcopy13_rewrite_filterbank_Retina.py", line 417, in <module>
+    print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1382, in save
+    "Parent directory of {} doesn't exist, can't save.".format(save_path))
+ValueError: Parent directory of model_runs/rewrite_filtebank_Retina_test001/classifymodel_10000.ckpt doesn't exist, can't save.
+['DRAMcopy13_rewrite_filterbank_Retina.py', 'true', 'true', 'true', 'true', 'true', 'true', 'model_runs/rewrite_filterbank_Retina2_test001/classify_log.csv', 'model_runs/rewrite_filterbank_Retina2_test001/classifymodel_0.ckpt', 'model_runs/rewrite_filterbank_Retina2_test001/classifymodel_', 'model_runs/rewrite_filterbank_Retina2_test001/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+2017-08-22 00:03:27.236387: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-22 00:03:27.236410: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-22 00:03:27.236413: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-22 00:03:27.236416: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-22 00:03:27.236418: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-22 00:03:27.366021: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-22 00:03:27.366323: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 7.79GiB
+2017-08-22 00:03:27.366363: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0x3a0176e0
+2017-08-22 00:03:27.457285: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-22 00:03:27.457572: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.81GiB
+2017-08-22 00:03:27.458088: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-08-22 00:03:27.458095: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-08-22 00:03:27.458098: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-08-22 00:03:27.458103: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-08-22 00:03:27.458107: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: 1.000000
+ACCURACY: 0.0626666666667
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_0.ckpt
+--- 21.634972999999945 CPU seconds ---
+iter=1000 : Reward: 0.000000
+iter=2000 : Reward: 0.000000
+iter=3000 : Reward: 0.000000
+iter=4000 : Reward: 0.000000
+iter=5000 : Reward: 0.000000
+iter=6000 : Reward: 0.000000
+iter=7000 : Reward: 0.000000
+iter=8000 : Reward: 0.000000
+iter=9000 : Reward: 0.000000
+iter=10000 : Reward: 0.000000
+ACCURACY: 0.0954666666667
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_10000.ckpt
+--- 3663.9222949999994 CPU seconds ---
+iter=11000 : Reward: 0.000000
+iter=12000 : Reward: 0.000000
+iter=13000 : Reward: 1.000000
+iter=14000 : Reward: 0.000000
+iter=15000 : Reward: 0.000000
+iter=16000 : Reward: 0.000000
+iter=17000 : Reward: 0.000000
+iter=18000 : Reward: 0.000000
+iter=19000 : Reward: 0.000000
+iter=20000 : Reward: 0.000000
+ACCURACY: 0.118733333333
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_20000.ckpt
+--- 7308.133809000001 CPU seconds ---
+iter=21000 : Reward: 0.000000
+iter=22000 : Reward: 0.000000
+iter=23000 : Reward: 0.000000
+iter=24000 : Reward: 0.000000
+iter=25000 : Reward: 0.000000
+iter=26000 : Reward: 0.000000
+iter=27000 : Reward: 0.000000
+iter=28000 : Reward: 0.000000
+iter=29000 : Reward: 0.000000
+iter=30000 : Reward: 0.000000
+ACCURACY: 0.139333333333
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_30000.ckpt
+--- 10948.208300000002 CPU seconds ---
+iter=31000 : Reward: 0.000000
+iter=32000 : Reward: 0.000000
+iter=33000 : Reward: 1.000000
+iter=34000 : Reward: 0.000000
+iter=35000 : Reward: 0.000000
+iter=36000 : Reward: 1.000000
+iter=37000 : Reward: 0.000000
+iter=38000 : Reward: 0.000000
+iter=39000 : Reward: 0.000000
+iter=40000 : Reward: 0.000000
+ACCURACY: 0.1344
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_40000.ckpt
+--- 14587.928564999998 CPU seconds ---
+iter=41000 : Reward: 1.000000
+iter=42000 : Reward: 0.000000
+iter=43000 : Reward: 0.000000
+iter=44000 : Reward: 0.000000
+iter=45000 : Reward: 0.000000
+iter=46000 : Reward: 0.000000
+iter=47000 : Reward: 0.000000
+iter=48000 : Reward: 0.000000
+iter=49000 : Reward: 0.000000
+iter=50000 : Reward: 0.000000
+ACCURACY: 0.126133333333
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_50000.ckpt
+--- 18227.084838999996 CPU seconds ---
+iter=51000 : Reward: 0.000000
+iter=52000 : Reward: 1.000000
+iter=53000 : Reward: 0.000000
+iter=54000 : Reward: 1.000000
+iter=55000 : Reward: 0.000000
+iter=56000 : Reward: 0.000000
+iter=57000 : Reward: 0.000000
+iter=58000 : Reward: 0.000000
+iter=59000 : Reward: 0.000000
+iter=60000 : Reward: 1.000000
+ACCURACY: 0.139733333333
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_60000.ckpt
+--- 21866.57153 CPU seconds ---
+iter=61000 : Reward: 0.000000
+iter=62000 : Reward: 0.000000
+iter=63000 : Reward: 0.000000
+iter=64000 : Reward: 0.000000
+iter=65000 : Reward: 0.000000
+iter=66000 : Reward: 0.000000
+iter=67000 : Reward: 0.000000
+iter=68000 : Reward: 0.000000
+iter=69000 : Reward: 0.000000
+iter=70000 : Reward: 0.000000
+ACCURACY: 0.1508
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_70000.ckpt
+--- 25505.733535000007 CPU seconds ---
+iter=71000 : Reward: 0.000000
+iter=72000 : Reward: 0.000000
+iter=73000 : Reward: 0.000000
+iter=74000 : Reward: 1.000000
+iter=75000 : Reward: 1.000000
+iter=76000 : Reward: 0.000000
+iter=77000 : Reward: 0.000000
+iter=78000 : Reward: 0.000000
+iter=79000 : Reward: 0.000000
+iter=80000 : Reward: 0.000000
+ACCURACY: 0.1666
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_80000.ckpt
+--- 29145.890687000014 CPU seconds ---
+iter=81000 : Reward: 0.000000
+iter=82000 : Reward: 0.000000
+iter=83000 : Reward: 0.000000
+iter=84000 : Reward: 1.000000
+iter=85000 : Reward: 0.000000
+iter=86000 : Reward: 0.000000
+iter=87000 : Reward: 0.000000
+iter=88000 : Reward: 0.000000
+iter=89000 : Reward: 0.000000
+iter=90000 : Reward: 0.000000
+ACCURACY: 0.186866666667
+Model saved in file: model_runs/rewrite_filterbank_Retina2_test001/classifymodel_90000.ckpt
+--- 32787.851810000015 CPU seconds ---
+iter=91000 : Reward: 0.000000
+iter=92000 : Reward: 0.000000
