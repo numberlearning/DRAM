@@ -57,7 +57,7 @@ pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [100, 100]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 10 # read glimpse grid width/height
+read_n = 25  # read glimpse grid width/height
 read_size = read_n*read_n
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
@@ -88,17 +88,17 @@ def linear(x,output_dim):
 
 def filterbank(gx, gy, sigma2, delta, N):
     grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
-    mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
-    mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
+    mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19 batch_size x N
+    mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20 batch_size x N
 
-    a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1])
-    b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1])
+    a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[0]
+    b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[1]
 
-    mu_x = tf.reshape(mu_x, [-1, N, 1])
+    mu_x = tf.reshape(mu_x, [-1, N, 1]) # batch_size x N x 1
     mu_y = tf.reshape(mu_y, [-1, N, 1])
-    sigma2 = tf.reshape(sigma2, [-1, 1, 1])
-    Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # 2*sigma2?
-    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch_size x N x B
+    sigma2 = tf.reshape(sigma2, [-1, 1, 1]) # batch_size x 1 x 1
+    Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # batch_size x N x dims[0]
+    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch_size x N x dims[1]
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
@@ -107,19 +107,19 @@ def filterbank(gx, gy, sigma2, delta, N):
 
 def attn_window(scope,h_dec,N, glimpse):
     with tf.variable_scope(scope,reuse=REUSE):
-        params=linear(h_dec,5)
-    gx_,gy_,log_sigma2,log_delta,log_gamma=tf.split(params, 5, 1)
-
-    gx=(dims[0]+1)/2*(gx_+1)
+        params=linear(h_dec,4) # batch_size x 4
+    gx_,gy_,log_delta,log_gamma=tf.split(params, 4, 1) # batch_size x 1
+    
+    gx=(dims[0]+1)/2*(gx_+1) # batch_size x 1 
     gy=(dims[1]+1)/2*(gy_+1)
-
+    # print("gx:",gx)
     gx_list[glimpse] = gx
     gy_list[glimpse] = gy
 
     #  sigma2=tf.exp(log_sigma2)
-    delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-    sigma2=delta*delta/4 # sigma=delta/2
-
+    delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch_size x 1
+    sigma2=delta*delta/4 # sigma=delta/2 batch_size x 1
+    
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
@@ -140,6 +140,7 @@ def read(x, h_dec_prev, glimpse):
 
     def filter_img(img, Fx, Fy, gamma, N):
         Fxt = tf.transpose(Fx, perm=[0,2,1])
+        # img: 1 x img_size
         img = tf.reshape(img,[-1, dims[1], dims[0]])
         glimpse = tf.matmul(Fy, tf.matmul(img, Fxt))
         glimpse = tf.reshape(glimpse,[-1, N*N])

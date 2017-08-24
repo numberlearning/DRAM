@@ -229,17 +229,17 @@ def decode(input, state):
         return lstm_dec(input, state)
 
 
-def write(h_dec):
-    with tf.variable_scope("write", reuse=REUSE):
-        return linear(h_dec,img_size)
-
-
-def convertTranslated(images):
-    newimages = []
-    for k in range(batch_size):
-        image = images[k * dims[0] * dims[1] : (k + 1) * dims[0] * dims[1]]
-        newimages.append(image)
-    return newimages
+#def write(h_dec):
+#    with tf.variable_scope("write", reuse=REUSE):
+#        return linear(h_dec,img_size)
+#
+#
+#def convertTranslated(images):
+#    newimages = []
+#    for k in range(batch_size):
+#        image = images[k * dims[0] * dims[1] : (k + 1) * dims[0] * dims[1]]
+#        newimages.append(image)
+#    return newimages
 
 
 def dense_to_one_hot(labels_dense, num_classes=z_size):
