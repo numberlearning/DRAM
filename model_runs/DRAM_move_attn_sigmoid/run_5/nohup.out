@@ -40,3 +40,27 @@ iter=200 : Reward: -705.254211
 iter=200 : Reward: -1.805940
 Predict x average: 66.723801
 Target x average: 62.444447
+iter=300 : Reward: -884.772278
+iter=300 : Reward: -1.595986
+Predict x average: 62.439129
+Target x average: 32.000000
+iter=400 : Reward: -865.245667
+iter=400 : Reward: -1.096532
+Predict x average: 48.077477
+Target x average: 91.444443
+iter=500 : Reward: -791.338074
+iter=500 : Reward: -0.830615
+Predict x average: 78.761711
+Target x average: 66.777779
+iter=600 : Reward: -627.219788
+iter=600 : Reward: -0.469196
+Predict x average: 64.210785
+Target x average: 48.000000
+Traceback (most recent call last):
+  File "DRAM_move_attn_sigmoid.py", line 477, in <module>
+    train_data.get_train(even=1, shiny=True, done_vector="padding")
+  File "/home/sychen23/DRAM/load_teacher.py", line 40, in get_train
+    _, self.images, self.labels, self.traces, _ = trace_data.get_my_teacher()
+  File "/home/sychen23/DRAM/trace_data_new.py", line 40, in get_my_teacher
+    train = np.zeros([total, img_size])   #training imgs
+MemoryError

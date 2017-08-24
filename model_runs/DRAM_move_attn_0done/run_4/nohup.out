@@ -40,3 +40,43 @@ iter=200 : Reward: -997.966492
 iter=200 : Reward: -0.885035
 Predict x average: 70.996254
 Target x average: 30.000000
+iter=300 : Reward: -827.855896
+iter=300 : Reward: -0.858908
+Predict x average: 72.114410
+Target x average: 89.333328
+iter=400 : Reward: -903.928101
+iter=400 : Reward: -1.030594
+Predict x average: 67.692238
+Target x average: 79.666664
+iter=500 : Reward: -934.083557
+iter=500 : Reward: -1.202999
+Predict x average: 69.733643
+Target x average: 79.000000
+iter=600 : Reward: -1046.176514
+iter=600 : Reward: -3.205991
+Predict x average: 58.092270
+Target x average: 82.222221
+iter=700 : Reward: -996.704163
+iter=700 : Reward: -2.973471
+Predict x average: 65.861076
+Target x average: 78.000000
+iter=800 : Reward: -972.355835
+iter=800 : Reward: -1.803915
+Predict x average: 72.713989
+Target x average: 63.777779
+iter=900 : Reward: -970.698792
+iter=900 : Reward: -2.051144
+Predict x average: 63.670013
+Target x average: 67.555557
+iter=1000 : Reward: -846.912476
+iter=1000 : Reward: -1.935359
+Predict x average: 69.706047
+Target x average: 82.111115
+Traceback (most recent call last):
+  File "DRAM_move_attn_0done.py", line 478, in <module>
+    train_data.get_train(even=1, shiny=True, done_vector="end")
+  File "/home/sychen23/DRAM/load_teacher.py", line 40, in get_train
+    _, self.images, self.labels, self.traces, _ = trace_data.get_my_teacher()
+  File "/home/sychen23/DRAM/trace_data_new.py", line 40, in get_my_teacher
+    train = np.zeros([total, img_size])   #training imgs
+MemoryError

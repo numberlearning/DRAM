@@ -40,3 +40,7 @@ iter=200 : Reward: -945.509155
 iter=200 : Reward: -2.609385
 Predict x average: 71.614670
 Target x average: 68.111115
+iter=300 : Reward: -1164.165771
+iter=300 : Reward: -2.100039
+Predict x average: 94.053841
+Target x average: 67.333328
