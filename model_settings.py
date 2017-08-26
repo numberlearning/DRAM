@@ -6,7 +6,7 @@
 min_edge = 2
 max_edge = 5
 min_blobs = 1
-max_blobs = 9
+max_blobs = 15
 
 learning_rate = 1e-2
 
@@ -18,14 +18,7 @@ glimpses = max_blobs + 1#11
 #77 when running DRAMcopy14 and move_attn
 #100 when running DRAMcopy13 (and 1 for viz?)
 #10000 when running update_curves, classify_imgs2, match num_imgs
-<<<<<<< HEAD
-batch_size = 1
-
-#change this whenever DRAM is run (before running nohup, make sure to make a directory in model_runs)
-model_name = "rewrite_filterbank_Retina_test001"
-=======
-batch_size = 77
+batch_size = 9000
 
 #change this whenever DRAM is run (before running nohup, make sure to make a directory in model_runs)
 model_name = "DRAM_move_attn_sigmoid/run_5"
->>>>>>> 203124eb08ce289576d48fa05c7e25179a84620e
