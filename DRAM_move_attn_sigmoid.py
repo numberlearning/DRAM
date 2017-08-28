@@ -263,7 +263,7 @@ viz_data = list()
 current_x = tf.constant(100, dtype=tf.float32, shape=[77,1])
 current_y = tf.constant(20, dtype=tf.float32, shape=[77,1])
 current_cnt = tf.zeros(dtype=tf.float32, shape=[77,z_size])
-next_index = 1
+next_index = 0
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
 reward_position_list = list()
@@ -284,10 +284,10 @@ while next_index < glimpses:
     target_cnt = next_blob_cnt  
 
     if testing:
-        r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev) # when testing, target_x and target_y are None
+        r, new_stats = read(input_tensor[:, next_index], h_dec_prev) # when testing, target_x and target_y are None
     else:            
         #set current attn window center to current blob center and perform read
-        r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev, current_x, current_y)
+        r, new_stats = read(input_tensor[:, next_index], h_dec_prev, current_x, current_y)
         #c = linear(tf.concat([input_tensor[:, next_index-1], h_dec_prev, current_cnt], 1), 1)
 
     h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
@@ -381,7 +381,7 @@ while next_index < glimpses:
         current_x = target_x
         current_y = target_y
         current_cnt = target_cnt
-        next_blob_position = target_tensor[:,next_index]
+        next_blob_position = target_tensor[:, next_index]
         next_blob_cnt = count_tensor[:, next_index]
 
     REUSE=True

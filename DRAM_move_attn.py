@@ -288,10 +288,10 @@ viz_data = list()
 #current_blob = target_tensor[:, 0]
 #current_x, current_y = tf.split(current_blob, num_or_size_splits=2, axis=1)
 #current_cnt = count_tensor[:, 0]
-current_x = tf.constant(10, dtype=tf.float32, shape=[batch_size, 1])
-current_y = tf.constant(10, dtype=tf.float32, shape=[batch_size, 1])
+current_x = tf.constant(100, dtype=tf.float32, shape=[batch_size, 1])
+current_y = tf.constant(20, dtype=tf.float32, shape=[batch_size, 1])
 current_cnt = tf.zeros(dtype=tf.float32, shape=[batch_size, z_size + 1])
-next_index = 1#0
+next_index = 0
 next_blob_position = target_tensor[:, next_index]
 next_blob_cnt = count_tensor[:, next_index]
 reward_position_list = list()
@@ -309,16 +309,16 @@ testing = False
 while next_index < glimpses:
 
     target_x, target_y = tf.split(next_blob_position, num_or_size_splits=2, axis=1)
-    target_cnt = next_blob_cnt  
+    target_cnt = next_blob_cnt
 
     if testing:
-        r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev) # when testing, target_x and target_y are None
+        r, new_stats = read(input_tensor[:, next_index], h_dec_prev) # when testing, target_x and target_y are None
     else:            
         #set current attn window center to current blob center and perform read
 
         # don't have to use the same weights and matrices as in attn_window below
-        r, new_stats = read(input_tensor[:, next_index-1], h_dec_prev, current_x, current_y)
-        #c = linear(tf.concat([input_tensor[:, next_index-1], h_dec_prev, current_cnt], 1), 1)
+        r, new_stats = read(input_tensor[:, next_index], h_dec_prev, current_x, current_y)
+        #c = linear(tf.concat([input_tensor[:, next_index], h_dec_prev, current_cnt], 1), 1)
 
     h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state) 
 
@@ -408,9 +408,12 @@ while next_index < glimpses:
     if next_index < glimpses:
         current_x = target_x
         current_y = target_y
+        #if testing:
+        #    current_cnt = predict_cnt
+        #else:
         current_cnt = target_cnt
-        
-        next_blob_position = target_tensor[:,next_index]
+
+        next_blob_position = target_tensor[:,next_index] #what if no more blobs?
         next_blob_cnt = count_tensor[:, next_index]
 
     REUSE=True
