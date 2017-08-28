@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib as mpl
-import create_data#_test_newfilterbank
+import create_data
 
 mpl.use('Agg')
 import matplotlib.pyplot as plt
