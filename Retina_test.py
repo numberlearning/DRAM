@@ -1,3 +1,5 @@
+# Only works for 1 batch_size now
+
 #!/usr/bin/env python
 import warnings
 warnings.filterwarnings('ignore')
@@ -43,20 +45,20 @@ folder_name + "/zzzdraw_data_5000.npy",
 "false", "true", "false", "false", "true"]
 print(sys.argv)
 
+train_iters = 20000000000
 eps = 1e-8 # epsilon for numerical stability
+rigid_pretrain = True
 log_filename = sys.argv[7]
 settings_filename = folder_name + "/settings.txt"
 load_file = sys.argv[8]
 save_file = sys.argv[9]
 draw_file = sys.argv[10]
-pretrain = str2bool(sys.argv[11]) #False
 classify = str2bool(sys.argv[12]) #True
-pretrain_restore = False
 translated = str2bool(sys.argv[13])
 dims = [100,100]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 15 # read glimpse grid width/height read_n>5 odd number
-read_size = read_n*read_n
+read_n = 10  # number of circlesi, read_n > 3
+num_filter = 1+6+12+18*(read_n-3) # total number of filters
 z_size = max_blobs - min_blobs + 1 # QSampler output size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
@@ -68,91 +70,182 @@ start_non_restored_from_random = str2bool(sys.argv[15])
 
 REUSE = None
 
+x = tf.placeholder(tf.float32,shape=(batch_size, img_size))
+onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, z_size))
+lstm_enc = tf.contrib.rnn.LSTMCell(enc_size, state_is_tuple=True) # encoder Op
+lstm_dec = tf.contrib.rnn.LSTMCell(dec_size, state_is_tuple=True) # decoder Op
+
+def linear(x,output_dim):
+    """
+    affine transformation Wx+b
+    assumes x.shape = (batch_size, num_features)
+    """
+    w=tf.get_variable("w", [x.get_shape()[1], output_dim], initializer=tf.random_normal_initializer())
+    b=tf.get_variable("b", [output_dim], initializer=tf.constant_initializer(0.0))
+    #b=tf.get_variable("b", [output_dim], initializer=tf.random_normal_initializer())
+    return tf.matmul(x,w)+b
+
+
 def filterbank(gx, gy, sigma2, delta, N):
-    min_dim = min(dims[0],dims[1])    
-    mu = zeros([N,N])
-    for i in range((N+1)//2):
-        mu[i,i:N-i] = linspace(-sum(delta[i:(N-1)//2]), sum(delta[i:(N-1)//2]), N-2*i)
-        mu[i+1:(N+1)//2,i] = mu[i,i]
-        mu[i+1:(N+1)//2,N-1-i] = mu[i,N-1-i]
-    
-    mu[(N-1)//2,(N-1)//2]=0
+    mu = np.zeros([num_filter,2])
+    mu[0,0] = 0
+    mu[0,1] = 0
+    for i in range(1,7):
+        mu[i,0] = np.cos(np.pi*((i-1)/3))*sum(delta[1:2])
+        mu[i,1] = np.sin(np.pi*((i-1)/3))*sum(delta[1:2])
+                    
+    for i in range(7,19):
+        mu[i,0] = np.cos(np.pi*((i-7)/6))*sum(delta[1:3])
+        mu[i,1] = np.sin(np.pi*((i-7)/6))*sum(delta[1:3])
+                                    
+    for i in range(3, N):
+        for j in range(1,18+1):
+            mu[18*(i-2)+j,0] = np.cos(np.pi*((j-1)/9))*sum(delta[1:i+1])
+            mu[18*(i-2)+j,1] = np.sin(np.pi*((j-1)/9))*sum(delta[1:i+1])
+                                                                    
+    mu_x = gx + mu[:,0]
+    mu_y = gy + mu[:,1]
 
-    for i in range((N+1)//2,N):
-        mu[i,:] = mu[N-1-i,:]
+    a = np.reshape([np.arange(dims[0])]*num_filter, (num_filter,-1))
+    b = np.reshape([np.arange(dims[1])]*num_filter, (num_filter,-1))
+
+    mu_x = tf.reshape(mu_x, [-1, 1])
+    mu_y = tf.reshape(mu_y, [-1, 1])
    
-    mu_x = gx + mu
-    mu_y = gy + mu
-    
-    a = tf.reshape([tf.cast(tf.range(dims[0]), tf.float32)]*N, [N, 1, -1])
-    b = tf.reshape([tf.cast(tf.range(dims[1]), tf.float32)]*N, [N, 1, -1])
+    FFx = -tf.square(a - mu_x)
+    FFy = -tf.square(b - mu_y)
+    Fx = tf.reshape(tf.exp(FFx[0]/(2*sigma2[0])),[1,-1])
+    Fy = tf.reshape(tf.exp(FFy[0]/(2*sigma2[0])),[1,-1])
 
-    mu_x = tf.reshape(mu_x, [N, N, 1])
-    mu_y = tf.reshape(mu_y, [N, N, 1])
-    sigma2 = tf.cast(tf.reshape(sigma2, [-1, N, 1]), tf.float32)
-    
-    Fx = tf.exp(-tf.square(a - mu_x) / (2*sigma2)) # N x N x dims[0]
-    Fy = tf.exp(-tf.square(b - mu_y) / (2*sigma2)) # N x N x dims[1]
-    #Fx = tf.reshape(Fx, [batch_size, N, dims[0]]) # batch_size x N x A
-    #Fy = tf.reshape(Fy, [batch_size, N, dims[1]]) # batch_size x N x B
-    # normalize, sum over A and B dims
-    Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
-    Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)
-    return Fx,Fy
+    for i in range(1,7):
+        FFFx = tf.reshape(tf.exp(FFx[i]/(2*sigma2[1])),[1,-1])
+        FFFy = tf.reshape(tf.exp(FFy[i]/(2*sigma2[1])),[1,-1]) 
+        Fx = tf.concat([Fx,FFFx],0)    
+        Fy = tf.concat([Fy,FFFy],0)
 
+    for i in range(7,19):
+        FFFx = tf.reshape(tf.exp(FFx[i]/(2*sigma2[2])),[1,-1])
+        FFFy = tf.reshape(tf.exp(FFy[i]/(2*sigma2[2])),[1,-1]) 
+        Fx = tf.concat([Fx,FFFx],0)
+        Fy = tf.concat([Fy,FFFy],0)
 
-def attn_window(scope,h_dec,N):
+    for i in range(3,N):
+        for j in range(1,18+1):
+            FFFx = tf.reshape(tf.exp(FFx[18*(i-2)+j]/(2*sigma2[i])),[1,-1])
+            FFFy = tf.reshape(tf.exp(FFy[18*(i-2)+j]/(2*sigma2[i])),[1,-1]) 
+            Fx = tf.concat([Fx,FFFx],0)
+            Fy = tf.concat([Fy,FFFy],0)
+
+    # normalize
+    Fx=Fx/tf.maximum(tf.reduce_sum(Fx,1,keep_dims=True),eps) # num_filter x dims[0]
+    Fy=Fy/tf.maximum(tf.reduce_sum(Fy,1,keep_dims=True),eps) # num_filter x dims[1]
+    return Fx,Fy,mu_x,mu_y
+
+def attn_window(scope,h_dec,N, glimpse):
+    with tf.variable_scope(scope,reuse=REUSE):
+        params=linear(h_dec,3)
+    gx_,gy_,log_gamma=tf.split(params, 3, 1) # batch_size x 1
     gx = (dims[0]+1)/2*(gx_+1)
     gy = (dims[1]+1)/2*(gy_+1)
    
+    # constrain gx and gy
+    max_gx = np.array([dims[0]]) 
+    tmax_gx = tf.convert_to_tensor(max_gx, dtype=tf.float32)
+    gx = tf.minimum(gx, tmax_gx)
+
+    min_gx = np.array([0]) 
+    tmin_gx = tf.convert_to_tensor(min_gx, dtype=tf.float32)
+    gx = tf.maximum(gx, tmin_gx)
+
+    max_gy = np.array([dims[1]]) 
+    tmax_gy = tf.convert_to_tensor(max_gy, dtype=tf.float32)
+    gy = tf.minimum(gy, tmax_gy)
+
+    min_gy = np.array([0]) 
+    tmin_gy = tf.convert_to_tensor(min_gy, dtype=tf.float32)
+    gy = tf.maximum(gy, tmin_gy) 
     
     gx_list[glimpse] = gx
     gy_list[glimpse] = gy
 
-    pdelta=np.logspace(1, (N-1)//2 - 2, (N-1)//2 - 2, base=1.3)
-    pdelta=np.append(1,(np.append(1,pdelta)))
-    delta=pow(3,pdelta)
-    delta=np.append(np.append(delta[::-1],delta[0]), delta) # sum(delta[0:7])=109.89
+    pdelta=np.logspace(0, N-4, N-3, base=1.145)
+    tdelta=pow(9,pdelta)
+    tdelta = np.concatenate(((0,3,6),tdelta),axis=0) # tdelta[9]=141.34, 100*sqrt(2)=141.42
+    delta=np.zeros(N)
+    for i in range(1,N):
+            delta[i] = tdelta[i]-tdelta[i-1]
+            delta[0] = delta[1]
+   
     sigma2=delta*delta/4 # sigma=delta/2
     
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
     ret = list()
-    Fx, Fy = filterbank(gx,gy,sigma2,delta,N)
+    Fx, Fy, mu_x, mu_y = filterbank(gx,gy,sigma2,delta,N)
     delta = tf.reshape(tf.convert_to_tensor(delta), [1,-1])
     sigma2 = tf.reshape(tf.convert_to_tensor(sigma2), [1,-1])
-    ret.append((Fx,)+(Fy,)+(tf.exp(log_gamma),)+(gx,)+(gy,)+(delta,))
+    ret.append((Fx,)+(Fy,)+(mu_x,)+(mu_y,)+(tf.exp(log_gamma),)+(gx,)+(gy,)+(delta,))
     return ret
 
 ## READ ##
+#  def read_no_attn(x,x_hat,h_dec_prev):
+#    return x, stats
+
 
 def read(x, h_dec_prev, glimpse):
     att_ret = attn_window("read", h_dec_prev, read_n, glimpse)
-    stats = Fx, Fy, gamma, gx, gy, delta = att_ret[0]
+    stats = Fx, Fy, mu_x, mu_y, gamma, gx, gy, delta = att_ret[0]
 
-    def filter_img(img, Fx, Fy, gamma, N):
-        glimpse = tf.reshape(img[0][0], [1,1,1]) 
+    def filter_img(img, Fx, Fy, mu_x, mu_y, gamma, N):
         img = tf.reshape(img,[-1, dims[1], dims[0]])
-        for i in range(N):
-            for j in range(N):
-                gg=tf.matmul(tf.reshape(Fy[i][j][:], [1,1,-1]), tf.matmul(img, tf.reshape(Fx[i][j][:], [1,-1,1])))
-                glimpse = tf.concat([glimpse,gg], 0)
-        glimpse = tf.reshape(glimpse,[-1, N*N+1])[0, 1:N*N+1]
+        glimpse = tf.matmul(tf.reshape(Fy[0], [1,1,-1]), tf.matmul(img, tf.reshape(Fx[0], [1,-1,1])))
+  
+        for i in range(1,num_filter):
+            gg = tf.matmul(tf.reshape(Fy[i], [1,1,-1]), tf.matmul(img, tf.reshape(Fx[i], [1,-1,1])))
+            glimpse = tf.concat([glimpse,gg], 0)
+        
+        glimpse = tf.reshape(glimpse,[-1, num_filter])
         return glimpse * tf.reshape(gamma, [-1,1])
 
-    xr = filter_img(x, Fx, Fy, gamma, read_n) # batch_size x (read_n*read_n)
+    xr = filter_img(x, Fx, Fy, mu_x, mu_y, gamma, read_n) # batch_size x (read_n*read_n)
     return xr, stats # concat along feature axis
 
-#read = read_attn if FLAGS.read_attn else read_no_attn
+
+def encode(input, state):
+    """
+    run LSTM
+    state: previous encoder state
+    input: cat(read, h_dec_prev)
+    returns: (output, new_state)
+    """ 
+    with tf.variable_scope("encoder/LSTMCell", reuse=REUSE):
+        return lstm_enc(input, state)
 
 
-def convertTranslated(images):
-    newimages = []
-    for k in range(batch_size):
-        image = images[k * dims[0] * dims[1] : (k + 1) * dims[0] * dims[1]]
-        newimages.append(image)
-    return newimages
+def decode(input, state):
+    """
+    run LSTM
+    state: previous decoder state
+    input: cat(write, h_dec_prev)
+    returns: (output, new_state)
+    """
+
+    with tf.variable_scope("decoder/LSTMCell", reuse=REUSE):
+        return lstm_dec(input, state)
+
+
+#def write(h_dec):
+#    with tf.variable_scope("write", reuse=REUSE):
+#        return linear(h_dec,img_size)
+#
+#
+#def convertTranslated(images):
+#    newimages = []
+#    for k in range(batch_size):
+#        image = images[k * dims[0] * dims[1] : (k + 1) * dims[0] * dims[1]]
+#        newimages.append(image)
+#    return newimages
 
 
 def dense_to_one_hot(labels_dense, num_classes=z_size):
@@ -168,6 +261,9 @@ def dense_to_one_hot(labels_dense, num_classes=z_size):
 outputs = [0] * glimpses
 
 # initial states
+h_dec_prev = tf.zeros((batch_size,dec_size))
+enc_state = lstm_enc.zero_state(batch_size, tf.float32)
+dec_state = lstm_dec.zero_state(batch_size, tf.float32)
 
 classifications = list()
 pqs = list()
@@ -177,6 +273,82 @@ gy_list = [0] * glimpses
 sigma_list = [0] * glimpses
 delta_list = [0] * glimpses
 
+for glimpse in range(glimpses):
+    r, stats = read(x, h_dec_prev, glimpse)
+   
+    h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state)
+
+    with tf.variable_scope("z",reuse=REUSE):
+        z = linear(h_enc, z_size)
+    h_dec, dec_state = decode(z, dec_state)
+    h_dec_prev = h_dec
+
+    with tf.variable_scope("hidden1",reuse=REUSE):
+        hidden = tf.nn.relu(linear(h_dec_prev, 256))
+    with tf.variable_scope("output",reuse=REUSE):
+        classification = tf.nn.softmax(linear(hidden, z_size))
+        classifications.append({
+            "classification": classification,
+            "stats": stats,
+            "r": r,
+            "h_dec": h_dec,
+        })
+
+    REUSE=True
+
+    pq = tf.log(classification + 1e-5) * onehot_labels
+    pq = tf.reduce_mean(pq, 0)
+    pqs.append(pq)
+
+
+predquality = tf.reduce_mean(pqs)
+correct = tf.arg_max(onehot_labels, 1)
+prediction = tf.arg_max(classification, 1)
+
+# all-knower
+
+#R = tf.cast(1 - tf.abs(tf.divide(tf.subtract(correct, prediction), correct)), tf.float32)
+R = tf.cast(tf.equal(correct, prediction), tf.float32)
+
+reward = tf.reduce_mean(R)
+
+
+def binary_crossentropy(t,o):
+    return -(t*tf.log(o+eps) + (1.0-t)*tf.log(1.0-o+eps))
+
+
+def evaluate():
+    data = load_input.InputData()
+    data.get_test(1)
+    batches_in_epoch = len(data.images) // batch_size
+    accuracy = 0
+    
+    for i in range(batches_in_epoch):
+        nextX, nextY = data.next_batch(batch_size)
+        feed_dict = {x: nextX, onehot_labels:nextY}
+        r = sess.run(reward, feed_dict=feed_dict)
+        accuracy += r
+    
+    accuracy /= batches_in_epoch
+
+    print("ACCURACY: " + str(accuracy))
+    return accuracy
+
+
+predcost = -predquality
+
+
+## OPTIMIZER #################################################
+
+
+optimizer = tf.train.AdamOptimizer(learning_rate, epsilon=1)
+grads = optimizer.compute_gradients(predcost)
+
+for i, (g, v) in enumerate(grads):
+    if g is not None:
+        grads[i] = (tf.clip_by_norm(g, 5), v)
+train_op = optimizer.apply_gradients(grads)
+    
 
 if __name__ == '__main__':
     sess_config = tf.ConfigProto()
