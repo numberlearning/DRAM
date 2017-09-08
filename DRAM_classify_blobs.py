@@ -88,7 +88,7 @@ def linear(x,output_dim):
     return tf.matmul(x,w)+b
 
 
-def filterbank(gx, gy, sigma2,delta, N):
+def filterbank(gx, gy, sigma2, delta, N):
     grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
     mu_x = gx + (grid_i - N / 2 - 0.5) * delta # eq 19
     mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
@@ -100,7 +100,7 @@ def filterbank(gx, gy, sigma2,delta, N):
     mu_y = tf.reshape(mu_y, [-1, N, 1])
     sigma2 = tf.reshape(sigma2, [-1, 1, 1])
     Fx = tf.exp(-tf.square((a - mu_x) / (2*sigma2))) # 2*sigma2?
-    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch x N x B
+    Fy = tf.exp(-tf.square((b - mu_y) / (2*sigma2))) # batch_size x N x B
     # normalize, sum over A and B dims
     Fx=Fx/tf.maximum(tf.reduce_sum(Fx,2,keep_dims=True),eps)
     Fy=Fy/tf.maximum(tf.reduce_sum(Fy,2,keep_dims=True),eps)

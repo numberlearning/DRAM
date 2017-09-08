@@ -43,7 +43,7 @@ folder_name + "/zzzdraw_data_5000.npy",
 "false", "true", "false", "false", "true"]
 print(sys.argv)
 
-pretrain_iters = 10000000
+pretrain_iters = 1000#10000000
 train_iters = 20000000000
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
@@ -93,18 +93,20 @@ def filterbank(gx, gy, sigma2, delta, N):
     # mu_y = gy + (grid_i - N / 2 - 0.5) * delta # eq 20
    
     
-    mu_x = gx - tf.reshape(tf.reduce_sum(delta[:,0:N//2 + 1],1),[batch_size,1])
-    for i in range(1,N//2 + 1):
-        mu_xx = gx - tf.reshape(tf.reduce_sum(delta[:,i:N//2 + 1],1),[batch_size,1])
+    mu_x = gx - tf.reshape(tf.reduce_sum(delta[:,0:N//2],1),[batch_size,1])
+    for i in range(1,N//2):
+        mu_xx = gx - tf.reshape(tf.reduce_sum(delta[:,i:N//2],1),[batch_size,1])
         mu_x = tf.concat([mu_x, mu_xx], 1)
+    mu_x=tf.concat([mu_x, gx], 1)
     for i in range(N//2 + 1,N):
         mu_xx = gx + tf.reshape(tf.reduce_sum(delta[:,N//2 + 1:i+1],1),[batch_size,1])
         mu_x = tf.concat([mu_x, mu_xx], 1)
     
-    mu_y = gy - tf.reshape(tf.reduce_sum(delta[:,0:N//2 + 1],1),[batch_size,1])
-    for i in range(1,N//2 + 1):
-        mu_yy = gy - tf.reshape(tf.reduce_sum(delta[:,i:N//2 + 1],1),[batch_size,1])
+    mu_y = gy - tf.reshape(tf.reduce_sum(delta[:,0:N//2],1),[batch_size,1])
+    for i in range(1,N//2):
+        mu_yy = gy - tf.reshape(tf.reduce_sum(delta[:,i:N//2],1),[batch_size,1])
         mu_y = tf.concat([mu_y, mu_yy], 1)
+    mu_y=tf.concat([mu_y, gy],1)
     for i in range(N//2 + 1,N):
         mu_yy = gy + tf.reshape(tf.reduce_sum(delta[:,N//2 + 1:i+1],1),[batch_size,1])
         mu_y = tf.concat([mu_y, mu_yy], 1)
@@ -137,7 +139,7 @@ def attn_window(scope,h_dec,N, glimpse):
      
     #  sigma2=tf.exp(log_sigma2)
     #  delta=(max(dims[0],dims[1])-1)/(N-1)*tf.exp(log_delta) # batch x N
-    dis0=max(dims[0],dims[1])/12
+    dis0=max(dims[0],dims[1])/(2*np.floor(pow(1.25,(N-9)//2)))
     dis1=linspace(-1,1,9)
     dis2=zeros((N-9)//2)
     dis3=zeros((N-9)//2)
@@ -151,7 +153,7 @@ def attn_window(scope,h_dec,N, glimpse):
     delta=zeros(N)
     for j  in range(1,N//2 + 1):
         delta[j-1]=dis[j]-dis[j-1]
-    delta[N//2]=0
+    delta[N//2]=min(delta[0:N//2])
     for j in range(N//2 + 1, N):
         delta[j]=dis[j]-dis[j-1]
     
@@ -159,18 +161,17 @@ def attn_window(scope,h_dec,N, glimpse):
     delta=tdelta*tf.exp(log_delta) # batch_size x N
     
     sigma2=delta*delta/4 # sigma=delta/2
-    ss=tf.cast(tf.convert_to_tensor(zeros(N//2)), tf.float32)
-    ss=tf.reshape([ss]*batch_size, [batch_size, -1])
-    smin=tf.reshape(tf.reduce_min(sigma2[:,0:N//2], 1), [-1, 1])
-    ss_=tf.concat([tf.concat([ss,smin/2],1),ss],1)
-    sigma2=sigma2+ss_  # batch_size x N
+    #ss=tf.cast(tf.convert_to_tensor(zeros(N//2)), tf.float32)
+    #ss=tf.reshape([ss]*batch_size, [batch_size, -1])
+    #smin=tf.reshape(tf.reduce_min(sigma2[:,0:N//2], 1), [-1, 1])
+    #ss_=tf.concat([tf.concat([ss,smin/2],1),ss],1)
+    #sigma2=sigma2+ss_  # batch_size x N
 
     delta_list[glimpse] = delta
     sigma_list[glimpse] = sigma2
 
     ret = list()
-    ret.append(filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),))
-    #ret.append((gx, gy, delta))
+    ret.append(filterbank(gx,gy,sigma2,delta,N)+(tf.exp(log_gamma),)+(gx,)+(gy,)+(delta,))   
     return ret
 
 ## READ ##
@@ -180,7 +181,7 @@ def attn_window(scope,h_dec,N, glimpse):
 
 def read(x, h_dec_prev, glimpse):
     att_ret = attn_window("read", h_dec_prev, read_n, glimpse)
-    stats = Fx, Fy, gamma = att_ret[0]
+    stats = Fx, Fy, gamma, gx, gy, delta = att_ret[0]
 
     def filter_img(img, Fx, Fy, gamma, N):
         Fxt = tf.transpose(Fx, perm=[0,2,1])
@@ -399,7 +400,7 @@ if __name__ == '__main__':
                 train_data = load_input.InputData()
                 train_data.get_train(1)
      
-                if i %10000==0:
+                if i %1000==0:
                     start_evaluate = time.clock()
                     test_accuracy = evaluate()
                     saver = tf.train.Saver(tf.global_variables())

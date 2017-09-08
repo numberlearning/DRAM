@@ -6,15 +6,14 @@ n_labels = max_blobs - min_blobs + 1
 
 def get_total(max_blobs):
     """Get total number of images."""
-
     c = min_blobs
     total = 0
     while (c < max_blobs + 1):
        if c == 0:
-           total = total + 1000
+           total = total + 1000 # when min_blobs=0, make 1000 images with 0 blob
            c = c + 1
            continue
-       cN = int(10000/(c**2))
+       cN = int(10000/(c**2)) # training distribution 1/(n^2)
        total = total + cN
        c = c + 1
     return total
@@ -25,16 +24,16 @@ def set_size(num_blobs, even=None):
         if num_blobs == 0:
             return 1000
         else:
-            return int(10000/(num_blobs**2))
+            return int(10000/(num_blobs**2)) # uneven, make distribution 1/(n^2)
     else:
-        return 1000
+        return 1000 # even, make 1000 images for each number
  
 def generate_data(even=None, max_blobs=max_blobs):      
     total = get_total(max_blobs)
     num_blobs = min_blobs
     i = 0
     if even is None:
-        train = np.zeros([total, 10000])
+        train = np.zeros([total, 10000]) # 100 x 100 train_img
       # blobs = []
         label = np.zeros([total, n_labels])
     else:
@@ -44,20 +43,20 @@ def generate_data(even=None, max_blobs=max_blobs):
         
     while (num_blobs < max_blobs + 1):
 
-        nOfItem = set_size(num_blobs, even)
+        nOfItem = set_size(num_blobs, even) # even, 1000; uneven, 10000/(num_blobs**2)
 
         if num_blobs == 0:
-           for n in range(nOfItem):
-               train[i] = np.zeros(10000)
+           for i in range(nOfItem): # check i or n?
+               train[i] = np.zeros(10000) # 100 x 100 img
                label[i, num_blobs] = 1
                i = i +1
            num_blobs = num_blobs + 1
-           continue
+           continue # back to while
 
         for n in range(nOfItem):
             a = np.zeros(10000)
             count = 0
-            used = np.zeros((num_blobs, 4))
+            used = np.zeros((num_blobs, 4)) # check overlapping
     
             while count < num_blobs: 
                 height = random.randint(min_edge, max_edge)
@@ -71,7 +70,8 @@ def generate_data(even=None, max_blobs=max_blobs):
                 w = width
                 
                 index = 0
-                
+               
+                # check overlapping 
                 while index < count:
                     if cX+width+1 <= used[index, 0] or used[index, 0]+1+used[index, 2] <= cX or used[index, 1]+1+used[index,3] <= cY or cY+height+1<=used[index,1]:
                         index = index + 1
