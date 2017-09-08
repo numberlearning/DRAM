@@ -2,7 +2,7 @@
 #1, 1, 1, 9 or 15 for load_teacher
 #7, 7, 1, 5 for sensical
 # 9 for trace_data
-# 15 for trace_data_new
+# 15 for trace_data_new and DRAM_classify_blobs
 min_edge = 2
 max_edge = 5
 min_blobs = 1
@@ -16,7 +16,7 @@ glimpses = max_blobs + 1#11
 
 #1 when running viz_count
 #77 when running DRAMcopy14
-#100 when running DRAMcopy13 (and 1 for viz?)
+#100 when running DRAMcopy13 (and 1 for viz?) and DRAM_classify_blobs
 #10000 (or 9000) when running update_curves, classify_imgs2, match num_imgs
 batch_size = 100
 

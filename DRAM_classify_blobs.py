@@ -32,18 +32,20 @@ folder_name = "model_runs/" + model_name
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
 
-start_restore_index = 0 
+start_restore_index = 500000 
 
 sys.argv = [sys.argv[0], sys.argv[1], "true", "true", "true", "true", "true",
 folder_name + "/classify_log.csv",
 folder_name + "/classifymodel_" + str(start_restore_index) + ".ckpt",
 folder_name + "/classifymodel_",
 folder_name + "/zzzdraw_data_5000.npy",
-"false", "true", "false", "false", "true"]
+"false", "true", "false", 
+"true", #restore
+"true"]
 print(sys.argv)
 
-pretrain_iters = 10000000
-train_iters = 20000000000
+pretrain_iters = 1000
+train_iters = 2000000
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
 log_filename = sys.argv[7]
@@ -241,8 +243,8 @@ for glimpse in range(glimpses):
 
 
 predquality = tf.reduce_mean(pqs)
-correct = tf.arg_max(onehot_labels, 1)
-prediction = tf.arg_max(classification, 1)
+correct = tf.argmax(onehot_labels, 1)
+prediction = tf.argmax(classification, 1)
 
 # all-knower
 
@@ -299,6 +301,7 @@ if __name__ == '__main__':
     
     if restore:
         saver.restore(sess, load_file)
+        start_restore_index += 1
 
     train_data = load_input.InputData()
     train_data.get_train()
@@ -308,7 +311,7 @@ if __name__ == '__main__':
     start_time = time.clock()
     extra_time = 0
 
-    for i in range(start_restore_index, train_iters):
+    for i in range(start_restore_index, train_iters + 1):
         xtrain, ytrain = train_data.next_batch(batch_size)
         results = sess.run(fetches2, feed_dict = {x: xtrain, onehot_labels: ytrain})
         reward_fetched, _ = results
@@ -354,7 +357,7 @@ if __name__ == '__main__':
                 train_data = load_input.InputData()
                 train_data.get_train()
      
-        if i in [0, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000]:
+        if i%100000==0 or i in [0, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000]:
             start_evaluate = time.clock()
             test_accuracy = evaluate()
             saver = tf.train.Saver(tf.global_variables())
