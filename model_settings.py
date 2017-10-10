@@ -14,19 +14,11 @@ learning_rate = 1e-2
 #5, etc. when running DRAMcopy13, load_input, create_data
 glimpses = max_blobs + 1#11
 
-<<<<<<< HEAD
 #1 when running viz_count
 #77 when running DRAMcopy14
 #100 when running DRAMcopy13 (and 1 for viz?) and DRAM_classify_blobs
 #10000 (or 9000) when running update_curves, classify_imgs2, match num_imgs
 batch_size = 100
-=======
-#1 when running viz_count and retina filterbank
-#77 when running DRAMcopy14 and move_attn
-#100 when running DRAMcopy13 (and 1 for viz?)
-#10000 when running update_curves, classify_imgs2, match num_imgs
-batch_size = 9000
->>>>>>> 2ac084e45e056d18df3742728792967bf64b1fbe
 
 #change this whenever DRAM is run (before running nohup, make sure to make a directory in model_runs)
-model_name = "DRAM_move_attn_sigmoid/run_5"
+model_name = "DRAM_classify_blobs_2_run_10"
