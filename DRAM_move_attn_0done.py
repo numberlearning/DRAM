@@ -478,6 +478,7 @@ if __name__ == '__main__':
             print("Target x average: %f" % tarx)
             sys.stdout.flush()
  
+            train_data = load_teacher.Teacher()
             train_data.get_train(even=1, shiny=True, done_vector="end")
 
             if i%1000 == 0:
