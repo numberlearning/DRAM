@@ -1,0 +1,10 @@
+tail -1 ./model_runs/BASIC_DRAM_run_1/nohup.out
+tail -1 ./model_runs/BASIC_DRAM_run_2/nohup.out
+tail -1 ./model_runs/BASIC_DRAM_run_3/nohup.out
+tail -1 ./model_runs/BASIC_DRAM_run_4/nohup.out
+tail -1 ./model_runs/BASIC_DRAM_run_5/nohup.out
+tail -1 ./model_runs/BASIC_DRAM_run_6/nohup.out
+tail -1 ./model_runs/BASIC_DRAM_run_7/nohup.out
+tail -1 ./model_runs/BASIC_DRAM_run_8/nohup.out
+tail -1 ./model_runs/BASIC_DRAM_run_9/nohup.out
+tail -1 ./model_runs/BASIC_DRAM_run_10/nohup.out

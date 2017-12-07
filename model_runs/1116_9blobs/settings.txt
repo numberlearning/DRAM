@@ -1,0 +1,1 @@
+learning_rate = 0.01, glimpses = 10, batch_size = 1, min_edge = 2, max_edge = 5, min_blobs_train = 1, max_blobs_train = 9, min_blobs_test = 1, max_blobs_test = 9, 

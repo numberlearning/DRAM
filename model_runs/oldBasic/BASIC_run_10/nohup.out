@@ -1,0 +1,4 @@
+  File "BASIC_classify_blobs.py", line 97
+    def return_zeros(x,output_dim)
+                                 ^
+SyntaxError: invalid syntax
