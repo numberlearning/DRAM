@@ -10,3 +10,14 @@ Model saved in file: model_runs/DRAM_classify_blobs_4_run_6/classifymodel_0.ckpt
 --- 9.561482000000012 CPU seconds ---
 iter=100 : Reward: 0.180000
 iter=200 : Reward: 0.240000
+ACCURACY: 0.46006666402
+Model saved in file: model_runs/DRAM_classify_blobs_4_run_6/classifymodel_250.ckpt
+--- 1276.1911069999999 CPU seconds ---
+iter=300 : Reward: 0.340000
+iter=400 : Reward: 0.570000
+iter=500 : Reward: 0.670000
+ACCURACY: 0.472799997528
+Model saved in file: model_runs/DRAM_classify_blobs_4_run_6/classifymodel_500.ckpt
+--- 2533.5232559999995 CPU seconds ---
+iter=600 : Reward: 0.690000
+iter=700 : Reward: 0.630000

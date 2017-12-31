@@ -1,0 +1,66 @@
+['DRAM_move_attn_sigmoid.py', 'DRAM_move_attn_sigmoid/run_1', 'true', 'true', 'true', 'true', 'true', 'model_runs/DRAM_move_attn_sigmoid/run_1/classify_log.csv', 'model_runs/DRAM_move_attn_sigmoid/run_1/classifymodel_0.ckpt', 'model_runs/DRAM_move_attn_sigmoid/run_1/classifymodel_', 'model_runs/DRAM_move_attn_sigmoid/run_1/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+2017-08-21 18:05:27.463869: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:27.463900: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:27.463907: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:27.463912: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:27.463916: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-08-21 18:05:27.652463: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-21 18:05:27.652864: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 7.49GiB
+2017-08-21 18:05:27.652932: W tensorflow/stream_executor/cuda/cuda_driver.cc:485] creating context when one is currently active; existing: 0xabd7f90
+2017-08-21 18:05:27.902771: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:901] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-08-21 18:05:27.903161: I tensorflow/core/common_runtime/gpu/gpu_device.cc:887] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.70GiB
+2017-08-21 18:05:27.903655: I tensorflow/core/common_runtime/gpu/gpu_device.cc:908] DMA: 0 1 
+2017-08-21 18:05:27.903670: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 0:   Y Y 
+2017-08-21 18:05:27.903676: I tensorflow/core/common_runtime/gpu/gpu_device.cc:918] 1:   Y Y 
+2017-08-21 18:05:27.903684: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-08-21 18:05:27.903691: I tensorflow/core/common_runtime/gpu/gpu_device.cc:977] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0 : Reward: -4392.291016
+iter=0 : Reward: -39.036972
+Predict x average: 10.983438
+Target x average: 91.222229
+POSITION ACCURACY: -3384.0472991
+COUNT ACCURACY: 0.741003551434
+Model saved in file: model_runs/DRAM_move_attn_sigmoid/run_1/classifymodel_0.ckpt
+--- 9.065424000000007 CPU seconds ---
+iter=100 : Reward: -710.563599
+iter=100 : Reward: -0.957597
+Predict x average: 37.784775
+Target x average: 28.000000
+iter=200 : Reward: -579.799438
+iter=200 : Reward: -0.187506
+Predict x average: 62.233261
+Target x average: 55.111115
+iter=300 : Reward: -604.159790
+iter=300 : Reward: -0.072248
+Predict x average: 77.486465
+Target x average: 90.111115
+iter=400 : Reward: -585.731445
+iter=400 : Reward: -0.073172
+Predict x average: 37.099701
+Target x average: 30.000000
+iter=500 : Reward: -669.555664
+iter=500 : Reward: -0.050448
+Predict x average: 59.063274
+Target x average: 67.444443
+iter=600 : Reward: -662.614014
+iter=600 : Reward: -0.071604
+Predict x average: 81.567703
+Target x average: 80.222229
+iter=700 : Reward: -696.656189
+iter=700 : Reward: -0.041049
+Predict x average: 55.776737
+Target x average: 71.777779
+iter=800 : Reward: -888.192383
+iter=800 : Reward: -0.460658
+Predict x average: 65.560936
+Target x average: 77.333328
