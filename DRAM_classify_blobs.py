@@ -82,7 +82,7 @@ def linear(x,output_dim):
     affine transformation Wx+b
     assumes x.shape = (batch_size, num_features)
     """
-    w=tf.get_variable("w", [x.get_shape()[1], output_dim], initializer=tf.random_normal_initializer())
+    w=tf.get_variable("w", [x.get_shape()[1], output_dim], initializer=tf.random_uniform_initializer(minval=-.1, maxval=.1))
     b=tf.get_variable("b", [output_dim], initializer=tf.constant_initializer(0.0))
     #b=tf.get_variable("b", [output_dim], initializer=tf.random_normal_initializer())
     return tf.matmul(x,w)+b
