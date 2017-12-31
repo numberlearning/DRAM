@@ -45,7 +45,7 @@ folder_name + "/zzzdraw_data_5000.npy",
 print(sys.argv)
 
 pretrain_iters = 1000
-train_iters = 1000000
+train_iters = 2000000
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
 log_filename = sys.argv[7]

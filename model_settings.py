@@ -21,4 +21,4 @@ glimpses = max_blobs + 1#11
 batch_size = 100
 
 #change this whenever DRAM is run (before running nohup, make sure to make a directory in model_runs)
-model_name = "DRAM_classify_blobs_3_run_10"
+model_name = "DRAM_classify_blobs_4_run_10"

@@ -1,0 +1,15 @@
+['DRAM_classify_blobs.py', 'DRAM_classify_blobs_4_run_8', 'true', 'true', 'true', 'true', 'true', 'model_runs/DRAM_classify_blobs_4_run_8/classify_log.csv', 'model_runs/DRAM_classify_blobs_4_run_8/classifymodel_0.ckpt', 'model_runs/DRAM_classify_blobs_4_run_8/classifymodel_', 'model_runs/DRAM_classify_blobs_4_run_8/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+2017-12-30 23:25:24.982458: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-12-30 23:25:24.982518: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-12-30 23:25:24.982525: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-12-30 23:25:24.982531: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-12-30 23:25:24.982536: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+iter=0 : Reward: 0.140000
+ACCURACY: 0.447266663512
+Model saved in file: model_runs/DRAM_classify_blobs_4_run_8/classifymodel_0.ckpt
+--- 10.201138999999955 CPU seconds ---
+iter=100 : Reward: 0.370000
+iter=200 : Reward: 0.430000
+ACCURACY: 0.46473333021
+Model saved in file: model_runs/DRAM_classify_blobs_4_run_8/classifymodel_250.ckpt
+--- 1317.4523789999998 CPU seconds ---
