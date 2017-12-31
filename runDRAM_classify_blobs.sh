@@ -7,7 +7,7 @@
 
 for i in {1..10}
 do
-    MODELNAME="DRAM_classify_blobs_2_run_${i}"
+    MODELNAME="DRAM_classify_blobs_3_run_${i}"
     mkdir "model_runs/$MODELNAME"
     sed -i '/model_name/c\model_name = "'$MODELNAME'"' model_settings.py
     nohup python3 -u DRAM_classify_blobs.py $MODELNAME > "model_runs/$MODELNAME/nohup.out" &
