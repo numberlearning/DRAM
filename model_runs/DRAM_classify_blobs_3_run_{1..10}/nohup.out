@@ -1,0 +1,99 @@
+['DRAM_classify_blobs.py', 'DRAM_classify_blobs_3_run_{1..10}', 'true', 'true', 'true', 'true', 'true', 'model_runs/DRAM_classify_blobs_3_run_{1..10}/classify_log.csv', 'model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt', 'model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_', 'model_runs/DRAM_classify_blobs_3_run_{1..10}/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'true', 'true']
+2017-10-05 18:20:32.941466: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:20:32.941507: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:20:32.941513: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:20:32.941517: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:20:32.941521: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:20:33.956542: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.956787: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.957044: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.957359: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.957569: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.957898: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.958156: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.958475: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.958741: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.958988: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.959261: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.959523: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.959794: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.960084: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.960346: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.960509: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.960805: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.961054: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.961302: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.961527: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.961722: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.961927: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.962230: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.962513: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.962795: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.963057: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.963322: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.963517: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.963813: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.964029: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.964255: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.964573: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.964810: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.964974: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.965189: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.965467: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.965654: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:20:33.965954: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1327, in _do_call
+    return fn(*args)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1306, in _run_fn
+    status, run_metadata)
+  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/errors_impl.py", line 466, in raise_exception_on_not_ok_status
+    pywrap_tensorflow.TF_GetCode(status))
+tensorflow.python.framework.errors_impl.NotFoundError: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+	 [[Node: save/RestoreV2_10 = RestoreV2[dtypes=[DT_FLOAT], _device="/job:localhost/replica:0/task:0/cpu:0"](_arg_save/Const_0_0, save/RestoreV2_10/tensor_names, save/RestoreV2_10/shape_and_slices)]]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "DRAM_classify_blobs.py", line 303, in <module>
+    saver.restore(sess, load_file)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1560, in restore
+    {self.saver_def.filename_tensor_name: save_path})
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.NotFoundError: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+	 [[Node: save/RestoreV2_10 = RestoreV2[dtypes=[DT_FLOAT], _device="/job:localhost/replica:0/task:0/cpu:0"](_arg_save/Const_0_0, save/RestoreV2_10/tensor_names, save/RestoreV2_10/shape_and_slices)]]
+
+Caused by op 'save/RestoreV2_10', defined at:
+  File "DRAM_classify_blobs.py", line 299, in <module>
+    saver = tf.train.Saver()
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1140, in __init__
+    self.build()
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1172, in build
+    filename=self._filename)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 688, in build
+    restore_sequentially, reshape)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 407, in _AddRestoreOps
+    tensors = self.restore_op(filename_tensor, saveable, preferred_shard)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 247, in restore_op
+    [spec.tensor.dtype])[0])
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_io_ops.py", line 663, in restore_v2
+    dtypes=dtypes, name=name)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+NotFoundError (see above for traceback): Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_classify_blobs_3_run_{1..10}/classifymodel_500000.ckpt
+	 [[Node: save/RestoreV2_10 = RestoreV2[dtypes=[DT_FLOAT], _device="/job:localhost/replica:0/task:0/cpu:0"](_arg_save/Const_0_0, save/RestoreV2_10/tensor_names, save/RestoreV2_10/shape_and_slices)]]
+

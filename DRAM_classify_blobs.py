@@ -32,7 +32,7 @@ folder_name = "model_runs/" + model_name
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
 
-start_restore_index = 500000 
+start_restore_index = 0 
 
 sys.argv = [sys.argv[0], sys.argv[1], "true", "true", "true", "true", "true",
 folder_name + "/classify_log.csv",
@@ -40,7 +40,7 @@ folder_name + "/classifymodel_" + str(start_restore_index) + ".ckpt",
 folder_name + "/classifymodel_",
 folder_name + "/zzzdraw_data_5000.npy",
 "false", "true", "false", 
-"true", #restore
+"false", #restore
 "true"]
 print(sys.argv)
 
@@ -82,7 +82,7 @@ def linear(x,output_dim):
     affine transformation Wx+b
     assumes x.shape = (batch_size, num_features)
     """
-    w=tf.get_variable("w", [x.get_shape()[1], output_dim], initializer=tf.random_normal_initializer())
+    w=tf.get_variable("w", [x.get_shape()[1], output_dim], initializer=tf.random_uniform_initializer(minval=-.1, maxval=.1))
     b=tf.get_variable("b", [output_dim], initializer=tf.constant_initializer(0.0))
     #b=tf.get_variable("b", [output_dim], initializer=tf.random_normal_initializer())
     return tf.matmul(x,w)+b
@@ -220,7 +220,7 @@ for glimpse in range(glimpses):
    
     h_enc, enc_state = encode(tf.concat([r, h_dec_prev], 1), enc_state)
     with tf.variable_scope("z",reuse=REUSE):
-        z = linear(h_enc, z_size)
+        z = linear(h_enc, 100)
     h_dec, dec_state = decode(z, dec_state)
     h_dec_prev = h_dec
 

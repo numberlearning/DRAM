@@ -1,0 +1,3947 @@
+['COUNT_twolayer.py', '1030/model_runs/1030/nohup.out', 'true', 'true', 'true', 'true', 'true', 'model_runs/1030/model_runs/1030/nohup.out/count_log.csv', 'model_runs/1030/model_runs/1030/nohup.out/countmodel_0.ckpt', 'model_runs/1030/model_runs/1030/nohup.out/countmodel_', 'true', 'false', 'false', 'true']
+WARNING:tensorflow:From COUNT_twolayer.py:259: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:260: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:259: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:260: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:259: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:260: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:259: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:260: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:259: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:260: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:259: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer.py:260: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+2017-10-30 11:28:48.615504: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-30 11:28:48.615578: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-30 11:28:48.615592: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-30 11:28:48.615602: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-30 11:28:48.615612: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+iter=0 : Reward: 0.003333 Pc: 20.860735
+ACCURACY: 0.124366670358
+LabelSums: [ 1003.   989.  1030.  1012.   966.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [3, 3, 3, 3, 3, 0]
+POINTER_X: [50.001362, 49.918186, 49.895531, 49.911957, 49.928532, 49.944019]
+POINTER_Y: [49.999958, 49.809456, 49.831802, 49.850502, 49.861153, 49.868221]
+TEACHER: [[22.0, 37.0], [28.0, 53.0], [99.0, 52.0], [99.0, 52.0], [99.0, 52.0], [99.0, 52.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_0.ckpt
+--- 5.624302 CPU seconds ---
+iter=100 : Reward: 0.700000 Pc: 1770.395802
+iter=200 : Reward: 0.746667 Pc: 864.620580
+ACCURACY: 0.561933336848
+LabelSums: [  951.  1056.  1013.   993.   987.]
+CORRECT: [1, 2, 3, 4, 5, 0]
+COUNT: [0, 0, 0, 0, 0, 0]
+POINTER_X: [50.620548, 56.74041, 74.005722, 89.235046, 90.749237, 91.163239]
+POINTER_Y: [49.997456, 49.847618, 49.594612, 49.455849, 49.56601, 49.68306]
+TEACHER: [[27.0, 46.0], [34.0, 42.0], [49.0, 47.0], [58.0, 58.0], [66.0, 57.0], [99.0, 44.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_250.ckpt
+--- 99.0246340000001 CPU seconds ---
+iter=300 : Reward: 0.885000 Pc: 408.452652
+iter=400 : Reward: 0.868333 Pc: 347.754533
+iter=500 : Reward: 0.920000 Pc: 273.599379
+ACCURACY: 0.665066668591
+LabelSums: [ 1017.   999.   976.   980.  1028.]
+CORRECT: [1, 0, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0]
+POINTER_X: [50.54845, 93.464523, 99.0, 92.272903, 99.0, 94.626205]
+POINTER_Y: [49.943649, 46.884388, 46.991764, 47.852509, 47.221344, 47.310261]
+TEACHER: [[27.0, 41.0], [99.0, 55.0], [99.0, 55.0], [99.0, 55.0], [99.0, 55.0], [99.0, 55.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_500.ckpt
+--- 178.1968260000001 CPU seconds ---
+iter=600 : Reward: 0.921667 Pc: 282.898766
+iter=700 : Reward: 0.888333 Pc: 281.260049
+iter=800 : Reward: 0.896667 Pc: 293.297923
+iter=900 : Reward: 0.936667 Pc: 248.468508
+iter=1000 : Reward: 0.951667 Pc: 241.891108
+ACCURACY: 0.778466665941
+LabelSums: [ 1008.   980.   994.  1013.  1005.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [48.347507, 65.759438, 89.842911, 99.0, 99.0, 99.0]
+POINTER_Y: [50.027855, 50.944191, 51.683502, 52.440701, 52.78191, 52.813808]
+TEACHER: [[30.0, 61.0], [36.0, 63.0], [47.0, 47.0], [56.0, 56.0], [99.0, 61.0], [99.0, 61.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_1000.ckpt
+--- 345.30050100000005 CPU seconds ---
+iter=1100 : Reward: 0.933333 Pc: 283.499502
+iter=1200 : Reward: 0.938333 Pc: 212.674935
+iter=1300 : Reward: 0.933333 Pc: 235.985292
+iter=1400 : Reward: 0.940000 Pc: 260.225635
+iter=1500 : Reward: 0.950000 Pc: 202.194133
+iter=1600 : Reward: 0.906667 Pc: 259.065145
+iter=1700 : Reward: 0.916667 Pc: 278.883760
+iter=1800 : Reward: 0.941667 Pc: 243.110904
+iter=1900 : Reward: 0.923333 Pc: 232.376349
+iter=2000 : Reward: 0.910000 Pc: 252.385364
+ACCURACY: 0.656166669068
+LabelSums: [ 1004.   932.  1038.  1003.  1023.]
+CORRECT: [1, 0, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0]
+POINTER_X: [44.165192, 99.0, 99.0, 99.0, 99.0, 99.0]
+POINTER_Y: [49.960178, 49.805901, 50.535797, 50.517094, 50.50922, 50.507954]
+TEACHER: [[21.0, 50.0], [99.0, 59.0], [99.0, 59.0], [99.0, 59.0], [99.0, 59.0], [99.0, 59.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_2000.ckpt
+--- 652.2707 CPU seconds ---
+iter=2100 : Reward: 0.903333 Pc: 271.085696
+iter=2200 : Reward: 0.906667 Pc: 290.814407
+iter=2300 : Reward: 0.918333 Pc: 282.531171
+iter=2400 : Reward: 0.916667 Pc: 280.345414
+iter=2500 : Reward: 0.901667 Pc: 231.631702
+iter=2600 : Reward: 0.913333 Pc: 286.422803
+iter=2700 : Reward: 0.901667 Pc: 299.032276
+iter=2800 : Reward: 0.928333 Pc: 255.056287
+iter=2900 : Reward: 0.916667 Pc: 258.909343
+iter=3000 : Reward: 0.910000 Pc: 286.253455
+iter=3100 : Reward: 0.896667 Pc: 305.093166
+iter=3200 : Reward: 0.915000 Pc: 318.044911
+iter=3300 : Reward: 0.891667 Pc: 329.473344
+iter=3400 : Reward: 0.926667 Pc: 230.561960
+iter=3500 : Reward: 0.895000 Pc: 333.742757
+iter=3600 : Reward: 0.925000 Pc: 263.710975
+iter=3700 : Reward: 0.918333 Pc: 258.850288
+iter=3800 : Reward: 0.903333 Pc: 326.749115
+iter=3900 : Reward: 0.928333 Pc: 229.952059
+iter=4000 : Reward: 0.913333 Pc: 269.591509
+ACCURACY: 0.685066667652
+LabelSums: [  941.  1023.   992.  1035.  1009.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 2, 0, 0, 0]
+POINTER_X: [37.590755, 72.554825, 59.763096, 76.689682, 84.529282, 92.465256]
+POINTER_Y: [49.888184, 50.446503, 49.900021, 49.684681, 49.588936, 49.907856]
+TEACHER: [[29.0, 47.0], [40.0, 56.0], [54.0, 55.0], [61.0, 45.0], [99.0, 52.0], [99.0, 52.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_4000.ckpt
+--- 1267.9413390000002 CPU seconds ---
+iter=4100 : Reward: 0.906667 Pc: 268.069136
+iter=4200 : Reward: 0.935000 Pc: 241.717445
+iter=4300 : Reward: 0.930000 Pc: 281.765420
+iter=4400 : Reward: 0.906667 Pc: 293.257683
+iter=4500 : Reward: 0.910000 Pc: 281.819309
+iter=4600 : Reward: 0.895000 Pc: 315.220799
+iter=4700 : Reward: 0.920000 Pc: 273.463593
+iter=4800 : Reward: 0.911667 Pc: 269.522130
+iter=4900 : Reward: 0.923333 Pc: 256.275774
+iter=5000 : Reward: 0.911667 Pc: 256.660287
+iter=5100 : Reward: 0.938333 Pc: 213.579804
+iter=5200 : Reward: 0.916667 Pc: 245.336250
+iter=5300 : Reward: 0.911667 Pc: 258.093495
+iter=5400 : Reward: 0.925000 Pc: 266.555518
+iter=5500 : Reward: 0.921667 Pc: 267.771907
+iter=5600 : Reward: 0.910000 Pc: 221.875224
+iter=5700 : Reward: 0.928333 Pc: 247.951926
+iter=5800 : Reward: 0.933333 Pc: 231.743853
+iter=5900 : Reward: 0.941667 Pc: 228.723907
+iter=6000 : Reward: 0.948333 Pc: 160.588173
+iter=6100 : Reward: 0.943333 Pc: 180.120866
+iter=6200 : Reward: 0.911667 Pc: 238.354825
+iter=6300 : Reward: 0.900000 Pc: 260.127329
+iter=6400 : Reward: 0.938333 Pc: 196.128953
+iter=6500 : Reward: 0.936667 Pc: 169.188900
+iter=6600 : Reward: 0.916667 Pc: 261.827895
+iter=6700 : Reward: 0.933333 Pc: 252.015391
+iter=6800 : Reward: 0.943333 Pc: 202.185799
+iter=6900 : Reward: 0.906667 Pc: 259.336767
+iter=7000 : Reward: 0.930000 Pc: 254.675229
+iter=7100 : Reward: 0.891667 Pc: 268.784316
+iter=7200 : Reward: 0.911667 Pc: 274.056588
+iter=7300 : Reward: 0.953333 Pc: 179.600949
+iter=7400 : Reward: 0.918333 Pc: 280.957132
+iter=7500 : Reward: 0.935000 Pc: 201.437901
+iter=7600 : Reward: 0.946667 Pc: 210.254600
+iter=7700 : Reward: 0.940000 Pc: 228.004362
+iter=7800 : Reward: 0.938333 Pc: 221.994673
+iter=7900 : Reward: 0.935000 Pc: 222.360708
+iter=8000 : Reward: 0.921667 Pc: 239.294306
+ACCURACY: 0.768399999163
+LabelSums: [ 1018.   999.   973.  1012.   998.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0]
+POINTER_X: [30.058741, 94.150215, 99.0, 98.089134, 98.053246, 98.10611]
+POINTER_Y: [49.701122, 47.489914, 47.060383, 46.806141, 46.686985, 46.678902]
+TEACHER: [[24.0, 60.0], [33.0, 46.0], [99.0, 44.0], [99.0, 44.0], [99.0, 44.0], [99.0, 44.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_8000.ckpt
+--- 2450.8907870000003 CPU seconds ---
+iter=8100 : Reward: 0.911667 Pc: 248.821936
+iter=8200 : Reward: 0.945000 Pc: 199.607197
+iter=8300 : Reward: 0.925000 Pc: 256.496762
+iter=8400 : Reward: 0.948333 Pc: 160.563600
+iter=8500 : Reward: 0.960000 Pc: 146.293356
+iter=8600 : Reward: 0.935000 Pc: 184.868919
+iter=8700 : Reward: 0.948333 Pc: 201.006550
+iter=8800 : Reward: 0.916667 Pc: 235.605035
+iter=8900 : Reward: 0.916667 Pc: 269.460195
+iter=9000 : Reward: 0.918333 Pc: 223.777793
+iter=9100 : Reward: 0.931667 Pc: 213.879698
+iter=9200 : Reward: 0.951667 Pc: 161.025096
+iter=9300 : Reward: 0.920000 Pc: 258.961450
+iter=9400 : Reward: 0.936667 Pc: 177.313417
+iter=9500 : Reward: 0.928333 Pc: 209.009959
+iter=9600 : Reward: 0.913333 Pc: 243.487485
+iter=9700 : Reward: 0.933333 Pc: 200.375854
+iter=9800 : Reward: 0.933333 Pc: 201.996174
+iter=9900 : Reward: 0.950000 Pc: 190.439346
+iter=10000 : Reward: 0.943333 Pc: 215.087142
+ACCURACY: 0.826033330679
+LabelSums: [  985.   966.  1051.   977.  1021.]
+CORRECT: [1, 2, 3, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [28.980316, 64.449959, 87.539436, 95.460991, 94.762642, 91.372871]
+POINTER_Y: [49.423347, 50.82914, 50.260674, 49.979233, 50.002018, 50.308594]
+TEACHER: [[29.0, 61.0], [44.0, 42.0], [53.0, 42.0], [99.0, 44.0], [99.0, 44.0], [99.0, 44.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_10000.ckpt
+--- 3060.2459670000003 CPU seconds ---
+iter=10100 : Reward: 0.941667 Pc: 197.797018
+iter=10200 : Reward: 0.931667 Pc: 195.532623
+iter=10300 : Reward: 0.938333 Pc: 203.337768
+iter=10400 : Reward: 0.921667 Pc: 211.110781
+iter=10500 : Reward: 0.931667 Pc: 178.064713
+iter=10600 : Reward: 0.943333 Pc: 169.202197
+iter=10700 : Reward: 0.940000 Pc: 203.557455
+iter=10800 : Reward: 0.935000 Pc: 202.163447
+iter=10900 : Reward: 0.931667 Pc: 175.656206
+iter=11000 : Reward: 0.943333 Pc: 194.812673
+iter=11100 : Reward: 0.921667 Pc: 251.131372
+iter=11200 : Reward: 0.931667 Pc: 183.238654
+iter=11300 : Reward: 0.915000 Pc: 249.780083
+iter=11400 : Reward: 0.926667 Pc: 191.766304
+iter=11500 : Reward: 0.923333 Pc: 201.788758
+iter=11600 : Reward: 0.941667 Pc: 198.718417
+iter=11700 : Reward: 0.938333 Pc: 167.873509
+iter=11800 : Reward: 0.930000 Pc: 204.831050
+iter=11900 : Reward: 0.953333 Pc: 172.781920
+iter=12000 : Reward: 0.948333 Pc: 151.459300
+iter=12100 : Reward: 0.940000 Pc: 158.900667
+iter=12200 : Reward: 0.940000 Pc: 198.902291
+iter=12300 : Reward: 0.935000 Pc: 190.206697
+iter=12400 : Reward: 0.941667 Pc: 177.576308
+iter=12500 : Reward: 0.945000 Pc: 187.279459
+iter=12600 : Reward: 0.945000 Pc: 172.182493
+iter=12700 : Reward: 0.935000 Pc: 188.643274
+iter=12800 : Reward: 0.940000 Pc: 174.635565
+iter=12900 : Reward: 0.936667 Pc: 176.729879
+iter=13000 : Reward: 0.953333 Pc: 133.886100
+iter=13100 : Reward: 0.960000 Pc: 169.012635
+iter=13200 : Reward: 0.943333 Pc: 153.389836
+iter=13300 : Reward: 0.935000 Pc: 193.583734
+iter=13400 : Reward: 0.960000 Pc: 152.944433
+iter=13500 : Reward: 0.936667 Pc: 229.786208
+iter=13600 : Reward: 0.938333 Pc: 189.414714
+iter=13700 : Reward: 0.955000 Pc: 183.309137
+iter=13800 : Reward: 0.965000 Pc: 162.311393
+iter=13900 : Reward: 0.953333 Pc: 173.311203
+iter=14000 : Reward: 0.951667 Pc: 143.876297
+iter=14100 : Reward: 0.941667 Pc: 189.520856
+iter=14200 : Reward: 0.953333 Pc: 182.691797
+iter=14300 : Reward: 0.938333 Pc: 161.833637
+iter=14400 : Reward: 0.951667 Pc: 146.724643
+iter=14500 : Reward: 0.948333 Pc: 160.255313
+iter=14600 : Reward: 0.898333 Pc: 225.701314
+iter=14700 : Reward: 0.950000 Pc: 141.292626
+iter=14800 : Reward: 0.940000 Pc: 179.416125
+iter=14900 : Reward: 0.945000 Pc: 156.074173
+iter=15000 : Reward: 0.940000 Pc: 171.091482
+iter=15100 : Reward: 0.943333 Pc: 162.957633
+iter=15200 : Reward: 0.950000 Pc: 138.815381
+iter=15300 : Reward: 0.911667 Pc: 229.319894
+iter=15400 : Reward: 0.936667 Pc: 178.580184
+iter=15500 : Reward: 0.958333 Pc: 147.392460
+iter=15600 : Reward: 0.936667 Pc: 225.049853
+iter=15700 : Reward: 0.968333 Pc: 128.965124
+iter=15800 : Reward: 0.953333 Pc: 165.394532
+iter=15900 : Reward: 0.926667 Pc: 211.888725
+iter=16000 : Reward: 0.940000 Pc: 213.144157
+ACCURACY: 0.809833332112
+LabelSums: [ 1014.   972.  1020.   984.  1010.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [28.071949, 58.33057, 85.853493, 99.0, 99.0, 97.620941]
+POINTER_Y: [49.355812, 51.650986, 51.909363, 51.779171, 51.496346, 51.345875]
+TEACHER: [[30.0, 38.0], [36.0, 57.0], [99.0, 56.0], [99.0, 56.0], [99.0, 56.0], [99.0, 56.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_16000.ckpt
+--- 4856.250905 CPU seconds ---
+iter=16100 : Reward: 0.948333 Pc: 163.078984
+iter=16200 : Reward: 0.951667 Pc: 178.390575
+iter=16300 : Reward: 0.940000 Pc: 185.718917
+iter=16400 : Reward: 0.958333 Pc: 148.950782
+iter=16500 : Reward: 0.948333 Pc: 147.416483
+iter=16600 : Reward: 0.948333 Pc: 184.062084
+iter=16700 : Reward: 0.960000 Pc: 166.209445
+iter=16800 : Reward: 0.946667 Pc: 168.479635
+iter=16900 : Reward: 0.946667 Pc: 187.915433
+iter=17000 : Reward: 0.948333 Pc: 179.036342
+iter=17100 : Reward: 0.953333 Pc: 155.603922
+iter=17200 : Reward: 0.923333 Pc: 217.688459
+iter=17300 : Reward: 0.946667 Pc: 154.627552
+iter=17400 : Reward: 0.955000 Pc: 183.514011
+iter=17500 : Reward: 0.955000 Pc: 149.690937
+iter=17600 : Reward: 0.951667 Pc: 153.942520
+iter=17700 : Reward: 0.948333 Pc: 175.048421
+iter=17800 : Reward: 0.943333 Pc: 182.426720
+iter=17900 : Reward: 0.950000 Pc: 190.231170
+iter=18000 : Reward: 0.918333 Pc: 203.933718
+iter=18100 : Reward: 0.946667 Pc: 167.766553
+iter=18200 : Reward: 0.960000 Pc: 163.314611
+iter=18300 : Reward: 0.918333 Pc: 228.061506
+iter=18400 : Reward: 0.948333 Pc: 173.996995
+iter=18500 : Reward: 0.940000 Pc: 164.952843
+iter=18600 : Reward: 0.941667 Pc: 164.788024
+iter=18700 : Reward: 0.963333 Pc: 116.631600
+iter=18800 : Reward: 0.911667 Pc: 206.701849
+iter=18900 : Reward: 0.936667 Pc: 168.972426
+iter=19000 : Reward: 0.928333 Pc: 218.139372
+iter=19100 : Reward: 0.950000 Pc: 134.293238
+iter=19200 : Reward: 0.943333 Pc: 165.016560
+iter=19300 : Reward: 0.945000 Pc: 172.644235
+iter=19400 : Reward: 0.941667 Pc: 151.247132
+iter=19500 : Reward: 0.936667 Pc: 160.283652
+iter=19600 : Reward: 0.926667 Pc: 181.616345
+iter=19700 : Reward: 0.948333 Pc: 166.878295
+iter=19800 : Reward: 0.945000 Pc: 148.821534
+iter=19900 : Reward: 0.933333 Pc: 173.345723
+iter=20000 : Reward: 0.946667 Pc: 148.635277
+ACCURACY: 0.806433332887
+LabelSums: [ 1028.   962.   988.  1072.   950.]
+CORRECT: [1, 2, 3, 4, 5, 0]
+COUNT: [1, 2, 3, 2, 3, 0]
+POINTER_X: [27.860914, 35.611816, 48.354912, 68.817543, 67.642441, 96.489029]
+POINTER_Y: [49.506119, 51.724033, 50.460487, 52.02512, 50.896664, 51.442474]
+TEACHER: [[29.0, 41.0], [42.0, 41.0], [49.0, 50.0], [63.0, 53.0], [73.0, 47.0], [99.0, 57.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_20000.ckpt
+--- 6064.996183 CPU seconds ---
+iter=20100 : Reward: 0.940000 Pc: 187.802677
+iter=20200 : Reward: 0.940000 Pc: 147.754308
+iter=20300 : Reward: 0.940000 Pc: 157.442002
+iter=20400 : Reward: 0.961667 Pc: 108.101277
+iter=20500 : Reward: 0.948333 Pc: 157.652107
+iter=20600 : Reward: 0.923333 Pc: 178.148857
+iter=20700 : Reward: 0.945000 Pc: 137.119005
+iter=20800 : Reward: 0.958333 Pc: 136.176387
+iter=20900 : Reward: 0.931667 Pc: 159.344305
+iter=21000 : Reward: 0.931667 Pc: 173.250200
+iter=21100 : Reward: 0.921667 Pc: 171.790353
+iter=21200 : Reward: 0.948333 Pc: 187.869730
+iter=21300 : Reward: 0.951667 Pc: 180.728726
+iter=21400 : Reward: 0.928333 Pc: 190.973935
+iter=21500 : Reward: 0.948333 Pc: 174.751389
+iter=21600 : Reward: 0.958333 Pc: 141.755234
+iter=21700 : Reward: 0.941667 Pc: 175.218320
+iter=21800 : Reward: 0.948333 Pc: 170.407653
+iter=21900 : Reward: 0.956667 Pc: 148.170848
+iter=22000 : Reward: 0.948333 Pc: 189.940069
+iter=22100 : Reward: 0.968333 Pc: 125.591551
+iter=22200 : Reward: 0.946667 Pc: 157.631273
+iter=22300 : Reward: 0.956667 Pc: 184.457486
+iter=22400 : Reward: 0.951667 Pc: 161.750600
+iter=22500 : Reward: 0.948333 Pc: 166.216728
+iter=22600 : Reward: 0.938333 Pc: 198.651204
+iter=22700 : Reward: 0.931667 Pc: 177.369761
+iter=22800 : Reward: 0.946667 Pc: 186.763210
+iter=22900 : Reward: 0.955000 Pc: 152.527296
+iter=23000 : Reward: 0.956667 Pc: 143.039264
+iter=23100 : Reward: 0.951667 Pc: 142.848285
+iter=23200 : Reward: 0.965000 Pc: 149.983144
+iter=23300 : Reward: 0.946667 Pc: 156.042233
+iter=23400 : Reward: 0.946667 Pc: 180.602982
+iter=23500 : Reward: 0.950000 Pc: 140.101917
+iter=23600 : Reward: 0.928333 Pc: 200.248442
+iter=23700 : Reward: 0.955000 Pc: 105.891579
+iter=23800 : Reward: 0.925000 Pc: 155.683336
+iter=23900 : Reward: 0.943333 Pc: 134.072485
+iter=24000 : Reward: 0.945000 Pc: 103.050909
+iter=24100 : Reward: 0.931667 Pc: 179.846045
+iter=24200 : Reward: 0.958333 Pc: 120.438289
+iter=24300 : Reward: 0.950000 Pc: 185.836651
+iter=24400 : Reward: 0.936667 Pc: 176.198530
+iter=24500 : Reward: 0.943333 Pc: 174.470886
+iter=24600 : Reward: 0.960000 Pc: 129.096734
+iter=24700 : Reward: 0.955000 Pc: 144.474328
+iter=24800 : Reward: 0.955000 Pc: 118.831528
+iter=24900 : Reward: 0.945000 Pc: 150.749043
+iter=25000 : Reward: 0.953333 Pc: 195.477994
+iter=25100 : Reward: 0.960000 Pc: 158.386824
+iter=25200 : Reward: 0.965000 Pc: 153.812731
+iter=25300 : Reward: 0.960000 Pc: 135.377932
+iter=25400 : Reward: 0.948333 Pc: 139.948223
+iter=25500 : Reward: 0.966667 Pc: 114.855178
+iter=25600 : Reward: 0.941667 Pc: 180.561918
+iter=25700 : Reward: 0.946667 Pc: 174.755354
+iter=25800 : Reward: 0.953333 Pc: 157.854521
+iter=25900 : Reward: 0.953333 Pc: 180.230313
+iter=26000 : Reward: 0.931667 Pc: 179.026746
+iter=26100 : Reward: 0.968333 Pc: 129.251816
+iter=26200 : Reward: 0.945000 Pc: 149.013588
+iter=26300 : Reward: 0.951667 Pc: 129.631241
+iter=26400 : Reward: 0.935000 Pc: 163.678337
+iter=26500 : Reward: 0.936667 Pc: 205.467649
+iter=26600 : Reward: 0.936667 Pc: 155.070689
+iter=26700 : Reward: 0.960000 Pc: 120.229544
+iter=26800 : Reward: 0.945000 Pc: 147.943491
+iter=26900 : Reward: 0.953333 Pc: 152.532141
+iter=27000 : Reward: 0.953333 Pc: 166.904421
+iter=27100 : Reward: 0.953333 Pc: 120.655310
+iter=27200 : Reward: 0.951667 Pc: 158.364789
+iter=27300 : Reward: 0.950000 Pc: 152.827305
+iter=27400 : Reward: 0.958333 Pc: 127.830533
+iter=27500 : Reward: 0.960000 Pc: 149.008833
+iter=27600 : Reward: 0.965000 Pc: 132.087429
+iter=27700 : Reward: 0.960000 Pc: 161.008608
+iter=27800 : Reward: 0.948333 Pc: 152.740442
+iter=27900 : Reward: 0.945000 Pc: 150.101368
+iter=28000 : Reward: 0.960000 Pc: 144.769399
+iter=28100 : Reward: 0.955000 Pc: 166.060932
+iter=28200 : Reward: 0.946667 Pc: 154.679949
+iter=28300 : Reward: 0.938333 Pc: 159.898475
+iter=28400 : Reward: 0.971667 Pc: 125.697630
+iter=28500 : Reward: 0.951667 Pc: 159.657795
+iter=28600 : Reward: 0.955000 Pc: 145.432429
+iter=28700 : Reward: 0.953333 Pc: 145.649580
+iter=28800 : Reward: 0.958333 Pc: 120.268789
+iter=28900 : Reward: 0.951667 Pc: 139.127195
+iter=29000 : Reward: 0.961667 Pc: 126.811417
+iter=29100 : Reward: 0.948333 Pc: 152.936893
+iter=29200 : Reward: 0.953333 Pc: 149.561236
+iter=29300 : Reward: 0.950000 Pc: 129.155885
+iter=29400 : Reward: 0.950000 Pc: 162.830532
+iter=29500 : Reward: 0.960000 Pc: 148.215836
+iter=29600 : Reward: 0.951667 Pc: 161.674370
+iter=29700 : Reward: 0.950000 Pc: 164.690610
+iter=29800 : Reward: 0.960000 Pc: 120.346771
+iter=29900 : Reward: 0.953333 Pc: 176.229540
+iter=30000 : Reward: 0.945000 Pc: 164.001804
+ACCURACY: 0.811433332193
+LabelSums: [ 1034.   981.   991.   993.  1001.]
+CORRECT: [1, 2, 3, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [27.565912, 39.131737, 92.932007, 99.0, 99.0, 99.0]
+POINTER_Y: [49.637978, 50.89999, 51.119747, 50.841537, 50.703945, 50.732002]
+TEACHER: [[26.0, 54.0], [34.0, 62.0], [46.0, 41.0], [99.0, 62.0], [99.0, 62.0], [99.0, 62.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_30000.ckpt
+--- 9030.551187 CPU seconds ---
+iter=30100 : Reward: 0.958333 Pc: 144.771252
+iter=30200 : Reward: 0.961667 Pc: 125.513489
+iter=30300 : Reward: 0.963333 Pc: 112.275154
+iter=30400 : Reward: 0.958333 Pc: 121.542246
+iter=30500 : Reward: 0.955000 Pc: 177.653635
+iter=30600 : Reward: 0.955000 Pc: 158.231041
+iter=30700 : Reward: 0.960000 Pc: 124.594871
+iter=30800 : Reward: 0.950000 Pc: 172.265928
+iter=30900 : Reward: 0.953333 Pc: 188.607793
+iter=31000 : Reward: 0.948333 Pc: 175.689835
+iter=31100 : Reward: 0.955000 Pc: 158.030250
+iter=31200 : Reward: 0.948333 Pc: 173.763171
+iter=31300 : Reward: 0.948333 Pc: 140.527261
+iter=31400 : Reward: 0.955000 Pc: 126.836537
+iter=31500 : Reward: 0.956667 Pc: 154.230105
+iter=31600 : Reward: 0.960000 Pc: 134.509028
+iter=31700 : Reward: 0.950000 Pc: 152.567650
+iter=31800 : Reward: 0.948333 Pc: 163.927525
+iter=31900 : Reward: 0.950000 Pc: 180.305843
+iter=32000 : Reward: 0.968333 Pc: 118.922118
+ACCURACY: 0.84453332898
+LabelSums: [ 1015.   963.   999.   995.  1028.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [27.523052, 40.7323, 97.213821, 96.91098, 97.416229, 97.335022]
+POINTER_Y: [49.43457, 48.861984, 48.645988, 48.372326, 48.207893, 48.165375]
+TEACHER: [[28.0, 50.0], [40.0, 57.0], [99.0, 53.0], [99.0, 53.0], [99.0, 53.0], [99.0, 53.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_32000.ckpt
+--- 9623.113173999998 CPU seconds ---
+iter=32100 : Reward: 0.946667 Pc: 175.787655
+iter=32200 : Reward: 0.961667 Pc: 143.710368
+iter=32300 : Reward: 0.956667 Pc: 122.102959
+iter=32400 : Reward: 0.956667 Pc: 141.579166
+iter=32500 : Reward: 0.961667 Pc: 166.153121
+iter=32600 : Reward: 0.965000 Pc: 142.596788
+iter=32700 : Reward: 0.955000 Pc: 153.041405
+iter=32800 : Reward: 0.961667 Pc: 178.692127
+iter=32900 : Reward: 0.956667 Pc: 148.902867
+iter=33000 : Reward: 0.941667 Pc: 159.183212
+iter=33100 : Reward: 0.958333 Pc: 147.691459
+iter=33200 : Reward: 0.958333 Pc: 163.954553
+iter=33300 : Reward: 0.943333 Pc: 181.369049
+iter=33400 : Reward: 0.938333 Pc: 196.104745
+iter=33500 : Reward: 0.945000 Pc: 153.086898
+iter=33600 : Reward: 0.948333 Pc: 166.453113
+iter=33700 : Reward: 0.951667 Pc: 141.050522
+iter=33800 : Reward: 0.950000 Pc: 157.938984
+iter=33900 : Reward: 0.958333 Pc: 124.830091
+iter=34000 : Reward: 0.958333 Pc: 160.988764
+iter=34100 : Reward: 0.948333 Pc: 183.787641
+iter=34200 : Reward: 0.956667 Pc: 169.663309
+iter=34300 : Reward: 0.950000 Pc: 156.415890
+iter=34400 : Reward: 0.965000 Pc: 142.275051
+iter=34500 : Reward: 0.963333 Pc: 163.606534
+iter=34600 : Reward: 0.956667 Pc: 160.826382
+iter=34700 : Reward: 0.948333 Pc: 161.885079
+iter=34800 : Reward: 0.950000 Pc: 170.830596
+iter=34900 : Reward: 0.958333 Pc: 174.089018
+iter=35000 : Reward: 0.950000 Pc: 155.409296
+iter=35100 : Reward: 0.958333 Pc: 139.193027
+iter=35200 : Reward: 0.960000 Pc: 141.188964
+iter=35300 : Reward: 0.960000 Pc: 167.780008
+iter=35400 : Reward: 0.951667 Pc: 146.720581
+iter=35500 : Reward: 0.953333 Pc: 171.283725
+iter=35600 : Reward: 0.950000 Pc: 197.260735
+iter=35700 : Reward: 0.970000 Pc: 118.252675
+iter=35800 : Reward: 0.953333 Pc: 145.039537
+iter=35900 : Reward: 0.945000 Pc: 161.986131
+iter=36000 : Reward: 0.963333 Pc: 120.724603
+iter=36100 : Reward: 0.965000 Pc: 150.382685
+iter=36200 : Reward: 0.961667 Pc: 147.954468
+iter=36300 : Reward: 0.958333 Pc: 151.491631
+iter=36400 : Reward: 0.938333 Pc: 167.345228
+iter=36500 : Reward: 0.958333 Pc: 140.634510
+iter=36600 : Reward: 0.955000 Pc: 173.666113
+iter=36700 : Reward: 0.938333 Pc: 156.687418
+iter=36800 : Reward: 0.963333 Pc: 129.332379
+iter=36900 : Reward: 0.950000 Pc: 184.217034
+iter=37000 : Reward: 0.955000 Pc: 138.490558
+iter=37100 : Reward: 0.965000 Pc: 143.028688
+iter=37200 : Reward: 0.951667 Pc: 143.961571
+iter=37300 : Reward: 0.956667 Pc: 138.833843
+iter=37400 : Reward: 0.963333 Pc: 169.557701
+iter=37500 : Reward: 0.980000 Pc: 88.520944
+iter=37600 : Reward: 0.956667 Pc: 168.234625
+iter=37700 : Reward: 0.965000 Pc: 139.086677
+iter=37800 : Reward: 0.965000 Pc: 153.078960
+iter=37900 : Reward: 0.973333 Pc: 119.723331
+iter=38000 : Reward: 0.946667 Pc: 152.775020
+iter=38100 : Reward: 0.958333 Pc: 109.729089
+iter=38200 : Reward: 0.971667 Pc: 142.346192
+iter=38300 : Reward: 0.960000 Pc: 136.293911
+iter=38400 : Reward: 0.963333 Pc: 150.036147
+iter=38500 : Reward: 0.960000 Pc: 144.473599
+iter=38600 : Reward: 0.970000 Pc: 108.531141
+iter=38700 : Reward: 0.945000 Pc: 149.694976
+iter=38800 : Reward: 0.970000 Pc: 116.455781
+iter=38900 : Reward: 0.960000 Pc: 138.439655
+iter=39000 : Reward: 0.961667 Pc: 143.554586
+iter=39100 : Reward: 0.973333 Pc: 147.614201
+iter=39200 : Reward: 0.968333 Pc: 138.618699
+iter=39300 : Reward: 0.955000 Pc: 149.196155
+iter=39400 : Reward: 0.941667 Pc: 152.602655
+iter=39500 : Reward: 0.961667 Pc: 132.570949
+iter=39600 : Reward: 0.948333 Pc: 164.455010
+iter=39700 : Reward: 0.971667 Pc: 96.022493
+iter=39800 : Reward: 0.950000 Pc: 165.745546
+iter=39900 : Reward: 0.970000 Pc: 149.309996
+iter=40000 : Reward: 0.948333 Pc: 155.230275
+ACCURACY: 0.887933326164
+LabelSums: [  980.   989.   965.  1076.   990.]
+CORRECT: [1, 0, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0]
+POINTER_X: [27.398743, 96.069458, 99.0, 99.0, 99.0, 99.0]
+POINTER_Y: [49.892372, 49.844643, 50.156708, 49.88821, 49.881802, 49.869045]
+TEACHER: [[32.0, 54.0], [99.0, 39.0], [99.0, 39.0], [99.0, 39.0], [99.0, 39.0], [99.0, 39.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_40000.ckpt
+--- 12009.917099999999 CPU seconds ---
+iter=40100 : Reward: 0.961667 Pc: 125.986558
+iter=40200 : Reward: 0.943333 Pc: 192.676161
+iter=40300 : Reward: 0.951667 Pc: 202.519058
+iter=40400 : Reward: 0.968333 Pc: 135.760295
+iter=40500 : Reward: 0.953333 Pc: 157.931081
+iter=40600 : Reward: 0.945000 Pc: 192.974821
+iter=40700 : Reward: 0.956667 Pc: 169.509156
+iter=40800 : Reward: 0.953333 Pc: 152.068900
+iter=40900 : Reward: 0.961667 Pc: 112.766745
+iter=41000 : Reward: 0.963333 Pc: 127.385426
+iter=41100 : Reward: 0.943333 Pc: 177.662789
+iter=41200 : Reward: 0.958333 Pc: 132.664194
+iter=41300 : Reward: 0.976667 Pc: 131.918091
+iter=41400 : Reward: 0.970000 Pc: 146.088073
+iter=41500 : Reward: 0.966667 Pc: 150.742754
+iter=41600 : Reward: 0.961667 Pc: 151.142790
+iter=41700 : Reward: 0.960000 Pc: 139.421209
+iter=41800 : Reward: 0.958333 Pc: 159.549197
+iter=41900 : Reward: 0.981667 Pc: 121.088261
+iter=42000 : Reward: 0.965000 Pc: 147.609408
+iter=42100 : Reward: 0.980000 Pc: 113.987359
+iter=42200 : Reward: 0.970000 Pc: 136.217075
+iter=42300 : Reward: 0.951667 Pc: 177.493651
+iter=42400 : Reward: 0.958333 Pc: 125.627044
+iter=42500 : Reward: 0.960000 Pc: 132.931875
+iter=42600 : Reward: 0.971667 Pc: 124.096724
+iter=42700 : Reward: 0.966667 Pc: 122.952115
+iter=42800 : Reward: 0.965000 Pc: 161.312427
+iter=42900 : Reward: 0.938333 Pc: 189.452301
+iter=43000 : Reward: 0.966667 Pc: 129.378321
+iter=43100 : Reward: 0.948333 Pc: 158.538271
+iter=43200 : Reward: 0.968333 Pc: 147.927332
+iter=43300 : Reward: 0.978333 Pc: 112.666101
+iter=43400 : Reward: 0.975000 Pc: 96.905438
+iter=43500 : Reward: 0.965000 Pc: 171.002049
+iter=43600 : Reward: 0.956667 Pc: 117.682400
+iter=43700 : Reward: 0.938333 Pc: 201.213380
+iter=43800 : Reward: 0.960000 Pc: 126.674712
+iter=43900 : Reward: 0.956667 Pc: 158.217918
+iter=44000 : Reward: 0.976667 Pc: 125.435455
+iter=44100 : Reward: 0.953333 Pc: 135.636878
+iter=44200 : Reward: 0.968333 Pc: 158.428979
+iter=44300 : Reward: 0.953333 Pc: 144.016089
+iter=44400 : Reward: 0.956667 Pc: 147.314245
+iter=44500 : Reward: 0.960000 Pc: 139.169851
+iter=44600 : Reward: 0.956667 Pc: 144.830018
+iter=44700 : Reward: 0.960000 Pc: 129.299118
+iter=44800 : Reward: 0.973333 Pc: 121.823659
+iter=44900 : Reward: 0.950000 Pc: 140.539214
+iter=45000 : Reward: 0.970000 Pc: 183.557921
+iter=45100 : Reward: 0.980000 Pc: 117.847719
+iter=45200 : Reward: 0.965000 Pc: 141.286328
+iter=45300 : Reward: 0.956667 Pc: 134.675492
+iter=45400 : Reward: 0.963333 Pc: 162.636595
+iter=45500 : Reward: 0.970000 Pc: 121.256816
+iter=45600 : Reward: 0.966667 Pc: 149.939264
+iter=45700 : Reward: 0.968333 Pc: 143.729664
+iter=45800 : Reward: 0.971667 Pc: 122.013154
+iter=45900 : Reward: 0.955000 Pc: 161.491888
+iter=46000 : Reward: 0.970000 Pc: 154.561024
+iter=46100 : Reward: 0.970000 Pc: 143.449468
+iter=46200 : Reward: 0.966667 Pc: 138.488930
+iter=46300 : Reward: 0.970000 Pc: 119.175969
+iter=46400 : Reward: 0.963333 Pc: 151.771406
+iter=46500 : Reward: 0.970000 Pc: 163.726658
+iter=46600 : Reward: 0.960000 Pc: 157.216001
+iter=46700 : Reward: 0.975000 Pc: 125.451340
+iter=46800 : Reward: 0.956667 Pc: 160.280319
+iter=46900 : Reward: 0.956667 Pc: 149.097108
+iter=47000 : Reward: 0.958333 Pc: 183.661115
+iter=47100 : Reward: 0.948333 Pc: 153.559770
+iter=47200 : Reward: 0.970000 Pc: 132.882099
+iter=47300 : Reward: 0.965000 Pc: 122.754778
+iter=47400 : Reward: 0.965000 Pc: 141.932787
+iter=47500 : Reward: 0.958333 Pc: 167.334309
+iter=47600 : Reward: 0.968333 Pc: 142.255223
+iter=47700 : Reward: 0.966667 Pc: 142.386560
+iter=47800 : Reward: 0.960000 Pc: 140.961599
+iter=47900 : Reward: 0.958333 Pc: 153.831387
+iter=48000 : Reward: 0.978333 Pc: 102.448761
+iter=48100 : Reward: 0.958333 Pc: 138.244556
+iter=48200 : Reward: 0.976667 Pc: 135.054372
+iter=48300 : Reward: 0.956667 Pc: 122.813821
+iter=48400 : Reward: 0.971667 Pc: 130.469567
+iter=48500 : Reward: 0.960000 Pc: 159.678164
+iter=48600 : Reward: 0.968333 Pc: 165.480857
+iter=48700 : Reward: 0.970000 Pc: 146.459791
+iter=48800 : Reward: 0.961667 Pc: 130.673755
+iter=48900 : Reward: 0.970000 Pc: 135.012154
+iter=49000 : Reward: 0.966667 Pc: 134.875647
+iter=49100 : Reward: 0.973333 Pc: 129.969720
+iter=49200 : Reward: 0.951667 Pc: 151.422253
+iter=49300 : Reward: 0.971667 Pc: 128.610243
+iter=49400 : Reward: 0.941667 Pc: 157.656964
+iter=49500 : Reward: 0.953333 Pc: 173.468081
+iter=49600 : Reward: 0.976667 Pc: 110.109539
+iter=49700 : Reward: 0.958333 Pc: 135.878366
+iter=49800 : Reward: 0.961667 Pc: 151.784904
+iter=49900 : Reward: 0.961667 Pc: 138.845755
+iter=50000 : Reward: 0.961667 Pc: 152.370340
+ACCURACY: 0.876233327967
+LabelSums: [  968.   954.  1058.  1018.  1002.]
+CORRECT: [1, 2, 3, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [27.191603, 36.131023, 49.923943, 94.305214, 98.594933, 99.0]
+POINTER_Y: [49.87299, 45.979988, 46.903896, 46.39505, 46.872395, 47.242527]
+TEACHER: [[26.0, 55.0], [36.0, 47.0], [43.0, 39.0], [99.0, 49.0], [99.0, 49.0], [99.0, 49.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_50000.ckpt
+--- 14998.861385 CPU seconds ---
+iter=50100 : Reward: 0.970000 Pc: 135.392341
+iter=50200 : Reward: 0.970000 Pc: 120.244684
+iter=50300 : Reward: 0.966667 Pc: 113.788170
+iter=50400 : Reward: 0.965000 Pc: 133.485056
+iter=50500 : Reward: 0.971667 Pc: 121.411398
+iter=50600 : Reward: 0.970000 Pc: 145.900983
+iter=50700 : Reward: 0.963333 Pc: 126.998803
+iter=50800 : Reward: 0.956667 Pc: 144.571466
+iter=50900 : Reward: 0.951667 Pc: 140.501974
+iter=51000 : Reward: 0.965000 Pc: 149.755173
+iter=51100 : Reward: 0.966667 Pc: 121.636263
+iter=51200 : Reward: 0.971667 Pc: 135.441390
+iter=51300 : Reward: 0.961667 Pc: 167.261100
+iter=51400 : Reward: 0.966667 Pc: 111.648734
+iter=51500 : Reward: 0.963333 Pc: 158.350798
+iter=51600 : Reward: 0.973333 Pc: 129.210203
+iter=51700 : Reward: 0.953333 Pc: 139.129463
+iter=51800 : Reward: 0.970000 Pc: 153.231764
+iter=51900 : Reward: 0.948333 Pc: 134.445796
+iter=52000 : Reward: 0.966667 Pc: 136.829415
+iter=52100 : Reward: 0.968333 Pc: 126.789510
+iter=52200 : Reward: 0.961667 Pc: 167.383501
+iter=52300 : Reward: 0.975000 Pc: 103.695401
+iter=52400 : Reward: 0.970000 Pc: 152.825993
+iter=52500 : Reward: 0.963333 Pc: 137.533180
+iter=52600 : Reward: 0.966667 Pc: 137.751482
+iter=52700 : Reward: 0.953333 Pc: 155.371214
+iter=52800 : Reward: 0.973333 Pc: 112.799360
+iter=52900 : Reward: 0.946667 Pc: 181.051227
+iter=53000 : Reward: 0.965000 Pc: 135.621596
+iter=53100 : Reward: 0.965000 Pc: 133.833700
+iter=53200 : Reward: 0.966667 Pc: 139.078797
+iter=53300 : Reward: 0.963333 Pc: 117.088267
+iter=53400 : Reward: 0.955000 Pc: 138.693716
+iter=53500 : Reward: 0.975000 Pc: 113.135446
+iter=53600 : Reward: 0.965000 Pc: 112.460979
+iter=53700 : Reward: 0.965000 Pc: 139.624946
+iter=53800 : Reward: 0.973333 Pc: 113.069553
+iter=53900 : Reward: 0.975000 Pc: 95.144246
+iter=54000 : Reward: 0.955000 Pc: 150.212720
+iter=54100 : Reward: 0.975000 Pc: 139.108200
+iter=54200 : Reward: 0.960000 Pc: 157.470498
+iter=54300 : Reward: 0.973333 Pc: 143.509261
+iter=54400 : Reward: 0.971667 Pc: 127.120426
+iter=54500 : Reward: 0.968333 Pc: 150.276912
+iter=54600 : Reward: 0.960000 Pc: 130.906311
+iter=54700 : Reward: 0.976667 Pc: 137.075627
+iter=54800 : Reward: 0.970000 Pc: 139.688110
+iter=54900 : Reward: 0.961667 Pc: 152.709757
+iter=55000 : Reward: 0.940000 Pc: 169.822220
+iter=55100 : Reward: 0.971667 Pc: 141.096622
+iter=55200 : Reward: 0.965000 Pc: 125.633776
+iter=55300 : Reward: 0.965000 Pc: 168.088566
+iter=55400 : Reward: 0.956667 Pc: 160.493970
+iter=55500 : Reward: 0.976667 Pc: 104.527430
+iter=55600 : Reward: 0.960000 Pc: 120.079189
+iter=55700 : Reward: 0.970000 Pc: 130.639336
+iter=55800 : Reward: 0.961667 Pc: 110.818816
+iter=55900 : Reward: 0.955000 Pc: 128.647561
+iter=56000 : Reward: 0.960000 Pc: 126.051574
+iter=56100 : Reward: 0.973333 Pc: 108.077994
+iter=56200 : Reward: 0.968333 Pc: 139.679594
+iter=56300 : Reward: 0.970000 Pc: 119.576453
+iter=56400 : Reward: 0.966667 Pc: 128.998549
+iter=56500 : Reward: 0.975000 Pc: 96.524010
+iter=56600 : Reward: 0.963333 Pc: 120.696278
+iter=56700 : Reward: 0.960000 Pc: 108.229065
+iter=56800 : Reward: 0.978333 Pc: 110.482153
+iter=56900 : Reward: 0.960000 Pc: 133.262593
+iter=57000 : Reward: 0.965000 Pc: 125.051153
+iter=57100 : Reward: 0.951667 Pc: 191.965332
+iter=57200 : Reward: 0.968333 Pc: 108.577159
+iter=57300 : Reward: 0.963333 Pc: 124.873653
+iter=57400 : Reward: 0.966667 Pc: 126.265527
+iter=57500 : Reward: 0.971667 Pc: 143.621121
+iter=57600 : Reward: 0.963333 Pc: 154.069942
+iter=57700 : Reward: 0.976667 Pc: 104.718006
+iter=57800 : Reward: 0.963333 Pc: 103.433831
+iter=57900 : Reward: 0.960000 Pc: 140.006296
+iter=58000 : Reward: 0.980000 Pc: 105.352482
+iter=58100 : Reward: 0.971667 Pc: 115.150182
+iter=58200 : Reward: 0.973333 Pc: 110.856905
+iter=58300 : Reward: 0.958333 Pc: 165.361578
+iter=58400 : Reward: 0.968333 Pc: 119.691129
+iter=58500 : Reward: 0.965000 Pc: 112.748311
+iter=58600 : Reward: 0.960000 Pc: 147.910647
+iter=58700 : Reward: 0.976667 Pc: 122.298711
+iter=58800 : Reward: 0.960000 Pc: 147.050269
+iter=58900 : Reward: 0.950000 Pc: 196.638201
+iter=59000 : Reward: 0.970000 Pc: 96.286236
+iter=59100 : Reward: 0.938333 Pc: 151.071519
+iter=59200 : Reward: 0.965000 Pc: 140.900273
+iter=59300 : Reward: 0.951667 Pc: 135.564655
+iter=59400 : Reward: 0.958333 Pc: 173.935501
+iter=59500 : Reward: 0.961667 Pc: 156.299662
+iter=59600 : Reward: 0.971667 Pc: 129.814521
+iter=59700 : Reward: 0.951667 Pc: 143.962513
+iter=59800 : Reward: 0.940000 Pc: 189.363062
+iter=59900 : Reward: 0.970000 Pc: 127.513414
+iter=60000 : Reward: 0.973333 Pc: 108.654834
+ACCURACY: 0.896266660169
+LabelSums: [  955.  1028.   977.  1030.  1010.]
+CORRECT: [1, 2, 3, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [27.13661, 38.965965, 74.05011, 99.0, 99.0, 98.986496]
+POINTER_Y: [49.448826, 52.422909, 50.820374, 49.81649, 50.065845, 50.194538]
+TEACHER: [[27.0, 59.0], [33.0, 63.0], [43.0, 55.0], [99.0, 52.0], [99.0, 52.0], [99.0, 52.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_60000.ckpt
+--- 18020.088174 CPU seconds ---
+iter=60100 : Reward: 0.958333 Pc: 154.703318
+iter=60200 : Reward: 0.958333 Pc: 136.135145
+iter=60300 : Reward: 0.963333 Pc: 156.352885
+iter=60400 : Reward: 0.950000 Pc: 170.184156
+iter=60500 : Reward: 0.963333 Pc: 121.695016
+iter=60600 : Reward: 0.948333 Pc: 176.004879
+iter=60700 : Reward: 0.958333 Pc: 139.183894
+iter=60800 : Reward: 0.970000 Pc: 108.872345
+iter=60900 : Reward: 0.955000 Pc: 162.153555
+iter=61000 : Reward: 0.970000 Pc: 161.823140
+iter=61100 : Reward: 0.973333 Pc: 101.611261
+iter=61200 : Reward: 0.955000 Pc: 153.227779
+iter=61300 : Reward: 0.963333 Pc: 157.158819
+iter=61400 : Reward: 0.976667 Pc: 130.299347
+iter=61500 : Reward: 0.971667 Pc: 103.412017
+iter=61600 : Reward: 0.958333 Pc: 148.485452
+iter=61700 : Reward: 0.965000 Pc: 151.738990
+iter=61800 : Reward: 0.963333 Pc: 145.809639
+iter=61900 : Reward: 0.975000 Pc: 144.937428
+iter=62000 : Reward: 0.965000 Pc: 118.471081
+iter=62100 : Reward: 0.978333 Pc: 124.912824
+iter=62200 : Reward: 0.960000 Pc: 171.938363
+iter=62300 : Reward: 0.953333 Pc: 137.663455
+iter=62400 : Reward: 0.958333 Pc: 151.643616
+iter=62500 : Reward: 0.976667 Pc: 114.578281
+iter=62600 : Reward: 0.960000 Pc: 139.846578
+iter=62700 : Reward: 0.973333 Pc: 95.568753
+iter=62800 : Reward: 0.941667 Pc: 152.917502
+iter=62900 : Reward: 0.953333 Pc: 142.616779
+iter=63000 : Reward: 0.971667 Pc: 101.910645
+iter=63100 : Reward: 0.973333 Pc: 113.075781
+iter=63200 : Reward: 0.976667 Pc: 104.963324
+iter=63300 : Reward: 0.965000 Pc: 129.731343
+iter=63400 : Reward: 0.980000 Pc: 129.061653
+iter=63500 : Reward: 0.950000 Pc: 121.632047
+iter=63600 : Reward: 0.966667 Pc: 142.194107
+iter=63700 : Reward: 0.973333 Pc: 126.407656
+iter=63800 : Reward: 0.963333 Pc: 138.512058
+iter=63900 : Reward: 0.971667 Pc: 125.837458
+iter=64000 : Reward: 0.975000 Pc: 121.215618
+ACCURACY: 0.872499994314
+LabelSums: [  962.  1018.  1029.  1011.   980.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 3, 0, 0, 0]
+POINTER_X: [26.94232, 37.909142, 49.611847, 74.276573, 94.51738, 99.0]
+POINTER_Y: [49.403801, 41.711052, 44.894238, 46.371742, 46.213028, 47.767223]
+TEACHER: [[27.0, 36.0], [37.0, 40.0], [48.0, 50.0], [62.0, 44.0], [99.0, 46.0], [99.0, 46.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_64000.ckpt
+--- 19188.449704000002 CPU seconds ---
+iter=64100 : Reward: 0.968333 Pc: 127.798006
+iter=64200 : Reward: 0.961667 Pc: 129.197973
+iter=64300 : Reward: 0.976667 Pc: 107.021609
+iter=64400 : Reward: 0.955000 Pc: 144.587032
+iter=64500 : Reward: 0.955000 Pc: 128.883414
+iter=64600 : Reward: 0.971667 Pc: 126.671925
+iter=64700 : Reward: 0.971667 Pc: 110.449616
+iter=64800 : Reward: 0.973333 Pc: 120.907042
+iter=64900 : Reward: 0.981667 Pc: 102.927230
+iter=65000 : Reward: 0.960000 Pc: 147.747117
+iter=65100 : Reward: 0.963333 Pc: 121.475140
+iter=65200 : Reward: 0.966667 Pc: 152.169918
+iter=65300 : Reward: 0.958333 Pc: 148.884413
+iter=65400 : Reward: 0.968333 Pc: 89.983216
+iter=65500 : Reward: 0.975000 Pc: 121.415248
+iter=65600 : Reward: 0.968333 Pc: 110.020257
+iter=65700 : Reward: 0.965000 Pc: 122.717314
+iter=65800 : Reward: 0.975000 Pc: 128.079157
+iter=65900 : Reward: 0.973333 Pc: 102.652482
+iter=66000 : Reward: 0.975000 Pc: 98.570285
+iter=66100 : Reward: 0.981667 Pc: 91.269123
+iter=66200 : Reward: 0.963333 Pc: 121.103546
+iter=66300 : Reward: 0.983333 Pc: 78.651086
+iter=66400 : Reward: 0.968333 Pc: 146.901741
+iter=66500 : Reward: 0.956667 Pc: 135.967714
+iter=66600 : Reward: 0.968333 Pc: 98.462264
+iter=66700 : Reward: 0.961667 Pc: 123.954786
+iter=66800 : Reward: 0.970000 Pc: 103.140372
+iter=66900 : Reward: 0.978333 Pc: 135.418581
+iter=67000 : Reward: 0.980000 Pc: 105.469976
+iter=67100 : Reward: 0.951667 Pc: 159.861896
+iter=67200 : Reward: 0.953333 Pc: 144.740761
+iter=67300 : Reward: 0.985000 Pc: 87.877331
+iter=67400 : Reward: 0.961667 Pc: 126.988982
+iter=67500 : Reward: 0.965000 Pc: 127.555558
+iter=67600 : Reward: 0.955000 Pc: 185.618027
+iter=67700 : Reward: 0.966667 Pc: 126.959293
+iter=67800 : Reward: 0.958333 Pc: 143.619363
+iter=67900 : Reward: 0.966667 Pc: 130.262838
+iter=68000 : Reward: 0.961667 Pc: 131.286718
+iter=68100 : Reward: 0.970000 Pc: 121.923365
+iter=68200 : Reward: 0.953333 Pc: 149.331585
+iter=68300 : Reward: 0.956667 Pc: 157.028866
+iter=68400 : Reward: 0.975000 Pc: 107.849736
+iter=68500 : Reward: 0.971667 Pc: 150.117164
+iter=68600 : Reward: 0.965000 Pc: 115.538046
+iter=68700 : Reward: 0.968333 Pc: 167.645527
+iter=68800 : Reward: 0.965000 Pc: 117.871238
+iter=68900 : Reward: 0.971667 Pc: 131.734343
+iter=69000 : Reward: 0.971667 Pc: 129.052699
+iter=69100 : Reward: 0.975000 Pc: 139.478599
+iter=69200 : Reward: 0.966667 Pc: 141.258857
+iter=69300 : Reward: 0.971667 Pc: 179.025274
+iter=69400 : Reward: 0.968333 Pc: 165.491342
+iter=69500 : Reward: 0.960000 Pc: 126.321847
+iter=69600 : Reward: 0.971667 Pc: 134.682709
+iter=69700 : Reward: 0.980000 Pc: 90.768136
+iter=69800 : Reward: 0.968333 Pc: 124.586490
+iter=69900 : Reward: 0.971667 Pc: 102.647730
+iter=70000 : Reward: 0.955000 Pc: 184.541470
+ACCURACY: 0.895866659993
+LabelSums: [  980.  1009.   968.  1031.  1012.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [26.899694, 25.031004, 81.260925, 95.084358, 94.777184, 89.202972]
+POINTER_Y: [49.491425, 53.568707, 53.260937, 53.720268, 53.923923, 53.634777]
+TEACHER: [[26.0, 61.0], [33.0, 54.0], [39.0, 48.0], [49.0, 61.0], [99.0, 38.0], [99.0, 38.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_70000.ckpt
+--- 20996.718035 CPU seconds ---
+iter=70100 : Reward: 0.970000 Pc: 126.498593
+iter=70200 : Reward: 0.971667 Pc: 125.956751
+iter=70300 : Reward: 0.971667 Pc: 136.449929
+iter=70400 : Reward: 0.976667 Pc: 113.631305
+iter=70500 : Reward: 0.973333 Pc: 127.587277
+iter=70600 : Reward: 0.968333 Pc: 107.491928
+iter=70700 : Reward: 0.963333 Pc: 163.865625
+iter=70800 : Reward: 0.970000 Pc: 109.033350
+iter=70900 : Reward: 0.975000 Pc: 113.658325
+iter=71000 : Reward: 0.971667 Pc: 99.487867
+iter=71100 : Reward: 0.971667 Pc: 125.853853
+iter=71200 : Reward: 0.973333 Pc: 122.704256
+iter=71300 : Reward: 0.961667 Pc: 115.629152
+iter=71400 : Reward: 0.951667 Pc: 164.813752
+iter=71500 : Reward: 0.970000 Pc: 112.071157
+iter=71600 : Reward: 0.968333 Pc: 121.521604
+iter=71700 : Reward: 0.983333 Pc: 96.656569
+iter=71800 : Reward: 0.958333 Pc: 122.365291
+iter=71900 : Reward: 0.980000 Pc: 130.102748
+iter=72000 : Reward: 0.978333 Pc: 104.463444
+iter=72100 : Reward: 0.971667 Pc: 123.595180
+iter=72200 : Reward: 0.961667 Pc: 163.902449
+iter=72300 : Reward: 0.971667 Pc: 128.835284
+iter=72400 : Reward: 0.963333 Pc: 132.090356
+iter=72500 : Reward: 0.958333 Pc: 141.538560
+iter=72600 : Reward: 0.978333 Pc: 101.645836
+iter=72700 : Reward: 0.963333 Pc: 154.869183
+iter=72800 : Reward: 0.968333 Pc: 128.632972
+iter=72900 : Reward: 0.953333 Pc: 152.912732
+iter=73000 : Reward: 0.966667 Pc: 135.564801
+iter=73100 : Reward: 0.968333 Pc: 126.485699
+iter=73200 : Reward: 0.965000 Pc: 141.656130
+iter=73300 : Reward: 0.965000 Pc: 155.174810
+iter=73400 : Reward: 0.970000 Pc: 117.642083
+iter=73500 : Reward: 0.971667 Pc: 124.813686
+iter=73600 : Reward: 0.970000 Pc: 106.201944
+iter=73700 : Reward: 0.971667 Pc: 107.316252
+iter=73800 : Reward: 0.966667 Pc: 137.876070
+iter=73900 : Reward: 0.968333 Pc: 124.782737
+iter=74000 : Reward: 0.965000 Pc: 151.727918
+iter=74100 : Reward: 0.966667 Pc: 136.686924
+iter=74200 : Reward: 0.960000 Pc: 122.450214
+iter=74300 : Reward: 0.975000 Pc: 113.757962
+iter=74400 : Reward: 0.960000 Pc: 143.533176
+iter=74500 : Reward: 0.980000 Pc: 89.677478
+iter=74600 : Reward: 0.966667 Pc: 133.432688
+iter=74700 : Reward: 0.970000 Pc: 135.875289
+iter=74800 : Reward: 0.965000 Pc: 169.597038
+iter=74900 : Reward: 0.956667 Pc: 130.300983
+iter=75000 : Reward: 0.960000 Pc: 139.081326
+iter=75100 : Reward: 0.968333 Pc: 128.094120
+iter=75200 : Reward: 0.971667 Pc: 131.155762
+iter=75300 : Reward: 0.971667 Pc: 126.921618
+iter=75400 : Reward: 0.975000 Pc: 114.695663
+iter=75500 : Reward: 0.946667 Pc: 139.015123
+iter=75600 : Reward: 0.973333 Pc: 115.338470
+iter=75700 : Reward: 0.981667 Pc: 111.202969
+iter=75800 : Reward: 0.975000 Pc: 152.365970
+iter=75900 : Reward: 0.976667 Pc: 94.054674
+iter=76000 : Reward: 0.961667 Pc: 155.526770
+iter=76100 : Reward: 0.970000 Pc: 113.823316
+iter=76200 : Reward: 0.975000 Pc: 138.669182
+iter=76300 : Reward: 0.966667 Pc: 121.290070
+iter=76400 : Reward: 0.970000 Pc: 101.678177
+iter=76500 : Reward: 0.963333 Pc: 161.946221
+iter=76600 : Reward: 0.955000 Pc: 139.352881
+iter=76700 : Reward: 0.971667 Pc: 105.863726
+iter=76800 : Reward: 0.966667 Pc: 128.057202
+iter=76900 : Reward: 0.968333 Pc: 147.532688
+iter=77000 : Reward: 0.963333 Pc: 110.464898
+iter=77100 : Reward: 0.976667 Pc: 93.490897
+iter=77200 : Reward: 0.968333 Pc: 121.380529
+iter=77300 : Reward: 0.968333 Pc: 115.298191
+iter=77400 : Reward: 0.965000 Pc: 114.118300
+iter=77500 : Reward: 0.975000 Pc: 123.991286
+iter=77600 : Reward: 0.973333 Pc: 132.743179
+iter=77700 : Reward: 0.956667 Pc: 133.201161
+iter=77800 : Reward: 0.968333 Pc: 148.461876
+iter=77900 : Reward: 0.981667 Pc: 97.700333
+iter=78000 : Reward: 0.963333 Pc: 160.486460
+iter=78100 : Reward: 0.968333 Pc: 130.630383
+iter=78200 : Reward: 0.975000 Pc: 114.759040
+iter=78300 : Reward: 0.980000 Pc: 103.548116
+iter=78400 : Reward: 0.965000 Pc: 137.106753
+iter=78500 : Reward: 0.966667 Pc: 118.870232
+iter=78600 : Reward: 0.970000 Pc: 123.759194
+iter=78700 : Reward: 0.978333 Pc: 110.533006
+iter=78800 : Reward: 0.968333 Pc: 114.754342
+iter=78900 : Reward: 0.956667 Pc: 145.903279
+iter=79000 : Reward: 0.961667 Pc: 145.488543
+iter=79100 : Reward: 0.971667 Pc: 121.653495
+iter=79200 : Reward: 0.961667 Pc: 149.942392
+iter=79300 : Reward: 0.985000 Pc: 101.884449
+iter=79400 : Reward: 0.968333 Pc: 156.049562
+iter=79500 : Reward: 0.976667 Pc: 118.300466
+iter=79600 : Reward: 0.971667 Pc: 110.832117
+iter=79700 : Reward: 0.960000 Pc: 163.086034
+iter=79800 : Reward: 0.961667 Pc: 135.512744
+iter=79900 : Reward: 0.960000 Pc: 157.838112
+iter=80000 : Reward: 0.953333 Pc: 131.829958
+ACCURACY: 0.896799993795
+LabelSums: [ 1021.   997.   962.  1001.  1019.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 3, 4, 0, 0]
+POINTER_X: [26.989532, 36.274559, 48.20969, 57.119331, 84.094894, 98.099617]
+POINTER_Y: [49.442936, 57.452759, 53.101952, 51.333019, 50.541409, 49.670235]
+TEACHER: [[29.0, 52.0], [38.0, 62.0], [43.0, 42.0], [54.0, 43.0], [99.0, 62.0], [99.0, 62.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_80000.ckpt
+--- 23976.308011000005 CPU seconds ---
+iter=80100 : Reward: 0.970000 Pc: 111.022904
+iter=80200 : Reward: 0.963333 Pc: 162.418154
+iter=80300 : Reward: 0.950000 Pc: 179.739987
+iter=80400 : Reward: 0.960000 Pc: 146.382853
+iter=80500 : Reward: 0.973333 Pc: 112.320439
+iter=80600 : Reward: 0.965000 Pc: 122.746880
+iter=80700 : Reward: 0.973333 Pc: 128.800005
+iter=80800 : Reward: 0.955000 Pc: 154.497033
+iter=80900 : Reward: 0.961667 Pc: 145.506599
+iter=81000 : Reward: 0.965000 Pc: 119.195667
+iter=81100 : Reward: 0.963333 Pc: 136.944335
+iter=81200 : Reward: 0.968333 Pc: 116.991393
+iter=81300 : Reward: 0.973333 Pc: 95.212614
+iter=81400 : Reward: 0.973333 Pc: 119.066003
+iter=81500 : Reward: 0.975000 Pc: 124.829163
+iter=81600 : Reward: 0.961667 Pc: 137.665363
+iter=81700 : Reward: 0.961667 Pc: 107.985720
+iter=81800 : Reward: 0.975000 Pc: 108.487968
+iter=81900 : Reward: 0.971667 Pc: 98.457494
+iter=82000 : Reward: 0.965000 Pc: 131.478782
+iter=82100 : Reward: 0.973333 Pc: 128.303554
+iter=82200 : Reward: 0.960000 Pc: 124.635451
+iter=82300 : Reward: 0.965000 Pc: 153.994981
+iter=82400 : Reward: 0.956667 Pc: 148.717475
+iter=82500 : Reward: 0.963333 Pc: 148.299311
+iter=82600 : Reward: 0.948333 Pc: 175.239204
+iter=82700 : Reward: 0.970000 Pc: 127.831274
+iter=82800 : Reward: 0.965000 Pc: 139.015147
+iter=82900 : Reward: 0.965000 Pc: 142.445893
+iter=83000 : Reward: 0.955000 Pc: 153.708336
+iter=83100 : Reward: 0.973333 Pc: 85.464850
+iter=83200 : Reward: 0.966667 Pc: 132.168306
+iter=83300 : Reward: 0.975000 Pc: 115.765523
+iter=83400 : Reward: 0.968333 Pc: 140.795565
+iter=83500 : Reward: 0.973333 Pc: 142.120803
+iter=83600 : Reward: 0.961667 Pc: 132.661137
+iter=83700 : Reward: 0.971667 Pc: 124.275447
+iter=83800 : Reward: 0.981667 Pc: 100.583000
+iter=83900 : Reward: 0.980000 Pc: 95.675031
+iter=84000 : Reward: 0.968333 Pc: 125.876204
+iter=84100 : Reward: 0.971667 Pc: 108.789852
+iter=84200 : Reward: 0.968333 Pc: 115.830121
+iter=84300 : Reward: 0.965000 Pc: 139.767328
+iter=84400 : Reward: 0.975000 Pc: 103.901052
+iter=84500 : Reward: 0.963333 Pc: 124.752176
+iter=84600 : Reward: 0.966667 Pc: 157.770468
+iter=84700 : Reward: 0.956667 Pc: 153.931568
+iter=84800 : Reward: 0.968333 Pc: 126.236800
+iter=84900 : Reward: 0.963333 Pc: 141.665357
+iter=85000 : Reward: 0.975000 Pc: 113.418207
+iter=85100 : Reward: 0.958333 Pc: 152.043553
+iter=85200 : Reward: 0.970000 Pc: 145.650543
+iter=85300 : Reward: 0.966667 Pc: 155.525728
+iter=85400 : Reward: 0.965000 Pc: 123.056024
+iter=85500 : Reward: 0.960000 Pc: 136.306970
+iter=85600 : Reward: 0.953333 Pc: 150.347089
+iter=85700 : Reward: 0.970000 Pc: 105.516447
+iter=85800 : Reward: 0.968333 Pc: 112.344064
+iter=85900 : Reward: 0.965000 Pc: 128.482724
+iter=86000 : Reward: 0.950000 Pc: 169.405806
+iter=86100 : Reward: 0.980000 Pc: 88.275563
+iter=86200 : Reward: 0.966667 Pc: 130.461813
+iter=86300 : Reward: 0.973333 Pc: 112.216322
+iter=86400 : Reward: 0.968333 Pc: 104.803575
+iter=86500 : Reward: 0.961667 Pc: 159.812890
+iter=86600 : Reward: 0.976667 Pc: 102.460925
+iter=86700 : Reward: 0.960000 Pc: 147.322631
+iter=86800 : Reward: 0.971667 Pc: 115.931632
+iter=86900 : Reward: 0.970000 Pc: 128.801677
+iter=87000 : Reward: 0.961667 Pc: 107.858663
+iter=87100 : Reward: 0.970000 Pc: 122.510585
+iter=87200 : Reward: 0.973333 Pc: 109.528543
+iter=87300 : Reward: 0.973333 Pc: 114.001643
+iter=87400 : Reward: 0.973333 Pc: 114.049689
+iter=87500 : Reward: 0.976667 Pc: 113.692458
+iter=87600 : Reward: 0.968333 Pc: 130.731020
+iter=87700 : Reward: 0.968333 Pc: 103.390240
+iter=87800 : Reward: 0.960000 Pc: 147.753017
+iter=87900 : Reward: 0.966667 Pc: 115.376376
+iter=88000 : Reward: 0.965000 Pc: 120.977453
+iter=88100 : Reward: 0.968333 Pc: 109.788898
+iter=88200 : Reward: 0.978333 Pc: 96.534865
+iter=88300 : Reward: 0.966667 Pc: 126.643531
+iter=88400 : Reward: 0.971667 Pc: 127.457664
+iter=88500 : Reward: 0.971667 Pc: 101.658066
+iter=88600 : Reward: 0.965000 Pc: 136.794391
+iter=88700 : Reward: 0.960000 Pc: 130.287614
+iter=88800 : Reward: 0.973333 Pc: 107.864889
+iter=88900 : Reward: 0.975000 Pc: 131.088855
+iter=89000 : Reward: 0.963333 Pc: 174.487374
+iter=89100 : Reward: 0.953333 Pc: 163.500174
+iter=89200 : Reward: 0.973333 Pc: 150.556238
+iter=89300 : Reward: 0.968333 Pc: 137.004713
+iter=89400 : Reward: 0.968333 Pc: 122.432896
+iter=89500 : Reward: 0.960000 Pc: 132.844404
+iter=89600 : Reward: 0.970000 Pc: 94.077205
+iter=89700 : Reward: 0.976667 Pc: 109.564545
+iter=89800 : Reward: 0.978333 Pc: 115.289609
+iter=89900 : Reward: 0.980000 Pc: 91.266389
+iter=90000 : Reward: 0.978333 Pc: 115.186838
+ACCURACY: 0.897999993771
+LabelSums: [ 1003.  1024.   955.   993.  1025.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [26.978188, 42.021358, 53.018379, 94.203613, 99.0, 99.0]
+POINTER_Y: [49.686722, 50.368896, 50.845192, 50.577122, 50.325047, 50.45752]
+TEACHER: [[30.0, 53.0], [46.0, 49.0], [99.0, 51.0], [99.0, 51.0], [99.0, 51.0], [99.0, 51.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_90000.ckpt
+--- 27064.042084 CPU seconds ---
+iter=90100 : Reward: 0.956667 Pc: 131.205925
+iter=90200 : Reward: 0.965000 Pc: 118.929189
+iter=90300 : Reward: 0.953333 Pc: 138.193142
+iter=90400 : Reward: 0.968333 Pc: 136.675772
+iter=90500 : Reward: 0.983333 Pc: 85.283715
+iter=90600 : Reward: 0.971667 Pc: 104.382690
+iter=90700 : Reward: 0.970000 Pc: 131.010182
+iter=90800 : Reward: 0.968333 Pc: 135.571633
+iter=90900 : Reward: 0.960000 Pc: 154.561519
+iter=91000 : Reward: 0.963333 Pc: 138.893741
+iter=91100 : Reward: 0.973333 Pc: 113.602113
+iter=91200 : Reward: 0.961667 Pc: 146.201607
+iter=91300 : Reward: 0.960000 Pc: 116.519026
+iter=91400 : Reward: 0.963333 Pc: 117.850182
+iter=91500 : Reward: 0.983333 Pc: 106.095123
+iter=91600 : Reward: 0.971667 Pc: 134.488744
+iter=91700 : Reward: 0.970000 Pc: 126.032743
+iter=91800 : Reward: 0.930000 Pc: 203.320479
+iter=91900 : Reward: 0.976667 Pc: 130.686209
+iter=92000 : Reward: 0.980000 Pc: 97.989924
+iter=92100 : Reward: 0.960000 Pc: 127.370533
+iter=92200 : Reward: 0.975000 Pc: 101.955032
+iter=92300 : Reward: 0.965000 Pc: 141.165369
+iter=92400 : Reward: 0.976667 Pc: 110.611695
+iter=92500 : Reward: 0.970000 Pc: 108.765759
+iter=92600 : Reward: 0.953333 Pc: 122.159333
+iter=92700 : Reward: 0.971667 Pc: 103.592223
+iter=92800 : Reward: 0.958333 Pc: 171.036794
+iter=92900 : Reward: 0.970000 Pc: 97.376479
+iter=93000 : Reward: 0.950000 Pc: 168.208458
+iter=93100 : Reward: 0.966667 Pc: 136.431139
+iter=93200 : Reward: 0.953333 Pc: 134.038983
+iter=93300 : Reward: 0.963333 Pc: 123.871811
+iter=93400 : Reward: 0.966667 Pc: 98.648285
+iter=93500 : Reward: 0.976667 Pc: 105.065081
+iter=93600 : Reward: 0.958333 Pc: 129.997926
+iter=93700 : Reward: 0.968333 Pc: 126.123316
+iter=93800 : Reward: 0.950000 Pc: 160.525677
+iter=93900 : Reward: 0.973333 Pc: 111.953419
+iter=94000 : Reward: 0.955000 Pc: 143.173586
+iter=94100 : Reward: 0.968333 Pc: 112.508670
+iter=94200 : Reward: 0.975000 Pc: 98.455873
+iter=94300 : Reward: 0.956667 Pc: 125.210827
+iter=94400 : Reward: 0.963333 Pc: 144.751672
+iter=94500 : Reward: 0.968333 Pc: 118.288391
+iter=94600 : Reward: 0.968333 Pc: 102.272689
+iter=94700 : Reward: 0.963333 Pc: 133.442674
+iter=94800 : Reward: 0.960000 Pc: 141.371996
+iter=94900 : Reward: 0.981667 Pc: 88.826030
+iter=95000 : Reward: 0.961667 Pc: 141.972590
+iter=95100 : Reward: 0.965000 Pc: 123.280905
+iter=95200 : Reward: 0.981667 Pc: 113.245976
+iter=95300 : Reward: 0.960000 Pc: 136.076997
+iter=95400 : Reward: 0.980000 Pc: 101.087394
+iter=95500 : Reward: 0.968333 Pc: 115.157289
+iter=95600 : Reward: 0.965000 Pc: 118.996966
+iter=95700 : Reward: 0.965000 Pc: 144.014164
+iter=95800 : Reward: 0.958333 Pc: 151.837174
+iter=95900 : Reward: 0.960000 Pc: 139.284215
+iter=96000 : Reward: 0.960000 Pc: 181.969728
+iter=96100 : Reward: 0.976667 Pc: 114.332468
+iter=96200 : Reward: 0.973333 Pc: 93.464312
+iter=96300 : Reward: 0.973333 Pc: 127.927038
+iter=96400 : Reward: 0.963333 Pc: 106.018836
+iter=96500 : Reward: 0.970000 Pc: 128.626315
+iter=96600 : Reward: 0.965000 Pc: 128.831010
+iter=96700 : Reward: 0.948333 Pc: 174.103240
+iter=96800 : Reward: 0.966667 Pc: 116.960842
+iter=96900 : Reward: 0.963333 Pc: 120.873903
+iter=97000 : Reward: 0.963333 Pc: 110.775655
+iter=97100 : Reward: 0.978333 Pc: 119.013316
+iter=97200 : Reward: 0.978333 Pc: 92.650776
+iter=97300 : Reward: 0.970000 Pc: 95.979017
+iter=97400 : Reward: 0.963333 Pc: 129.351616
+iter=97500 : Reward: 0.968333 Pc: 110.778050
+iter=97600 : Reward: 0.975000 Pc: 107.557169
+iter=97700 : Reward: 0.973333 Pc: 120.046127
+iter=97800 : Reward: 0.955000 Pc: 134.706960
+iter=97900 : Reward: 0.970000 Pc: 133.098990
+iter=98000 : Reward: 0.975000 Pc: 136.290051
+iter=98100 : Reward: 0.975000 Pc: 129.688016
+iter=98200 : Reward: 0.973333 Pc: 108.538807
+iter=98300 : Reward: 0.978333 Pc: 114.011725
+iter=98400 : Reward: 0.961667 Pc: 139.594792
+iter=98500 : Reward: 0.973333 Pc: 110.929134
+iter=98600 : Reward: 0.973333 Pc: 103.023345
+iter=98700 : Reward: 0.975000 Pc: 109.051322
+iter=98800 : Reward: 0.966667 Pc: 145.501613
+iter=98900 : Reward: 0.978333 Pc: 114.002208
+iter=99000 : Reward: 0.973333 Pc: 100.508217
+iter=99100 : Reward: 0.968333 Pc: 124.454581
+iter=99200 : Reward: 0.970000 Pc: 115.665138
+iter=99300 : Reward: 0.980000 Pc: 105.144088
+iter=99400 : Reward: 0.973333 Pc: 91.760599
+iter=99500 : Reward: 0.975000 Pc: 109.667542
+iter=99600 : Reward: 0.983333 Pc: 81.796731
+iter=99700 : Reward: 0.973333 Pc: 112.975306
+iter=99800 : Reward: 0.960000 Pc: 140.187692
+iter=99900 : Reward: 0.966667 Pc: 136.596451
+iter=100000 : Reward: 0.963333 Pc: 122.405117
+ACCURACY: 0.892066659939
+LabelSums: [  981.  1020.  1006.   995.   998.]
+CORRECT: [1, 2, 3, 4, 5, 0]
+COUNT: [1, 2, 3, 4, 0, 0]
+POINTER_X: [26.651072, 34.60511, 49.432026, 61.492264, 86.656555, 97.507614]
+POINTER_Y: [49.845699, 53.511402, 53.031487, 52.671345, 52.06126, 53.428101]
+TEACHER: [[28.0, 56.0], [40.0, 53.0], [52.0, 41.0], [65.0, 44.0], [76.0, 52.0], [99.0, 44.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_100000.ckpt
+--- 30100.282043 CPU seconds ---
+iter=100100 : Reward: 0.976667 Pc: 106.344308
+iter=100200 : Reward: 0.953333 Pc: 173.195480
+iter=100300 : Reward: 0.973333 Pc: 105.133446
+iter=100400 : Reward: 0.970000 Pc: 117.348087
+iter=100500 : Reward: 0.961667 Pc: 136.295412
+iter=100600 : Reward: 0.981667 Pc: 104.636293
+iter=100700 : Reward: 0.970000 Pc: 136.382477
+iter=100800 : Reward: 0.965000 Pc: 115.949690
+iter=100900 : Reward: 0.975000 Pc: 126.307132
+iter=101000 : Reward: 0.971667 Pc: 107.356513
+iter=101100 : Reward: 0.961667 Pc: 135.409594
+iter=101200 : Reward: 0.966667 Pc: 145.715392
+iter=101300 : Reward: 0.971667 Pc: 110.391859
+iter=101400 : Reward: 0.975000 Pc: 102.991947
+iter=101500 : Reward: 0.971667 Pc: 136.725924
+iter=101600 : Reward: 0.966667 Pc: 146.588729
+iter=101700 : Reward: 0.955000 Pc: 152.117270
+iter=101800 : Reward: 0.970000 Pc: 126.384906
+iter=101900 : Reward: 0.966667 Pc: 147.999016
+iter=102000 : Reward: 0.975000 Pc: 91.355005
+iter=102100 : Reward: 0.968333 Pc: 116.930207
+iter=102200 : Reward: 0.968333 Pc: 125.281011
+iter=102300 : Reward: 0.960000 Pc: 173.585140
+iter=102400 : Reward: 0.971667 Pc: 128.728535
+iter=102500 : Reward: 0.973333 Pc: 144.009285
+iter=102600 : Reward: 0.968333 Pc: 120.473421
+iter=102700 : Reward: 0.960000 Pc: 134.151335
+iter=102800 : Reward: 0.981667 Pc: 106.879537
+iter=102900 : Reward: 0.958333 Pc: 173.126896
+iter=103000 : Reward: 0.970000 Pc: 112.360914
+iter=103100 : Reward: 0.968333 Pc: 102.572728
+iter=103200 : Reward: 0.960000 Pc: 134.932289
+iter=103300 : Reward: 0.958333 Pc: 143.698779
+iter=103400 : Reward: 0.975000 Pc: 92.344760
+iter=103500 : Reward: 0.958333 Pc: 147.871257
+iter=103600 : Reward: 0.965000 Pc: 141.381077
+iter=103700 : Reward: 0.978333 Pc: 98.151117
+iter=103800 : Reward: 0.978333 Pc: 117.890623
+iter=103900 : Reward: 0.971667 Pc: 126.617070
+iter=104000 : Reward: 0.961667 Pc: 112.601349
+iter=104100 : Reward: 0.948333 Pc: 162.267207
+iter=104200 : Reward: 0.978333 Pc: 95.397768
+iter=104300 : Reward: 0.953333 Pc: 148.515440
+iter=104400 : Reward: 0.960000 Pc: 141.953367
+iter=104500 : Reward: 0.971667 Pc: 146.637194
+iter=104600 : Reward: 0.971667 Pc: 91.469802
+iter=104700 : Reward: 0.948333 Pc: 172.943103
+iter=104800 : Reward: 0.966667 Pc: 128.883935
+iter=104900 : Reward: 0.965000 Pc: 116.507466
+iter=105000 : Reward: 0.955000 Pc: 162.550858
+iter=105100 : Reward: 0.961667 Pc: 136.140217
+iter=105200 : Reward: 0.985000 Pc: 72.541276
+iter=105300 : Reward: 0.961667 Pc: 162.537138
+iter=105400 : Reward: 0.965000 Pc: 137.925733
+iter=105500 : Reward: 0.961667 Pc: 109.748566
+iter=105600 : Reward: 0.975000 Pc: 85.934741
+iter=105700 : Reward: 0.981667 Pc: 120.984312
+iter=105800 : Reward: 0.970000 Pc: 129.521729
+iter=105900 : Reward: 0.978333 Pc: 104.485417
+iter=106000 : Reward: 0.976667 Pc: 104.340202
+iter=106100 : Reward: 0.966667 Pc: 120.396763
+iter=106200 : Reward: 0.966667 Pc: 112.277493
+iter=106300 : Reward: 0.961667 Pc: 123.684095
+iter=106400 : Reward: 0.970000 Pc: 112.709265
+iter=106500 : Reward: 0.965000 Pc: 91.857571
+iter=106600 : Reward: 0.965000 Pc: 141.817080
+iter=106700 : Reward: 0.955000 Pc: 158.210964
+iter=106800 : Reward: 0.975000 Pc: 135.768187
+iter=106900 : Reward: 0.966667 Pc: 149.635134
+iter=107000 : Reward: 0.953333 Pc: 147.213372
+iter=107100 : Reward: 0.981667 Pc: 97.164935
+iter=107200 : Reward: 0.961667 Pc: 138.747904
+iter=107300 : Reward: 0.973333 Pc: 100.670207
+iter=107400 : Reward: 0.966667 Pc: 140.205043
+iter=107500 : Reward: 0.963333 Pc: 144.769255
+iter=107600 : Reward: 0.980000 Pc: 101.981705
+iter=107700 : Reward: 0.946667 Pc: 159.139677
+iter=107800 : Reward: 0.968333 Pc: 88.914021
+iter=107900 : Reward: 0.973333 Pc: 117.236849
+iter=108000 : Reward: 0.940000 Pc: 174.617880
+iter=108100 : Reward: 0.970000 Pc: 107.855391
+iter=108200 : Reward: 0.961667 Pc: 105.253064
+iter=108300 : Reward: 0.963333 Pc: 123.740792
+iter=108400 : Reward: 0.955000 Pc: 132.770615
+iter=108500 : Reward: 0.971667 Pc: 112.013361
+iter=108600 : Reward: 0.946667 Pc: 140.163421
+iter=108700 : Reward: 0.970000 Pc: 115.303993
+iter=108800 : Reward: 0.970000 Pc: 120.956393
+iter=108900 : Reward: 0.970000 Pc: 110.809357
+iter=109000 : Reward: 0.975000 Pc: 111.691296
+iter=109100 : Reward: 0.965000 Pc: 132.001461
+iter=109200 : Reward: 0.978333 Pc: 127.897080
+iter=109300 : Reward: 0.971667 Pc: 117.382009
+iter=109400 : Reward: 0.968333 Pc: 116.186876
+iter=109500 : Reward: 0.981667 Pc: 97.511305
+iter=109600 : Reward: 0.975000 Pc: 100.385920
+iter=109700 : Reward: 0.961667 Pc: 138.905329
+iter=109800 : Reward: 0.961667 Pc: 139.952780
+iter=109900 : Reward: 0.966667 Pc: 135.375827
+iter=110000 : Reward: 0.956667 Pc: 105.188147
+ACCURACY: 0.883266661918
+LabelSums: [ 1016.   984.  1036.   999.   965.]
+CORRECT: [1, 2, 3, 4, 5, 0]
+COUNT: [1, 2, 3, 0, 0, 0]
+POINTER_X: [26.912315, 37.395958, 48.545311, 64.206024, 90.665985, 99.0]
+POINTER_Y: [49.835175, 44.616554, 45.928341, 48.841457, 47.08392, 50.135349]
+TEACHER: [[26.0, 41.0], [38.0, 42.0], [51.0, 47.0], [59.0, 62.0], [74.0, 53.0], [99.0, 38.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_110000.ckpt
+--- 33116.931971 CPU seconds ---
+iter=110100 : Reward: 0.960000 Pc: 134.066646
+iter=110200 : Reward: 0.970000 Pc: 97.091296
+iter=110300 : Reward: 0.951667 Pc: 127.611985
+iter=110400 : Reward: 0.960000 Pc: 140.896546
+iter=110500 : Reward: 0.961667 Pc: 118.189459
+iter=110600 : Reward: 0.983333 Pc: 101.331375
+iter=110700 : Reward: 0.980000 Pc: 105.555760
+iter=110800 : Reward: 0.971667 Pc: 140.551326
+iter=110900 : Reward: 0.978333 Pc: 92.197592
+iter=111000 : Reward: 0.961667 Pc: 142.621256
+iter=111100 : Reward: 0.955000 Pc: 125.412873
+iter=111200 : Reward: 0.953333 Pc: 163.679382
+iter=111300 : Reward: 0.965000 Pc: 133.662985
+iter=111400 : Reward: 0.956667 Pc: 130.498289
+iter=111500 : Reward: 0.958333 Pc: 146.770747
+iter=111600 : Reward: 0.966667 Pc: 114.966345
+iter=111700 : Reward: 0.961667 Pc: 114.741408
+iter=111800 : Reward: 0.978333 Pc: 102.437286
+iter=111900 : Reward: 0.956667 Pc: 123.399937
+iter=112000 : Reward: 0.978333 Pc: 111.501809
+iter=112100 : Reward: 0.981667 Pc: 97.595623
+iter=112200 : Reward: 0.961667 Pc: 124.390590
+iter=112300 : Reward: 0.978333 Pc: 104.450617
+iter=112400 : Reward: 0.968333 Pc: 111.580613
+iter=112500 : Reward: 0.968333 Pc: 109.368896
+iter=112600 : Reward: 0.976667 Pc: 99.190913
+iter=112700 : Reward: 0.983333 Pc: 89.874627
+iter=112800 : Reward: 0.970000 Pc: 112.421555
+iter=112900 : Reward: 0.965000 Pc: 139.106101
+iter=113000 : Reward: 0.973333 Pc: 135.603192
+iter=113100 : Reward: 0.970000 Pc: 120.413984
+iter=113200 : Reward: 0.973333 Pc: 115.874376
+iter=113300 : Reward: 0.965000 Pc: 120.915428
+iter=113400 : Reward: 0.970000 Pc: 115.637477
+iter=113500 : Reward: 0.976667 Pc: 108.062917
+iter=113600 : Reward: 0.968333 Pc: 118.341427
+iter=113700 : Reward: 0.971667 Pc: 96.997471
+iter=113800 : Reward: 0.973333 Pc: 119.160365
+iter=113900 : Reward: 0.970000 Pc: 119.167818
+iter=114000 : Reward: 0.958333 Pc: 123.290121
+iter=114100 : Reward: 0.970000 Pc: 137.283498
+iter=114200 : Reward: 0.953333 Pc: 133.061535
+iter=114300 : Reward: 0.971667 Pc: 107.009760
+iter=114400 : Reward: 0.960000 Pc: 124.341710
+iter=114500 : Reward: 0.978333 Pc: 117.394940
+iter=114600 : Reward: 0.976667 Pc: 107.090825
+iter=114700 : Reward: 0.971667 Pc: 123.097766
+iter=114800 : Reward: 0.980000 Pc: 93.905895
+iter=114900 : Reward: 0.966667 Pc: 137.929358
+iter=115000 : Reward: 0.961667 Pc: 142.178677
+iter=115100 : Reward: 0.976667 Pc: 118.302451
+iter=115200 : Reward: 0.978333 Pc: 119.388863
+iter=115300 : Reward: 0.958333 Pc: 133.675107
+iter=115400 : Reward: 0.970000 Pc: 127.093327
+iter=115500 : Reward: 0.971667 Pc: 125.477941
+iter=115600 : Reward: 0.963333 Pc: 131.855231
+iter=115700 : Reward: 0.971667 Pc: 113.574210
+iter=115800 : Reward: 0.985000 Pc: 83.237898
+iter=115900 : Reward: 0.975000 Pc: 98.108772
+iter=116000 : Reward: 0.968333 Pc: 117.655535
+iter=116100 : Reward: 0.978333 Pc: 100.910808
+iter=116200 : Reward: 0.970000 Pc: 127.232077
+iter=116300 : Reward: 0.960000 Pc: 131.854958
+iter=116400 : Reward: 0.970000 Pc: 122.777594
+iter=116500 : Reward: 0.978333 Pc: 103.793306
+iter=116600 : Reward: 0.975000 Pc: 131.500922
+iter=116700 : Reward: 0.970000 Pc: 104.467845
+iter=116800 : Reward: 0.978333 Pc: 110.860943
+iter=116900 : Reward: 0.960000 Pc: 131.538243
+iter=117000 : Reward: 0.970000 Pc: 106.293119
+iter=117100 : Reward: 0.966667 Pc: 122.882893
+iter=117200 : Reward: 0.961667 Pc: 124.865354
+iter=117300 : Reward: 0.966667 Pc: 104.034477
+iter=117400 : Reward: 0.965000 Pc: 118.929243
+iter=117500 : Reward: 0.983333 Pc: 104.917076
+iter=117600 : Reward: 0.963333 Pc: 126.398611
+iter=117700 : Reward: 0.961667 Pc: 151.592368
+iter=117800 : Reward: 0.975000 Pc: 115.253783
+iter=117900 : Reward: 0.965000 Pc: 146.818001
+iter=118000 : Reward: 0.973333 Pc: 126.457524
+iter=118100 : Reward: 0.976667 Pc: 102.362118
+iter=118200 : Reward: 0.966667 Pc: 133.680781
+iter=118300 : Reward: 0.971667 Pc: 109.392826
+iter=118400 : Reward: 0.983333 Pc: 98.631815
+iter=118500 : Reward: 0.963333 Pc: 146.595092
+iter=118600 : Reward: 0.976667 Pc: 91.321776
+iter=118700 : Reward: 0.971667 Pc: 99.138889
+iter=118800 : Reward: 0.978333 Pc: 102.972852
+iter=118900 : Reward: 0.970000 Pc: 110.100426
+iter=119000 : Reward: 0.985000 Pc: 85.224865
+iter=119100 : Reward: 0.966667 Pc: 124.877403
+iter=119200 : Reward: 0.978333 Pc: 110.311429
+iter=119300 : Reward: 0.968333 Pc: 112.367706
+iter=119400 : Reward: 0.976667 Pc: 104.872134
+iter=119500 : Reward: 0.978333 Pc: 106.552147
+iter=119600 : Reward: 0.970000 Pc: 131.163191
+iter=119700 : Reward: 0.973333 Pc: 127.800713
+iter=119800 : Reward: 0.958333 Pc: 158.834987
+iter=119900 : Reward: 0.976667 Pc: 101.634905
+iter=120000 : Reward: 0.970000 Pc: 124.329948
+ACCURACY: 0.904533325833
+LabelSums: [ 1017.   983.  1008.  1012.   980.]
+CORRECT: [1, 2, 3, 0, 0, 0]
+COUNT: [1, 2, 3, 0, 0, 0]
+POINTER_X: [26.728933, 36.728298, 50.055359, 81.908134, 99.0, 99.0]
+POINTER_Y: [49.617016, 51.452183, 50.811768, 51.405525, 50.62529, 50.487152]
+TEACHER: [[26.0, 45.0], [38.0, 48.0], [46.0, 62.0], [99.0, 59.0], [99.0, 59.0], [99.0, 59.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_120000.ckpt
+--- 36139.208041000005 CPU seconds ---
+iter=120100 : Reward: 0.975000 Pc: 100.964731
+iter=120200 : Reward: 0.970000 Pc: 115.161823
+iter=120300 : Reward: 0.970000 Pc: 106.475779
+iter=120400 : Reward: 0.965000 Pc: 128.753466
+iter=120500 : Reward: 0.965000 Pc: 144.367690
+iter=120600 : Reward: 0.960000 Pc: 153.648199
+iter=120700 : Reward: 0.983333 Pc: 108.288749
+iter=120800 : Reward: 0.971667 Pc: 120.920472
+iter=120900 : Reward: 0.976667 Pc: 129.987766
+iter=121000 : Reward: 0.965000 Pc: 147.420520
+iter=121100 : Reward: 0.970000 Pc: 127.623363
+iter=121200 : Reward: 0.965000 Pc: 112.722472
+iter=121300 : Reward: 0.973333 Pc: 144.450573
+iter=121400 : Reward: 0.971667 Pc: 118.407218
+iter=121500 : Reward: 0.975000 Pc: 110.154663
+iter=121600 : Reward: 0.973333 Pc: 83.986437
+iter=121700 : Reward: 0.961667 Pc: 135.525107
+iter=121800 : Reward: 0.978333 Pc: 92.847022
+iter=121900 : Reward: 0.963333 Pc: 132.732073
+iter=122000 : Reward: 0.983333 Pc: 71.989179
+iter=122100 : Reward: 0.970000 Pc: 130.592700
+iter=122200 : Reward: 0.985000 Pc: 70.696654
+iter=122300 : Reward: 0.976667 Pc: 101.330512
+iter=122400 : Reward: 0.990000 Pc: 96.831700
+iter=122500 : Reward: 0.973333 Pc: 120.315273
+iter=122600 : Reward: 0.968333 Pc: 143.557409
+iter=122700 : Reward: 0.971667 Pc: 124.851215
+iter=122800 : Reward: 0.965000 Pc: 118.419068
+iter=122900 : Reward: 0.976667 Pc: 100.999819
+iter=123000 : Reward: 0.981667 Pc: 82.359134
+iter=123100 : Reward: 0.963333 Pc: 114.233618
+iter=123200 : Reward: 0.971667 Pc: 121.547364
+iter=123300 : Reward: 0.981667 Pc: 89.347268
+iter=123400 : Reward: 0.970000 Pc: 106.512071
+iter=123500 : Reward: 0.976667 Pc: 131.495117
+iter=123600 : Reward: 0.976667 Pc: 104.093463
+iter=123700 : Reward: 0.950000 Pc: 167.131100
+iter=123800 : Reward: 0.973333 Pc: 132.784791
+iter=123900 : Reward: 0.958333 Pc: 133.364024
+iter=124000 : Reward: 0.978333 Pc: 104.595487
+iter=124100 : Reward: 0.975000 Pc: 107.240776
+iter=124200 : Reward: 0.958333 Pc: 118.732498
+iter=124300 : Reward: 0.976667 Pc: 111.848687
+iter=124400 : Reward: 0.978333 Pc: 95.804354
+iter=124500 : Reward: 0.956667 Pc: 134.303150
+iter=124600 : Reward: 0.966667 Pc: 116.039862
+iter=124700 : Reward: 0.983333 Pc: 76.008724
+iter=124800 : Reward: 0.971667 Pc: 103.596525
+iter=124900 : Reward: 0.978333 Pc: 91.899814
+iter=125000 : Reward: 0.970000 Pc: 131.726123
+ACCURACY: 0.897066660357
+LabelSums: [ 1040.   961.  1005.  1005.   989.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [27.064701, 50.765862, 87.222321, 98.754349, 99.0, 99.0]
+POINTER_Y: [49.610611, 48.871395, 49.367786, 48.837692, 48.613873, 48.667473]
+TEACHER: [[25.0, 39.0], [30.0, 43.0], [99.0, 38.0], [99.0, 38.0], [99.0, 38.0], [99.0, 38.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_125000.ckpt
+--- 37684.895732000005 CPU seconds ---
+iter=125100 : Reward: 0.966667 Pc: 123.259856
+iter=125200 : Reward: 0.971667 Pc: 129.146984
+iter=125300 : Reward: 0.960000 Pc: 151.530544
+iter=125400 : Reward: 0.966667 Pc: 127.066045
+iter=125500 : Reward: 0.985000 Pc: 97.875682
+iter=125600 : Reward: 0.985000 Pc: 96.589677
+iter=125700 : Reward: 0.966667 Pc: 130.326666
+iter=125800 : Reward: 0.958333 Pc: 141.328136
+iter=125900 : Reward: 0.973333 Pc: 114.079378
+iter=126000 : Reward: 0.975000 Pc: 112.352353
+iter=126100 : Reward: 0.968333 Pc: 121.408372
+iter=126200 : Reward: 0.976667 Pc: 138.283032
+iter=126300 : Reward: 0.983333 Pc: 77.137801
+iter=126400 : Reward: 0.958333 Pc: 139.332813
+iter=126500 : Reward: 0.951667 Pc: 170.243590
+iter=126600 : Reward: 0.970000 Pc: 119.159179
+iter=126700 : Reward: 0.968333 Pc: 99.593410
+iter=126800 : Reward: 0.970000 Pc: 131.717147
+iter=126900 : Reward: 0.970000 Pc: 107.057336
+iter=127000 : Reward: 0.960000 Pc: 128.162419
+iter=127100 : Reward: 0.970000 Pc: 141.669918
+iter=127200 : Reward: 0.973333 Pc: 105.909860
+iter=127300 : Reward: 0.963333 Pc: 137.374640
+iter=127400 : Reward: 0.961667 Pc: 132.345351
+iter=127500 : Reward: 0.968333 Pc: 121.557525
+iter=127600 : Reward: 0.961667 Pc: 140.640850
+iter=127700 : Reward: 0.975000 Pc: 119.776219
+iter=127800 : Reward: 0.956667 Pc: 118.899458
+iter=127900 : Reward: 0.953333 Pc: 145.108863
+iter=128000 : Reward: 0.968333 Pc: 111.262504
+iter=128100 : Reward: 0.981667 Pc: 95.985065
+iter=128200 : Reward: 0.963333 Pc: 112.311308
+iter=128300 : Reward: 0.970000 Pc: 106.876629
+iter=128400 : Reward: 0.968333 Pc: 120.086458
+iter=128500 : Reward: 0.966667 Pc: 134.091755
+iter=128600 : Reward: 0.975000 Pc: 116.399304
+iter=128700 : Reward: 0.966667 Pc: 141.108591
+iter=128800 : Reward: 0.960000 Pc: 98.896634
+iter=128900 : Reward: 0.961667 Pc: 118.195271
+iter=129000 : Reward: 0.973333 Pc: 115.643485
+iter=129100 : Reward: 0.983333 Pc: 89.307609
+iter=129200 : Reward: 0.983333 Pc: 90.418410
+iter=129300 : Reward: 0.985000 Pc: 79.598302
+iter=129400 : Reward: 0.963333 Pc: 127.353750
+iter=129500 : Reward: 0.961667 Pc: 111.995288
+iter=129600 : Reward: 0.985000 Pc: 98.533078
+iter=129700 : Reward: 0.973333 Pc: 104.942558
+iter=129800 : Reward: 0.965000 Pc: 115.031865
+iter=129900 : Reward: 0.950000 Pc: 128.827812
+iter=130000 : Reward: 0.971667 Pc: 114.826568
+ACCURACY: 0.873633330142
+LabelSums: [ 1006.   974.  1029.  1013.   978.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0]
+POINTER_X: [26.886669, 53.341255, 86.251953, 97.884232, 99.0, 99.0]
+POINTER_Y: [49.394463, 49.144505, 49.71006, 49.370098, 49.234356, 49.772289]
+TEACHER: [[25.0, 50.0], [31.0, 60.0], [99.0, 37.0], [99.0, 37.0], [99.0, 37.0], [99.0, 37.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_130000.ckpt
+--- 39208.694607000005 CPU seconds ---
+iter=130100 : Reward: 0.968333 Pc: 110.561190
+iter=130200 : Reward: 0.965000 Pc: 124.450520
+iter=130300 : Reward: 0.966667 Pc: 115.075557
+iter=130400 : Reward: 0.961667 Pc: 111.661667
+iter=130500 : Reward: 0.983333 Pc: 105.676153
+iter=130600 : Reward: 0.966667 Pc: 138.127010
+iter=130700 : Reward: 0.960000 Pc: 134.740388
+iter=130800 : Reward: 0.965000 Pc: 109.947243
+iter=130900 : Reward: 0.980000 Pc: 90.370404
+iter=131000 : Reward: 0.970000 Pc: 140.299216
+iter=131100 : Reward: 0.970000 Pc: 121.312852
+iter=131200 : Reward: 0.966667 Pc: 128.707756
+iter=131300 : Reward: 0.980000 Pc: 91.354345
+iter=131400 : Reward: 0.978333 Pc: 96.010986
+iter=131500 : Reward: 0.965000 Pc: 115.227100
+iter=131600 : Reward: 0.965000 Pc: 118.589339
+iter=131700 : Reward: 0.975000 Pc: 113.912347
+iter=131800 : Reward: 0.971667 Pc: 107.835405
+iter=131900 : Reward: 0.971667 Pc: 126.585545
+iter=132000 : Reward: 0.965000 Pc: 156.833134
+iter=132100 : Reward: 0.968333 Pc: 129.348494
+iter=132200 : Reward: 0.963333 Pc: 116.690680
+iter=132300 : Reward: 0.970000 Pc: 116.078774
+iter=132400 : Reward: 0.971667 Pc: 122.226535
+iter=132500 : Reward: 0.968333 Pc: 138.237429
+iter=132600 : Reward: 0.981667 Pc: 99.019411
+iter=132700 : Reward: 0.980000 Pc: 115.484325
+iter=132800 : Reward: 0.971667 Pc: 89.296513
+iter=132900 : Reward: 0.963333 Pc: 149.195944
+iter=133000 : Reward: 0.971667 Pc: 108.932820
+iter=133100 : Reward: 0.960000 Pc: 125.932616
+iter=133200 : Reward: 0.971667 Pc: 98.766490
+iter=133300 : Reward: 0.970000 Pc: 97.620674
+iter=133400 : Reward: 0.960000 Pc: 153.020779
+iter=133500 : Reward: 0.966667 Pc: 96.904008
+iter=133600 : Reward: 0.966667 Pc: 141.047066
+iter=133700 : Reward: 0.930000 Pc: 174.299334
+iter=133800 : Reward: 0.961667 Pc: 141.120562
+iter=133900 : Reward: 0.978333 Pc: 93.870077
+iter=134000 : Reward: 0.978333 Pc: 104.500385
+iter=134100 : Reward: 0.970000 Pc: 89.713953
+iter=134200 : Reward: 0.965000 Pc: 102.803224
+iter=134300 : Reward: 0.961667 Pc: 134.699506
+iter=134400 : Reward: 0.965000 Pc: 116.952749
+iter=134500 : Reward: 0.973333 Pc: 99.890950
+iter=134600 : Reward: 0.970000 Pc: 93.113923
+iter=134700 : Reward: 0.973333 Pc: 110.490657
+iter=134800 : Reward: 0.990000 Pc: 74.584500
+iter=134900 : Reward: 0.961667 Pc: 128.491417
+iter=135000 : Reward: 0.971667 Pc: 111.666231
+iter=135100 : Reward: 0.956667 Pc: 135.530004
+iter=135200 : Reward: 0.958333 Pc: 170.986504
+iter=135300 : Reward: 0.981667 Pc: 101.044457
+iter=135400 : Reward: 0.955000 Pc: 140.557123
+iter=135500 : Reward: 0.966667 Pc: 91.769930
+iter=135600 : Reward: 0.971667 Pc: 79.585415
+iter=135700 : Reward: 0.960000 Pc: 130.590005
+iter=135800 : Reward: 0.961667 Pc: 135.870403
+iter=135900 : Reward: 0.978333 Pc: 96.939902
+iter=136000 : Reward: 0.970000 Pc: 129.045941
+iter=136100 : Reward: 0.971667 Pc: 114.390979
+iter=136200 : Reward: 0.978333 Pc: 100.483312
+iter=136300 : Reward: 0.985000 Pc: 85.340744
+iter=136400 : Reward: 0.970000 Pc: 118.095766
+iter=136500 : Reward: 0.971667 Pc: 124.903485
+iter=136600 : Reward: 0.946667 Pc: 117.949199
+iter=136700 : Reward: 0.958333 Pc: 163.823300
+iter=136800 : Reward: 0.955000 Pc: 146.616977
+iter=136900 : Reward: 0.966667 Pc: 125.208906
+iter=137000 : Reward: 0.971667 Pc: 110.149118
+iter=137100 : Reward: 0.963333 Pc: 132.881123
+iter=137200 : Reward: 0.975000 Pc: 145.677222
+iter=137300 : Reward: 0.965000 Pc: 118.060633
+iter=137400 : Reward: 0.978333 Pc: 122.274560
+iter=137500 : Reward: 0.978333 Pc: 117.973636
+iter=137600 : Reward: 0.961667 Pc: 139.711984
+iter=137700 : Reward: 0.958333 Pc: 135.664719
+iter=137800 : Reward: 0.973333 Pc: 139.182611
+iter=137900 : Reward: 0.968333 Pc: 143.577475
+iter=138000 : Reward: 0.965000 Pc: 136.032637
+iter=138100 : Reward: 0.936667 Pc: 168.509266
+iter=138200 : Reward: 0.975000 Pc: 115.504099
+iter=138300 : Reward: 0.970000 Pc: 113.321207
+iter=138400 : Reward: 0.965000 Pc: 101.174060
+iter=138500 : Reward: 0.978333 Pc: 100.836250
+iter=138600 : Reward: 0.971667 Pc: 101.192787
+iter=138700 : Reward: 0.968333 Pc: 109.419111
+iter=138800 : Reward: 0.980000 Pc: 99.347472
+iter=138900 : Reward: 0.975000 Pc: 96.424177
+iter=139000 : Reward: 0.966667 Pc: 121.600865
+iter=139100 : Reward: 0.963333 Pc: 106.143049
+iter=139200 : Reward: 0.981667 Pc: 68.971544
+iter=139300 : Reward: 0.961667 Pc: 102.022001
+iter=139400 : Reward: 0.965000 Pc: 110.607466
+iter=139500 : Reward: 0.975000 Pc: 129.153568
+iter=139600 : Reward: 0.970000 Pc: 137.384903
+iter=139700 : Reward: 0.970000 Pc: 132.077529
+iter=139800 : Reward: 0.971667 Pc: 123.077171
+iter=139900 : Reward: 0.978333 Pc: 111.446047
+iter=140000 : Reward: 0.970000 Pc: 129.356517
+ACCURACY: 0.85173333137
+LabelSums: [ 1021.   953.   991.   991.  1044.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [27.084042, 36.369331, 92.867218, 99.0, 99.0, 99.0]
+POINTER_Y: [49.867821, 53.373474, 48.309746, 47.70253, 47.472027, 46.85836]
+TEACHER: [[28.0, 52.0], [41.0, 57.0], [99.0, 39.0], [99.0, 39.0], [99.0, 39.0], [99.0, 39.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_140000.ckpt
+--- 42291.730540000004 CPU seconds ---
+iter=140100 : Reward: 0.961667 Pc: 121.526025
+iter=140200 : Reward: 0.958333 Pc: 123.844910
+iter=140300 : Reward: 0.973333 Pc: 131.913485
+iter=140400 : Reward: 0.980000 Pc: 92.394071
+iter=140500 : Reward: 0.965000 Pc: 114.880184
+iter=140600 : Reward: 0.981667 Pc: 83.961115
+iter=140700 : Reward: 0.966667 Pc: 142.677231
+iter=140800 : Reward: 0.970000 Pc: 104.775068
+iter=140900 : Reward: 0.976667 Pc: 106.842649
+iter=141000 : Reward: 0.980000 Pc: 82.138360
+iter=141100 : Reward: 0.971667 Pc: 115.847810
+iter=141200 : Reward: 0.973333 Pc: 130.827690
+iter=141300 : Reward: 0.978333 Pc: 106.476714
+iter=141400 : Reward: 0.975000 Pc: 116.626281
+iter=141500 : Reward: 0.978333 Pc: 85.640059
+iter=141600 : Reward: 0.973333 Pc: 137.623785
+iter=141700 : Reward: 0.976667 Pc: 112.485478
+iter=141800 : Reward: 0.953333 Pc: 139.561471
+iter=141900 : Reward: 0.981667 Pc: 103.160046
+iter=142000 : Reward: 0.965000 Pc: 139.854552
+iter=142100 : Reward: 0.966667 Pc: 118.617184
+iter=142200 : Reward: 0.965000 Pc: 129.547210
+iter=142300 : Reward: 0.975000 Pc: 104.722597
+iter=142400 : Reward: 0.976667 Pc: 111.780894
+iter=142500 : Reward: 0.970000 Pc: 101.311700
+iter=142600 : Reward: 0.971667 Pc: 105.989660
+iter=142700 : Reward: 0.971667 Pc: 101.375735
+iter=142800 : Reward: 0.970000 Pc: 120.998011
+iter=142900 : Reward: 0.985000 Pc: 85.318121
+iter=143000 : Reward: 0.978333 Pc: 114.842654
+iter=143100 : Reward: 0.978333 Pc: 84.982630
+iter=143200 : Reward: 0.978333 Pc: 106.628097
+iter=143300 : Reward: 0.970000 Pc: 108.621981
+iter=143400 : Reward: 0.971667 Pc: 133.496700
+iter=143500 : Reward: 0.983333 Pc: 93.650979
+iter=143600 : Reward: 0.978333 Pc: 109.191613
+iter=143700 : Reward: 0.968333 Pc: 121.001878
+iter=143800 : Reward: 0.965000 Pc: 141.784631
+iter=143900 : Reward: 0.975000 Pc: 98.748014
+iter=144000 : Reward: 0.966667 Pc: 156.735757
+iter=144100 : Reward: 0.958333 Pc: 135.816414
+iter=144200 : Reward: 0.966667 Pc: 116.873930
+iter=144300 : Reward: 0.983333 Pc: 85.104407
+iter=144400 : Reward: 0.976667 Pc: 105.443352
+iter=144500 : Reward: 0.960000 Pc: 141.302616
+iter=144600 : Reward: 0.968333 Pc: 110.645228
+iter=144700 : Reward: 0.978333 Pc: 99.053571
+iter=144800 : Reward: 0.970000 Pc: 141.202050
+iter=144900 : Reward: 0.985000 Pc: 94.463586
+iter=145000 : Reward: 0.965000 Pc: 132.994203
+iter=145100 : Reward: 0.975000 Pc: 110.167057
+iter=145200 : Reward: 0.956667 Pc: 180.523878
+iter=145300 : Reward: 0.973333 Pc: 116.756073
+iter=145400 : Reward: 0.960000 Pc: 118.452356
+iter=145500 : Reward: 0.973333 Pc: 97.916816
+iter=145600 : Reward: 0.971667 Pc: 119.091774
+iter=145700 : Reward: 0.970000 Pc: 114.964002
+iter=145800 : Reward: 0.971667 Pc: 122.300934
+iter=145900 : Reward: 0.981667 Pc: 93.501293
+iter=146000 : Reward: 0.985000 Pc: 74.002643
+iter=146100 : Reward: 0.971667 Pc: 121.094951
+iter=146200 : Reward: 0.966667 Pc: 112.960712
+iter=146300 : Reward: 0.973333 Pc: 139.282327
+iter=146400 : Reward: 0.981667 Pc: 95.587050
+iter=146500 : Reward: 0.965000 Pc: 149.487962
+iter=146600 : Reward: 0.970000 Pc: 118.678386
+iter=146700 : Reward: 0.961667 Pc: 136.426263
+iter=146800 : Reward: 0.976667 Pc: 77.546158
+iter=146900 : Reward: 0.965000 Pc: 115.110605
+iter=147000 : Reward: 0.978333 Pc: 109.706779
+iter=147100 : Reward: 0.980000 Pc: 88.742202
+iter=147200 : Reward: 0.975000 Pc: 95.095792
+iter=147300 : Reward: 0.956667 Pc: 158.864197
+iter=147400 : Reward: 0.951667 Pc: 142.038112
+iter=147500 : Reward: 0.963333 Pc: 127.106994
+iter=147600 : Reward: 0.966667 Pc: 115.623304
+iter=147700 : Reward: 0.971667 Pc: 128.933626
+iter=147800 : Reward: 0.976667 Pc: 104.882389
+iter=147900 : Reward: 0.965000 Pc: 119.826937
+iter=148000 : Reward: 0.970000 Pc: 95.502207
+iter=148100 : Reward: 0.973333 Pc: 121.609566
+iter=148200 : Reward: 0.958333 Pc: 141.464648
+iter=148300 : Reward: 0.970000 Pc: 135.825146
+iter=148400 : Reward: 0.958333 Pc: 141.416540
+iter=148500 : Reward: 0.980000 Pc: 100.650400
+iter=148600 : Reward: 0.976667 Pc: 132.277826
+iter=148700 : Reward: 0.971667 Pc: 108.308190
+iter=148800 : Reward: 0.975000 Pc: 108.302990
+iter=148900 : Reward: 0.956667 Pc: 184.642451
+iter=149000 : Reward: 0.973333 Pc: 112.447951
+iter=149100 : Reward: 0.955000 Pc: 153.632690
+iter=149200 : Reward: 0.963333 Pc: 140.457110
+iter=149300 : Reward: 0.968333 Pc: 150.857713
+iter=149400 : Reward: 0.978333 Pc: 125.588009
+iter=149500 : Reward: 0.975000 Pc: 109.040270
+iter=149600 : Reward: 0.958333 Pc: 153.755274
+iter=149700 : Reward: 0.975000 Pc: 121.445466
+iter=149800 : Reward: 0.981667 Pc: 110.491607
+iter=149900 : Reward: 0.983333 Pc: 112.475423
+iter=150000 : Reward: 0.966667 Pc: 103.949174
+ACCURACY: 0.901766660571
+LabelSums: [ 1019.  1005.   984.   980.  1012.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 3, 4, 0, 0]
+POINTER_X: [27.054918, 40.8578, 48.117622, 72.537201, 93.033119, 98.47641]
+POINTER_Y: [49.704899, 38.720406, 45.063469, 46.276581, 47.363621, 47.681973]
+TEACHER: [[26.0, 40.0], [39.0, 39.0], [44.0, 61.0], [55.0, 37.0], [99.0, 57.0], [99.0, 57.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_150000.ckpt
+--- 45416.868772 CPU seconds ---
+iter=150100 : Reward: 0.973333 Pc: 115.330516
+iter=150200 : Reward: 0.978333 Pc: 82.079079
+iter=150300 : Reward: 0.963333 Pc: 142.915282
+iter=150400 : Reward: 0.965000 Pc: 131.181788
+iter=150500 : Reward: 0.970000 Pc: 108.397663
+iter=150600 : Reward: 0.970000 Pc: 115.550993
+iter=150700 : Reward: 0.980000 Pc: 117.736314
+iter=150800 : Reward: 0.973333 Pc: 125.633563
+iter=150900 : Reward: 0.973333 Pc: 107.233494
+iter=151000 : Reward: 0.948333 Pc: 156.191288
+iter=151100 : Reward: 0.976667 Pc: 101.157181
+iter=151200 : Reward: 0.985000 Pc: 67.057009
+iter=151300 : Reward: 0.963333 Pc: 159.978543
+iter=151400 : Reward: 0.978333 Pc: 122.335777
+iter=151500 : Reward: 0.970000 Pc: 120.113433
+iter=151600 : Reward: 0.971667 Pc: 85.085602
+iter=151700 : Reward: 0.953333 Pc: 130.449303
+iter=151800 : Reward: 0.981667 Pc: 112.154938
+iter=151900 : Reward: 0.973333 Pc: 97.747713
+iter=152000 : Reward: 0.981667 Pc: 111.298203
+iter=152100 : Reward: 0.981667 Pc: 94.169498
+iter=152200 : Reward: 0.973333 Pc: 116.864356
+iter=152300 : Reward: 0.978333 Pc: 105.555209
+iter=152400 : Reward: 0.986667 Pc: 89.651847
+iter=152500 : Reward: 0.971667 Pc: 109.595001
+iter=152600 : Reward: 0.980000 Pc: 111.205976
+iter=152700 : Reward: 0.965000 Pc: 133.903108
+iter=152800 : Reward: 0.970000 Pc: 120.661676
+iter=152900 : Reward: 0.983333 Pc: 95.523334
+iter=153000 : Reward: 0.973333 Pc: 111.962664
+iter=153100 : Reward: 0.975000 Pc: 118.170465
+iter=153200 : Reward: 0.975000 Pc: 107.213939
+iter=153300 : Reward: 0.976667 Pc: 135.632315
+iter=153400 : Reward: 0.963333 Pc: 89.819057
+iter=153500 : Reward: 0.963333 Pc: 126.729234
+iter=153600 : Reward: 0.976667 Pc: 84.621760
+iter=153700 : Reward: 0.980000 Pc: 92.436294
+iter=153800 : Reward: 0.975000 Pc: 121.391758
+iter=153900 : Reward: 0.978333 Pc: 99.939717
+iter=154000 : Reward: 0.971667 Pc: 79.188697
+iter=154100 : Reward: 0.968333 Pc: 141.200569
+iter=154200 : Reward: 0.966667 Pc: 143.669555
+iter=154300 : Reward: 0.980000 Pc: 76.304829
+iter=154400 : Reward: 0.963333 Pc: 139.586721
+iter=154500 : Reward: 0.978333 Pc: 106.183155
+iter=154600 : Reward: 0.970000 Pc: 124.441192
+iter=154700 : Reward: 0.971667 Pc: 102.636810
+iter=154800 : Reward: 0.978333 Pc: 81.314142
+iter=154900 : Reward: 0.970000 Pc: 118.994970
+iter=155000 : Reward: 0.986667 Pc: 85.759685
+iter=155100 : Reward: 0.973333 Pc: 102.650006
+iter=155200 : Reward: 0.975000 Pc: 114.239822
+iter=155300 : Reward: 0.956667 Pc: 161.466635
+iter=155400 : Reward: 0.951667 Pc: 154.278515
+iter=155500 : Reward: 0.966667 Pc: 135.069819
+iter=155600 : Reward: 0.971667 Pc: 106.361302
+iter=155700 : Reward: 0.971667 Pc: 124.716422
+iter=155800 : Reward: 0.961667 Pc: 105.302395
+iter=155900 : Reward: 0.968333 Pc: 132.570853
+iter=156000 : Reward: 0.960000 Pc: 145.120102
+iter=156100 : Reward: 0.973333 Pc: 115.225031
+iter=156200 : Reward: 0.971667 Pc: 123.067926
+iter=156300 : Reward: 0.966667 Pc: 121.223859
+iter=156400 : Reward: 0.953333 Pc: 142.697434
+iter=156500 : Reward: 0.975000 Pc: 95.469962
+iter=156600 : Reward: 0.971667 Pc: 106.190226
+iter=156700 : Reward: 0.956667 Pc: 156.800244
+iter=156800 : Reward: 0.971667 Pc: 139.100349
+iter=156900 : Reward: 0.963333 Pc: 119.079917
+iter=157000 : Reward: 0.968333 Pc: 106.429199
+iter=157100 : Reward: 0.963333 Pc: 137.269212
+iter=157200 : Reward: 0.961667 Pc: 108.938626
+iter=157300 : Reward: 0.968333 Pc: 115.635320
+iter=157400 : Reward: 0.973333 Pc: 129.890836
+iter=157500 : Reward: 0.981667 Pc: 99.980789
+iter=157600 : Reward: 0.963333 Pc: 116.898232
+iter=157700 : Reward: 0.965000 Pc: 129.142409
+iter=157800 : Reward: 0.966667 Pc: 125.310925
+iter=157900 : Reward: 0.970000 Pc: 123.017202
+iter=158000 : Reward: 0.978333 Pc: 104.781955
+iter=158100 : Reward: 0.971667 Pc: 116.148375
+iter=158200 : Reward: 0.966667 Pc: 145.434172
+iter=158300 : Reward: 0.971667 Pc: 117.714995
+iter=158400 : Reward: 0.973333 Pc: 113.672435
+iter=158500 : Reward: 0.961667 Pc: 139.560461
+iter=158600 : Reward: 0.976667 Pc: 112.508700
+iter=158700 : Reward: 0.965000 Pc: 154.979859
+iter=158800 : Reward: 0.970000 Pc: 133.435256
+iter=158900 : Reward: 0.966667 Pc: 113.891899
+iter=159000 : Reward: 0.975000 Pc: 139.203636
+iter=159100 : Reward: 0.960000 Pc: 143.045048
+iter=159200 : Reward: 0.973333 Pc: 89.920716
+iter=159300 : Reward: 0.963333 Pc: 120.994096
+iter=159400 : Reward: 0.975000 Pc: 100.225113
+iter=159500 : Reward: 0.961667 Pc: 140.410887
+iter=159600 : Reward: 0.963333 Pc: 121.835837
+iter=159700 : Reward: 0.971667 Pc: 123.797021
+iter=159800 : Reward: 0.975000 Pc: 96.310310
+iter=159900 : Reward: 0.956667 Pc: 162.881367
+iter=160000 : Reward: 0.960000 Pc: 117.138669
+ACCURACY: 0.914099994993
+LabelSums: [ 1073.   963.   931.   994.  1039.]
+CORRECT: [1, 2, 3, 0, 0, 0]
+COUNT: [1, 2, 3, 0, 0, 0]
+POINTER_X: [26.743719, 43.341927, 51.140587, 92.531265, 99.0, 99.0]
+POINTER_Y: [50.075943, 44.92976, 44.123356, 46.625309, 47.437817, 47.988613]
+TEACHER: [[30.0, 42.0], [44.0, 43.0], [51.0, 54.0], [99.0, 47.0], [99.0, 47.0], [99.0, 47.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_160000.ckpt
+--- 48454.208216 CPU seconds ---
+iter=160100 : Reward: 0.968333 Pc: 131.903099
+iter=160200 : Reward: 0.956667 Pc: 130.914131
+iter=160300 : Reward: 0.963333 Pc: 158.433157
+iter=160400 : Reward: 0.975000 Pc: 111.402283
+iter=160500 : Reward: 0.980000 Pc: 86.254918
+iter=160600 : Reward: 0.966667 Pc: 115.086751
+iter=160700 : Reward: 0.971667 Pc: 121.341440
+iter=160800 : Reward: 0.966667 Pc: 111.534682
+iter=160900 : Reward: 0.973333 Pc: 128.474944
+iter=161000 : Reward: 0.961667 Pc: 128.082261
+iter=161100 : Reward: 0.976667 Pc: 108.304520
+iter=161200 : Reward: 0.960000 Pc: 121.878764
+iter=161300 : Reward: 0.973333 Pc: 110.746822
+iter=161400 : Reward: 0.968333 Pc: 102.128963
+iter=161500 : Reward: 0.968333 Pc: 103.215644
+iter=161600 : Reward: 0.951667 Pc: 140.674462
+iter=161700 : Reward: 0.975000 Pc: 102.634380
+iter=161800 : Reward: 0.975000 Pc: 120.872336
+iter=161900 : Reward: 0.970000 Pc: 129.966574
+iter=162000 : Reward: 0.975000 Pc: 94.017626
+iter=162100 : Reward: 0.983333 Pc: 88.927359
+iter=162200 : Reward: 0.961667 Pc: 154.775212
+iter=162300 : Reward: 0.973333 Pc: 95.812125
+iter=162400 : Reward: 0.981667 Pc: 86.502995
+iter=162500 : Reward: 0.975000 Pc: 107.904999
+iter=162600 : Reward: 0.973333 Pc: 111.274233
+iter=162700 : Reward: 0.973333 Pc: 117.075177
+iter=162800 : Reward: 0.963333 Pc: 159.123319
+iter=162900 : Reward: 0.960000 Pc: 124.609963
+iter=163000 : Reward: 0.963333 Pc: 140.821407
+iter=163100 : Reward: 0.945000 Pc: 134.339478
+iter=163200 : Reward: 0.968333 Pc: 130.256884
+iter=163300 : Reward: 0.980000 Pc: 97.622661
+iter=163400 : Reward: 0.963333 Pc: 105.470086
+iter=163500 : Reward: 0.978333 Pc: 96.102789
+iter=163600 : Reward: 0.961667 Pc: 129.853407
+iter=163700 : Reward: 0.971667 Pc: 121.188475
+iter=163800 : Reward: 0.961667 Pc: 131.731841
+iter=163900 : Reward: 0.973333 Pc: 116.661574
+iter=164000 : Reward: 0.978333 Pc: 113.941929
+iter=164100 : Reward: 0.965000 Pc: 130.949727
+iter=164200 : Reward: 0.968333 Pc: 127.436199
+iter=164300 : Reward: 0.971667 Pc: 113.993449
+iter=164400 : Reward: 0.973333 Pc: 111.585337
+iter=164500 : Reward: 0.978333 Pc: 88.041318
+iter=164600 : Reward: 0.971667 Pc: 137.217797
+iter=164700 : Reward: 0.970000 Pc: 125.782901
+iter=164800 : Reward: 0.966667 Pc: 137.259140
+iter=164900 : Reward: 0.976667 Pc: 119.527629
+iter=165000 : Reward: 0.985000 Pc: 79.545844
+iter=165100 : Reward: 0.963333 Pc: 131.407746
+iter=165200 : Reward: 0.980000 Pc: 78.145273
+iter=165300 : Reward: 0.971667 Pc: 94.516097
+iter=165400 : Reward: 0.960000 Pc: 126.947495
+iter=165500 : Reward: 0.971667 Pc: 105.338413
+iter=165600 : Reward: 0.976667 Pc: 99.296047
+iter=165700 : Reward: 0.980000 Pc: 85.356790
+iter=165800 : Reward: 0.961667 Pc: 113.252953
+iter=165900 : Reward: 0.970000 Pc: 113.545121
+iter=166000 : Reward: 0.980000 Pc: 86.898543
+iter=166100 : Reward: 0.980000 Pc: 90.573241
+iter=166200 : Reward: 0.978333 Pc: 100.376758
+iter=166300 : Reward: 0.970000 Pc: 113.753062
+iter=166400 : Reward: 0.970000 Pc: 128.193079
+iter=166500 : Reward: 0.968333 Pc: 119.671897
+iter=166600 : Reward: 0.980000 Pc: 91.991693
+iter=166700 : Reward: 0.978333 Pc: 88.882485
+iter=166800 : Reward: 0.968333 Pc: 130.970430
+iter=166900 : Reward: 0.981667 Pc: 87.281804
+iter=167000 : Reward: 0.955000 Pc: 142.220390
+iter=167100 : Reward: 0.978333 Pc: 108.087585
+iter=167200 : Reward: 0.978333 Pc: 112.977912
+iter=167300 : Reward: 0.968333 Pc: 127.656308
+iter=167400 : Reward: 0.970000 Pc: 132.709086
+iter=167500 : Reward: 0.958333 Pc: 143.794459
+iter=167600 : Reward: 0.966667 Pc: 131.401664
+iter=167700 : Reward: 0.981667 Pc: 78.031598
+iter=167800 : Reward: 0.953333 Pc: 162.693671
+iter=167900 : Reward: 0.975000 Pc: 100.764717
+iter=168000 : Reward: 0.958333 Pc: 115.611550
+iter=168100 : Reward: 0.968333 Pc: 118.924118
+iter=168200 : Reward: 0.956667 Pc: 151.314670
+iter=168300 : Reward: 0.961667 Pc: 127.764610
+iter=168400 : Reward: 0.970000 Pc: 100.923444
+iter=168500 : Reward: 0.960000 Pc: 118.724036
+iter=168600 : Reward: 0.975000 Pc: 107.559864
+iter=168700 : Reward: 0.966667 Pc: 134.888668
+iter=168800 : Reward: 0.978333 Pc: 132.118136
+iter=168900 : Reward: 0.970000 Pc: 79.899317
+iter=169000 : Reward: 0.976667 Pc: 108.792222
+iter=169100 : Reward: 0.971667 Pc: 138.652050
+iter=169200 : Reward: 0.970000 Pc: 117.848948
+iter=169300 : Reward: 0.966667 Pc: 128.813748
+iter=169400 : Reward: 0.966667 Pc: 115.848174
+iter=169500 : Reward: 0.973333 Pc: 131.125951
+iter=169600 : Reward: 0.973333 Pc: 89.362223
+iter=169700 : Reward: 0.980000 Pc: 104.387827
+iter=169800 : Reward: 0.981667 Pc: 98.255298
+iter=169900 : Reward: 0.960000 Pc: 105.227859
+iter=170000 : Reward: 0.973333 Pc: 93.962065
+ACCURACY: 0.918233327621
+LabelSums: [ 1001.   985.  1051.   981.   982.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 3, 4, 5, 0]
+POINTER_X: [26.728052, 43.566109, 49.845398, 61.949196, 89.325493, 99.0]
+POINTER_Y: [49.602669, 45.194672, 43.628506, 43.902653, 44.510101, 45.262775]
+TEACHER: [[22.0, 60.0], [31.0, 37.0], [45.0, 52.0], [55.0, 47.0], [99.0, 50.0], [99.0, 50.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_170000.ckpt
+--- 51465.353212999995 CPU seconds ---
+iter=170100 : Reward: 0.976667 Pc: 91.142844
+iter=170200 : Reward: 0.973333 Pc: 97.691179
+iter=170300 : Reward: 0.976667 Pc: 102.959522
+iter=170400 : Reward: 0.963333 Pc: 136.991488
+iter=170500 : Reward: 0.960000 Pc: 146.145045
+iter=170600 : Reward: 0.965000 Pc: 132.112622
+iter=170700 : Reward: 0.978333 Pc: 88.538565
+iter=170800 : Reward: 0.963333 Pc: 135.271779
+iter=170900 : Reward: 0.966667 Pc: 125.376343
+iter=171000 : Reward: 0.980000 Pc: 92.444488
+iter=171100 : Reward: 0.966667 Pc: 111.111320
+iter=171200 : Reward: 0.983333 Pc: 96.587825
+iter=171300 : Reward: 0.976667 Pc: 97.857267
+iter=171400 : Reward: 0.978333 Pc: 100.904772
+iter=171500 : Reward: 0.985000 Pc: 84.021191
+iter=171600 : Reward: 0.968333 Pc: 118.162989
+iter=171700 : Reward: 0.980000 Pc: 107.071963
+iter=171800 : Reward: 0.981667 Pc: 87.370188
+iter=171900 : Reward: 0.978333 Pc: 76.331074
+iter=172000 : Reward: 0.960000 Pc: 145.973076
+iter=172100 : Reward: 0.966667 Pc: 135.600779
+iter=172200 : Reward: 0.963333 Pc: 114.413551
+iter=172300 : Reward: 0.953333 Pc: 160.347501
+iter=172400 : Reward: 0.966667 Pc: 132.061251
+iter=172500 : Reward: 0.960000 Pc: 164.548614
+iter=172600 : Reward: 0.943333 Pc: 169.043556
+iter=172700 : Reward: 0.945000 Pc: 147.867305
+iter=172800 : Reward: 0.960000 Pc: 124.003817
+iter=172900 : Reward: 0.963333 Pc: 122.778064
+iter=173000 : Reward: 0.970000 Pc: 154.816057
+iter=173100 : Reward: 0.958333 Pc: 140.613228
+iter=173200 : Reward: 0.965000 Pc: 116.048494
+iter=173300 : Reward: 0.975000 Pc: 125.967179
+iter=173400 : Reward: 0.980000 Pc: 74.925751
+iter=173500 : Reward: 0.980000 Pc: 114.990568
+iter=173600 : Reward: 0.963333 Pc: 123.834049
+iter=173700 : Reward: 0.968333 Pc: 143.127571
+iter=173800 : Reward: 0.965000 Pc: 134.408469
+iter=173900 : Reward: 0.971667 Pc: 117.186898
+iter=174000 : Reward: 0.980000 Pc: 108.079354
+iter=174100 : Reward: 0.975000 Pc: 121.153681
+iter=174200 : Reward: 0.961667 Pc: 159.175409
+iter=174300 : Reward: 0.961667 Pc: 103.355667
+iter=174400 : Reward: 0.966667 Pc: 102.335576
+iter=174500 : Reward: 0.960000 Pc: 158.108962
+iter=174600 : Reward: 0.973333 Pc: 130.850983
+iter=174700 : Reward: 0.968333 Pc: 115.472755
+iter=174800 : Reward: 0.970000 Pc: 131.623639
+iter=174900 : Reward: 0.981667 Pc: 85.772412
+iter=175000 : Reward: 0.965000 Pc: 127.561068
+iter=175100 : Reward: 0.963333 Pc: 116.590212
+iter=175200 : Reward: 0.966667 Pc: 129.063415
+iter=175300 : Reward: 0.970000 Pc: 109.264682
+iter=175400 : Reward: 0.970000 Pc: 127.818138
+iter=175500 : Reward: 0.975000 Pc: 118.137542
+iter=175600 : Reward: 0.975000 Pc: 112.503579
+iter=175700 : Reward: 0.958333 Pc: 139.560275
+iter=175800 : Reward: 0.966667 Pc: 118.910364
+iter=175900 : Reward: 0.961667 Pc: 120.761949
+iter=176000 : Reward: 0.978333 Pc: 114.278736
+iter=176100 : Reward: 0.966667 Pc: 129.548422
+iter=176200 : Reward: 0.968333 Pc: 116.965656
+iter=176300 : Reward: 0.986667 Pc: 79.889054
+iter=176400 : Reward: 0.973333 Pc: 127.060785
+iter=176500 : Reward: 0.985000 Pc: 103.461189
+iter=176600 : Reward: 0.958333 Pc: 154.313921
+iter=176700 : Reward: 0.968333 Pc: 108.329151
+iter=176800 : Reward: 0.978333 Pc: 107.572595
+iter=176900 : Reward: 0.975000 Pc: 79.643662
+iter=177000 : Reward: 0.980000 Pc: 93.293851
+iter=177100 : Reward: 0.978333 Pc: 75.346762
+iter=177200 : Reward: 0.971667 Pc: 104.642296
+iter=177300 : Reward: 0.980000 Pc: 115.163718
+iter=177400 : Reward: 0.950000 Pc: 156.593774
+iter=177500 : Reward: 0.961667 Pc: 148.118087
+iter=177600 : Reward: 0.958333 Pc: 110.119937
+iter=177700 : Reward: 0.971667 Pc: 134.517210
+iter=177800 : Reward: 0.975000 Pc: 129.220802
+iter=177900 : Reward: 0.973333 Pc: 102.876964
+iter=178000 : Reward: 0.976667 Pc: 121.841682
+iter=178100 : Reward: 0.968333 Pc: 114.708143
+iter=178200 : Reward: 0.976667 Pc: 98.906912
+iter=178300 : Reward: 0.978333 Pc: 114.762899
+iter=178400 : Reward: 0.988333 Pc: 79.867517
+iter=178500 : Reward: 0.971667 Pc: 128.341841
+iter=178600 : Reward: 0.965000 Pc: 116.325634
+iter=178700 : Reward: 0.958333 Pc: 149.858566
+iter=178800 : Reward: 0.970000 Pc: 136.480859
+iter=178900 : Reward: 0.953333 Pc: 145.183052
+iter=179000 : Reward: 0.986667 Pc: 85.681092
+iter=179100 : Reward: 0.983333 Pc: 110.853849
+iter=179200 : Reward: 0.958333 Pc: 118.859931
+iter=179300 : Reward: 0.965000 Pc: 138.745353
+iter=179400 : Reward: 0.968333 Pc: 126.771874
+iter=179500 : Reward: 0.970000 Pc: 124.379120
+iter=179600 : Reward: 0.973333 Pc: 94.225174
+iter=179700 : Reward: 0.975000 Pc: 106.290824
+iter=179800 : Reward: 0.961667 Pc: 118.361017
+iter=179900 : Reward: 0.970000 Pc: 136.956330
+iter=180000 : Reward: 0.961667 Pc: 126.160168
+ACCURACY: 0.906166660196
+LabelSums: [  982.  1081.   981.  1018.   938.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [26.768278, 35.479401, 98.32267, 99.0, 99.0, 99.0]
+POINTER_Y: [49.56826, 50.322166, 50.941128, 49.932957, 50.317207, 50.565487]
+TEACHER: [[23.0, 38.0], [36.0, 50.0], [99.0, 55.0], [99.0, 55.0], [99.0, 55.0], [99.0, 55.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_180000.ckpt
+--- 54477.680520999995 CPU seconds ---
+iter=180100 : Reward: 0.978333 Pc: 105.425212
+iter=180200 : Reward: 0.968333 Pc: 90.990694
+iter=180300 : Reward: 0.976667 Pc: 108.186787
+iter=180400 : Reward: 0.968333 Pc: 142.418509
+iter=180500 : Reward: 0.983333 Pc: 81.107707
+iter=180600 : Reward: 0.975000 Pc: 87.869455
+iter=180700 : Reward: 0.966667 Pc: 141.137301
+iter=180800 : Reward: 0.975000 Pc: 109.144232
+iter=180900 : Reward: 0.966667 Pc: 109.360709
+iter=181000 : Reward: 0.976667 Pc: 108.405601
+iter=181100 : Reward: 0.968333 Pc: 125.618514
+iter=181200 : Reward: 0.970000 Pc: 133.481152
+iter=181300 : Reward: 0.975000 Pc: 130.155213
+iter=181400 : Reward: 0.975000 Pc: 116.357883
+iter=181500 : Reward: 0.965000 Pc: 122.627931
+iter=181600 : Reward: 0.983333 Pc: 90.355612
+iter=181700 : Reward: 0.956667 Pc: 154.770466
+iter=181800 : Reward: 0.970000 Pc: 129.884216
+iter=181900 : Reward: 0.958333 Pc: 143.745803
+iter=182000 : Reward: 0.980000 Pc: 88.608945
+iter=182100 : Reward: 0.970000 Pc: 115.553369
+iter=182200 : Reward: 0.966667 Pc: 113.945817
+iter=182300 : Reward: 0.966667 Pc: 137.200657
+iter=182400 : Reward: 0.978333 Pc: 89.894236
+iter=182500 : Reward: 0.978333 Pc: 88.152102
+iter=182600 : Reward: 0.978333 Pc: 96.652838
+iter=182700 : Reward: 0.970000 Pc: 142.655024
+iter=182800 : Reward: 0.960000 Pc: 136.669382
+iter=182900 : Reward: 0.966667 Pc: 109.461568
+iter=183000 : Reward: 0.970000 Pc: 139.399023
+iter=183100 : Reward: 0.971667 Pc: 95.610141
+iter=183200 : Reward: 0.978333 Pc: 125.516521
+iter=183300 : Reward: 0.975000 Pc: 109.291165
+iter=183400 : Reward: 0.965000 Pc: 111.802899
+iter=183500 : Reward: 0.976667 Pc: 119.271139
+iter=183600 : Reward: 0.968333 Pc: 111.729399
+iter=183700 : Reward: 0.970000 Pc: 120.355034
+iter=183800 : Reward: 0.971667 Pc: 124.993469
+iter=183900 : Reward: 0.966667 Pc: 111.056579
+iter=184000 : Reward: 0.960000 Pc: 143.409133
+iter=184100 : Reward: 0.956667 Pc: 154.206353
+iter=184200 : Reward: 0.975000 Pc: 128.978857
+iter=184300 : Reward: 0.975000 Pc: 101.342216
+iter=184400 : Reward: 0.970000 Pc: 116.896991
+iter=184500 : Reward: 0.981667 Pc: 94.249660
+iter=184600 : Reward: 0.973333 Pc: 122.405605
+iter=184700 : Reward: 0.978333 Pc: 105.518469
+iter=184800 : Reward: 0.965000 Pc: 133.464736
+iter=184900 : Reward: 0.966667 Pc: 119.644224
+iter=185000 : Reward: 0.975000 Pc: 117.652487
+iter=185100 : Reward: 0.960000 Pc: 115.965462
+iter=185200 : Reward: 0.976667 Pc: 82.510192
+iter=185300 : Reward: 0.971667 Pc: 125.184902
+iter=185400 : Reward: 0.968333 Pc: 93.167264
+iter=185500 : Reward: 0.980000 Pc: 106.467391
+iter=185600 : Reward: 0.976667 Pc: 107.210534
+iter=185700 : Reward: 0.976667 Pc: 117.716501
+iter=185800 : Reward: 0.973333 Pc: 120.019651
+iter=185900 : Reward: 0.960000 Pc: 123.852271
+iter=186000 : Reward: 0.973333 Pc: 116.892322
+iter=186100 : Reward: 0.966667 Pc: 128.490187
+iter=186200 : Reward: 0.971667 Pc: 109.983767
+iter=186300 : Reward: 0.975000 Pc: 105.232020
+iter=186400 : Reward: 0.970000 Pc: 127.370340
+iter=186500 : Reward: 0.963333 Pc: 129.510363
+iter=186600 : Reward: 0.978333 Pc: 110.984950
+iter=186700 : Reward: 0.973333 Pc: 125.055360
+iter=186800 : Reward: 0.978333 Pc: 115.730631
+iter=186900 : Reward: 0.981667 Pc: 81.670259
+iter=187000 : Reward: 0.961667 Pc: 170.737212
+iter=187100 : Reward: 0.971667 Pc: 123.139341
+iter=187200 : Reward: 0.971667 Pc: 122.203369
+iter=187300 : Reward: 0.983333 Pc: 77.593505
+iter=187400 : Reward: 0.970000 Pc: 138.399629
+iter=187500 : Reward: 0.965000 Pc: 118.079523
+iter=187600 : Reward: 0.965000 Pc: 120.395375
+iter=187700 : Reward: 0.971667 Pc: 124.887652
+iter=187800 : Reward: 0.976667 Pc: 102.597925
+iter=187900 : Reward: 0.975000 Pc: 138.088178
+iter=188000 : Reward: 0.976667 Pc: 106.079037
+iter=188100 : Reward: 0.960000 Pc: 132.420194
+iter=188200 : Reward: 0.985000 Pc: 98.952589
+iter=188300 : Reward: 0.960000 Pc: 141.250745
+iter=188400 : Reward: 0.975000 Pc: 120.737040
+iter=188500 : Reward: 0.970000 Pc: 117.140707
+iter=188600 : Reward: 0.978333 Pc: 102.825644
+iter=188700 : Reward: 0.965000 Pc: 130.552487
+iter=188800 : Reward: 0.983333 Pc: 119.548383
+iter=188900 : Reward: 0.966667 Pc: 109.096192
+iter=189000 : Reward: 0.965000 Pc: 106.311708
+iter=189100 : Reward: 0.965000 Pc: 126.505434
+iter=189200 : Reward: 0.970000 Pc: 112.812319
+iter=189300 : Reward: 0.978333 Pc: 92.591957
+iter=189400 : Reward: 0.978333 Pc: 102.009368
+iter=189500 : Reward: 0.981667 Pc: 95.843718
+iter=189600 : Reward: 0.978333 Pc: 114.748968
+iter=189700 : Reward: 0.963333 Pc: 146.521777
+iter=189800 : Reward: 0.978333 Pc: 122.663873
+iter=189900 : Reward: 0.981667 Pc: 83.401193
+iter=190000 : Reward: 0.971667 Pc: 97.570154
+ACCURACY: 0.919699994028
+LabelSums: [  992.   973.  1005.  1026.  1004.]
+CORRECT: [1, 2, 3, 4, 5, 0]
+COUNT: [1, 2, 3, 4, 5, 0]
+POINTER_X: [26.835222, 31.695992, 49.049744, 53.053185, 79.268303, 95.04702]
+POINTER_Y: [49.690132, 54.927711, 50.632702, 50.978436, 50.575344, 50.603222]
+TEACHER: [[25.0, 56.0], [40.0, 53.0], [46.0, 57.0], [51.0, 46.0], [63.0, 50.0], [99.0, 60.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_190000.ckpt
+--- 57498.646679 CPU seconds ---
+iter=190100 : Reward: 0.961667 Pc: 126.816499
+iter=190200 : Reward: 0.961667 Pc: 142.676037
+iter=190300 : Reward: 0.976667 Pc: 106.836817
+iter=190400 : Reward: 0.966667 Pc: 134.101228
+iter=190500 : Reward: 0.975000 Pc: 118.872602
+iter=190600 : Reward: 0.965000 Pc: 133.803204
+iter=190700 : Reward: 0.960000 Pc: 106.224880
+iter=190800 : Reward: 0.958333 Pc: 141.835581
+iter=190900 : Reward: 0.968333 Pc: 104.211744
+iter=191000 : Reward: 0.971667 Pc: 138.589035
+iter=191100 : Reward: 0.966667 Pc: 155.214835
+iter=191200 : Reward: 0.973333 Pc: 144.574524
+iter=191300 : Reward: 0.975000 Pc: 101.645887
+iter=191400 : Reward: 0.963333 Pc: 135.282084
+iter=191500 : Reward: 0.980000 Pc: 103.927315
+iter=191600 : Reward: 0.961667 Pc: 120.326240
+iter=191700 : Reward: 0.978333 Pc: 114.118699
+iter=191800 : Reward: 0.981667 Pc: 74.347382
+iter=191900 : Reward: 0.976667 Pc: 110.581824
+iter=192000 : Reward: 0.963333 Pc: 141.769190
+iter=192100 : Reward: 0.973333 Pc: 118.776359
+iter=192200 : Reward: 0.966667 Pc: 113.138949
+iter=192300 : Reward: 0.980000 Pc: 102.355836
+iter=192400 : Reward: 0.966667 Pc: 117.022816
+iter=192500 : Reward: 0.976667 Pc: 117.461308
+iter=192600 : Reward: 0.973333 Pc: 120.668967
+iter=192700 : Reward: 0.960000 Pc: 156.718251
+iter=192800 : Reward: 0.968333 Pc: 126.443114
+iter=192900 : Reward: 0.965000 Pc: 131.399541
+iter=193000 : Reward: 0.973333 Pc: 94.640807
+iter=193100 : Reward: 0.981667 Pc: 90.801129
+iter=193200 : Reward: 0.965000 Pc: 121.973049
+iter=193300 : Reward: 0.985000 Pc: 94.476302
+iter=193400 : Reward: 0.981667 Pc: 98.232486
+iter=193500 : Reward: 0.958333 Pc: 149.883720
+iter=193600 : Reward: 0.975000 Pc: 110.633555
+iter=193700 : Reward: 0.968333 Pc: 145.558156
+iter=193800 : Reward: 0.975000 Pc: 112.893971
+iter=193900 : Reward: 0.968333 Pc: 109.594873
+iter=194000 : Reward: 0.965000 Pc: 100.049527
+iter=194100 : Reward: 0.978333 Pc: 113.046111
+iter=194200 : Reward: 0.971667 Pc: 138.153546
+iter=194300 : Reward: 0.975000 Pc: 129.944316
+iter=194400 : Reward: 0.981667 Pc: 94.296971
+iter=194500 : Reward: 0.975000 Pc: 83.635699
+iter=194600 : Reward: 0.963333 Pc: 128.326635
+iter=194700 : Reward: 0.971667 Pc: 112.499752
+iter=194800 : Reward: 0.983333 Pc: 99.906367
+iter=194900 : Reward: 0.960000 Pc: 141.572399
+iter=195000 : Reward: 0.961667 Pc: 126.346691
+iter=195100 : Reward: 0.975000 Pc: 104.410991
+iter=195200 : Reward: 0.968333 Pc: 120.441972
+iter=195300 : Reward: 0.965000 Pc: 149.270482
+iter=195400 : Reward: 0.971667 Pc: 97.963840
+iter=195500 : Reward: 0.981667 Pc: 106.165535
+iter=195600 : Reward: 0.975000 Pc: 117.164619
+iter=195700 : Reward: 0.966667 Pc: 135.885699
+iter=195800 : Reward: 0.956667 Pc: 145.438297
+iter=195900 : Reward: 0.970000 Pc: 139.338981
+iter=196000 : Reward: 0.961667 Pc: 135.427824
+iter=196100 : Reward: 0.978333 Pc: 111.637498
+iter=196200 : Reward: 0.976667 Pc: 95.262758
+iter=196300 : Reward: 0.966667 Pc: 119.853141
+iter=196400 : Reward: 0.976667 Pc: 96.199011
+iter=196500 : Reward: 0.973333 Pc: 113.007681
+iter=196600 : Reward: 0.973333 Pc: 103.560144
+iter=196700 : Reward: 0.961667 Pc: 130.119771
+iter=196800 : Reward: 0.966667 Pc: 165.939303
+iter=196900 : Reward: 0.971667 Pc: 101.643824
+iter=197000 : Reward: 0.973333 Pc: 133.305478
+iter=197100 : Reward: 0.980000 Pc: 110.156580
+iter=197200 : Reward: 0.981667 Pc: 113.944042
+iter=197300 : Reward: 0.965000 Pc: 135.310716
+iter=197400 : Reward: 0.968333 Pc: 130.942380
+iter=197500 : Reward: 0.973333 Pc: 93.960488
+iter=197600 : Reward: 0.978333 Pc: 104.183988
+iter=197700 : Reward: 0.968333 Pc: 126.764119
+iter=197800 : Reward: 0.986667 Pc: 85.821710
+iter=197900 : Reward: 0.975000 Pc: 96.332094
+iter=198000 : Reward: 0.975000 Pc: 108.338841
+iter=198100 : Reward: 0.971667 Pc: 118.360176
+iter=198200 : Reward: 0.966667 Pc: 145.910189
+iter=198300 : Reward: 0.978333 Pc: 123.154147
+iter=198400 : Reward: 0.980000 Pc: 76.079180
+iter=198500 : Reward: 0.975000 Pc: 110.039029
+iter=198600 : Reward: 0.966667 Pc: 129.738903
+iter=198700 : Reward: 0.978333 Pc: 112.238180
+iter=198800 : Reward: 0.978333 Pc: 99.378685
+iter=198900 : Reward: 0.966667 Pc: 123.388838
+iter=199000 : Reward: 0.988333 Pc: 84.071187
+iter=199100 : Reward: 0.975000 Pc: 97.316847
+iter=199200 : Reward: 0.966667 Pc: 116.061879
+iter=199300 : Reward: 0.968333 Pc: 90.415282
+iter=199400 : Reward: 0.971667 Pc: 112.799016
+iter=199500 : Reward: 0.975000 Pc: 106.117395
+iter=199600 : Reward: 0.976667 Pc: 91.038929
+iter=199700 : Reward: 0.968333 Pc: 117.161763
+iter=199800 : Reward: 0.966667 Pc: 155.643978
+iter=199900 : Reward: 0.966667 Pc: 130.962180
+iter=200000 : Reward: 0.970000 Pc: 100.429162
+ACCURACY: 0.916733326471
+LabelSums: [ 1043.   992.   974.   994.   997.]
+CORRECT: [1, 0, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0]
+POINTER_X: [27.002073, 99.0, 99.0, 99.0, 99.0, 99.0]
+POINTER_Y: [49.460762, 50.062916, 50.378529, 50.42149, 50.421906, 50.421749]
+TEACHER: [[26.0, 37.0], [99.0, 48.0], [99.0, 48.0], [99.0, 48.0], [99.0, 48.0], [99.0, 48.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_200000.ckpt
+--- 60527.12569899999 CPU seconds ---
+iter=200100 : Reward: 0.975000 Pc: 134.931489
+iter=200200 : Reward: 0.975000 Pc: 99.709250
+iter=200300 : Reward: 0.968333 Pc: 144.391915
+iter=200400 : Reward: 0.971667 Pc: 105.008579
+iter=200500 : Reward: 0.970000 Pc: 102.209312
+iter=200600 : Reward: 0.975000 Pc: 118.208733
+iter=200700 : Reward: 0.976667 Pc: 110.106871
+iter=200800 : Reward: 0.965000 Pc: 117.708558
+iter=200900 : Reward: 0.973333 Pc: 103.575211
+iter=201000 : Reward: 0.978333 Pc: 132.163623
+iter=201100 : Reward: 0.973333 Pc: 119.858583
+iter=201200 : Reward: 0.981667 Pc: 86.315450
+iter=201300 : Reward: 0.973333 Pc: 122.305407
+iter=201400 : Reward: 0.983333 Pc: 101.895692
+iter=201500 : Reward: 0.976667 Pc: 143.439251
+iter=201600 : Reward: 0.978333 Pc: 104.533232
+iter=201700 : Reward: 0.963333 Pc: 130.158017
+iter=201800 : Reward: 0.963333 Pc: 126.538184
+iter=201900 : Reward: 0.968333 Pc: 119.710732
+iter=202000 : Reward: 0.970000 Pc: 121.169812
+iter=202100 : Reward: 0.965000 Pc: 129.366669
+iter=202200 : Reward: 0.961667 Pc: 136.040101
+iter=202300 : Reward: 0.961667 Pc: 111.561921
+iter=202400 : Reward: 0.963333 Pc: 120.377254
+iter=202500 : Reward: 0.971667 Pc: 111.466926
+iter=202600 : Reward: 0.965000 Pc: 124.502551
+iter=202700 : Reward: 0.965000 Pc: 119.432224
+iter=202800 : Reward: 0.951667 Pc: 145.104455
+iter=202900 : Reward: 0.966667 Pc: 106.519492
+iter=203000 : Reward: 0.968333 Pc: 116.129154
+iter=203100 : Reward: 0.975000 Pc: 107.131978
+iter=203200 : Reward: 0.968333 Pc: 112.950637
+iter=203300 : Reward: 0.966667 Pc: 106.367781
+iter=203400 : Reward: 0.971667 Pc: 103.090308
+iter=203500 : Reward: 0.975000 Pc: 93.481475
+iter=203600 : Reward: 0.975000 Pc: 97.414630
+iter=203700 : Reward: 0.973333 Pc: 119.824004
+iter=203800 : Reward: 0.970000 Pc: 88.771130
+iter=203900 : Reward: 0.981667 Pc: 105.029306
+iter=204000 : Reward: 0.966667 Pc: 104.832887
+iter=204100 : Reward: 0.963333 Pc: 144.691548
+iter=204200 : Reward: 0.961667 Pc: 123.163347
+iter=204300 : Reward: 0.976667 Pc: 91.209880
+iter=204400 : Reward: 0.971667 Pc: 115.623705
+iter=204500 : Reward: 0.968333 Pc: 123.206218
+iter=204600 : Reward: 0.953333 Pc: 150.760299
+iter=204700 : Reward: 0.970000 Pc: 115.960296
+iter=204800 : Reward: 0.973333 Pc: 141.233147
+iter=204900 : Reward: 0.983333 Pc: 107.585562
+iter=205000 : Reward: 0.976667 Pc: 108.780497
+iter=205100 : Reward: 0.966667 Pc: 124.765519
+iter=205200 : Reward: 0.953333 Pc: 145.747177
+iter=205300 : Reward: 0.963333 Pc: 149.076863
+iter=205400 : Reward: 0.971667 Pc: 91.184188
+iter=205500 : Reward: 0.970000 Pc: 105.504019
+iter=205600 : Reward: 0.976667 Pc: 90.879283
+iter=205700 : Reward: 0.975000 Pc: 116.456456
+iter=205800 : Reward: 0.963333 Pc: 154.302342
+iter=205900 : Reward: 0.978333 Pc: 118.727082
+iter=206000 : Reward: 0.963333 Pc: 113.502112
+iter=206100 : Reward: 0.976667 Pc: 118.786099
+iter=206200 : Reward: 0.971667 Pc: 132.022019
+iter=206300 : Reward: 0.960000 Pc: 138.077474
+iter=206400 : Reward: 0.965000 Pc: 145.105249
+iter=206500 : Reward: 0.966667 Pc: 119.190891
+iter=206600 : Reward: 0.973333 Pc: 112.889318
+iter=206700 : Reward: 0.971667 Pc: 123.774725
+iter=206800 : Reward: 0.970000 Pc: 142.283677
+iter=206900 : Reward: 0.970000 Pc: 81.872169
+iter=207000 : Reward: 0.981667 Pc: 101.004603
+iter=207100 : Reward: 0.973333 Pc: 118.475912
+iter=207200 : Reward: 0.965000 Pc: 113.679687
+iter=207300 : Reward: 0.971667 Pc: 131.212387
+iter=207400 : Reward: 0.965000 Pc: 142.278478
+iter=207500 : Reward: 0.961667 Pc: 100.138716
+iter=207600 : Reward: 0.973333 Pc: 125.668952
+iter=207700 : Reward: 0.961667 Pc: 112.484487
+iter=207800 : Reward: 0.968333 Pc: 121.566847
+iter=207900 : Reward: 0.970000 Pc: 123.957945
+iter=208000 : Reward: 0.973333 Pc: 108.914366
+iter=208100 : Reward: 0.963333 Pc: 118.602423
+iter=208200 : Reward: 0.980000 Pc: 86.044515
+iter=208300 : Reward: 0.976667 Pc: 95.253991
+iter=208400 : Reward: 0.963333 Pc: 124.072990
+iter=208500 : Reward: 0.973333 Pc: 122.546815
+iter=208600 : Reward: 0.971667 Pc: 107.875818
+iter=208700 : Reward: 0.976667 Pc: 103.093195
+iter=208800 : Reward: 0.978333 Pc: 87.366146
+iter=208900 : Reward: 0.963333 Pc: 113.619281
+iter=209000 : Reward: 0.966667 Pc: 124.475288
+iter=209100 : Reward: 0.961667 Pc: 127.780652
+iter=209200 : Reward: 0.971667 Pc: 125.076415
+iter=209300 : Reward: 0.971667 Pc: 94.743958
+iter=209400 : Reward: 0.955000 Pc: 135.105921
+iter=209500 : Reward: 0.968333 Pc: 121.497920
+iter=209600 : Reward: 0.960000 Pc: 102.807139
+iter=209700 : Reward: 0.966667 Pc: 109.333584
+iter=209800 : Reward: 0.971667 Pc: 102.238416
+iter=209900 : Reward: 0.966667 Pc: 129.372610
+iter=210000 : Reward: 0.980000 Pc: 78.010959
+ACCURACY: 0.913133327305
+LabelSums: [ 1047.   972.   971.   979.  1031.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 3, 0, 0, 0]
+POINTER_X: [26.627291, 41.711105, 53.136452, 82.441788, 95.775368, 99.0]
+POINTER_Y: [49.840851, 54.893784, 48.942318, 48.521446, 49.075676, 48.367085]
+TEACHER: [[28.0, 57.0], [39.0, 56.0], [52.0, 43.0], [62.0, 39.0], [99.0, 54.0], [99.0, 54.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_210000.ckpt
+--- 63578.023337999985 CPU seconds ---
+iter=210100 : Reward: 0.968333 Pc: 121.533115
+iter=210200 : Reward: 0.980000 Pc: 101.188169
+iter=210300 : Reward: 0.960000 Pc: 133.677434
+iter=210400 : Reward: 0.953333 Pc: 137.203522
+iter=210500 : Reward: 0.948333 Pc: 150.462909
+iter=210600 : Reward: 0.963333 Pc: 124.632108
+iter=210700 : Reward: 0.986667 Pc: 96.173592
+iter=210800 : Reward: 0.980000 Pc: 86.454026
+iter=210900 : Reward: 0.970000 Pc: 130.241134
+iter=211000 : Reward: 0.966667 Pc: 103.361175
+iter=211100 : Reward: 0.960000 Pc: 119.076671
+iter=211200 : Reward: 0.983333 Pc: 86.037713
+iter=211300 : Reward: 0.965000 Pc: 130.831789
+iter=211400 : Reward: 0.960000 Pc: 152.150494
+iter=211500 : Reward: 0.960000 Pc: 128.322588
+iter=211600 : Reward: 0.973333 Pc: 116.371114
+iter=211700 : Reward: 0.975000 Pc: 113.053649
+iter=211800 : Reward: 0.960000 Pc: 115.839941
+iter=211900 : Reward: 0.971667 Pc: 115.179359
+iter=212000 : Reward: 0.971667 Pc: 128.364092
+iter=212100 : Reward: 0.976667 Pc: 106.727217
+iter=212200 : Reward: 0.966667 Pc: 136.439305
+iter=212300 : Reward: 0.971667 Pc: 129.425954
+iter=212400 : Reward: 0.950000 Pc: 174.616349
+iter=212500 : Reward: 0.973333 Pc: 120.869388
+iter=212600 : Reward: 0.975000 Pc: 98.493803
+iter=212700 : Reward: 0.973333 Pc: 116.552406
+iter=212800 : Reward: 0.971667 Pc: 110.370530
+iter=212900 : Reward: 0.973333 Pc: 98.672659
+iter=213000 : Reward: 0.970000 Pc: 104.572324
+iter=213100 : Reward: 0.966667 Pc: 149.375045
+iter=213200 : Reward: 0.981667 Pc: 67.809754
+iter=213300 : Reward: 0.981667 Pc: 100.314175
+iter=213400 : Reward: 0.973333 Pc: 120.330146
+iter=213500 : Reward: 0.970000 Pc: 121.767683
+iter=213600 : Reward: 0.975000 Pc: 125.256792
+iter=213700 : Reward: 0.961667 Pc: 110.113632
+iter=213800 : Reward: 0.980000 Pc: 86.047213
+iter=213900 : Reward: 0.960000 Pc: 127.403061
+iter=214000 : Reward: 0.971667 Pc: 113.336722
+iter=214100 : Reward: 0.960000 Pc: 123.690324
+iter=214200 : Reward: 0.980000 Pc: 100.810217
+iter=214300 : Reward: 0.966667 Pc: 124.296050
+iter=214400 : Reward: 0.973333 Pc: 104.110237
+iter=214500 : Reward: 0.978333 Pc: 107.518367
+iter=214600 : Reward: 0.983333 Pc: 88.813730
+iter=214700 : Reward: 0.980000 Pc: 91.422887
+iter=214800 : Reward: 0.966667 Pc: 144.343769
+iter=214900 : Reward: 0.968333 Pc: 110.535891
+iter=215000 : Reward: 0.970000 Pc: 124.046263
+iter=215100 : Reward: 0.968333 Pc: 146.019258
+iter=215200 : Reward: 0.976667 Pc: 83.996621
+iter=215300 : Reward: 0.978333 Pc: 96.402340
+iter=215400 : Reward: 0.961667 Pc: 135.016798
+iter=215500 : Reward: 0.971667 Pc: 105.714931
+iter=215600 : Reward: 0.971667 Pc: 103.648001
+iter=215700 : Reward: 0.955000 Pc: 128.727720
+iter=215800 : Reward: 0.958333 Pc: 152.367560
+iter=215900 : Reward: 0.978333 Pc: 106.228266
+iter=216000 : Reward: 0.973333 Pc: 96.844110
+iter=216100 : Reward: 0.961667 Pc: 140.820220
+iter=216200 : Reward: 0.975000 Pc: 116.020537
+iter=216300 : Reward: 0.971667 Pc: 113.348426
+iter=216400 : Reward: 0.975000 Pc: 91.105954
+iter=216500 : Reward: 0.973333 Pc: 90.227573
+iter=216600 : Reward: 0.971667 Pc: 108.862008
+iter=216700 : Reward: 0.971667 Pc: 128.157677
+iter=216800 : Reward: 0.973333 Pc: 109.438828
+iter=216900 : Reward: 0.981667 Pc: 101.848064
+iter=217000 : Reward: 0.978333 Pc: 108.099082
+iter=217100 : Reward: 0.961667 Pc: 120.433489
+iter=217200 : Reward: 0.983333 Pc: 77.722366
+iter=217300 : Reward: 0.973333 Pc: 112.256581
+iter=217400 : Reward: 0.973333 Pc: 113.163719
+iter=217500 : Reward: 0.981667 Pc: 81.542681
+iter=217600 : Reward: 0.983333 Pc: 98.599820
+iter=217700 : Reward: 0.963333 Pc: 101.629133
+iter=217800 : Reward: 0.966667 Pc: 134.350745
+iter=217900 : Reward: 0.983333 Pc: 88.671776
+iter=218000 : Reward: 0.975000 Pc: 117.599043
+iter=218100 : Reward: 0.966667 Pc: 114.068333
+iter=218200 : Reward: 0.978333 Pc: 109.951891
+iter=218300 : Reward: 0.966667 Pc: 129.574294
+iter=218400 : Reward: 0.978333 Pc: 95.096454
+iter=218500 : Reward: 0.975000 Pc: 143.222194
+iter=218600 : Reward: 0.975000 Pc: 104.472955
+iter=218700 : Reward: 0.966667 Pc: 117.406098
+iter=218800 : Reward: 0.968333 Pc: 126.763335
+iter=218900 : Reward: 0.966667 Pc: 111.948903
+iter=219000 : Reward: 0.958333 Pc: 142.829652
+iter=219100 : Reward: 0.958333 Pc: 130.183921
+iter=219200 : Reward: 0.963333 Pc: 112.682056
+iter=219300 : Reward: 0.976667 Pc: 95.676229
+iter=219400 : Reward: 0.966667 Pc: 123.284151
+iter=219500 : Reward: 0.973333 Pc: 91.865903
+iter=219600 : Reward: 0.976667 Pc: 101.449541
+iter=219700 : Reward: 0.975000 Pc: 120.357178
+iter=219800 : Reward: 0.976667 Pc: 102.917778
+iter=219900 : Reward: 0.978333 Pc: 102.564735
+iter=220000 : Reward: 0.963333 Pc: 104.693942
+ACCURACY: 0.919733327031
+LabelSums: [ 1025.   967.   977.  1001.  1030.]
+CORRECT: [1, 2, 3, 0, 0, 0]
+COUNT: [1, 2, 3, 0, 0, 0]
+POINTER_X: [26.825069, 44.292351, 54.219215, 95.945175, 99.0, 99.0]
+POINTER_Y: [49.55209, 42.693161, 46.095943, 46.531013, 48.947685, 47.768402]
+TEACHER: [[29.0, 47.0], [42.0, 44.0], [50.0, 38.0], [99.0, 41.0], [99.0, 41.0], [99.0, 41.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_220000.ckpt
+--- 66668.06643999998 CPU seconds ---
+iter=220100 : Reward: 0.980000 Pc: 105.674074
+iter=220200 : Reward: 0.951667 Pc: 152.712363
+iter=220300 : Reward: 0.973333 Pc: 98.962493
+iter=220400 : Reward: 0.978333 Pc: 101.435366
+iter=220500 : Reward: 0.961667 Pc: 142.252682
+iter=220600 : Reward: 0.968333 Pc: 127.685665
+iter=220700 : Reward: 0.973333 Pc: 117.194257
+iter=220800 : Reward: 0.960000 Pc: 139.067649
+iter=220900 : Reward: 0.973333 Pc: 132.608276
+iter=221000 : Reward: 0.970000 Pc: 133.672751
+iter=221100 : Reward: 0.968333 Pc: 106.213948
+iter=221200 : Reward: 0.968333 Pc: 105.286853
+iter=221300 : Reward: 0.980000 Pc: 94.157595
+iter=221400 : Reward: 0.971667 Pc: 103.289782
+iter=221500 : Reward: 0.975000 Pc: 114.594174
+iter=221600 : Reward: 0.970000 Pc: 131.245290
+iter=221700 : Reward: 0.961667 Pc: 123.219244
+iter=221800 : Reward: 0.980000 Pc: 99.000089
+iter=221900 : Reward: 0.978333 Pc: 103.634046
+iter=222000 : Reward: 0.971667 Pc: 139.472764
+iter=222100 : Reward: 0.968333 Pc: 127.099723
+iter=222200 : Reward: 0.975000 Pc: 94.253445
+iter=222300 : Reward: 0.980000 Pc: 101.404727
+iter=222400 : Reward: 0.973333 Pc: 127.373789
+iter=222500 : Reward: 0.963333 Pc: 128.329361
+iter=222600 : Reward: 0.981667 Pc: 105.384732
+iter=222700 : Reward: 0.971667 Pc: 112.671510
+iter=222800 : Reward: 0.970000 Pc: 123.220060
+iter=222900 : Reward: 0.980000 Pc: 116.276823
+iter=223000 : Reward: 0.970000 Pc: 127.458509
+iter=223100 : Reward: 0.973333 Pc: 114.817209
+iter=223200 : Reward: 0.968333 Pc: 115.863769
+iter=223300 : Reward: 0.963333 Pc: 115.188291
+iter=223400 : Reward: 0.970000 Pc: 86.634781
+iter=223500 : Reward: 0.973333 Pc: 114.707319
+iter=223600 : Reward: 0.980000 Pc: 96.213269
+iter=223700 : Reward: 0.958333 Pc: 158.749727
+iter=223800 : Reward: 0.975000 Pc: 108.887653
+iter=223900 : Reward: 0.975000 Pc: 103.476993
+iter=224000 : Reward: 0.968333 Pc: 105.638331
+iter=224100 : Reward: 0.963333 Pc: 125.686936
+iter=224200 : Reward: 0.965000 Pc: 144.585395
+iter=224300 : Reward: 0.976667 Pc: 126.104036
+iter=224400 : Reward: 0.973333 Pc: 107.759228
+iter=224500 : Reward: 0.970000 Pc: 129.019832
+iter=224600 : Reward: 0.973333 Pc: 101.841034
+iter=224700 : Reward: 0.973333 Pc: 96.498969
+iter=224800 : Reward: 0.975000 Pc: 122.490066
+iter=224900 : Reward: 0.961667 Pc: 133.640286
+iter=225000 : Reward: 0.968333 Pc: 119.132115
+iter=225100 : Reward: 0.968333 Pc: 144.332984
+iter=225200 : Reward: 0.973333 Pc: 104.231228
+iter=225300 : Reward: 0.981667 Pc: 77.519559
+iter=225400 : Reward: 0.980000 Pc: 100.874789
+iter=225500 : Reward: 0.978333 Pc: 119.927092
+iter=225600 : Reward: 0.973333 Pc: 127.879672
+iter=225700 : Reward: 0.973333 Pc: 112.524149
+iter=225800 : Reward: 0.973333 Pc: 128.305720
+iter=225900 : Reward: 0.975000 Pc: 124.969995
+iter=226000 : Reward: 0.976667 Pc: 113.026006
+iter=226100 : Reward: 0.961667 Pc: 118.495086
+iter=226200 : Reward: 0.960000 Pc: 120.615160
+iter=226300 : Reward: 0.978333 Pc: 115.150305
+iter=226400 : Reward: 0.986667 Pc: 69.089686
+iter=226500 : Reward: 0.978333 Pc: 106.081756
+iter=226600 : Reward: 0.970000 Pc: 136.092133
+iter=226700 : Reward: 0.965000 Pc: 133.904003
+iter=226800 : Reward: 0.963333 Pc: 106.358296
+iter=226900 : Reward: 0.978333 Pc: 128.719096
+iter=227000 : Reward: 0.960000 Pc: 156.088531
+iter=227100 : Reward: 0.985000 Pc: 92.421458
+iter=227200 : Reward: 0.970000 Pc: 121.994567
+iter=227300 : Reward: 0.975000 Pc: 88.974012
+iter=227400 : Reward: 0.971667 Pc: 130.926321
+iter=227500 : Reward: 0.966667 Pc: 157.561705
+iter=227600 : Reward: 0.971667 Pc: 152.672563
+iter=227700 : Reward: 0.965000 Pc: 137.179606
+iter=227800 : Reward: 0.976667 Pc: 105.346200
+iter=227900 : Reward: 0.970000 Pc: 117.671183
+iter=228000 : Reward: 0.970000 Pc: 144.064821
+iter=228100 : Reward: 0.976667 Pc: 101.436176
+iter=228200 : Reward: 0.970000 Pc: 116.771240
+iter=228300 : Reward: 0.966667 Pc: 132.510109
+iter=228400 : Reward: 0.973333 Pc: 117.082968
+iter=228500 : Reward: 0.981667 Pc: 99.506934
+iter=228600 : Reward: 0.973333 Pc: 112.766870
+iter=228700 : Reward: 0.973333 Pc: 122.982780
+iter=228800 : Reward: 0.970000 Pc: 117.426904
+iter=228900 : Reward: 0.955000 Pc: 161.625368
+iter=229000 : Reward: 0.965000 Pc: 136.316520
+iter=229100 : Reward: 0.963333 Pc: 132.983183
+iter=229200 : Reward: 0.971667 Pc: 137.459769
+iter=229300 : Reward: 0.971667 Pc: 123.607400
+iter=229400 : Reward: 0.985000 Pc: 94.526805
+iter=229500 : Reward: 0.975000 Pc: 112.522232
+iter=229600 : Reward: 0.980000 Pc: 99.751602
+iter=229700 : Reward: 0.965000 Pc: 116.853561
+iter=229800 : Reward: 0.971667 Pc: 114.901027
+iter=229900 : Reward: 0.973333 Pc: 99.486278
+iter=230000 : Reward: 0.973333 Pc: 101.490000
+ACCURACY: 0.913199994075
+LabelSums: [ 1019.   939.  1026.   996.  1020.]
+CORRECT: [1, 0, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0]
+POINTER_X: [26.697012, 97.461784, 99.0, 99.0, 99.0, 99.0]
+POINTER_Y: [49.849461, 50.226147, 49.847008, 50.483597, 50.461487, 50.422138]
+TEACHER: [[27.0, 59.0], [99.0, 58.0], [99.0, 58.0], [99.0, 58.0], [99.0, 58.0], [99.0, 58.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_230000.ckpt
+--- 69804.33390199998 CPU seconds ---
+iter=230100 : Reward: 0.985000 Pc: 80.670016
+iter=230200 : Reward: 0.978333 Pc: 97.146267
+iter=230300 : Reward: 0.966667 Pc: 133.371073
+iter=230400 : Reward: 0.980000 Pc: 107.898241
+iter=230500 : Reward: 0.961667 Pc: 148.370113
+iter=230600 : Reward: 0.983333 Pc: 105.495537
+iter=230700 : Reward: 0.978333 Pc: 73.717880
+iter=230800 : Reward: 0.968333 Pc: 135.378781
+iter=230900 : Reward: 0.965000 Pc: 144.724543
+iter=231000 : Reward: 0.975000 Pc: 121.179626
+iter=231100 : Reward: 0.978333 Pc: 115.329882
+iter=231200 : Reward: 0.971667 Pc: 118.604644
+iter=231300 : Reward: 0.981667 Pc: 84.457124
+iter=231400 : Reward: 0.980000 Pc: 102.541004
+iter=231500 : Reward: 0.975000 Pc: 132.358578
+iter=231600 : Reward: 0.970000 Pc: 97.122658
+iter=231700 : Reward: 0.963333 Pc: 119.140984
+iter=231800 : Reward: 0.968333 Pc: 135.537870
+iter=231900 : Reward: 0.965000 Pc: 124.350084
+iter=232000 : Reward: 0.975000 Pc: 105.453313
+iter=232100 : Reward: 0.966667 Pc: 152.196897
+iter=232200 : Reward: 0.971667 Pc: 135.817995
+iter=232300 : Reward: 0.966667 Pc: 126.056911
+iter=232400 : Reward: 0.976667 Pc: 108.410229
+iter=232500 : Reward: 0.975000 Pc: 127.471517
+iter=232600 : Reward: 0.966667 Pc: 139.456454
+iter=232700 : Reward: 0.970000 Pc: 90.266886
+iter=232800 : Reward: 0.966667 Pc: 116.406658
+iter=232900 : Reward: 0.971667 Pc: 101.244894
+iter=233000 : Reward: 0.978333 Pc: 79.760257
+iter=233100 : Reward: 0.970000 Pc: 113.921860
+iter=233200 : Reward: 0.971667 Pc: 105.978578
+iter=233300 : Reward: 0.975000 Pc: 118.635063
+iter=233400 : Reward: 0.985000 Pc: 121.383178
+iter=233500 : Reward: 0.985000 Pc: 72.389038
+iter=233600 : Reward: 0.981667 Pc: 125.794613
+iter=233700 : Reward: 0.978333 Pc: 93.355052
+iter=233800 : Reward: 0.981667 Pc: 100.291783
+iter=233900 : Reward: 0.963333 Pc: 127.791956
+iter=234000 : Reward: 0.970000 Pc: 108.214174
+iter=234100 : Reward: 0.985000 Pc: 98.122940
+iter=234200 : Reward: 0.968333 Pc: 136.674147
+iter=234300 : Reward: 0.965000 Pc: 134.703099
+iter=234400 : Reward: 0.971667 Pc: 129.849591
+iter=234500 : Reward: 0.976667 Pc: 107.741070
+iter=234600 : Reward: 0.978333 Pc: 101.153790
+iter=234700 : Reward: 0.975000 Pc: 106.229750
+iter=234800 : Reward: 0.968333 Pc: 125.489600
+iter=234900 : Reward: 0.976667 Pc: 91.612997
+iter=235000 : Reward: 0.965000 Pc: 130.847138
+iter=235100 : Reward: 0.978333 Pc: 132.618962
+iter=235200 : Reward: 0.963333 Pc: 169.977215
+iter=235300 : Reward: 0.975000 Pc: 116.996530
+iter=235400 : Reward: 0.978333 Pc: 96.989625
+iter=235500 : Reward: 0.963333 Pc: 152.215619
+iter=235600 : Reward: 0.965000 Pc: 131.481944
+iter=235700 : Reward: 0.983333 Pc: 101.328908
+iter=235800 : Reward: 0.986667 Pc: 94.569925
+iter=235900 : Reward: 0.971667 Pc: 99.354483
+iter=236000 : Reward: 0.968333 Pc: 103.932737
+iter=236100 : Reward: 0.978333 Pc: 75.616240
+iter=236200 : Reward: 0.975000 Pc: 111.418137
+iter=236300 : Reward: 0.968333 Pc: 140.336480
+iter=236400 : Reward: 0.971667 Pc: 142.756874
+iter=236500 : Reward: 0.965000 Pc: 92.317335
+iter=236600 : Reward: 0.986667 Pc: 86.803051
+iter=236700 : Reward: 0.975000 Pc: 118.778471
+iter=236800 : Reward: 0.980000 Pc: 98.897332
+iter=236900 : Reward: 0.980000 Pc: 99.083139
+iter=237000 : Reward: 0.978333 Pc: 109.453399
+iter=237100 : Reward: 0.965000 Pc: 157.033242
+iter=237200 : Reward: 0.981667 Pc: 108.536218
+iter=237300 : Reward: 0.968333 Pc: 137.380856
+iter=237400 : Reward: 0.971667 Pc: 101.957849
+iter=237500 : Reward: 0.973333 Pc: 98.069172
+iter=237600 : Reward: 0.965000 Pc: 102.867313
+iter=237700 : Reward: 0.965000 Pc: 125.536558
+iter=237800 : Reward: 0.966667 Pc: 133.727856
+iter=237900 : Reward: 0.960000 Pc: 124.531191
+iter=238000 : Reward: 0.970000 Pc: 139.438339
+iter=238100 : Reward: 0.985000 Pc: 91.114768
+iter=238200 : Reward: 0.973333 Pc: 113.630080
+iter=238300 : Reward: 0.968333 Pc: 117.476078
+iter=238400 : Reward: 0.971667 Pc: 122.787590
+iter=238500 : Reward: 0.976667 Pc: 80.735561
+iter=238600 : Reward: 0.981667 Pc: 89.045632
+iter=238700 : Reward: 0.981667 Pc: 82.928079
+iter=238800 : Reward: 0.986667 Pc: 73.570956
+iter=238900 : Reward: 0.973333 Pc: 130.052963
+iter=239000 : Reward: 0.971667 Pc: 131.391976
+iter=239100 : Reward: 0.960000 Pc: 142.528679
+iter=239200 : Reward: 0.986667 Pc: 104.570349
+iter=239300 : Reward: 0.973333 Pc: 133.150956
+iter=239400 : Reward: 0.975000 Pc: 120.034417
+iter=239500 : Reward: 0.975000 Pc: 111.674871
+iter=239600 : Reward: 0.971667 Pc: 105.121336
+iter=239700 : Reward: 0.976667 Pc: 103.887128
+iter=239800 : Reward: 0.968333 Pc: 112.899860
+iter=239900 : Reward: 0.971667 Pc: 120.167868
+iter=240000 : Reward: 0.973333 Pc: 101.761806
+ACCURACY: 0.930733326828
+LabelSums: [ 1009.   987.  1006.   972.  1026.]
+CORRECT: [1, 2, 3, 4, 5, 0]
+COUNT: [1, 2, 3, 4, 0, 0]
+POINTER_X: [26.71212, 32.468475, 52.87529, 64.020012, 86.782532, 99.0]
+POINTER_Y: [49.944294, 47.603363, 44.112659, 47.623661, 48.074284, 47.433952]
+TEACHER: [[23.0, 37.0], [38.0, 51.0], [48.0, 37.0], [60.0, 54.0], [72.0, 43.0], [99.0, 58.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_240000.ckpt
+--- 72873.78858299999 CPU seconds ---
+iter=240100 : Reward: 0.978333 Pc: 114.950849
+iter=240200 : Reward: 0.981667 Pc: 103.081760
+iter=240300 : Reward: 0.971667 Pc: 131.136720
+iter=240400 : Reward: 0.973333 Pc: 125.827629
+iter=240500 : Reward: 0.961667 Pc: 139.807272
+iter=240600 : Reward: 0.965000 Pc: 128.566045
+iter=240700 : Reward: 0.980000 Pc: 90.754737
+iter=240800 : Reward: 0.970000 Pc: 112.886131
+iter=240900 : Reward: 0.966667 Pc: 110.868826
+iter=241000 : Reward: 0.976667 Pc: 117.523712
+iter=241100 : Reward: 0.970000 Pc: 106.803454
+iter=241200 : Reward: 0.978333 Pc: 91.417949
+iter=241300 : Reward: 0.973333 Pc: 115.950549
+iter=241400 : Reward: 0.965000 Pc: 139.198935
+iter=241500 : Reward: 0.966667 Pc: 147.266246
+iter=241600 : Reward: 0.985000 Pc: 105.155298
+iter=241700 : Reward: 0.968333 Pc: 131.675625
+iter=241800 : Reward: 0.971667 Pc: 108.252207
+iter=241900 : Reward: 0.978333 Pc: 86.752952
+iter=242000 : Reward: 0.980000 Pc: 106.762199
+iter=242100 : Reward: 0.971667 Pc: 116.755884
+iter=242200 : Reward: 0.975000 Pc: 120.864341
+iter=242300 : Reward: 0.975000 Pc: 107.537146
+iter=242400 : Reward: 0.965000 Pc: 129.653072
+iter=242500 : Reward: 0.965000 Pc: 152.140003
+iter=242600 : Reward: 0.990000 Pc: 77.988932
+iter=242700 : Reward: 0.965000 Pc: 119.108391
+iter=242800 : Reward: 0.976667 Pc: 114.621408
+iter=242900 : Reward: 0.960000 Pc: 148.749412
+iter=243000 : Reward: 0.973333 Pc: 117.489535
+iter=243100 : Reward: 0.990000 Pc: 74.330709
+iter=243200 : Reward: 0.971667 Pc: 137.436300
+iter=243300 : Reward: 0.981667 Pc: 89.197765
+iter=243400 : Reward: 0.980000 Pc: 91.225383
+iter=243500 : Reward: 0.983333 Pc: 101.152418
+iter=243600 : Reward: 0.980000 Pc: 114.809848
+iter=243700 : Reward: 0.968333 Pc: 125.270796
+iter=243800 : Reward: 0.983333 Pc: 89.727146
+iter=243900 : Reward: 0.980000 Pc: 102.757144
+iter=244000 : Reward: 0.976667 Pc: 113.501874
+iter=244100 : Reward: 0.985000 Pc: 96.038474
+iter=244200 : Reward: 0.973333 Pc: 99.856734
+iter=244300 : Reward: 0.986667 Pc: 92.231153
+iter=244400 : Reward: 0.971667 Pc: 120.331701
+iter=244500 : Reward: 0.970000 Pc: 122.901305
+iter=244600 : Reward: 0.976667 Pc: 111.561028
+iter=244700 : Reward: 0.978333 Pc: 108.400942
+iter=244800 : Reward: 0.975000 Pc: 127.481718
+iter=244900 : Reward: 0.981667 Pc: 80.670370
+iter=245000 : Reward: 0.981667 Pc: 106.749579
+iter=245100 : Reward: 0.981667 Pc: 97.525185
+iter=245200 : Reward: 0.990000 Pc: 97.118462
+iter=245300 : Reward: 0.980000 Pc: 63.102237
+iter=245400 : Reward: 0.976667 Pc: 134.943420
+iter=245500 : Reward: 0.955000 Pc: 145.781327
+iter=245600 : Reward: 0.970000 Pc: 136.767015
+iter=245700 : Reward: 0.973333 Pc: 116.069945
+iter=245800 : Reward: 0.983333 Pc: 92.781560
+iter=245900 : Reward: 0.981667 Pc: 113.508705
+iter=246000 : Reward: 0.983333 Pc: 90.131386
+iter=246100 : Reward: 0.970000 Pc: 79.235935
+iter=246200 : Reward: 0.971667 Pc: 94.203675
+iter=246300 : Reward: 0.976667 Pc: 104.712590
+iter=246400 : Reward: 0.968333 Pc: 138.845902
+iter=246500 : Reward: 0.968333 Pc: 146.279193
+iter=246600 : Reward: 0.968333 Pc: 101.114128
+iter=246700 : Reward: 0.978333 Pc: 73.355322
+iter=246800 : Reward: 0.966667 Pc: 135.608633
+iter=246900 : Reward: 0.971667 Pc: 118.417286
+iter=247000 : Reward: 0.970000 Pc: 137.240156
+iter=247100 : Reward: 0.980000 Pc: 114.253397
+iter=247200 : Reward: 0.980000 Pc: 111.532663
+iter=247300 : Reward: 0.980000 Pc: 101.326125
+iter=247400 : Reward: 0.968333 Pc: 146.081149
+iter=247500 : Reward: 0.985000 Pc: 80.375871
+iter=247600 : Reward: 0.970000 Pc: 129.419448
+iter=247700 : Reward: 0.985000 Pc: 82.355296
+iter=247800 : Reward: 0.970000 Pc: 119.256850
+iter=247900 : Reward: 0.981667 Pc: 105.083248
+iter=248000 : Reward: 0.976667 Pc: 128.564239
+iter=248100 : Reward: 0.985000 Pc: 92.190093
+iter=248200 : Reward: 0.978333 Pc: 93.982029
+iter=248300 : Reward: 0.985000 Pc: 79.436881
+iter=248400 : Reward: 0.976667 Pc: 108.739953
+iter=248500 : Reward: 0.970000 Pc: 108.523911
+iter=248600 : Reward: 0.976667 Pc: 113.622320
+iter=248700 : Reward: 0.971667 Pc: 119.195990
+iter=248800 : Reward: 0.973333 Pc: 123.367794
+iter=248900 : Reward: 0.968333 Pc: 128.772655
+iter=249000 : Reward: 0.971667 Pc: 114.257506
+iter=249100 : Reward: 0.971667 Pc: 117.101867
+iter=249200 : Reward: 0.973333 Pc: 137.782861
+iter=249300 : Reward: 0.973333 Pc: 119.190975
+iter=249400 : Reward: 0.971667 Pc: 133.826065
+iter=249500 : Reward: 0.973333 Pc: 122.645374
+iter=249600 : Reward: 0.950000 Pc: 139.886097
+iter=249700 : Reward: 0.970000 Pc: 141.520006
+iter=249800 : Reward: 0.971667 Pc: 116.583494
+iter=249900 : Reward: 0.976667 Pc: 119.734413
+iter=250000 : Reward: 0.978333 Pc: 112.700615
+ACCURACY: 0.9159999942
+LabelSums: [  983.   981.  1010.  1013.  1013.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 2, 0, 0, 0]
+POINTER_X: [26.828348, 33.855881, 82.80275, 97.618279, 99.0, 99.0]
+POINTER_Y: [49.780865, 50.606663, 52.412045, 52.913944, 52.103767, 51.826626]
+TEACHER: [[23.0, 54.0], [31.0, 47.0], [99.0, 56.0], [99.0, 56.0], [99.0, 56.0], [99.0, 56.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_250000.ckpt
+--- 75888.52244599999 CPU seconds ---
+iter=250100 : Reward: 0.976667 Pc: 87.133966
+iter=250200 : Reward: 0.975000 Pc: 115.156168
+iter=250300 : Reward: 0.980000 Pc: 82.760741
+iter=250400 : Reward: 0.975000 Pc: 77.238520
+iter=250500 : Reward: 0.970000 Pc: 126.076383
+iter=250600 : Reward: 0.978333 Pc: 132.346521
+iter=250700 : Reward: 0.978333 Pc: 117.728522
+iter=250800 : Reward: 0.970000 Pc: 107.685690
+iter=250900 : Reward: 0.973333 Pc: 113.357478
+iter=251000 : Reward: 0.983333 Pc: 108.278986
+iter=251100 : Reward: 0.958333 Pc: 110.163277
+iter=251200 : Reward: 0.971667 Pc: 141.660948
+iter=251300 : Reward: 0.986667 Pc: 83.381139
+iter=251400 : Reward: 0.976667 Pc: 79.369299
+iter=251500 : Reward: 0.973333 Pc: 120.858943
+iter=251600 : Reward: 0.970000 Pc: 118.709897
+iter=251700 : Reward: 0.981667 Pc: 98.966618
+iter=251800 : Reward: 0.965000 Pc: 127.706775
+iter=251900 : Reward: 0.963333 Pc: 128.509215
+iter=252000 : Reward: 0.975000 Pc: 113.256545
+iter=252100 : Reward: 0.993333 Pc: 74.171717
+iter=252200 : Reward: 0.960000 Pc: 154.728412
+iter=252300 : Reward: 0.983333 Pc: 92.037696
+iter=252400 : Reward: 0.978333 Pc: 106.006533
+iter=252500 : Reward: 0.958333 Pc: 127.289683
+iter=252600 : Reward: 0.965000 Pc: 132.504419
+iter=252700 : Reward: 0.966667 Pc: 132.730532
+iter=252800 : Reward: 0.981667 Pc: 125.989130
+iter=252900 : Reward: 0.980000 Pc: 77.750264
+iter=253000 : Reward: 0.955000 Pc: 180.715085
+iter=253100 : Reward: 0.960000 Pc: 130.737270
+iter=253200 : Reward: 0.981667 Pc: 94.982401
+iter=253300 : Reward: 0.973333 Pc: 113.195580
+iter=253400 : Reward: 0.960000 Pc: 139.797820
+iter=253500 : Reward: 0.985000 Pc: 96.388516
+iter=253600 : Reward: 0.980000 Pc: 90.768053
+iter=253700 : Reward: 0.981667 Pc: 99.588230
+iter=253800 : Reward: 0.965000 Pc: 126.094682
+iter=253900 : Reward: 0.965000 Pc: 120.374730
+iter=254000 : Reward: 0.985000 Pc: 106.344426
+iter=254100 : Reward: 0.980000 Pc: 65.056912
+iter=254200 : Reward: 0.976667 Pc: 101.561049
+iter=254300 : Reward: 0.973333 Pc: 121.308107
+iter=254400 : Reward: 0.973333 Pc: 109.264878
+iter=254500 : Reward: 0.968333 Pc: 131.443725
+iter=254600 : Reward: 0.968333 Pc: 122.114234
+iter=254700 : Reward: 0.955000 Pc: 146.966359
+iter=254800 : Reward: 0.980000 Pc: 107.368888
+iter=254900 : Reward: 0.971667 Pc: 129.706798
+iter=255000 : Reward: 0.978333 Pc: 109.237151
+iter=255100 : Reward: 0.966667 Pc: 133.275524
+iter=255200 : Reward: 0.983333 Pc: 97.501695
+iter=255300 : Reward: 0.986667 Pc: 88.429967
+iter=255400 : Reward: 0.971667 Pc: 117.606183
+iter=255500 : Reward: 0.976667 Pc: 123.740890
+iter=255600 : Reward: 0.975000 Pc: 120.885461
+iter=255700 : Reward: 0.968333 Pc: 129.964282
+iter=255800 : Reward: 0.970000 Pc: 112.513913
+iter=255900 : Reward: 0.976667 Pc: 123.896119
+iter=256000 : Reward: 0.975000 Pc: 95.849240
+iter=256100 : Reward: 0.976667 Pc: 117.046314
+iter=256200 : Reward: 0.975000 Pc: 106.561160
+iter=256300 : Reward: 0.968333 Pc: 142.744270
+iter=256400 : Reward: 0.965000 Pc: 106.756729
+iter=256500 : Reward: 0.971667 Pc: 104.325427
+iter=256600 : Reward: 0.971667 Pc: 123.158382
+iter=256700 : Reward: 0.980000 Pc: 102.317445
+iter=256800 : Reward: 0.978333 Pc: 113.982343
+iter=256900 : Reward: 0.971667 Pc: 120.755042
+iter=257000 : Reward: 0.965000 Pc: 144.097791
+iter=257100 : Reward: 0.973333 Pc: 112.286339
+iter=257200 : Reward: 0.978333 Pc: 100.211766
+iter=257300 : Reward: 0.975000 Pc: 118.161933
+iter=257400 : Reward: 0.971667 Pc: 120.689239
+iter=257500 : Reward: 0.971667 Pc: 109.830479
+iter=257600 : Reward: 0.968333 Pc: 120.261527
+iter=257700 : Reward: 0.960000 Pc: 107.770870
+iter=257800 : Reward: 0.981667 Pc: 86.320594
+iter=257900 : Reward: 0.961667 Pc: 143.675580
+iter=258000 : Reward: 0.970000 Pc: 111.733744
+iter=258100 : Reward: 0.971667 Pc: 137.212762
+iter=258200 : Reward: 0.975000 Pc: 75.952787
+iter=258300 : Reward: 0.971667 Pc: 124.094609
+iter=258400 : Reward: 0.966667 Pc: 107.751738
+iter=258500 : Reward: 0.980000 Pc: 104.658623
+iter=258600 : Reward: 0.963333 Pc: 120.793786
+iter=258700 : Reward: 0.961667 Pc: 118.752075
+iter=258800 : Reward: 0.960000 Pc: 131.074058
+iter=258900 : Reward: 0.966667 Pc: 103.391619
+iter=259000 : Reward: 0.978333 Pc: 107.130033
+iter=259100 : Reward: 0.966667 Pc: 114.087543
+iter=259200 : Reward: 0.966667 Pc: 86.367975
+iter=259300 : Reward: 0.970000 Pc: 103.627372
+iter=259400 : Reward: 0.978333 Pc: 92.016446
+iter=259500 : Reward: 0.968333 Pc: 97.724159
+iter=259600 : Reward: 0.973333 Pc: 115.888689
+iter=259700 : Reward: 0.973333 Pc: 103.548984
+iter=259800 : Reward: 0.971667 Pc: 106.023858
+iter=259900 : Reward: 0.968333 Pc: 119.136552
+iter=260000 : Reward: 0.981667 Pc: 86.483964
+ACCURACY: 0.883899995965
+LabelSums: [  944.   994.   977.  1041.  1044.]
+CORRECT: [1, 0, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0]
+POINTER_X: [26.884209, 99.0, 99.0, 99.0, 99.0, 99.0]
+POINTER_Y: [49.989861, 49.70628, 50.98016, 51.416126, 51.521858, 51.537865]
+TEACHER: [[29.0, 49.0], [99.0, 56.0], [99.0, 56.0], [99.0, 56.0], [99.0, 56.0], [99.0, 56.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_260000.ckpt
+--- 78957.11608799998 CPU seconds ---
+iter=260100 : Reward: 0.966667 Pc: 122.485457
+iter=260200 : Reward: 0.975000 Pc: 108.990077
+iter=260300 : Reward: 0.973333 Pc: 103.575174
+iter=260400 : Reward: 0.971667 Pc: 107.151572
+iter=260500 : Reward: 0.980000 Pc: 89.855719
+iter=260600 : Reward: 0.970000 Pc: 126.920767
+iter=260700 : Reward: 0.978333 Pc: 123.509507
+iter=260800 : Reward: 0.986667 Pc: 74.234600
+iter=260900 : Reward: 0.971667 Pc: 94.932782
+iter=261000 : Reward: 0.968333 Pc: 122.058040
+iter=261100 : Reward: 0.965000 Pc: 145.868332
+iter=261200 : Reward: 0.975000 Pc: 110.053135
+iter=261300 : Reward: 0.960000 Pc: 149.097392
+iter=261400 : Reward: 0.976667 Pc: 114.522969
+iter=261500 : Reward: 0.981667 Pc: 111.998867
+iter=261600 : Reward: 0.966667 Pc: 105.853710
+iter=261700 : Reward: 0.978333 Pc: 125.341246
+iter=261800 : Reward: 0.971667 Pc: 121.794776
+iter=261900 : Reward: 0.983333 Pc: 102.400002
+iter=262000 : Reward: 0.968333 Pc: 108.200321
+iter=262100 : Reward: 0.985000 Pc: 113.379168
+iter=262200 : Reward: 0.976667 Pc: 101.788860
+iter=262300 : Reward: 0.976667 Pc: 126.174668
+iter=262400 : Reward: 0.975000 Pc: 97.673846
+iter=262500 : Reward: 0.971667 Pc: 94.048157
+iter=262600 : Reward: 0.976667 Pc: 138.212954
+iter=262700 : Reward: 0.971667 Pc: 122.738395
+iter=262800 : Reward: 0.971667 Pc: 108.648235
+iter=262900 : Reward: 0.955000 Pc: 129.067226
+iter=263000 : Reward: 0.970000 Pc: 114.544424
+iter=263100 : Reward: 0.983333 Pc: 93.426395
+iter=263200 : Reward: 0.973333 Pc: 91.457004
+iter=263300 : Reward: 0.970000 Pc: 129.100324
+iter=263400 : Reward: 0.975000 Pc: 119.235251
+iter=263500 : Reward: 0.978333 Pc: 97.208558
+iter=263600 : Reward: 0.970000 Pc: 133.861131
+iter=263700 : Reward: 0.976667 Pc: 101.993046
+iter=263800 : Reward: 0.981667 Pc: 104.236198
+iter=263900 : Reward: 0.986667 Pc: 80.556496
+iter=264000 : Reward: 0.975000 Pc: 107.794327
+iter=264100 : Reward: 0.973333 Pc: 108.205501
+iter=264200 : Reward: 0.965000 Pc: 120.557253
+iter=264300 : Reward: 0.968333 Pc: 149.529652
+iter=264400 : Reward: 0.975000 Pc: 103.467733
+iter=264500 : Reward: 0.973333 Pc: 100.967199
+iter=264600 : Reward: 0.978333 Pc: 92.241437
+iter=264700 : Reward: 0.971667 Pc: 100.634352
+iter=264800 : Reward: 0.968333 Pc: 102.824666
+iter=264900 : Reward: 0.973333 Pc: 99.841599
+iter=265000 : Reward: 0.966667 Pc: 126.297637
+iter=265100 : Reward: 0.976667 Pc: 105.859876
+iter=265200 : Reward: 0.981667 Pc: 98.445979
+iter=265300 : Reward: 0.975000 Pc: 103.863798
+iter=265400 : Reward: 0.960000 Pc: 149.596791
+iter=265500 : Reward: 0.970000 Pc: 113.677710
+iter=265600 : Reward: 0.971667 Pc: 96.885401
+iter=265700 : Reward: 0.971667 Pc: 128.477574
+iter=265800 : Reward: 0.973333 Pc: 120.257037
+iter=265900 : Reward: 0.976667 Pc: 94.424836
+iter=266000 : Reward: 0.961667 Pc: 113.305794
+iter=266100 : Reward: 0.970000 Pc: 128.199971
+iter=266200 : Reward: 0.971667 Pc: 111.773375
+iter=266300 : Reward: 0.975000 Pc: 121.165627
+iter=266400 : Reward: 0.963333 Pc: 149.603121
+iter=266500 : Reward: 0.980000 Pc: 96.257962
+iter=266600 : Reward: 0.970000 Pc: 129.660667
+iter=266700 : Reward: 0.965000 Pc: 115.743752
+iter=266800 : Reward: 0.975000 Pc: 92.287811
+iter=266900 : Reward: 0.970000 Pc: 123.040485
+iter=267000 : Reward: 0.983333 Pc: 90.344437
+iter=267100 : Reward: 0.978333 Pc: 101.216377
+iter=267200 : Reward: 0.976667 Pc: 120.868586
+iter=267300 : Reward: 0.965000 Pc: 124.322943
+iter=267400 : Reward: 0.970000 Pc: 124.596129
+iter=267500 : Reward: 0.965000 Pc: 116.900652
+iter=267600 : Reward: 0.970000 Pc: 126.722177
+iter=267700 : Reward: 0.966667 Pc: 136.837883
+iter=267800 : Reward: 0.971667 Pc: 120.151331
+iter=267900 : Reward: 0.985000 Pc: 95.509799
+iter=268000 : Reward: 0.960000 Pc: 119.443290
+iter=268100 : Reward: 0.960000 Pc: 140.240548
+iter=268200 : Reward: 0.948333 Pc: 147.680525
+iter=268300 : Reward: 0.976667 Pc: 118.570893
+iter=268400 : Reward: 0.973333 Pc: 136.916776
+iter=268500 : Reward: 0.973333 Pc: 114.502171
+iter=268600 : Reward: 0.978333 Pc: 102.899160
+iter=268700 : Reward: 0.975000 Pc: 120.905332
+iter=268800 : Reward: 0.975000 Pc: 121.783628
+iter=268900 : Reward: 0.975000 Pc: 112.018888
+iter=269000 : Reward: 0.978333 Pc: 87.015722
+iter=269100 : Reward: 0.966667 Pc: 126.564296
+iter=269200 : Reward: 0.948333 Pc: 177.750231
+iter=269300 : Reward: 0.955000 Pc: 140.763220
+iter=269400 : Reward: 0.970000 Pc: 120.883937
+iter=269500 : Reward: 0.970000 Pc: 124.996407
+iter=269600 : Reward: 0.981667 Pc: 108.256296
+iter=269700 : Reward: 0.970000 Pc: 121.113876
+iter=269800 : Reward: 0.961667 Pc: 127.247203
+iter=269900 : Reward: 0.971667 Pc: 119.449002
+iter=270000 : Reward: 0.980000 Pc: 115.929159
+ACCURACY: 0.892166661721
+LabelSums: [  987.  1043.   965.  1015.   990.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [26.603441, 35.616791, 93.228584, 99.0, 99.0, 99.0]
+POINTER_Y: [49.677292, 49.7258, 53.583241, 54.15836, 53.640507, 53.511444]
+TEACHER: [[27.0, 41.0], [38.0, 44.0], [99.0, 48.0], [99.0, 48.0], [99.0, 48.0], [99.0, 48.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_270000.ckpt
+--- 81989.892052 CPU seconds ---
+iter=270100 : Reward: 0.971667 Pc: 131.901638
+iter=270200 : Reward: 0.981667 Pc: 79.190582
+iter=270300 : Reward: 0.978333 Pc: 106.891335
+iter=270400 : Reward: 0.948333 Pc: 140.828817
+iter=270500 : Reward: 0.960000 Pc: 147.667073
+iter=270600 : Reward: 0.970000 Pc: 98.372044
+iter=270700 : Reward: 0.961667 Pc: 146.709207
+iter=270800 : Reward: 0.966667 Pc: 130.527991
+iter=270900 : Reward: 0.973333 Pc: 106.681036
+iter=271000 : Reward: 0.985000 Pc: 122.635371
+iter=271100 : Reward: 0.975000 Pc: 123.869748
+iter=271200 : Reward: 0.948333 Pc: 154.711703
+iter=271300 : Reward: 0.970000 Pc: 125.129458
+iter=271400 : Reward: 0.970000 Pc: 106.557408
+iter=271500 : Reward: 0.965000 Pc: 122.092584
+iter=271600 : Reward: 0.976667 Pc: 112.927884
+iter=271700 : Reward: 0.985000 Pc: 104.147008
+iter=271800 : Reward: 0.976667 Pc: 105.597515
+iter=271900 : Reward: 0.968333 Pc: 117.850605
+iter=272000 : Reward: 0.978333 Pc: 97.340258
+iter=272100 : Reward: 0.971667 Pc: 107.987324
+iter=272200 : Reward: 0.970000 Pc: 107.297523
+iter=272300 : Reward: 0.965000 Pc: 119.135983
+iter=272400 : Reward: 0.975000 Pc: 118.976859
+iter=272500 : Reward: 0.971667 Pc: 109.496861
+iter=272600 : Reward: 0.983333 Pc: 73.705583
+iter=272700 : Reward: 0.958333 Pc: 141.445015
+iter=272800 : Reward: 0.981667 Pc: 110.372623
+iter=272900 : Reward: 0.976667 Pc: 105.989041
+iter=273000 : Reward: 0.966667 Pc: 119.025320
+iter=273100 : Reward: 0.968333 Pc: 125.857392
+iter=273200 : Reward: 0.975000 Pc: 107.931760
+iter=273300 : Reward: 0.983333 Pc: 79.273867
+iter=273400 : Reward: 0.981667 Pc: 103.092924
+iter=273500 : Reward: 0.986667 Pc: 76.773103
+iter=273600 : Reward: 0.975000 Pc: 120.327389
+iter=273700 : Reward: 0.980000 Pc: 79.698849
+iter=273800 : Reward: 0.968333 Pc: 122.865078
+iter=273900 : Reward: 0.981667 Pc: 85.725285
+iter=274000 : Reward: 0.978333 Pc: 123.530818
+iter=274100 : Reward: 0.976667 Pc: 126.919033
+iter=274200 : Reward: 0.981667 Pc: 92.358664
+iter=274300 : Reward: 0.978333 Pc: 121.696448
+iter=274400 : Reward: 0.985000 Pc: 90.653452
+iter=274500 : Reward: 0.971667 Pc: 103.711267
+iter=274600 : Reward: 0.970000 Pc: 123.955221
+iter=274700 : Reward: 0.976667 Pc: 94.706938
+iter=274800 : Reward: 0.973333 Pc: 104.091860
+iter=274900 : Reward: 0.976667 Pc: 102.260725
+iter=275000 : Reward: 0.961667 Pc: 131.861862
+iter=275100 : Reward: 0.966667 Pc: 114.154200
+iter=275200 : Reward: 0.971667 Pc: 129.096060
+iter=275300 : Reward: 0.985000 Pc: 88.246763
+iter=275400 : Reward: 0.976667 Pc: 113.546912
+iter=275500 : Reward: 0.970000 Pc: 102.140548
+iter=275600 : Reward: 0.955000 Pc: 146.648989
+iter=275700 : Reward: 0.975000 Pc: 114.609152
+iter=275800 : Reward: 0.973333 Pc: 107.301470
+iter=275900 : Reward: 0.973333 Pc: 99.469955
+iter=276000 : Reward: 0.963333 Pc: 127.758433
+iter=276100 : Reward: 0.960000 Pc: 122.681748
+iter=276200 : Reward: 0.950000 Pc: 132.231722
+iter=276300 : Reward: 0.971667 Pc: 116.851679
+iter=276400 : Reward: 0.963333 Pc: 132.968932
+iter=276500 : Reward: 0.970000 Pc: 115.916763
+iter=276600 : Reward: 0.981667 Pc: 105.515106
+iter=276700 : Reward: 0.980000 Pc: 100.451626
+iter=276800 : Reward: 0.986667 Pc: 95.074114
+iter=276900 : Reward: 0.985000 Pc: 76.340712
+iter=277000 : Reward: 0.963333 Pc: 133.264956
+iter=277100 : Reward: 0.980000 Pc: 111.116918
+iter=277200 : Reward: 0.971667 Pc: 112.370815
+iter=277300 : Reward: 0.960000 Pc: 139.821838
+iter=277400 : Reward: 0.966667 Pc: 117.573121
+iter=277500 : Reward: 0.961667 Pc: 134.190272
+iter=277600 : Reward: 0.966667 Pc: 151.545111
+iter=277700 : Reward: 0.963333 Pc: 105.083629
+iter=277800 : Reward: 0.976667 Pc: 96.295671
+iter=277900 : Reward: 0.978333 Pc: 115.086488
+iter=278000 : Reward: 0.975000 Pc: 117.171726
+iter=278100 : Reward: 0.976667 Pc: 96.713506
+iter=278200 : Reward: 0.978333 Pc: 108.840094
+iter=278300 : Reward: 0.973333 Pc: 146.120090
+iter=278400 : Reward: 0.965000 Pc: 117.956228
+iter=278500 : Reward: 0.976667 Pc: 131.417733
+iter=278600 : Reward: 0.965000 Pc: 104.761947
+iter=278700 : Reward: 0.968333 Pc: 125.596993
+iter=278800 : Reward: 0.980000 Pc: 77.833880
+iter=278900 : Reward: 0.980000 Pc: 94.894878
+iter=279000 : Reward: 0.958333 Pc: 154.719569
+iter=279100 : Reward: 0.963333 Pc: 144.944352
+iter=279200 : Reward: 0.976667 Pc: 103.277265
+iter=279300 : Reward: 0.973333 Pc: 96.313035
+iter=279400 : Reward: 0.961667 Pc: 107.859898
+iter=279500 : Reward: 0.980000 Pc: 90.525522
+iter=279600 : Reward: 0.965000 Pc: 142.109091
+iter=279700 : Reward: 0.981667 Pc: 90.458302
+iter=279800 : Reward: 0.981667 Pc: 97.735598
+iter=279900 : Reward: 0.975000 Pc: 109.276117
+iter=280000 : Reward: 0.981667 Pc: 102.763025
+ACCURACY: 0.909599994344
+LabelSums: [  987.  1016.   965.   994.  1038.]
+CORRECT: [1, 2, 3, 4, 5, 0]
+COUNT: [1, 2, 3, 4, 5, 0]
+POINTER_X: [26.690321, 39.843506, 51.792068, 60.239166, 82.943207, 95.706345]
+POINTER_Y: [49.852409, 42.5602, 45.038712, 49.033417, 50.295177, 50.562843]
+TEACHER: [[26.0, 43.0], [40.0, 38.0], [54.0, 41.0], [65.0, 49.0], [73.0, 40.0], [99.0, 59.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_280000.ckpt
+--- 85001.29732799999 CPU seconds ---
+iter=280100 : Reward: 0.975000 Pc: 105.820138
+iter=280200 : Reward: 0.976667 Pc: 112.813553
+iter=280300 : Reward: 0.978333 Pc: 98.526850
+iter=280400 : Reward: 0.968333 Pc: 150.793497
+iter=280500 : Reward: 0.963333 Pc: 126.186319
+iter=280600 : Reward: 0.980000 Pc: 100.427859
+iter=280700 : Reward: 0.980000 Pc: 78.632134
+iter=280800 : Reward: 0.973333 Pc: 93.214532
+iter=280900 : Reward: 0.978333 Pc: 99.298966
+iter=281000 : Reward: 0.975000 Pc: 123.523292
+iter=281100 : Reward: 0.980000 Pc: 73.212755
+iter=281200 : Reward: 0.970000 Pc: 110.982946
+iter=281300 : Reward: 0.985000 Pc: 96.838429
+iter=281400 : Reward: 0.975000 Pc: 85.345773
+iter=281500 : Reward: 0.976667 Pc: 125.381208
+iter=281600 : Reward: 0.980000 Pc: 88.312396
+iter=281700 : Reward: 0.975000 Pc: 105.775743
+iter=281800 : Reward: 0.976667 Pc: 115.728797
+iter=281900 : Reward: 0.973333 Pc: 121.552252
+iter=282000 : Reward: 0.965000 Pc: 111.429188
+iter=282100 : Reward: 0.965000 Pc: 107.823545
+iter=282200 : Reward: 0.968333 Pc: 119.614907
+iter=282300 : Reward: 0.963333 Pc: 147.476003
+iter=282400 : Reward: 0.975000 Pc: 88.397426
+iter=282500 : Reward: 0.973333 Pc: 96.454251
+iter=282600 : Reward: 0.973333 Pc: 96.879846
+iter=282700 : Reward: 0.956667 Pc: 152.503197
+iter=282800 : Reward: 0.980000 Pc: 116.137937
+iter=282900 : Reward: 0.985000 Pc: 87.227427
+iter=283000 : Reward: 0.971667 Pc: 130.218849
+iter=283100 : Reward: 0.975000 Pc: 107.561098
+iter=283200 : Reward: 0.970000 Pc: 119.872787
+iter=283300 : Reward: 0.956667 Pc: 158.884294
+iter=283400 : Reward: 0.978333 Pc: 124.545473
+iter=283500 : Reward: 0.968333 Pc: 133.510837
+iter=283600 : Reward: 0.971667 Pc: 83.889575
+iter=283700 : Reward: 0.978333 Pc: 105.545239
+iter=283800 : Reward: 0.973333 Pc: 105.583118
+iter=283900 : Reward: 0.973333 Pc: 121.945742
+iter=284000 : Reward: 0.968333 Pc: 124.752921
+iter=284100 : Reward: 0.981667 Pc: 107.562544
+iter=284200 : Reward: 0.970000 Pc: 108.627361
+iter=284300 : Reward: 0.970000 Pc: 123.871724
+iter=284400 : Reward: 0.976667 Pc: 110.082975
+iter=284500 : Reward: 0.975000 Pc: 81.260262
+iter=284600 : Reward: 0.976667 Pc: 101.652684
+iter=284700 : Reward: 0.976667 Pc: 112.622546
+iter=284800 : Reward: 0.966667 Pc: 103.828934
+iter=284900 : Reward: 0.968333 Pc: 123.534978
+iter=285000 : Reward: 0.975000 Pc: 96.774858
+iter=285100 : Reward: 0.971667 Pc: 95.010745
+iter=285200 : Reward: 0.966667 Pc: 141.226407
+iter=285300 : Reward: 0.978333 Pc: 104.206546
+iter=285400 : Reward: 0.960000 Pc: 110.290990
+iter=285500 : Reward: 0.971667 Pc: 98.400245
+iter=285600 : Reward: 0.960000 Pc: 140.711847
+iter=285700 : Reward: 0.966667 Pc: 114.261830
+iter=285800 : Reward: 0.963333 Pc: 137.637133
+iter=285900 : Reward: 0.958333 Pc: 140.351792
+iter=286000 : Reward: 0.968333 Pc: 113.241574
+iter=286100 : Reward: 0.975000 Pc: 103.330724
+iter=286200 : Reward: 0.983333 Pc: 97.271273
+iter=286300 : Reward: 0.966667 Pc: 134.822053
+iter=286400 : Reward: 0.966667 Pc: 142.107585
+iter=286500 : Reward: 0.976667 Pc: 110.463744
+iter=286600 : Reward: 0.975000 Pc: 105.509562
+iter=286700 : Reward: 0.983333 Pc: 75.875663
+iter=286800 : Reward: 0.971667 Pc: 131.890986
+iter=286900 : Reward: 0.973333 Pc: 113.811699
+iter=287000 : Reward: 0.968333 Pc: 119.697002
+iter=287100 : Reward: 0.975000 Pc: 116.063993
+iter=287200 : Reward: 0.963333 Pc: 115.160887
+iter=287300 : Reward: 0.983333 Pc: 109.957151
+iter=287400 : Reward: 0.968333 Pc: 131.236083
+iter=287500 : Reward: 0.966667 Pc: 124.905782
+iter=287600 : Reward: 0.978333 Pc: 96.843687
+iter=287700 : Reward: 0.970000 Pc: 120.264941
+iter=287800 : Reward: 0.968333 Pc: 122.707340
+iter=287900 : Reward: 0.978333 Pc: 70.075882
+iter=288000 : Reward: 0.978333 Pc: 124.684589
+iter=288100 : Reward: 0.966667 Pc: 125.904080
+iter=288200 : Reward: 0.978333 Pc: 111.847506
+iter=288300 : Reward: 0.985000 Pc: 77.592245
+iter=288400 : Reward: 0.980000 Pc: 90.149851
+iter=288500 : Reward: 0.973333 Pc: 121.335046
+iter=288600 : Reward: 0.980000 Pc: 93.321569
+iter=288700 : Reward: 0.973333 Pc: 114.039955
+iter=288800 : Reward: 0.978333 Pc: 84.221095
+iter=288900 : Reward: 0.981667 Pc: 116.432993
+iter=289000 : Reward: 0.948333 Pc: 186.950060
+iter=289100 : Reward: 0.971667 Pc: 123.440334
+iter=289200 : Reward: 0.980000 Pc: 83.336195
+iter=289300 : Reward: 0.970000 Pc: 124.282007
+iter=289400 : Reward: 0.961667 Pc: 124.362996
+iter=289500 : Reward: 0.988333 Pc: 82.953228
+iter=289600 : Reward: 0.968333 Pc: 112.207446
+iter=289700 : Reward: 0.970000 Pc: 100.230066
+iter=289800 : Reward: 0.958333 Pc: 143.176480
+iter=289900 : Reward: 0.956667 Pc: 129.502275
+iter=290000 : Reward: 0.970000 Pc: 113.157755
+ACCURACY: 0.915299994439
+LabelSums: [  996.  1033.   966.  1017.   988.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 3, 0, 0, 0]
+POINTER_X: [26.269026, 34.80526, 76.050476, 95.04641, 99.0, 99.0]
+POINTER_Y: [49.862675, 48.69698, 49.910198, 50.874664, 52.871037, 52.526436]
+TEACHER: [[23.0, 57.0], [36.0, 46.0], [99.0, 63.0], [99.0, 63.0], [99.0, 63.0], [99.0, 63.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_290000.ckpt
+--- 88035.00637899998 CPU seconds ---
+iter=290100 : Reward: 0.965000 Pc: 114.856847
+iter=290200 : Reward: 0.983333 Pc: 98.089886
+iter=290300 : Reward: 0.958333 Pc: 153.312659
+iter=290400 : Reward: 0.970000 Pc: 80.018575
+iter=290500 : Reward: 0.975000 Pc: 135.693256
+iter=290600 : Reward: 0.965000 Pc: 120.306318
+iter=290700 : Reward: 0.971667 Pc: 110.676808
+iter=290800 : Reward: 0.970000 Pc: 108.463605
+iter=290900 : Reward: 0.980000 Pc: 78.440541
+iter=291000 : Reward: 0.983333 Pc: 114.116891
+iter=291100 : Reward: 0.973333 Pc: 98.824905
+iter=291200 : Reward: 0.963333 Pc: 119.963833
+iter=291300 : Reward: 0.986667 Pc: 84.016785
+iter=291400 : Reward: 0.976667 Pc: 117.701139
+iter=291500 : Reward: 0.965000 Pc: 122.985446
+iter=291600 : Reward: 0.963333 Pc: 115.728553
+iter=291700 : Reward: 0.970000 Pc: 124.111453
+iter=291800 : Reward: 0.965000 Pc: 115.642389
+iter=291900 : Reward: 0.971667 Pc: 96.933216
+iter=292000 : Reward: 0.981667 Pc: 85.029237
+iter=292100 : Reward: 0.980000 Pc: 93.073189
+iter=292200 : Reward: 0.981667 Pc: 95.389478
+iter=292300 : Reward: 0.971667 Pc: 125.319736
+iter=292400 : Reward: 0.983333 Pc: 95.457964
+iter=292500 : Reward: 0.970000 Pc: 115.505773
+iter=292600 : Reward: 0.970000 Pc: 119.477084
+iter=292700 : Reward: 0.975000 Pc: 88.854901
+iter=292800 : Reward: 0.968333 Pc: 97.161516
+iter=292900 : Reward: 0.981667 Pc: 81.199695
+iter=293000 : Reward: 0.968333 Pc: 106.380484
+iter=293100 : Reward: 0.973333 Pc: 116.340125
+iter=293200 : Reward: 0.971667 Pc: 128.785064
+iter=293300 : Reward: 0.966667 Pc: 100.617202
+iter=293400 : Reward: 0.965000 Pc: 138.961131
+iter=293500 : Reward: 0.965000 Pc: 103.153720
+iter=293600 : Reward: 0.976667 Pc: 99.567033
+iter=293700 : Reward: 0.960000 Pc: 114.245661
+iter=293800 : Reward: 0.961667 Pc: 135.743205
+iter=293900 : Reward: 0.973333 Pc: 140.999897
+iter=294000 : Reward: 0.983333 Pc: 88.612371
+iter=294100 : Reward: 0.983333 Pc: 98.388867
+iter=294200 : Reward: 0.978333 Pc: 101.582397
+iter=294300 : Reward: 0.978333 Pc: 82.587954
+iter=294400 : Reward: 0.975000 Pc: 109.718496
+iter=294500 : Reward: 0.980000 Pc: 92.136778
+iter=294600 : Reward: 0.971667 Pc: 118.069152
+iter=294700 : Reward: 0.985000 Pc: 92.160297
+iter=294800 : Reward: 0.975000 Pc: 122.649638
+iter=294900 : Reward: 0.958333 Pc: 147.071655
+iter=295000 : Reward: 0.960000 Pc: 127.032665
+iter=295100 : Reward: 0.978333 Pc: 103.300390
+iter=295200 : Reward: 0.976667 Pc: 116.394400
+iter=295300 : Reward: 0.966667 Pc: 139.749170
+iter=295400 : Reward: 0.970000 Pc: 124.017149
+iter=295500 : Reward: 0.970000 Pc: 121.717497
+iter=295600 : Reward: 0.961667 Pc: 153.632498
+iter=295700 : Reward: 0.978333 Pc: 96.798890
+iter=295800 : Reward: 0.966667 Pc: 124.484963
+iter=295900 : Reward: 0.981667 Pc: 83.321440
+iter=296000 : Reward: 0.981667 Pc: 105.618717
+iter=296100 : Reward: 0.983333 Pc: 95.431479
+iter=296200 : Reward: 0.973333 Pc: 117.992838
+iter=296300 : Reward: 0.971667 Pc: 95.851753
+iter=296400 : Reward: 0.976667 Pc: 112.372322
+iter=296500 : Reward: 0.976667 Pc: 98.621836
+iter=296600 : Reward: 0.981667 Pc: 126.510127
+iter=296700 : Reward: 0.970000 Pc: 121.665704
+iter=296800 : Reward: 0.985000 Pc: 94.706816
+iter=296900 : Reward: 0.976667 Pc: 110.958467
+iter=297000 : Reward: 0.975000 Pc: 120.140678
+iter=297100 : Reward: 0.971667 Pc: 108.586764
+iter=297200 : Reward: 0.951667 Pc: 164.879140
+iter=297300 : Reward: 0.985000 Pc: 92.008231
+iter=297400 : Reward: 0.985000 Pc: 75.574987
+iter=297500 : Reward: 0.973333 Pc: 143.561153
+iter=297600 : Reward: 0.983333 Pc: 103.725603
+iter=297700 : Reward: 0.973333 Pc: 110.655361
+iter=297800 : Reward: 0.978333 Pc: 111.040853
+iter=297900 : Reward: 0.960000 Pc: 125.607368
+iter=298000 : Reward: 0.970000 Pc: 102.346944
+iter=298100 : Reward: 0.971667 Pc: 120.150425
+iter=298200 : Reward: 0.960000 Pc: 147.665938
+iter=298300 : Reward: 0.973333 Pc: 107.604147
+iter=298400 : Reward: 0.986667 Pc: 71.764577
+iter=298500 : Reward: 0.971667 Pc: 101.830912
+iter=298600 : Reward: 0.970000 Pc: 116.404747
+iter=298700 : Reward: 0.976667 Pc: 103.729182
+iter=298800 : Reward: 0.976667 Pc: 91.619256
+iter=298900 : Reward: 0.958333 Pc: 136.575465
+iter=299000 : Reward: 0.983333 Pc: 88.249103
+iter=299100 : Reward: 0.966667 Pc: 155.478633
+iter=299200 : Reward: 0.966667 Pc: 113.431847
+iter=299300 : Reward: 0.981667 Pc: 86.823095
+iter=299400 : Reward: 0.976667 Pc: 101.454674
+iter=299500 : Reward: 0.976667 Pc: 109.103885
+iter=299600 : Reward: 0.968333 Pc: 132.641631
+iter=299700 : Reward: 0.980000 Pc: 83.986957
+iter=299800 : Reward: 0.985000 Pc: 76.685214
+iter=299900 : Reward: 0.975000 Pc: 99.839299
+iter=300000 : Reward: 0.976667 Pc: 84.050313
+ACCURACY: 0.917333328104
+LabelSums: [ 1008.   985.  1000.   999.  1008.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [26.421593, 38.476845, 96.370056, 99.0, 99.0, 99.0]
+POINTER_Y: [49.654865, 48.662079, 48.072815, 49.660118, 49.097149, 48.9748]
+TEACHER: [[29.0, 50.0], [38.0, 46.0], [99.0, 45.0], [99.0, 45.0], [99.0, 45.0], [99.0, 45.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_300000.ckpt
+--- 91079.82425299998 CPU seconds ---
+iter=300100 : Reward: 0.978333 Pc: 114.959495
+iter=300200 : Reward: 0.978333 Pc: 93.679036
+iter=300300 : Reward: 0.971667 Pc: 116.988900
+iter=300400 : Reward: 0.965000 Pc: 133.147696
+iter=300500 : Reward: 0.978333 Pc: 82.806394
+iter=300600 : Reward: 0.970000 Pc: 121.913974
+iter=300700 : Reward: 0.973333 Pc: 114.490723
+iter=300800 : Reward: 0.980000 Pc: 97.617677
+iter=300900 : Reward: 0.968333 Pc: 112.921151
+iter=301000 : Reward: 0.958333 Pc: 139.533090
+iter=301100 : Reward: 0.955000 Pc: 150.906493
+iter=301200 : Reward: 0.970000 Pc: 138.827594
+iter=301300 : Reward: 0.971667 Pc: 119.320831
+iter=301400 : Reward: 0.965000 Pc: 132.464165
+iter=301500 : Reward: 0.975000 Pc: 104.427919
+iter=301600 : Reward: 0.973333 Pc: 103.489772
+iter=301700 : Reward: 0.958333 Pc: 119.670946
+iter=301800 : Reward: 0.978333 Pc: 86.992582
+iter=301900 : Reward: 0.986667 Pc: 83.812648
+iter=302000 : Reward: 0.975000 Pc: 137.377373
+iter=302100 : Reward: 0.980000 Pc: 108.466962
+iter=302200 : Reward: 0.968333 Pc: 156.239646
+iter=302300 : Reward: 0.970000 Pc: 147.474616
+iter=302400 : Reward: 0.983333 Pc: 100.818295
+iter=302500 : Reward: 0.965000 Pc: 133.521312
+iter=302600 : Reward: 0.986667 Pc: 92.660185
+iter=302700 : Reward: 0.988333 Pc: 85.133440
+iter=302800 : Reward: 0.963333 Pc: 149.051592
+iter=302900 : Reward: 0.976667 Pc: 131.987065
+iter=303000 : Reward: 0.970000 Pc: 109.985442
+iter=303100 : Reward: 0.986667 Pc: 84.342628
+iter=303200 : Reward: 0.963333 Pc: 145.859229
+iter=303300 : Reward: 0.981667 Pc: 88.694941
+iter=303400 : Reward: 0.978333 Pc: 129.244383
+iter=303500 : Reward: 0.973333 Pc: 106.940517
+iter=303600 : Reward: 0.966667 Pc: 144.478753
+iter=303700 : Reward: 0.965000 Pc: 135.625741
+iter=303800 : Reward: 0.961667 Pc: 154.714046
+iter=303900 : Reward: 0.970000 Pc: 131.694478
+iter=304000 : Reward: 0.985000 Pc: 77.737143
+iter=304100 : Reward: 0.978333 Pc: 125.103117
+iter=304200 : Reward: 0.971667 Pc: 119.959533
+iter=304300 : Reward: 0.985000 Pc: 95.954559
+iter=304400 : Reward: 0.983333 Pc: 90.638519
+iter=304500 : Reward: 0.970000 Pc: 121.864486
+iter=304600 : Reward: 0.965000 Pc: 122.618872
+iter=304700 : Reward: 0.966667 Pc: 126.249892
+iter=304800 : Reward: 0.985000 Pc: 72.725128
+iter=304900 : Reward: 0.978333 Pc: 104.495032
+iter=305000 : Reward: 0.988333 Pc: 69.116402
+iter=305100 : Reward: 0.976667 Pc: 109.867477
+iter=305200 : Reward: 0.978333 Pc: 96.474762
+iter=305300 : Reward: 0.973333 Pc: 97.155604
+iter=305400 : Reward: 0.971667 Pc: 114.922166
+iter=305500 : Reward: 0.970000 Pc: 108.488597
+iter=305600 : Reward: 0.975000 Pc: 116.893270
+iter=305700 : Reward: 0.975000 Pc: 117.822847
+iter=305800 : Reward: 0.970000 Pc: 113.899107
+iter=305900 : Reward: 0.966667 Pc: 118.427400
+iter=306000 : Reward: 0.973333 Pc: 100.356105
+iter=306100 : Reward: 0.970000 Pc: 122.779763
+iter=306200 : Reward: 0.963333 Pc: 131.836009
+iter=306300 : Reward: 0.976667 Pc: 118.199895
+iter=306400 : Reward: 0.966667 Pc: 129.391763
+iter=306500 : Reward: 0.973333 Pc: 107.122395
+iter=306600 : Reward: 0.980000 Pc: 92.422680
+iter=306700 : Reward: 0.970000 Pc: 133.096838
+iter=306800 : Reward: 0.975000 Pc: 112.229220
+iter=306900 : Reward: 0.978333 Pc: 113.363234
+iter=307000 : Reward: 0.971667 Pc: 100.061442
+iter=307100 : Reward: 0.980000 Pc: 91.942767
+iter=307200 : Reward: 0.973333 Pc: 124.751326
+iter=307300 : Reward: 0.971667 Pc: 111.789550
+iter=307400 : Reward: 0.965000 Pc: 112.274568
+iter=307500 : Reward: 0.973333 Pc: 106.757535
+iter=307600 : Reward: 0.975000 Pc: 115.699082
+iter=307700 : Reward: 0.968333 Pc: 116.059381
+iter=307800 : Reward: 0.978333 Pc: 108.717470
+iter=307900 : Reward: 0.981667 Pc: 93.299207
+iter=308000 : Reward: 0.970000 Pc: 120.112740
+iter=308100 : Reward: 0.980000 Pc: 110.856481
+iter=308200 : Reward: 0.976667 Pc: 94.871583
+iter=308300 : Reward: 0.980000 Pc: 107.671765
+iter=308400 : Reward: 0.980000 Pc: 102.537232
+iter=308500 : Reward: 0.973333 Pc: 124.104899
+iter=308600 : Reward: 0.973333 Pc: 113.446124
+iter=308700 : Reward: 0.965000 Pc: 137.909689
+iter=308800 : Reward: 0.976667 Pc: 110.362619
+iter=308900 : Reward: 0.961667 Pc: 151.764172
+iter=309000 : Reward: 0.975000 Pc: 105.511243
+iter=309100 : Reward: 0.978333 Pc: 108.795067
+iter=309200 : Reward: 0.961667 Pc: 120.342733
+iter=309300 : Reward: 0.971667 Pc: 107.863972
+iter=309400 : Reward: 0.973333 Pc: 86.526048
+iter=309500 : Reward: 0.975000 Pc: 110.596307
+iter=309600 : Reward: 0.976667 Pc: 86.343376
+iter=309700 : Reward: 0.970000 Pc: 94.692833
+iter=309800 : Reward: 0.965000 Pc: 133.934242
+iter=309900 : Reward: 0.971667 Pc: 100.359856
+iter=310000 : Reward: 0.980000 Pc: 83.247756
+ACCURACY: 0.90269999392
+LabelSums: [ 1028.  1021.   977.   975.   999.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 3, 0, 0, 0]
+POINTER_X: [26.423506, 37.356747, 48.205856, 96.262505, 99.0, 99.0]
+POINTER_Y: [49.822071, 58.440697, 50.024136, 49.714283, 47.874004, 49.185799]
+TEACHER: [[21.0, 48.0], [28.0, 59.0], [39.0, 61.0], [52.0, 47.0], [99.0, 41.0], [99.0, 41.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_310000.ckpt
+--- 94290.27930899999 CPU seconds ---
+iter=310100 : Reward: 0.980000 Pc: 95.179017
+iter=310200 : Reward: 0.973333 Pc: 106.972349
+iter=310300 : Reward: 0.968333 Pc: 112.331170
+iter=310400 : Reward: 0.968333 Pc: 134.740120
+iter=310500 : Reward: 0.973333 Pc: 108.479580
+iter=310600 : Reward: 0.980000 Pc: 94.624069
+iter=310700 : Reward: 0.973333 Pc: 105.031984
+iter=310800 : Reward: 0.966667 Pc: 143.348712
+iter=310900 : Reward: 0.968333 Pc: 115.594825
+iter=311000 : Reward: 0.973333 Pc: 114.020654
+iter=311100 : Reward: 0.980000 Pc: 93.283291
+iter=311200 : Reward: 0.973333 Pc: 127.460364
+iter=311300 : Reward: 0.973333 Pc: 118.198706
+iter=311400 : Reward: 0.976667 Pc: 97.619383
+iter=311500 : Reward: 0.955000 Pc: 116.734821
+iter=311600 : Reward: 0.976667 Pc: 120.260774
+iter=311700 : Reward: 0.975000 Pc: 96.757727
+iter=311800 : Reward: 0.968333 Pc: 121.660685
+iter=311900 : Reward: 0.976667 Pc: 118.112749
+iter=312000 : Reward: 0.971667 Pc: 117.663489
+iter=312100 : Reward: 0.978333 Pc: 71.852766
+iter=312200 : Reward: 0.975000 Pc: 124.616198
+iter=312300 : Reward: 0.981667 Pc: 76.042344
+iter=312400 : Reward: 0.975000 Pc: 131.527129
+iter=312500 : Reward: 0.980000 Pc: 106.132280
+iter=312600 : Reward: 0.985000 Pc: 99.083861
+iter=312700 : Reward: 0.973333 Pc: 92.992527
+iter=312800 : Reward: 0.973333 Pc: 128.315492
+iter=312900 : Reward: 0.985000 Pc: 112.230778
+iter=313000 : Reward: 0.983333 Pc: 93.196577
+iter=313100 : Reward: 0.963333 Pc: 157.444745
+iter=313200 : Reward: 0.966667 Pc: 131.068524
+iter=313300 : Reward: 0.973333 Pc: 120.672560
+iter=313400 : Reward: 0.971667 Pc: 123.537290
+iter=313500 : Reward: 0.975000 Pc: 95.769599
+iter=313600 : Reward: 0.975000 Pc: 110.174828
+iter=313700 : Reward: 0.973333 Pc: 133.633253
+iter=313800 : Reward: 0.966667 Pc: 131.803888
+iter=313900 : Reward: 0.971667 Pc: 121.562103
+iter=314000 : Reward: 0.973333 Pc: 94.439683
+iter=314100 : Reward: 0.978333 Pc: 101.668951
+iter=314200 : Reward: 0.973333 Pc: 102.776658
+iter=314300 : Reward: 0.978333 Pc: 95.780974
+iter=314400 : Reward: 0.963333 Pc: 127.594123
+iter=314500 : Reward: 0.986667 Pc: 68.931297
+iter=314600 : Reward: 0.971667 Pc: 84.496083
+iter=314700 : Reward: 0.975000 Pc: 130.228716
+iter=314800 : Reward: 0.978333 Pc: 110.861839
+iter=314900 : Reward: 0.968333 Pc: 113.157875
+iter=315000 : Reward: 0.970000 Pc: 108.221264
+iter=315100 : Reward: 0.978333 Pc: 108.469019
+iter=315200 : Reward: 0.975000 Pc: 120.514889
+iter=315300 : Reward: 0.971667 Pc: 103.537697
+iter=315400 : Reward: 0.975000 Pc: 111.090015
+iter=315500 : Reward: 0.983333 Pc: 105.276167
+iter=315600 : Reward: 0.978333 Pc: 88.291783
+iter=315700 : Reward: 0.978333 Pc: 126.739572
+iter=315800 : Reward: 0.965000 Pc: 151.662942
+iter=315900 : Reward: 0.973333 Pc: 112.191680
+iter=316000 : Reward: 0.980000 Pc: 95.995182
+iter=316100 : Reward: 0.973333 Pc: 103.211830
+iter=316200 : Reward: 0.978333 Pc: 73.736432
+iter=316300 : Reward: 0.981667 Pc: 96.847254
+iter=316400 : Reward: 0.975000 Pc: 113.415779
+iter=316500 : Reward: 0.961667 Pc: 145.682567
+iter=316600 : Reward: 0.953333 Pc: 120.033690
+iter=316700 : Reward: 0.973333 Pc: 110.873102
+iter=316800 : Reward: 0.981667 Pc: 115.564355
+iter=316900 : Reward: 0.963333 Pc: 119.721267
+iter=317000 : Reward: 0.975000 Pc: 104.403007
+iter=317100 : Reward: 0.983333 Pc: 98.513494
+iter=317200 : Reward: 0.956667 Pc: 130.929086
+iter=317300 : Reward: 0.978333 Pc: 102.793722
+iter=317400 : Reward: 0.970000 Pc: 133.286196
+iter=317500 : Reward: 0.961667 Pc: 140.027478
+iter=317600 : Reward: 0.971667 Pc: 127.170200
+iter=317700 : Reward: 0.966667 Pc: 148.651363
+iter=317800 : Reward: 0.975000 Pc: 116.996409
+iter=317900 : Reward: 0.951667 Pc: 135.966603
+iter=318000 : Reward: 0.983333 Pc: 96.635062
+iter=318100 : Reward: 0.976667 Pc: 108.583516
+iter=318200 : Reward: 0.956667 Pc: 151.126225
+iter=318300 : Reward: 0.971667 Pc: 115.043668
+iter=318400 : Reward: 0.980000 Pc: 99.758981
+iter=318500 : Reward: 0.976667 Pc: 98.953899
+iter=318600 : Reward: 0.981667 Pc: 106.196454
+iter=318700 : Reward: 0.960000 Pc: 149.378649
+iter=318800 : Reward: 0.961667 Pc: 145.836603
+iter=318900 : Reward: 0.976667 Pc: 98.703491
+iter=319000 : Reward: 0.971667 Pc: 131.093817
+iter=319100 : Reward: 0.963333 Pc: 118.395429
+iter=319200 : Reward: 0.961667 Pc: 159.328777
+iter=319300 : Reward: 0.980000 Pc: 94.664660
+iter=319400 : Reward: 0.976667 Pc: 124.296881
+iter=319500 : Reward: 0.986667 Pc: 88.307743
+iter=319600 : Reward: 0.975000 Pc: 116.617937
+iter=319700 : Reward: 0.985000 Pc: 120.551984
+iter=319800 : Reward: 0.953333 Pc: 160.797914
+iter=319900 : Reward: 0.985000 Pc: 95.309217
+iter=320000 : Reward: 0.968333 Pc: 113.375758
+ACCURACY: 0.902533325952
+LabelSums: [  967.  1018.   983.  1045.   987.]
+CORRECT: [1, 2, 3, 4, 0, 0]
+COUNT: [1, 2, 3, 4, 5, 0]
+POINTER_X: [26.882635, 44.175034, 45.932068, 63.875137, 86.919304, 99.0]
+POINTER_Y: [50.139305, 52.46788, 52.616299, 52.458652, 52.50119, 52.43401]
+TEACHER: [[28.0, 54.0], [34.0, 41.0], [50.0, 59.0], [56.0, 46.0], [99.0, 51.0], [99.0, 51.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_320000.ckpt
+--- 97506.62615999999 CPU seconds ---
+iter=320100 : Reward: 0.976667 Pc: 106.409079
+iter=320200 : Reward: 0.973333 Pc: 105.912142
+iter=320300 : Reward: 0.973333 Pc: 130.286046
+iter=320400 : Reward: 0.975000 Pc: 111.675362
+iter=320500 : Reward: 0.983333 Pc: 73.551872
+iter=320600 : Reward: 0.966667 Pc: 114.225450
+iter=320700 : Reward: 0.965000 Pc: 111.194641
+iter=320800 : Reward: 0.978333 Pc: 89.724314
+iter=320900 : Reward: 0.968333 Pc: 138.680769
+iter=321000 : Reward: 0.980000 Pc: 94.605320
+iter=321100 : Reward: 0.973333 Pc: 145.292198
+iter=321200 : Reward: 0.971667 Pc: 126.222433
+iter=321300 : Reward: 0.980000 Pc: 104.701140
+iter=321400 : Reward: 0.981667 Pc: 103.088121
+iter=321500 : Reward: 0.963333 Pc: 131.329709
+iter=321600 : Reward: 0.970000 Pc: 107.763174
+iter=321700 : Reward: 0.970000 Pc: 120.571535
+iter=321800 : Reward: 0.958333 Pc: 145.100515
+iter=321900 : Reward: 0.963333 Pc: 134.086784
+iter=322000 : Reward: 0.985000 Pc: 85.450603
+iter=322100 : Reward: 0.973333 Pc: 143.823647
+iter=322200 : Reward: 0.963333 Pc: 151.316411
+iter=322300 : Reward: 0.953333 Pc: 125.312317
+iter=322400 : Reward: 0.970000 Pc: 121.341601
+iter=322500 : Reward: 0.970000 Pc: 95.648099
+iter=322600 : Reward: 0.965000 Pc: 114.777857
+iter=322700 : Reward: 0.980000 Pc: 113.966770
+iter=322800 : Reward: 0.970000 Pc: 138.710777
+iter=322900 : Reward: 0.981667 Pc: 101.884015
+iter=323000 : Reward: 0.960000 Pc: 150.351998
+iter=323100 : Reward: 0.971667 Pc: 100.497852
+iter=323200 : Reward: 0.961667 Pc: 109.386074
+iter=323300 : Reward: 0.970000 Pc: 89.884891
+iter=323400 : Reward: 0.963333 Pc: 118.185309
+iter=323500 : Reward: 0.978333 Pc: 122.199779
+iter=323600 : Reward: 0.966667 Pc: 116.096426
+iter=323700 : Reward: 0.976667 Pc: 127.869160
+iter=323800 : Reward: 0.966667 Pc: 132.092508
+iter=323900 : Reward: 0.970000 Pc: 102.998579
+iter=324000 : Reward: 0.980000 Pc: 96.263845
+iter=324100 : Reward: 0.981667 Pc: 101.601290
+iter=324200 : Reward: 0.951667 Pc: 138.853981
+iter=324300 : Reward: 0.986667 Pc: 76.372174
+iter=324400 : Reward: 0.988333 Pc: 94.453846
+iter=324500 : Reward: 0.985000 Pc: 107.429793
+iter=324600 : Reward: 0.971667 Pc: 117.987181
+iter=324700 : Reward: 0.980000 Pc: 107.868377
+iter=324800 : Reward: 0.973333 Pc: 117.990320
+iter=324900 : Reward: 0.985000 Pc: 87.941291
+iter=325000 : Reward: 0.968333 Pc: 135.095977
+iter=325100 : Reward: 0.973333 Pc: 108.712671
+iter=325200 : Reward: 0.980000 Pc: 101.585569
+iter=325300 : Reward: 0.973333 Pc: 122.965235
+iter=325400 : Reward: 0.978333 Pc: 87.214106
+iter=325500 : Reward: 0.975000 Pc: 111.287930
+iter=325600 : Reward: 0.965000 Pc: 126.564626
+iter=325700 : Reward: 0.963333 Pc: 130.759652
+iter=325800 : Reward: 0.970000 Pc: 102.061874
+iter=325900 : Reward: 0.965000 Pc: 155.085546
+iter=326000 : Reward: 0.975000 Pc: 113.230845
+iter=326100 : Reward: 0.970000 Pc: 135.539330
+iter=326200 : Reward: 0.966667 Pc: 127.369416
+iter=326300 : Reward: 0.983333 Pc: 78.975796
+iter=326400 : Reward: 0.965000 Pc: 127.481631
+iter=326500 : Reward: 0.980000 Pc: 103.381889
+iter=326600 : Reward: 0.971667 Pc: 117.933628
+iter=326700 : Reward: 0.966667 Pc: 121.496941
+iter=326800 : Reward: 0.985000 Pc: 94.802015
+iter=326900 : Reward: 0.971667 Pc: 111.370120
+iter=327000 : Reward: 0.976667 Pc: 113.821867
+iter=327100 : Reward: 0.973333 Pc: 109.393139
+iter=327200 : Reward: 0.950000 Pc: 134.181736
+iter=327300 : Reward: 0.980000 Pc: 101.335597
+iter=327400 : Reward: 0.961667 Pc: 149.710915
+iter=327500 : Reward: 0.965000 Pc: 127.487144
+iter=327600 : Reward: 0.980000 Pc: 118.083902
+iter=327700 : Reward: 0.976667 Pc: 105.444319
+iter=327800 : Reward: 0.981667 Pc: 113.560402
+iter=327900 : Reward: 0.970000 Pc: 141.964571
+iter=328000 : Reward: 0.970000 Pc: 105.395293
+iter=328100 : Reward: 0.968333 Pc: 108.660713
+iter=328200 : Reward: 0.983333 Pc: 100.637239
+iter=328300 : Reward: 0.961667 Pc: 143.053158
+iter=328400 : Reward: 0.976667 Pc: 110.342495
+iter=328500 : Reward: 0.971667 Pc: 98.773258
+iter=328600 : Reward: 0.971667 Pc: 132.601910
+iter=328700 : Reward: 0.970000 Pc: 123.587390
+iter=328800 : Reward: 0.976667 Pc: 84.063249
+iter=328900 : Reward: 0.978333 Pc: 115.957040
+iter=329000 : Reward: 0.965000 Pc: 112.482617
+iter=329100 : Reward: 0.973333 Pc: 115.355802
+iter=329200 : Reward: 0.981667 Pc: 106.658495
+iter=329300 : Reward: 0.986667 Pc: 87.801417
+iter=329400 : Reward: 0.978333 Pc: 103.609639
+iter=329500 : Reward: 0.981667 Pc: 76.447841
+iter=329600 : Reward: 0.965000 Pc: 154.290149
+iter=329700 : Reward: 0.973333 Pc: 124.920438
+iter=329800 : Reward: 0.971667 Pc: 127.921762
+iter=329900 : Reward: 0.978333 Pc: 83.963126
+iter=330000 : Reward: 0.975000 Pc: 103.232760
+ACCURACY: 0.919233327007
+LabelSums: [  923.  1002.  1030.  1039.  1006.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [26.451197, 35.117889, 90.564278, 99.0, 99.0, 99.0]
+POINTER_Y: [49.604778, 44.368603, 48.139942, 48.522362, 48.500259, 48.384304]
+TEACHER: [[26.0, 38.0], [31.0, 41.0], [99.0, 52.0], [99.0, 52.0], [99.0, 52.0], [99.0, 52.0]]
+Model saved in file: model_runs/1030/model_runs/1030/nohup.out/countmodel_330000.ckpt
+--- 100676.69662499998 CPU seconds ---
+iter=330100 : Reward: 0.963333 Pc: 152.869238
+iter=330200 : Reward: 0.971667 Pc: 122.339850
+iter=330300 : Reward: 0.978333 Pc: 107.609436
+iter=330400 : Reward: 0.973333 Pc: 112.292095
+iter=330500 : Reward: 0.976667 Pc: 98.695024
+iter=330600 : Reward: 0.976667 Pc: 122.742545
+iter=330700 : Reward: 0.981667 Pc: 120.684518
+iter=330800 : Reward: 0.986667 Pc: 89.817308
+iter=330900 : Reward: 0.966667 Pc: 125.756549
+iter=331000 : Reward: 0.955000 Pc: 136.884869
+iter=331100 : Reward: 0.976667 Pc: 98.788361
+iter=331200 : Reward: 0.981667 Pc: 98.501245
+iter=331300 : Reward: 0.970000 Pc: 94.994206
+iter=331400 : Reward: 0.980000 Pc: 97.269342
+iter=331500 : Reward: 0.976667 Pc: 97.121845
+iter=331600 : Reward: 0.965000 Pc: 114.592226
+iter=331700 : Reward: 0.978333 Pc: 99.587702
+iter=331800 : Reward: 0.975000 Pc: 109.916804
+iter=331900 : Reward: 0.973333 Pc: 122.473365
+iter=332000 : Reward: 0.970000 Pc: 100.568364
+iter=332100 : Reward: 0.985000 Pc: 84.988142
+iter=332200 : Reward: 0.963333 Pc: 107.186634
+iter=332300 : Reward: 0.980000 Pc: 116.205290
+iter=332400 : Reward: 0.975000 Pc: 114.063890
+iter=332500 : Reward: 0.966667 Pc: 129.614706
+iter=332600 : Reward: 0.966667 Pc: 105.236855
+iter=332700 : Reward: 0.965000 Pc: 110.069690
+iter=332800 : Reward: 0.968333 Pc: 116.022092
+iter=332900 : Reward: 0.981667 Pc: 87.232246
+iter=333000 : Reward: 0.965000 Pc: 128.069345
+iter=333100 : Reward: 0.970000 Pc: 108.601738
+iter=333200 : Reward: 0.975000 Pc: 113.746857
+iter=333300 : Reward: 0.970000 Pc: 135.862339
+iter=333400 : Reward: 0.980000 Pc: 89.948745
+iter=333500 : Reward: 0.986667 Pc: 91.761934
+iter=333600 : Reward: 0.976667 Pc: 95.600856
+iter=333700 : Reward: 0.966667 Pc: 120.371540
+iter=333800 : Reward: 0.963333 Pc: 133.932137
+iter=333900 : Reward: 0.975000 Pc: 105.217196
+iter=334000 : Reward: 0.973333 Pc: 104.896438
+iter=334100 : Reward: 0.976667 Pc: 98.327929
+iter=334200 : Reward: 0.975000 Pc: 136.751732
+iter=334300 : Reward: 0.973333 Pc: 90.413973
+iter=334400 : Reward: 0.986667 Pc: 85.551695
+iter=334500 : Reward: 0.970000 Pc: 117.326486
+iter=334600 : Reward: 0.980000 Pc: 122.888074
+iter=334700 : Reward: 0.975000 Pc: 139.575127
+iter=334800 : Reward: 0.966667 Pc: 129.091375
+iter=334900 : Reward: 0.968333 Pc: 105.811315
+iter=335000 : Reward: 0.963333 Pc: 105.713671
+iter=335100 : Reward: 0.976667 Pc: 108.432101
+iter=335200 : Reward: 0.966667 Pc: 116.007778
+iter=335300 : Reward: 0.973333 Pc: 119.610277
+iter=335400 : Reward: 0.971667 Pc: 112.157767
+iter=335500 : Reward: 0.966667 Pc: 168.594765
+iter=335600 : Reward: 0.981667 Pc: 103.775096
+iter=335700 : Reward: 0.971667 Pc: 110.233612
+iter=335800 : Reward: 0.973333 Pc: 117.785869
+iter=335900 : Reward: 0.956667 Pc: 136.665365
+iter=336000 : Reward: 0.975000 Pc: 118.979116
+iter=336100 : Reward: 0.975000 Pc: 104.571099
+iter=336200 : Reward: 0.968333 Pc: 123.970352
+iter=336300 : Reward: 0.975000 Pc: 97.964430
+iter=336400 : Reward: 0.971667 Pc: 102.855430
+iter=336500 : Reward: 0.966667 Pc: 110.321473
+iter=336600 : Reward: 0.966667 Pc: 136.300807
+iter=336700 : Reward: 0.975000 Pc: 102.841150
+iter=336800 : Reward: 0.968333 Pc: 123.911462
+iter=336900 : Reward: 0.973333 Pc: 119.443614
+iter=337000 : Reward: 0.983333 Pc: 103.800677
+iter=337100 : Reward: 0.978333 Pc: 115.868836
+iter=337200 : Reward: 0.983333 Pc: 91.472754
+iter=337300 : Reward: 0.976667 Pc: 120.706850
+iter=337400 : Reward: 0.960000 Pc: 135.086145
+iter=337500 : Reward: 0.978333 Pc: 104.575168
+iter=337600 : Reward: 0.975000 Pc: 100.412518
+iter=337700 : Reward: 0.985000 Pc: 74.458523
+iter=337800 : Reward: 0.973333 Pc: 116.606447
+iter=337900 : Reward: 0.968333 Pc: 96.540884
+iter=338000 : Reward: 0.983333 Pc: 82.357230
+iter=338100 : Reward: 0.970000 Pc: 121.143210
+iter=338200 : Reward: 0.970000 Pc: 103.841167
+iter=338300 : Reward: 0.980000 Pc: 104.565231
+iter=338400 : Reward: 0.978333 Pc: 96.031124
+iter=338500 : Reward: 0.970000 Pc: 140.165717
+iter=338600 : Reward: 0.978333 Pc: 84.951077
+iter=338700 : Reward: 0.978333 Pc: 128.148457
+iter=338800 : Reward: 0.960000 Pc: 132.955794
+iter=338900 : Reward: 0.971667 Pc: 112.139937
+iter=339000 : Reward: 0.981667 Pc: 100.893022
+iter=339100 : Reward: 0.968333 Pc: 125.045072
+iter=339200 : Reward: 0.978333 Pc: 90.413378
+iter=339300 : Reward: 0.973333 Pc: 103.322747
+iter=339400 : Reward: 0.980000 Pc: 117.170191
+iter=339500 : Reward: 0.983333 Pc: 79.966432
+iter=339600 : Reward: 0.971667 Pc: 111.745136
+iter=339700 : Reward: 0.970000 Pc: 123.948806
+iter=339800 : Reward: 0.975000 Pc: 119.257100
+iter=339900 : Reward: 0.971667 Pc: 121.541294
+iter=340000 : Reward: 0.968333 Pc: 121.655818
+ACCURACY: 0.914299993563
+LabelSums: [ 1024.  1035.   989.   972.   980.]
+CORRECT: [1, 2, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0]
+POINTER_X: [26.594883, 38.688606, 88.071548, 99.0, 99.0, 99.0]
+POINTER_Y: [49.675381, 51.278557, 54.028507, 53.43256, 53.64341, 53.753174]
+TEACHER: [[25.0, 56.0], [40.0, 48.0], [99.0, 60.0], [99.0, 60.0], [99.0, 60.0], [99.0, 60.0]]
+2017-10-30 20:15:38.121244: W tensorflow/core/framework/op_kernel.cc:1192] Not found: model_runs/1030/model_runs/1030/nohup.out
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1327, in _do_call
+    return fn(*args)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1306, in _run_fn
+    status, run_metadata)
+  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/errors_impl.py", line 466, in raise_exception_on_not_ok_status
+    pywrap_tensorflow.TF_GetCode(status))
+tensorflow.python.framework.errors_impl.NotFoundError: model_runs/1030/model_runs/1030/nohup.out
+	 [[Node: save_45/SaveV2 = SaveV2[dtypes=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT], _device="/job:localhost/replica:0/task:0/cpu:0"](_arg_save_45/Const_0_0, save_45/SaveV2/tensor_names, save_45/SaveV2/shape_and_slices, LSTMCell/lstm_cell/bias, LSTMCell/lstm_cell/bias/Adam, LSTMCell/lstm_cell/bias/Adam_1, LSTMCell/lstm_cell/kernel, LSTMCell/lstm_cell/kernel/Adam, LSTMCell/lstm_cell/kernel/Adam_1, beta1_power, beta2_power, output/b, output/b/Adam, output/b/Adam_1, output/w, output/w/Adam, output/w/Adam_1, read/b, read/b/Adam, read/b/Adam_1, read/w, read/w/Adam, read/w/Adam_1)]]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1474, in save
+    {self.saver_def.filename_tensor_name: checkpoint_file})
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.NotFoundError: model_runs/1030/model_runs/1030/nohup.out
+	 [[Node: save_45/SaveV2 = SaveV2[dtypes=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT], _device="/job:localhost/replica:0/task:0/cpu:0"](_arg_save_45/Const_0_0, save_45/SaveV2/tensor_names, save_45/SaveV2/shape_and_slices, LSTMCell/lstm_cell/bias, LSTMCell/lstm_cell/bias/Adam, LSTMCell/lstm_cell/bias/Adam_1, LSTMCell/lstm_cell/kernel, LSTMCell/lstm_cell/kernel/Adam, LSTMCell/lstm_cell/kernel/Adam_1, beta1_power, beta2_power, output/b, output/b/Adam, output/b/Adam_1, output/w, output/w/Adam, output/w/Adam_1, read/b, read/b/Adam, read/b/Adam_1, read/w, read/w/Adam, read/w/Adam_1)]]
+
+Caused by op 'save_45/SaveV2', defined at:
+  File "COUNT_twolayer.py", line 379, in <module>
+    saver = tf.train.Saver(tf.global_variables())
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1140, in __init__
+    self.build()
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1172, in build
+    filename=self._filename)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 686, in build
+    save_tensor = self._AddSaveOps(filename_tensor, saveables)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 276, in _AddSaveOps
+    save = self.save_op(filename_tensor, saveables)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 219, in save_op
+    tensors)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_io_ops.py", line 768, in save_v2
+    tensors=tensors, name=name)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+NotFoundError (see above for traceback): model_runs/1030/model_runs/1030/nohup.out
+	 [[Node: save_45/SaveV2 = SaveV2[dtypes=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT], _device="/job:localhost/replica:0/task:0/cpu:0"](_arg_save_45/Const_0_0, save_45/SaveV2/tensor_names, save_45/SaveV2/shape_and_slices, LSTMCell/lstm_cell/bias, LSTMCell/lstm_cell/bias/Adam, LSTMCell/lstm_cell/bias/Adam_1, LSTMCell/lstm_cell/kernel, LSTMCell/lstm_cell/kernel/Adam, LSTMCell/lstm_cell/kernel/Adam_1, beta1_power, beta2_power, output/b, output/b/Adam, output/b/Adam_1, output/w, output/w/Adam, output/w/Adam_1, read/b, read/b/Adam, read/b/Adam_1, read/w, read/w/Adam, read/w/Adam_1)]]
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "COUNT_twolayer.py", line 380, in <module>
+    print("Model saved in file: %s" % saver.save(sess, save_file + str(i) + ".ckpt"))
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1490, in save
+    raise exc
+ValueError: Parent directory of model_runs/1030/model_runs/1030/nohup.out/countmodel_340000.ckpt doesn't exist, can't save.
+['COUNT_twolayer2.py', 'COUNT_twolayer_teacherforce/model_runs/COUNT_twolayer_teacherforce/nohup.out', 'true', 'true', 'true', 'true', 'true', 'model_runs/COUNT_twolayer_teacherforce/model_runs/COUNT_twolayer_teacherforce/nohup.out/count_log.csv', 'model_runs/COUNT_twolayer_teacherforce/model_runs/COUNT_twolayer_teacherforce/nohup.out/countmodel_0.ckpt', 'model_runs/COUNT_twolayer_teacherforce/model_runs/COUNT_twolayer_teacherforce/nohup.out/countmodel_', 'true', 'false', 'false', 'true']
+WARNING:tensorflow:From COUNT_twolayer2.py:290: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From COUNT_twolayer2.py:291: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py", line 654, in _call_cpp_shape_fn_impl
+    input_tensors_as_shapes, status)
+  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/errors_impl.py", line 466, in raise_exception_on_not_ok_status
+    pywrap_tensorflow.TF_GetCode(status))
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Dimension 0 in both shapes must be equal, but are 1 and 100 for 'Select' (op: 'Select') with input shapes: [100,1], [1,1], [100,1].
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "COUNT_twolayer2.py", line 315, in <module>
+    potquality = tf.where(in_blob, tf.reshape(tf.constant(1.0),[-1,1]), intensity)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/array_ops.py", line 2367, in where
+    return gen_math_ops._select(condition=condition, t=x, e=y, name=name)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_math_ops.py", line 2255, in _select
+    name=name)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 2632, in create_op
+    set_shapes_for_outputs(ret)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 1911, in set_shapes_for_outputs
+    shapes = shape_func(op)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 1861, in call_with_requiring
+    return call_cpp_shape_fn(op, require_shape_fn=True)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py", line 595, in call_cpp_shape_fn
+    require_shape_fn)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py", line 659, in _call_cpp_shape_fn_impl
+    raise ValueError(err.message)
+ValueError: Dimension 0 in both shapes must be equal, but are 1 and 100 for 'Select' (op: 'Select') with input shapes: [100,1], [1,1], [100,1].
