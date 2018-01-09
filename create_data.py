@@ -7,30 +7,31 @@ from model_settings import img_height, img_width, min_edge, max_edge, min_blobs_
 
 S = None
 
-def get_size(num_blobs, even=None):
+def get_size(testing, num_blobs, max_blobs):
     """Get amount of images for each number"""
     
-    def get_S(num_blobs):
+    def get_S():
         """Get the denominator of proportion of blobs with a specific number of blobs."""
 
         if S is None:
             S = 0.0
-            for i in range(1, num_blobs):
+            for i in range(1, max_blobs):
                 S += i ** (-2)
         return S
 
-
-    if even is None:
-        return int(10000/(num_blobs**(-2))/get_S(num_blobs)) # uneven: number distribution 1/(n^2)
-    else:
+    if testing:
         return 1000 # even: make 1000 images for each number
+    else:
+        return int(10000/(num_blobs**(-2))/get_S()) # uneven distribution
 
-def get_total(even, min_blobs, max_blobs): # MT
-    """Get total amount of images."""
+
+def get_total(testing, min_blobs, max_blobs): # MT
+    """Get total number of images."""
+
     c = min_blobs
     total = 0
     while (c < max_blobs + 1):
-       total = total + set_size(c, even)       
+       total = total + get_size(testing, c, max_blobs)       
        c = c + 1
     return total
 
@@ -58,6 +59,7 @@ def get_s(testing=False, n=None):
 
 def pir(x):
     """Perform probabilistic integer rounding"""
+
     f, rem = divmod(x, 1.0)
     retval = f
     
@@ -88,9 +90,9 @@ def get_dims(testing, i):
 
 
 
-def generate_data(even, min_blobs, max_blobs): # MT
+def generate_data(testing, min_blobs, max_blobs): # MT
     n_labels = max_blobs_train - min_blobs_train + 1
-    total = get_total(even, min_blobs, max_blobs)
+    total = get_total(testing, min_blobs, max_blobs)
     train = np.zeros([total, img_height*img_width]) # input img size
     label = np.zeros([total, n_labels])
     num_blobs = min_blobs
@@ -99,7 +101,7 @@ def generate_data(even, min_blobs, max_blobs): # MT
 
     while (num_blobs < max_blobs + 1):
 
-        nOfItem = set_size(num_blobs, even) # even, 1000; uneven, 10000/(num_blobs**2)
+        nOfItem = get_size(testing, num_blobs, max_blobs) # testing: 1000; training, 10000*num_blobs**(-2)/sum(i**(-2))
         i = 0 # amount of images for each blob number
 
         while (i < nOfItem):
@@ -116,7 +118,7 @@ def generate_data(even, min_blobs, max_blobs): # MT
                 index = 0
 
                 while index < num_count:
-                    if cX+width+1 <= used[index, 0] or used[index, 0]+1+used[index, 2] <= cX or used[index, 1]+1+used[index,3] <= cY or cY+height+1<=used[index,1]:
+                    if cX+width+1 <= used[index, 0] or used[index, 0]+1+used[index, 2] <= cX or used[index, 1]+1+used[index,3] <= cY or cY+height+1<=used[index,1]: # check for no overlapping blobs
                         index = index + 1
                     else:
                         cX = random.randint(1, 99-width)
