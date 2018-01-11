@@ -5,7 +5,7 @@ import numpy as np
 import random
 from model_settings import img_height, img_width, min_edge, max_edge, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test # MT
 
-def get_S():
+def get_S(max_blobs):
     """Get the denominator of proportion of blobs with a specific number of blobs."""
 
     if S is None:
@@ -21,7 +21,7 @@ def get_size(testing, num_blobs, max_blobs):
     if testing:
         return 1000 # even: make 1000 images for each number
     else:
-        return int(10000/(num_blobs**(-2))/get_S()) # uneven distribution
+        return int(10000/(num_blobs**(-2))/get_S(max_blobs)) # uneven distribution
 
 
 def get_total(testing, min_blobs, max_blobs): # MT
