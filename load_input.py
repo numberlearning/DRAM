@@ -107,7 +107,7 @@ def test_this(get_corpus):
     print(myData.get_length())
     x_train, y_train = myData.next_batch(10)
     for i, img in enumerate(x_train):
-        print_img(img)
+        print_img(img, get_corpus.__name__ + '_' + str(i))
         print(y_train[i])
 
 
@@ -117,10 +117,14 @@ def chunks(l, n):
         yield l[i:i + n]
 
 
-def print_img(img):
+def print_img(img, filename=None):
     """Prints the image."""
+
     matrix = list(chunks(img, 100))
     plt.imshow(matrix, interpolation="nearest", origin="upper")
     plt.colorbar()
-    plt.show()
+    if filename is None:
+        plt.show()
+    else:
+        plt.imsave(filename, matrix)
 

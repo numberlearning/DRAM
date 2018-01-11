@@ -5,20 +5,19 @@ import numpy as np
 import random
 from model_settings import img_height, img_width, min_edge, max_edge, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test # MT
 
-S = None
+def get_S():
+    """Get the denominator of proportion of blobs with a specific number of blobs."""
+
+    if S is None:
+        S = 0.0
+        for i in range(1, max_blobs):
+            S += i ** (-2)
+    return S
+
 
 def get_size(testing, num_blobs, max_blobs):
     """Get amount of images for each number"""
     
-    def get_S():
-        """Get the denominator of proportion of blobs with a specific number of blobs."""
-
-        if S is None:
-            S = 0.0
-            for i in range(1, max_blobs):
-                S += i ** (-2)
-        return S
-
     if testing:
         return 1000 # even: make 1000 images for each number
     else:
@@ -95,19 +94,25 @@ def generate_data(testing, min_blobs, max_blobs): # MT
     total = get_total(testing, min_blobs, max_blobs)
     train = np.zeros([total, img_height*img_width]) # input img size
     label = np.zeros([total, n_labels])
+    #total_area_blobs = np.zeros([total, 1])
+    #mean_area_blobs = np.zeros([total, 1])
     num_blobs = min_blobs
     img_count = 0
     
+    #average_edge = []
 
     while (num_blobs < max_blobs + 1):
 
         nOfItem = get_size(testing, num_blobs, max_blobs) # testing: 1000; training, 10000*num_blobs**(-2)/sum(i**(-2))
-        i = 0 # amount of images for each blob number
+        i = 0 # number of images for each blob number
+        #sum_edge = 0.0
+        #count_edge = 0.0
 
         while (i < nOfItem):
             img = np.zeros(img_height*img_width) # input img size
             num_count = 0 # amount of blobs in each image 
             used = np.zeros((num_blobs, 4)) # check overlapping
+            #total_area = 0.0
             
             while num_count < num_blobs:
                 width, height = get_dims(testing, i)
@@ -129,6 +134,12 @@ def generate_data(testing, min_blobs, max_blobs): # MT
                 used[index, 1] = cY
                 used[index, 2] = width
                 used[index, 3] = height
+                #total_area += width * height
+
+                #sum_edge += width
+                #count_edge += 1.0
+                #sum_edge += height
+                #count_edge += 1.0
 
                 for p in range(cY, cY+height):
                     for q in range(cX, cX+width):
@@ -137,11 +148,14 @@ def generate_data(testing, min_blobs, max_blobs): # MT
 
             train[img_count] = img
             label[img_count, num_blobs - 1] = 1
+            #total_area_blobs[img_count] = total_area
+            #mean_area_blobs[img_count] = total_area / num_blobs
             img_count += 1
             i += 1
 
+        #average_edge.append(sum_edge / count_edge)
         num_blobs += 1
 
     np.set_printoptions(threshold=np.nan)
     
-    return train, label
+    return train, label#, total_area_blobs, mean_area_blobs, average_edge
