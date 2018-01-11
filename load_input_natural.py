@@ -18,27 +18,26 @@ class InputData(object):
         """Return an InputData object."""
         self.folder = folder
         self.images = []
-        self.labels = []
+        self.labels = []        
         self.length = 0
 
 
-    def get_train(self, even=None):
+    def get_train(self, min_blobs=1, max_blobs=15):
         """Generate and get train images and labels."""
-        self.images, self.labels = create_data.generate_data(even)
+
+        self.images, self.labels = create_data.generate_data(False, min_blobs, max_blobs)
         self.length = len(self.images)
 
 
-    def get_test(self, even=None, max_blobs=None):
+    def get_test(self, min_blobs=1, max_blobs=9):
         """Generate and get test images and labels."""
-        if max_blobs is None:
-            self.get_train(even)
-        else:
-            self.images, self.labels = create_data.generate_data(even, max_blobs)
-            self.length = len(self.images)
+
+        self.images, self.labels = create_data.generate_data(True, min_blobs, max_blobs)
+        self.length = len(self.images)
 
 
-    def load_sample(self):
-        """Load the sample set and labels."""
+    def load_sample(self):        
+    """Load the sample set and labels."""
         self.load_images(self.folder + "/sampleSet.txt")
         self.load_labels(self.folder + "/sampleLabel.txt")
 
@@ -59,8 +58,7 @@ class InputData(object):
         """Load the image data"""
         self.images = self.load(filename)
         self.length = len(self.images)
-
-
+        
     def load_labels(self, filename):
         """Load the image data"""
         self.labels = self.load(filename)
@@ -80,7 +78,6 @@ class InputData(object):
     def get_length(self):
         """Return the number of images."""
         return self.length
-
 
     def next_batch(self, batch_size):
         """Returns a batch of size batch_size of data."""
@@ -102,14 +99,15 @@ class InputData(object):
         return self.labels[idx]
 
 
-def test_this():
+def test_this(get_corpus):
     """Test out this class."""
+
     myData = InputData()
-    myData.load_sample()
+    myData.get_corpus()
     print(myData.get_length())
     x_train, y_train = myData.next_batch(10)
     for i, img in enumerate(x_train):
-        print_img(img)
+        print_img(img, get_corpus.__name__ + '_' + str(i))
         print(y_train[i])
 
 
@@ -119,10 +117,14 @@ def chunks(l, n):
         yield l[i:i + n]
 
 
-def print_img(img):
+def print_img(img, filename=None):
     """Prints the image."""
+
     matrix = list(chunks(img, 100))
     plt.imshow(matrix, interpolation="nearest", origin="upper")
     plt.colorbar()
-    plt.show()
+    if filename is None:
+        plt.show()
+    else:
+        plt.imsave(filename, matrix)
 
