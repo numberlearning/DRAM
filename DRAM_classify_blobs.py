@@ -260,7 +260,7 @@ def binary_crossentropy(t,o):
 
 def evaluate():
     data = load_input.InputData()
-    data.get_test(1, 9)
+    data.get_test()
     batches_in_epoch = len(data.images) // batch_size
     accuracy = 0
     
