@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 import random
-from model_settings import img_height, img_width, min_edge, max_edge, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test # MT
+from model_settings import img_height, img_width, min_edge, max_edge, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test, training_case # MT
 
 
 def get_S(max_blobs):
@@ -19,7 +19,10 @@ def get_size(testing, num_blobs, max_blobs):
     if testing:
         return 1000 # even: make 1000 images for each number
     else:
-        return int(10000*(num_blobs**(-2))/get_S(max_blobs)) # uneven distribution
+        if training_case in [1, 4]:
+            return int(10000*(num_blobs**(-2))/get_S(max_blobs)) # uneven distribution
+        else:
+            return 1000
 
 
 def get_total(testing, min_blobs, max_blobs): # MT
@@ -39,7 +42,10 @@ def get_k(testing=False):
     if testing:
         return 3 # testing: k is set to 3 throughout
     else:
-        return random.randint(2, 4) # training: k is chosen from the uniform distribution of discrete values 2, 3, and 4
+        if training_case in [3, 4]:
+            return 3
+        else:
+            return random.randint(2, 4) # training: k is chosen from the uniform distribution of discrete values 2, 3, and 4
 
 
 def get_s(testing=False, n=None):
@@ -51,7 +57,10 @@ def get_s(testing=False, n=None):
         else:
             return random.uniform(.8, 1.2) # latter 500 displays
     else:
-        return random.uniform(.8*2 * (n ** (-.3154)), 1.2*2 * (n ** (-.3154)))
+        if training_case in [3, 4]:
+            return random.uniform(.8, 1.2)
+        else:
+            return random.uniform(.8*2 * (n ** (-.3154)), 1.2*2 * (n ** (-.3154)))
 
 
 def pir(x):
@@ -88,6 +97,12 @@ def get_dims(testing, i, num_blobs):
     return width, height
 
 def generate_data(testing, min_blobs, max_blobs): # MT
+    print("training_case: " + str(training_case))
+    if training_case in [1, 4]:
+        print("training_case in [1, 4]")
+    else:
+        print("training_case not in [1, 4]")
+
     n_labels = max_blobs_train - min_blobs_train + 1
     total = get_total(testing, min_blobs, max_blobs)
     train = np.zeros([total, img_height*img_width]) # input img size

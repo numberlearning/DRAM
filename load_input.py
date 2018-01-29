@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib as mpl
-import create_data
+import create_data_natural as cd
 
 mpl.use('Agg')
 import matplotlib.pyplot as plt
@@ -22,19 +22,16 @@ class InputData(object):
         self.length = 0
 
 
-    def get_train(self, even=None):
+    def get_train(self, even=None, min_blobs=1, max_blobs=1): # MT
         """Generate and get train images and labels."""
-        self.images, self.labels = create_data.generate_data(even)
+        self.images, self.labels = cd.generate_data(even, min_blobs, max_blobs)
         self.length = len(self.images)
 
 
-    def get_test(self, even=None, max_blobs=None):
+    def get_test(self, even=None, min_blobs=1, max_blobs=1): # MT
         """Generate and get test images and labels."""
-        if max_blobs is None:
-            self.get_train(even)
-        else:
-            self.images, self.labels = create_data.generate_data(even, max_blobs)
-            self.length = len(self.images)
+        self.images, self.labels = cd.generate_data(even, min_blobs, max_blobs) # MT
+        self.length = len(self.images)
 
 
     def load_sample(self):
@@ -90,6 +87,29 @@ class InputData(object):
         batch_imgs = [self.images[i] for i in batch_idx]
         batch_lbls = [self.labels[i] for i in batch_idx]
         return batch_imgs, batch_lbls
+
+    def next_batch_nds(self, batch_size):
+        """Returns a batch of size batch_size of data."""
+        all_idx = np.arange(0, self.length)
+        batch_idx = all_idx[:batch_size]
+        batch_imgs = [self.images[i] for i in batch_idx]
+        batch_lbls = [self.labels[i] for i in batch_idx]
+        return batch_imgs, batch_lbls
+
+    def split_data(self):
+        """Returns the first half and latter half data of each number."""
+        all_idx = np.arange(0, 9000)# self.length)
+        nOfImgs = 1000
+        fh_idx = all_idx[0:nOfImgs//2] # first half index
+        lh_idx = all_idx[nOfImgs//2:nOfImgs] # latter half index
+        for i in range(1,9):
+            fh_idx = np.append(fh_idx, all_idx[nOfImgs*i:nOfImgs*i+nOfImgs//2])
+            lh_idx = np.append(lh_idx, all_idx[nOfImgs*i+nOfImgs//2:nOfImgs*(i+1)])
+        fh_imgs = [self.images[i] for i in fh_idx]
+        fh_lbls = [self.labels[i] for i in fh_idx]
+        lh_imgs = [self.images[i] for i in lh_idx]
+        lh_lbls = [self.labels[i] for i in fh_idx]
+        return fh_imgs, fh_lbls, lh_imgs, lh_lbls
 
     def print_img_at_idx(self, idx):
         """Prints the image at index idx."""
