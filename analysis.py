@@ -10,7 +10,7 @@ from scipy import misc
 import time
 import sys
 #from DRAMcopy13 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
-from DRAMcopy13_rewrite_filterbank3 import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
+#from DRAM_classify_blobs import convertTranslated, classification, classifications, x, batch_size, glimpses, z_size, dims, read_n 
 #from DRAMcopy14 import convertTranslated, classifications, input_tensor, count_tensor, target_tensor, batch_size, glimpses, z_size, dims, read_n 
 #from DRAMcopy15 import viz_data, input_tensor, target_tensor, dims, read_n, glimpses, z_size
 #from DRAMtest import classification, classifications, x, batch_size, glimpses, z_size, dims, read_n
@@ -62,9 +62,8 @@ def random_image():
 def load_checkpoint(it, human=False, path=None):
     #path = "model_runs/regimen"
     #path = "model_runs/rewrite_filterbank"
-<<<<<<< HEAD
     #path = "model_runs/DRAM_test_square"
-    path = "model_runs/rewrite_filterbank3_test"
+    path = "model_runs/DRAM_classify_blobs_2_run_1"
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
 
@@ -153,7 +152,7 @@ def classify_imgs2(it, new_imgs, num_imgs, path=None):
     imgs = np.asarray(imgs)
 
     load_checkpoint(it, human=False, path=path)
-    human_cs = machine_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
+    machine_cs = human_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
     for idx in range(num_imgs):
         img = imgs[idx]
         flipped = np.flip(img.reshape(100, 100), 0)

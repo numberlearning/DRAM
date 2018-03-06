@@ -1,78 +1,56 @@
+# MT: modifications by Mengting
+
 import sys
 import numpy as np
 import random
-from model_settings import min_edge, max_edge, min_blobs, max_blobs
-n_labels = max_blobs - min_blobs + 1
+from model_settings import img_height, img_width, min_edge, max_edge, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test # MT
 
-def get_total(max_blobs):
-    """Get total number of images."""
+def set_size(num_blobs, even=None):
+    """Get amount of images for each number""" 
+    if even is None:
+        return int(10000/(num_blobs**2)) # uneven: number distribution 1/(n^2)
+    else:
+        return 1000 # even: make 1000 images for each number
 
+def get_total(even, min_blobs, max_blobs): # MT
+    """Get total amount of images."""
     c = min_blobs
     total = 0
     while (c < max_blobs + 1):
-       if c == 0:
-           total = total + 1000
-           c = c + 1
-           continue
-       cN = int(10000/(c**2))
-       total = total + cN
+       total = total + set_size(c, even)
        c = c + 1
     return total
 
-
-def set_size(num_blobs, even=None):
-    if even is None:
-        if num_blobs == 0:
-            return 1000
-        else:
-            return int(10000/(num_blobs**2))
-    else:
-        return 1000
- 
-def generate_data(even=None, max_blobs=max_blobs):      
-    total = get_total(max_blobs)
+def generate_data(even, min_blobs, max_blobs): # MT
+    n_labels = max_blobs_train - min_blobs_train + 1 
+    total = get_total(even, min_blobs, max_blobs)
+    train = np.zeros([total, img_height*img_width]) # input img size
+    label = np.zeros([total, n_labels])
     num_blobs = min_blobs
-    i = 0
-    if even is None:
-        train = np.zeros([total, 10000])
-      # blobs = []
-        label = np.zeros([total, n_labels])
-    else:
-        train = np.zeros([1000 * n_labels, 10000])
-      # blobs = []
-        label = np.zeros([1000 * n_labels, n_labels])
+    img_count = 0
         
     while (num_blobs < max_blobs + 1):
 
-        nOfItem = set_size(num_blobs, even)
+        nOfItem = set_size(num_blobs, even) # even, 1000; uneven, 10000/(num_blobs**2)
+        i = 0 # amount of images for each blob number
 
-        if num_blobs == 0:
-           for n in range(nOfItem):
-               train[i] = np.zeros(10000)
-               label[i, num_blobs] = 1
-               i = i +1
-           num_blobs = num_blobs + 1
-           continue
+        while (i < nOfItem):
+            img = np.zeros(img_height*img_width) # input img size
+            num_count = 0 # amount of blobs in each image 
+            used = np.zeros((num_blobs, 4)) # check overlapping
 
-        for n in range(nOfItem):
-            a = np.zeros(10000)
-            count = 0
-            used = np.zeros((num_blobs, 4))
-    
-            while count < num_blobs: 
+            while num_count < num_blobs: 
                 height = random.randint(min_edge, max_edge)
                 #width = random.randint(min_edge, max_edge)
                 width = height # for square blobs
                 #cX = random.randint(1 * num_blobs * 10, 50-width + num_blobs * 10)
                 #cY = random.randint(1 * num_blobs * 10, 50-height + num_blobs * 10)
-                cX = random.randint(1, 99-width)
+                cX = random.randint(1, 99-width) # top left corner
                 cY = random.randint(1, 99-height)
-                h = height 
-                w = width
                 
                 index = 0
                 
-                while index < count:
+                while index < num_count:
                     if cX+width+1 <= used[index, 0] or used[index, 0]+1+used[index, 2] <= cX or used[index, 1]+1+used[index,3] <= cY or cY+height+1<=used[index,1]:
                         index = index + 1
                     else:
@@ -85,23 +63,17 @@ def generate_data(even=None, max_blobs=max_blobs):
                 used[index, 2] = width
                 used[index, 3] = height
 
-                for p in range(cX, cX+width):
-                    for q in range(cY, cY+height): 
-                        a[p*100+q] = 255
-                count = count + 1
+                for p in range(cY, cY+height):
+                    for q in range(cX, cX+width): 
+                        img[p*img_width+q] = 255
+                num_count += 1
           
-            train[i] = a
-        #   blob_info = (index, used)
-        #   blobs.append(blob_info)
-            if min_blobs == 0:
-                label[i, num_blobs] = 1
-            elif min_blobs == 1:
-                label[i, num_blobs - 1] = 1
-            else:
-                print("Hey, you! Min blobs should be one or zero!!!!")
-            i = i + 1
+            train[img_count] = img
+            label[img_count, num_blobs - 1] = 1
+            img_count += 1
+            i += 1
           
-        num_blobs = num_blobs + 1
+        num_blobs += 1
     
     np.set_printoptions(threshold=np.nan)
 
@@ -113,4 +85,3 @@ def generate_data(even=None, max_blobs=max_blobs):
 #            label = np.vstack((label, empty_label))
 
     return train, label
-#,blob

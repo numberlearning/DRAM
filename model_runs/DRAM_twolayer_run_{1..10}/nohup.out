@@ -1,0 +1,104 @@
+['DRAMcopy13_twolayer_test.py', 'DRAM_twolayer_run_{1..10}', 'true', 'true', 'true', 'true', 'true', 'model_runs/DRAM_twolayer_run_{1..10}/classify_log.csv', 'model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt', 'model_runs/DRAM_twolayer_run_{1..10}/classifymodel_', 'model_runs/DRAM_twolayer_run_{1..10}/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'true', 'true']
+WARNING:tensorflow:From DRAMcopy13_twolayer_test.py:168: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From DRAMcopy13_twolayer_test.py:169: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+2017-10-05 18:13:57.795922: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:13:57.795938: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:13:57.795941: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:13:57.795944: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:13:57.795947: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-05 18:13:57.941765: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:893] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-10-05 18:13:57.942400: I tensorflow/core/common_runtime/gpu/gpu_device.cc:955] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 7.79GiB
+2017-10-05 18:13:58.045183: W tensorflow/stream_executor/cuda/cuda_driver.cc:523] A non-primary context 0x46ae110 exists before initializing the StreamExecutor. We haven't verified StreamExecutor works with that.
+2017-10-05 18:13:58.045427: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:893] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-10-05 18:13:58.045699: I tensorflow/core/common_runtime/gpu/gpu_device.cc:955] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.81GiB
+2017-10-05 18:13:58.046545: I tensorflow/core/common_runtime/gpu/gpu_device.cc:976] DMA: 0 1 
+2017-10-05 18:13:58.046553: I tensorflow/core/common_runtime/gpu/gpu_device.cc:986] 0:   Y Y 
+2017-10-05 18:13:58.046556: I tensorflow/core/common_runtime/gpu/gpu_device.cc:986] 1:   Y Y 
+2017-10-05 18:13:58.046561: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2017-10-05 18:13:58.046564: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+2017-10-05 18:13:58.743986: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744024: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744227: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744257: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744369: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744383: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744459: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744502: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744546: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744594: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744615: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744654: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744690: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+2017-10-05 18:13:58.744720: W tensorflow/core/framework/op_kernel.cc:1192] Not found: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1327, in _do_call
+    return fn(*args)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1306, in _run_fn
+    status, run_metadata)
+  File "/usr/lib/python3.5/contextlib.py", line 66, in __exit__
+    next(self.gen)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/errors_impl.py", line 466, in raise_exception_on_not_ok_status
+    pywrap_tensorflow.TF_GetCode(status))
+tensorflow.python.framework.errors_impl.NotFoundError: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+	 [[Node: save/RestoreV2_5 = RestoreV2[dtypes=[DT_FLOAT], _device="/job:localhost/replica:0/task:0/cpu:0"](_arg_save/Const_0_0, save/RestoreV2_5/tensor_names, save/RestoreV2_5/shape_and_slices)]]
+	 [[Node: save/RestoreV2/_19 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/gpu:0", send_device="/job:localhost/replica:0/task:0/cpu:0", send_device_incarnation=1, tensor_name="edge_50_save/RestoreV2", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/gpu:0"]()]]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "DRAMcopy13_twolayer_test.py", line 212, in <module>
+    saver.restore(sess, load_file)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1560, in restore
+    {self.saver_def.filename_tensor_name: save_path})
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.NotFoundError: Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+	 [[Node: save/RestoreV2_5 = RestoreV2[dtypes=[DT_FLOAT], _device="/job:localhost/replica:0/task:0/cpu:0"](_arg_save/Const_0_0, save/RestoreV2_5/tensor_names, save/RestoreV2_5/shape_and_slices)]]
+	 [[Node: save/RestoreV2/_19 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/gpu:0", send_device="/job:localhost/replica:0/task:0/cpu:0", send_device_incarnation=1, tensor_name="edge_50_save/RestoreV2", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/gpu:0"]()]]
+
+Caused by op 'save/RestoreV2_5', defined at:
+  File "DRAMcopy13_twolayer_test.py", line 208, in <module>
+    saver = tf.train.Saver()
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1140, in __init__
+    self.build()
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 1172, in build
+    filename=self._filename)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 688, in build
+    restore_sequentially, reshape)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 407, in _AddRestoreOps
+    tensors = self.restore_op(filename_tensor, saveable, preferred_shard)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/training/saver.py", line 247, in restore_op
+    [spec.tensor.dtype])[0])
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_io_ops.py", line 663, in restore_v2
+    dtypes=dtypes, name=name)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+NotFoundError (see above for traceback): Unsuccessful TensorSliceReader constructor: Failed to find any matching files for model_runs/DRAM_twolayer_run_{1..10}/classifymodel_500000.ckpt
+	 [[Node: save/RestoreV2_5 = RestoreV2[dtypes=[DT_FLOAT], _device="/job:localhost/replica:0/task:0/cpu:0"](_arg_save/Const_0_0, save/RestoreV2_5/tensor_names, save/RestoreV2_5/shape_and_slices)]]
+	 [[Node: save/RestoreV2/_19 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/gpu:0", send_device="/job:localhost/replica:0/task:0/cpu:0", send_device_incarnation=1, tensor_name="edge_50_save/RestoreV2", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/gpu:0"]()]]
+

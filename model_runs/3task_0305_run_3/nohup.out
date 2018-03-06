@@ -1,0 +1,300 @@
+['Ct_2l_3t_0g.py', '3task_0305_run_3', 'true', 'true', 'true', 'true', 'true', 'model_runs/3task_0305_run_3/count_log.csv', 'model_runs/3task_0305_run_3/countmodel_0.ckpt', 'model_runs/3task_0305_run_3/countmodel_', 'true', 'false', 'false', 'true']
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:304: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From Ct_2l_3t_0g.py:305: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+2018-03-06 01:56:36.648102: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2018-03-06 01:56:36.648123: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2018-03-06 01:56:36.648127: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2018-03-06 01:56:36.648130: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2018-03-06 01:56:36.648133: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2018-03-06 01:56:36.821704: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:893] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-03-06 01:56:36.822011: I tensorflow/core/common_runtime/gpu/gpu_device.cc:955] Found device 0 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:01:00.0
+Total memory: 7.92GiB
+Free memory: 7.35GiB
+2018-03-06 01:56:36.906588: W tensorflow/stream_executor/cuda/cuda_driver.cc:523] A non-primary context 0x8bc1bb0 exists before initializing the StreamExecutor. We haven't verified StreamExecutor works with that.
+2018-03-06 01:56:36.906787: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:893] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-03-06 01:56:36.907083: I tensorflow/core/common_runtime/gpu/gpu_device.cc:955] Found device 1 with properties: 
+name: GeForce GTX 1080
+major: 6 minor: 1 memoryClockRate (GHz) 1.898
+pciBusID 0000:02:00.0
+Total memory: 7.92GiB
+Free memory: 7.46GiB
+2018-03-06 01:56:36.907174: I tensorflow/core/common_runtime/gpu/gpu_device.cc:976] DMA: 0 1 
+2018-03-06 01:56:36.907180: I tensorflow/core/common_runtime/gpu/gpu_device.cc:986] 0:   Y Y 
+2018-03-06 01:56:36.907184: I tensorflow/core/common_runtime/gpu/gpu_device.cc:986] 1:   Y Y 
+2018-03-06 01:56:36.907189: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1080, pci bus id: 0000:01:00.0)
+2018-03-06 01:56:36.907194: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 1080, pci bus id: 0000:02:00.0)
+iter=0
+TASK1: cnt_accuracy: 0.100000, Pc: 23.166677
+TASK2: pot_accuracy: 16.270409, Pc: 32.540817
+TASK3: cnt_accuracy: 0.000000, pot_accuracy: 0.129973, Pc: 0.305940
+TESTING!
+LabelSums: [ 506.  496.  493.  490.  512.  532.  502.  476.  493.]
+COUNT_QUALITY: [2.3104644, 2.2830992, 2.2996502, 2.3124781, 2.3387661, 2.2930443, 2.3173335, 2.3031507, 2.3083739, 2.2738729]
+POINT_QUALITY: [10.511244, 18.506052, 26.504017, 35.50425, 43.502239, 51.501823, 60.501503, 68.502449, 77.501122, 77.501099]
+CORRECT: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+COUNT: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+BLOB_POINT: [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+PRED_X,TCH_X: [[0.0, 10.5], [0.0, 18.5], [0.0, 26.5], [0.0, 35.5], [0.0, 43.5], [0.0, 51.5], [0.0, 60.5], [0.0, 68.5], [0.0, 77.5], [0.0, 77.5]]
+PRED_Y,TCH_Y: [[50.013958, 50.5], [50.026699, 50.5], [50.038582, 50.5], [50.04929, 49.5], [50.058678, 50.5], [50.06675, 50.5], [50.073601, 50.5], [50.079361, 49.5], [50.084187, 50.5], [50.088207, 50.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_0.ckpt
+--- 2.2760619999999676 CPU seconds ---
+iter=100
+TASK1: cnt_accuracy: 0.106000, Pc: 21.609619
+TASK2: pot_accuracy: 16.905275, Pc: 62.234782
+TASK3: cnt_accuracy: 0.436214, pot_accuracy: 16.341565, Pc: 63.746795
+iter=200
+TASK1: cnt_accuracy: 0.675000, Pc: 14.794078
+TASK2: pot_accuracy: 11.005118, Pc: 33.331698
+TASK3: cnt_accuracy: 0.447571, pot_accuracy: 11.919001, Pc: 50.299705
+TESTING!
+LabelSums: [ 471.  503.  500.  500.  496.  468.  515.  507.  540.]
+COUNT_QUALITY: [1.1284649, 0.8322072, 0.39493051, 0.15332732, 0.057473604, 0.02424236, 0.012434945, 0.0077764373, 0.0056968769, 0.0046638958]
+POINT_QUALITY: [2.1750689, 3.8253927, 8.0534811, 9.9944773, 11.361597, 12.317221, 12.989849, 13.454647, 13.780568, 14.010665]
+CORRECT: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+BLOB_POINT: [1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+PRED_X,TCH_X: [[8.3510113, 10.5], [14.319433, 10.5], [18.55233, 10.5], [20.493748, 10.5], [21.861097, 10.5], [22.816881, 10.5], [23.489586, 10.5], [23.954386, 10.5], [24.280268, 10.5], [24.510303, 10.5]]
+PRED_Y,TCH_Y: [[49.835815, 49.5], [49.713444, 49.5], [49.636162, 49.5], [49.620785, 49.5], [49.606564, 49.5], [49.591404, 49.5], [49.582802, 49.5], [49.583851, 49.5], [49.590958, 49.5], [49.600597, 49.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_250.ckpt
+--- 115.65053300000011 CPU seconds ---
+iter=300
+TASK1: cnt_accuracy: 0.849000, Pc: 9.645155
+TASK2: pot_accuracy: 7.632477, Pc: 21.783050
+TASK3: cnt_accuracy: 0.779222, pot_accuracy: 7.572624, Pc: 26.042827
+iter=400
+TASK1: cnt_accuracy: 0.888000, Pc: 6.690891
+TASK2: pot_accuracy: 7.959975, Pc: 26.028706
+TASK3: cnt_accuracy: 0.715389, pot_accuracy: 7.851726, Pc: 32.013304
+iter=500
+TASK1: cnt_accuracy: 0.928000, Pc: 4.810143
+TASK2: pot_accuracy: 8.009296, Pc: 25.695065
+TASK3: cnt_accuracy: 0.716722, pot_accuracy: 7.541497, Pc: 35.340291
+TESTING!
+LabelSums: [ 502.  525.  528.  494.  460.  512.  500.  463.  516.]
+COUNT_QUALITY: [0.4665131, 1.5532382, 2.4511652, 5.0046058, 5.7810025, 7.1181293, 9.1398745, 0.0045159352, 0.003389972, 0.0028378661]
+POINT_QUALITY: [0.39977279, 0.88708013, 1.2426269, 5.2252469, 10.643213, 17.08382, 24.238272, 23.139158, 22.549965, 22.178082]
+CORRECT: [1, 2, 3, 4, 5, 6, 7, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+BLOB_POINT: [1.0, 2.0, 3.0, -1.0, 4.0, 4.0, 4.0, -1.0, -1.0, -1.0]
+PRED_X,TCH_X: [[11.722104, 11.5], [20.294849, 19.5], [27.342707, 28.5], [32.294479, 37.5], [35.86948, 46.5], [38.422775, 55.5], [40.265163, 64.5], [41.363537, 64.5], [41.952396, 64.5], [42.32415, 64.5]]
+PRED_Y,TCH_Y: [[49.832397, 49.5], [49.89386, 49.5], [49.952541, 49.5], [50.046391, 50.5], [50.019657, 49.5], [49.974667, 49.5], [49.908039, 49.5], [49.853092, 49.5], [49.826294, 49.5], [49.814583, 49.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_500.ckpt
+--- 228.89833900000008 CPU seconds ---
+iter=600
+TASK1: cnt_accuracy: 0.902000, Pc: 4.175942
+TASK2: pot_accuracy: 7.145454, Pc: 24.955544
+TASK3: cnt_accuracy: 0.791365, pot_accuracy: 7.435887, Pc: 29.065561
+iter=700
+TASK1: cnt_accuracy: 0.970000, Pc: 2.474438
+TASK2: pot_accuracy: 6.689529, Pc: 20.158189
+TASK3: cnt_accuracy: 0.815083, pot_accuracy: 6.463582, Pc: 24.664892
+TESTING!
+LabelSums: [ 491.  538.  488.  522.  499.  487.  507.  480.  488.]
+COUNT_QUALITY: [0.18215866, 1.0771081, 2.1960082, 3.769927, 4.3775516, 5.9039574, 9.5237331, 0.0065722796, 0.0046028164, 0.0030891281]
+POINT_QUALITY: [0.93190396, 0.41890964, 1.4523851, 3.714262, 7.1093011, 11.392028, 16.743168, 14.702979, 13.328619, 12.60082]
+CORRECT: [1, 2, 3, 4, 5, 6, 7, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+BLOB_POINT: [1.0, 2.0, 3.0, -1.0, 4.0, 5.0, 5.0, 5.0, -1.0, -1.0]
+PRED_X,TCH_X: [[12.427349, 11.5], [20.743763, 20.5], [28.417437, 29.5], [34.867207, 38.5], [40.392197, 47.5], [45.118526, 56.5], [47.764038, 64.5], [49.809223, 64.5], [51.182266, 64.5], [51.906372, 64.5]]
+PRED_Y,TCH_Y: [[49.407974, 49.5], [49.159317, 49.5], [49.531765, 50.5], [49.726337, 50.5], [49.354073, 49.5], [49.009727, 49.5], [49.00885, 49.5], [48.901112, 49.5], [48.961426, 49.5], [49.074352, 49.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_750.ckpt
+--- 341.66222200000016 CPU seconds ---
+iter=800
+TASK1: cnt_accuracy: 0.959000, Pc: 2.029827
+TASK2: pot_accuracy: 6.311351, Pc: 20.323221
+TASK3: cnt_accuracy: 0.818548, pot_accuracy: 6.256460, Pc: 21.859915
+iter=900
+TASK1: cnt_accuracy: 0.964000, Pc: 1.554400
+TASK2: pot_accuracy: 5.633276, Pc: 20.185460
+TASK3: cnt_accuracy: 0.862988, pot_accuracy: 5.244804, Pc: 16.842562
+iter=1000
+TASK1: cnt_accuracy: 0.998000, Pc: 0.796439
+TASK2: pot_accuracy: 5.486537, Pc: 16.417782
+TASK3: cnt_accuracy: 0.864369, pot_accuracy: 5.607303, Pc: 19.103508
+TESTING!
+LabelSums: [ 489.  470.  482.  527.  493.  489.  535.  489.  526.]
+COUNT_QUALITY: [0.13872446, 0.99683321, 0.15471847, 0.06643565, 0.039119706, 0.023462774, 0.014346138, 0.012627602, 0.01268869, 0.012936945]
+POINT_QUALITY: [0.781313, 1.300445, 5.1557636, 9.9560385, 15.976411, 21.631432, 37.646629, 53.406204, 59.487206, 61.919136]
+CORRECT: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+BLOB_POINT: [1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+PRED_X,TCH_X: [[10.720161, 11.5], [12.799816, 11.5], [16.648087, 11.5], [21.442078, 11.5], [27.440125, 11.5], [33.07613, 11.5], [49.107719, 11.5], [64.896759, 11.5], [70.986061, 11.5], [73.41909, 11.5]]
+PRED_Y,TCH_Y: [[50.547977, 50.5], [50.459564, 50.5], [50.218746, 50.5], [49.972939, 50.5], [49.423828, 50.5], [48.95422, 50.5], [48.78878, 50.5], [49.495594, 50.5], [50.131371, 50.5], [50.574829, 50.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_1000.ckpt
+--- 453.6310540000004 CPU seconds ---
+iter=1100
+TASK1: cnt_accuracy: 0.991000, Pc: 0.863465
+TASK2: pot_accuracy: 5.734878, Pc: 19.304197
+TASK3: cnt_accuracy: 0.855825, pot_accuracy: 5.216958, Pc: 16.867909
+iter=1200
+TASK1: cnt_accuracy: 0.999000, Pc: 0.579426
+TASK2: pot_accuracy: 5.209392, Pc: 16.419288
+TASK3: cnt_accuracy: 0.867722, pot_accuracy: 4.936806, Pc: 20.756751
+TESTING!
+LabelSums: [ 499.  497.  490.  492.  510.  502.  497.  525.  488.]
+COUNT_QUALITY: [0.095677972, 0.38358155, 0.039949313, 0.021217333, 0.018132962, 0.0080548404, 0.010103068, 0.018220671, 0.028828815, 0.036076039]
+POINT_QUALITY: [0.23484497, 1.9605492, 6.1054711, 11.988253, 19.146021, 26.334976, 51.905155, 63.756275, 68.748459, 70.846008]
+CORRECT: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+COUNT: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+BLOB_POINT: [1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+PRED_X,TCH_X: [[11.399016, 11.5], [13.292908, 11.5], [17.516331, 11.5], [23.38409, 11.5], [30.519627, 11.5], [37.691364, 11.5], [63.352535, 11.5], [75.235382, 11.5], [80.236, 11.5], [82.337791, 11.5]]
+PRED_Y,TCH_Y: [[50.287975, 50.5], [49.706757, 50.5], [49.46051, 50.5], [48.923103, 50.5], [48.303654, 50.5], [47.753479, 50.5], [48.163353, 50.5], [48.867809, 50.5], [49.191113, 50.5], [49.421124, 50.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_1250.ckpt
+--- 566.2142050000002 CPU seconds ---
+iter=1300
+TASK1: cnt_accuracy: 1.000000, Pc: 0.280704
+TASK2: pot_accuracy: 5.264303, Pc: 18.402354
+TASK3: cnt_accuracy: 0.895655, pot_accuracy: 5.391669, Pc: 18.262486
+iter=1400
+TASK1: cnt_accuracy: 1.000000, Pc: 0.194361
+TASK2: pot_accuracy: 5.317527, Pc: 16.445898
+TASK3: cnt_accuracy: 0.891889, pot_accuracy: 5.315515, Pc: 18.757875
+iter=1500
+TASK1: cnt_accuracy: 1.000000, Pc: 0.151520
+TASK2: pot_accuracy: 5.257672, Pc: 16.955625
+TASK3: cnt_accuracy: 0.906000, pot_accuracy: 5.178004, Pc: 18.046976
+TESTING!
+LabelSums: [ 519.  555.  503.  455.  511.  486.  509.  475.  487.]
+COUNT_QUALITY: [0.055317491, 0.078628227, 0.2926892, 0.33258358, 1.1380318, 0.87043321, 1.1650667, 0.85752279, 0.5792402, 0.37431481]
+POINT_QUALITY: [1.7139556, 2.3460791, 3.9471347, 5.0366325, 4.0098147, 1.9882936, 2.4971917, 2.3426189, 3.9885485, 6.443234]
+CORRECT: [1, 2, 3, 4, 5, 6, 7, 0, 0, 0]
+COUNT: [1, 2, 3, 4, 4, 6, 7, 0, 0, 0]
+BLOB_POINT: [1.0, 2.0, -1.0, 5.0, -1.0, 6.0, 7.0, 7.0, 7.0, -1.0]
+PRED_X,TCH_X: [[13.185966, 11.5], [21.786558, 19.5], [32.409901, 28.5], [42.34417, 37.5], [49.319412, 45.5], [55.295197, 53.5], [60.086082, 61.5], [62.166954, 61.5], [64.549538, 61.5], [67.06955, 61.5]]
+PRED_Y,TCH_Y: [[49.808487, 49.5], [51.025108, 50.5], [51.040878, 50.5], [50.879017, 49.5], [51.720943, 50.5], [51.35474, 50.5], [51.55835, 49.5], [51.74567, 49.5], [52.070766, 49.5], [52.739658, 49.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_1500.ckpt
+--- 676.818127 CPU seconds ---
+iter=1600
+TASK1: cnt_accuracy: 1.000000, Pc: 0.121944
+TASK2: pot_accuracy: 4.775614, Pc: 12.506375
+TASK3: cnt_accuracy: 0.914198, pot_accuracy: 4.817324, Pc: 16.383351
+iter=1700
+TASK1: cnt_accuracy: 1.000000, Pc: 0.103031
+TASK2: pot_accuracy: 4.418042, Pc: 14.397095
+TASK3: cnt_accuracy: 0.897643, pot_accuracy: 4.881171, Pc: 17.204474
+TESTING!
+LabelSums: [ 524.  493.  517.  464.  486.  530.  508.  495.  483.]
+COUNT_QUALITY: [0.052418899, 0.12056889, 0.30421209, 0.58043039, 1.161796, 0.54305124, 0.39322087, 0.35170126, 0.3212907, 0.29813522]
+POINT_QUALITY: [2.9582598, 3.5416658, 3.7782366, 2.9731112, 1.0679965, 2.3192921, 7.6910319, 13.35921, 17.326681, 19.988363]
+CORRECT: [1, 2, 3, 4, 5, 0, 0, 0, 0, 0]
+COUNT: [1, 2, 3, 4, 6, 0, 0, 0, 0, 0]
+BLOB_POINT: [1.0, -1.0, -1.0, 4.0, 5.0, 5.0, -1.0, -1.0, -1.0, -1.0]
+PRED_X,TCH_X: [[13.457381, 10.5], [23.006418, 19.5], [31.086185, 27.5], [39.214462, 36.5], [44.537949, 45.5], [47.817032, 45.5], [53.186035, 45.5], [58.848648, 45.5], [62.815262, 45.5], [65.478317, 45.5]]
+PRED_Y,TCH_Y: [[50.427898, 50.5], [49.998425, 49.5], [50.689262, 49.5], [50.712883, 49.5], [50.96376, 50.5], [50.397636, 50.5], [50.222801, 50.5], [49.968884, 50.5], [49.87104, 50.5], [49.866394, 50.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_1750.ckpt
+--- 787.2193650000008 CPU seconds ---
+iter=1800
+TASK1: cnt_accuracy: 1.000000, Pc: 0.090012
+TASK2: pot_accuracy: 5.135065, Pc: 16.270862
+TASK3: cnt_accuracy: 0.893921, pot_accuracy: 5.126414, Pc: 19.351212
+iter=1900
+TASK1: cnt_accuracy: 1.000000, Pc: 0.080872
+TASK2: pot_accuracy: 5.103922, Pc: 17.555428
+TASK3: cnt_accuracy: 0.925667, pot_accuracy: 4.721624, Pc: 16.082523
+iter=2000
+TASK1: cnt_accuracy: 1.000000, Pc: 0.072854
+TASK2: pot_accuracy: 5.481386, Pc: 17.679294
+TASK3: cnt_accuracy: 0.896329, pot_accuracy: 5.101349, Pc: 18.028217
+TESTING!
+LabelSums: [ 543.  452.  493.  473.  484.  531.  530.  515.  479.]
+COUNT_QUALITY: [0.030405473, 0.031802781, 0.26501134, 0.34784269, 1.0883496, 1.2880392, 2.1604292, 0.20000893, 0.13473068, 0.10250763]
+POINT_QUALITY: [1.7867695, 1.3638194, 0.90923166, 1.4855732, 3.0288799, 1.9179075, 3.4714365, 1.3074895, 0.95876348, 3.0913179]
+CORRECT: [1, 2, 3, 4, 5, 6, 7, 0, 0, 0]
+COUNT: [1, 2, 3, 4, 4, 0, 0, 0, 0, 0]
+BLOB_POINT: [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 7.0, 7.0, 7.0]
+PRED_X,TCH_X: [[13.247372, 11.5], [21.675045, 20.5], [30.34837, 29.5], [39.954376, 38.5], [49.341774, 46.5], [56.14399, 54.5], [60.120163, 63.5], [62.588768, 63.5], [64.249458, 63.5], [66.535927, 63.5]]
+PRED_Y,TCH_Y: [[49.873146, 49.5], [50.192295, 49.5], [50.827065, 50.5], [50.802849, 50.5], [50.548061, 49.5], [51.487759, 50.5], [51.292194, 50.5], [51.437649, 50.5], [51.097946, 50.5], [51.082577, 50.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_2000.ckpt
+--- 897.1563099999998 CPU seconds ---
+iter=2100
+TASK1: cnt_accuracy: 1.000000, Pc: 0.065817
+TASK2: pot_accuracy: 4.945408, Pc: 16.272271
+TASK3: cnt_accuracy: 0.895806, pot_accuracy: 4.601779, Pc: 17.257690
+iter=2200
+TASK1: cnt_accuracy: 1.000000, Pc: 0.062377
+TASK2: pot_accuracy: 5.178244, Pc: 16.825026
+TASK3: cnt_accuracy: 0.907198, pot_accuracy: 4.848140, Pc: 17.056616
+TESTING!
+LabelSums: [ 475.  485.  534.  540.  492.  501.  510.  483.  480.]
+COUNT_QUALITY: [0.033664342, 0.29150128, 0.14384305, 0.02454078, 0.013312825, 0.016528131, 0.029034229, 0.046864778, 0.10067403, 0.29775673]
+POINT_QUALITY: [2.1616676, 3.2810519, 0.39949569, 2.8397417, 8.5064325, 15.091276, 21.2113, 36.251072, 59.378033, 67.994865]
+CORRECT: [1, 2, 0, 0, 0, 0, 0, 0, 0, 0]
+COUNT: [1, 2, 0, 0, 0, 0, 0, 0, 0, 0]
+BLOB_POINT: [1.0, 2.0, 2.0, 2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
+PRED_X,TCH_X: [[12.633224, 10.5], [16.225895, 19.5], [19.18046, 19.5], [22.331661, 19.5], [28.00168, 19.5], [34.585827, 19.5], [40.70303, 19.5], [55.745605, 19.5], [78.874596, 19.5], [87.458694, 19.5]]
+PRED_Y,TCH_Y: [[50.150486, 50.5], [49.713394, 49.5], [49.260227, 49.5], [49.285927, 49.5], [49.215702, 49.5], [49.094475, 49.5], [48.907681, 49.5], [48.870419, 49.5], [50.138859, 49.5], [51.717403, 49.5]]
+Model saved in file: model_runs/3task_0305_run_3/countmodel_2250.ckpt
+--- 1006.1339399999988 CPU seconds ---
+iter=2300
+TASK1: cnt_accuracy: 1.000000, Pc: 0.054218
+TASK2: pot_accuracy: 4.608443, Pc: 16.405388
+TASK3: cnt_accuracy: 0.936143, pot_accuracy: 4.922971, Pc: 16.631743
+iter=2400
+TASK1: cnt_accuracy: 1.000000, Pc: 0.047925
+TASK2: pot_accuracy: 4.687760, Pc: 14.427060
+TASK3: cnt_accuracy: 0.933810, pot_accuracy: 4.924364, Pc: 18.836074
+iter=2500
+TASK1: cnt_accuracy: 1.000000, Pc: 0.046924
+TASK2: pot_accuracy: 4.915379, Pc: 16.966713
+TASK3: cnt_accuracy: 0.941294, pot_accuracy: 5.014670, Pc: 16.814838

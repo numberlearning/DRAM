@@ -1,0 +1,76 @@
+['analyze_prep_2task.py', '2task_prep_0216', 'true', 'true', 'true', 'true', 'true', 'model_runs/2task_prep_0216/count_log.csv', 'model_runs/2task_prep_0216/countmodel_0.ckpt', 'model_runs/2task_prep_0216/countmodel_', 'true', 'false', 'false', 'true', 'model_runs/2task_prep_0216/prepoint_']
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:309: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+WARNING:tensorflow:From /home/mtfang/DRAM/Ct_2l_2t_TT_viz.py:310: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+2018-02-26 07:05:08.030237: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2018-02-26 07:05:08.030300: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2018-02-26 07:05:08.030312: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2018-02-26 07:05:08.030317: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2018-02-26 07:05:08.030321: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2018-02-26 07:05:08.034427: E tensorflow/stream_executor/cuda/cuda_driver.cc:406] failed call to cuInit: CUDA_ERROR_NO_DEVICE
+2018-02-26 07:05:08.034494: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:158] retrieving CUDA diagnostic information for host: psy-pdp-guppy
+2018-02-26 07:05:08.034503: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:165] hostname: psy-pdp-guppy
+2018-02-26 07:05:08.034545: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:189] libcuda reported version is: 384.111.0
+2018-02-26 07:05:08.034581: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:369] driver version file contents: """NVRM version: NVIDIA UNIX x86_64 Kernel Module  384.90  Tue Sep 19 19:17:35 PDT 2017
+GCC version:  gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) 
+"""
+2018-02-26 07:05:08.034596: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:193] kernel reported version is: 384.90.0
+2018-02-26 07:05:08.034602: E tensorflow/stream_executor/cuda/cuda_diagnostics.cc:303] kernel version 384.90.0 does not match DSO version 384.111.0 -- cannot find working devices in this configuration
+analysis_count_2task.py
