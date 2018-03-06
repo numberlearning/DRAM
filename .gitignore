@@ -1,4 +1,0 @@
-/mnist.pkl
-/data/*.txt
-/model_runs/**/*.ckpt.*
-__pycache__/
