@@ -130,15 +130,18 @@ def add_pointer(x, gx, gy, N):
 
 def filterbank(gx, gy, N):
     grid_i = tf.reshape(tf.cast(tf.range(N), tf.float32), [1, -1])
-    mu_x_1 = gx + (grid_i[0][N//2:N+1] - N / 2 + 0.5) * delta_1 # eq 19 batch_size x N
-    mu_y_1 = gy + (grid_i - N / 2 + 0.5) * delta_1 # eq 20 batch_size x N
+    # right half
+    # mu_x_1 = gx + (grid_i - N / 2 + 0.5) * delta_1
+    mu_x_1 = gx + (grid_i[0][N//2:N+1] - N / 2 + 0.5) * delta_1 
+    mu_y_1 = gy + (grid_i - N / 2 + 0.5) * delta_1 
+    # mu_x_2 = gx + (grid_i - N / 2 + 0.5) * delta_2
     mu_x_2 = gx + (grid_i[0][N//2:N+1] - N / 2 + 0.5) * delta_2 
     mu_y_2 = gy + (grid_i - N / 2 + 0.5) * delta_2 
     a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[0]
     b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[1]
 
-    mu_x_1 = tf.reshape(mu_x_1, [-1, (N+1)//2, 1]) # batch_size x N x 1
-    mu_y_1 = tf.reshape(mu_y_1, [-1, N, 1])
+    mu_x_1 = tf.reshape(mu_x_1, [-1, (N+1)//2, 1]) 
+    mu_y_1 = tf.reshape(mu_y_1, [-1, N, 1]) # batch_size x N x 1
     mu_x_2 = tf.reshape(mu_x_2, [-1, (N+1)//2, 1]) 
     mu_y_2 = tf.reshape(mu_y_2, [-1, N, 1])
     Fx_1 = tf.exp(-tf.square(a - mu_x_1) / (2*sigma2_1)) # batch_size x N x dims[0]
