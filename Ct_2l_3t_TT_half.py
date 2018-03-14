@@ -59,7 +59,7 @@ start_non_restored_from_random = str2bool(sys.argv[13]) #True
 # delta, sigma2
 delta_1=max(dims[0],dims[1])*1.5/(read_n-1) 
 sigma2_1=delta_1*delta_1/4 # sigma=delta/2 
-delta_2=max(dims[0],dims[1])/3/(read_n-1)
+delta_2=max(dims[0],dims[1])/3/(read_n-1) #/2 (+10)
 sigma2_2=delta_2*delta_2/4 # sigma=delta/2
 
 ## BUILD MODEL ## 
