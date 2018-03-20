@@ -146,6 +146,7 @@ def filterbank(gx, gy, N):
     # mu_x_2 = tf.reshape(mu_x_2, [-1, N, 1]) 
     mu_x_2 = tf.reshape(mu_x_2, [-1, (N+1)//2, 1]) 
     mu_y_2 = tf.reshape(mu_y_2, [-1, N, 1])
+    
     Fx_1 = tf.exp(-tf.square(a - mu_x_1) / (2*sigma2_1)) # batch_size x N x dims[0]
     Fy_1 = tf.exp(-tf.square(b - mu_y_1) / (2*sigma2_1)) # batch_size x N x dims[1]
     Fx_2 = tf.exp(-tf.square(a - mu_x_2) / (2*sigma2_2)) # batch_size x N x dims[0]

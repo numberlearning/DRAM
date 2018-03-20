@@ -3,9 +3,9 @@ from analysis_count_0g import read_n, classify_imgs2
 from model_settings import test_trials
 import operator
 
-model_name = "3task_0216"
+model_name = "3task_half"
 num_runs = 3
-iter_list = np.arange(0,81000,1000)
+iter_list = np.arange(0,61000,1000)
 glimpse_list = np.arange(0,10,1)
 max_blobs = 9
 min_blobs = 1
