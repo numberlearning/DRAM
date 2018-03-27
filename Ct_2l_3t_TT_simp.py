@@ -3,7 +3,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import tensorflow as tf
-from tensorflow.examples.tutorials import mnist
 import numpy as np
 import os
 import random
@@ -12,6 +11,7 @@ import time
 import sys
 import load_count
 from model_settings import learning_rate, batch_size, glimpses, img_height, img_width, p_size, min_edge, max_edge, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test # MT
+from activation_factor import actfac_1, actfac_2
 
 def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
@@ -37,7 +37,7 @@ folder_name + "/countmodel_",
 folder_name + "/prepoint_"] #sys.argv[10]~[14]
 print(sys.argv)
 
-train_iters = 180000#20000000000
+train_iters = 270000#20000000000
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
 log_filename = sys.argv[7]
@@ -49,7 +49,7 @@ classify = str2bool(sys.argv[10]) #True
 translated = str2bool(sys.argv[11]) #False
 dims = [img_height, img_width]
 img_size = dims[1]*dims[0] # canvas size
-read_n = 15  # N x N attention window
+read_n = 13  # N x N attention window
 read_size = read_n*read_n
 output_size = max_blobs_train - min_blobs_train + 1
 h_point_size = 256
@@ -57,9 +57,9 @@ h_count_size = 256
 restore = str2bool(sys.argv[12]) #False
 start_non_restored_from_random = str2bool(sys.argv[13]) #True
 # delta, sigma2
-delta_1=max(dims[0],dims[1])*1.5/(read_n-1) 
+delta_1=10#max(dims[0],dims[1])*1.5/(read_n-1) 
 sigma2_1=delta_1*delta_1/4 # sigma=delta/2 
-delta_2=max(dims[0],dims[1])/2/(read_n-1)
+delta_2=3#max(dims[0],dims[1])/2/(read_n-1)
 sigma2_2=delta_2*delta_2/4 # sigma=delta/2
 # normfac
 normfac_1 = 1.0/np.sqrt(2*np.pi*sigma2_1)
@@ -206,8 +206,10 @@ def read(x, h_point_prev, glimpse, testing):
         fimg_2 = tf.matmul(Fy_2, tf.matmul(img, Fxt_2))
         fimg_2 = tf.reshape(fimg_2,[-1, N*N])
         # normalization
-        fimg_1 = fimg_1/tf.reduce_max(fimg_1, 1, keep_dims=True) 
-        fimg_2 = fimg_2/tf.reduce_max(fimg_2, 1, keep_dims=True) 
+        # fimg_1 = fimg_1/tf.reduce_max(fimg_1, 1, keep_dims=True) 
+        # fimg_2 = fimg_2/tf.reduce_max(fimg_2, 1, keep_dims=True) 
+        fimg_1 = fimg_1/actfac_1
+        fimg_2 = fimg_2/actfac_2
         fimg = tf.concat([fimg_1, fimg_2], 1) 
         return tf.reshape(fimg, [batch_size, -1])
 
@@ -295,7 +297,7 @@ for true_glimpse in range(glimpses+1):
             "r":r,
         })
  
-    if true_glimpse!=0:
+    if true_glimpse!= 0:
         target_gx = blob_list[0][glimpse][0]
         target_gy = blob_list[0][glimpse][1]
  
@@ -471,7 +473,7 @@ if __name__ == '__main__':
             if i%1000==0:
                 train_data = load_count.InputData()
                 train_data.get_train(None, min_blobs_train, max_blobs_train) # MT
-            if i%250==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
+            if i%500==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
                 #start_evaluate = time.clock()
                 #test_count_accuracy = evaluate()
                 saver = tf.train.Saver(tf.global_variables())
@@ -553,7 +555,7 @@ if __name__ == '__main__':
                     train_data = load_count.InputData()
                     train_data.get_train(None, min_blobs_train, max_blobs_train) # MT
                 
-            if ((ii-2)/3)%250==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
+            if ((ii-2)/3)%500==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
                 #start_evaluate = time.clock()
                 #test_count_accuracy = evaluate()
                 saver = tf.train.Saver(tf.global_variables())
