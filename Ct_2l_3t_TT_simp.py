@@ -69,8 +69,8 @@ grid_i = tf.reshape(tf.cast(tf.range(read_n), tf.float32), [1, -1])
 mu_1 = (grid_i - read_n / 2 + 0.5) * delta_1 # 1 x read_n 
 mu_2 = (grid_i - read_n / 2 + 0.5) * delta_2
 # (a,b): a point in the input image
-a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[0]
-b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[1]
+a = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[1] width
+b = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[0] height
 
 ## BUILD MODEL ## 
 
@@ -164,7 +164,7 @@ def attn_window(scope, blob_list, h_point, N, glimpse, gx_prev, gy_prev, testing
     gy_real = gy_prev + gy_ 
 
     # constrain gx and gy
-    max_gx = np.array([dims[0]-1])
+    max_gx = np.array([dims[1]-1])
     tmax_gx = tf.convert_to_tensor(max_gx, dtype=tf.float32)
     gx_real = tf.minimum(gx_real, tmax_gx)
 
@@ -172,7 +172,7 @@ def attn_window(scope, blob_list, h_point, N, glimpse, gx_prev, gy_prev, testing
     tmin_gx = tf.convert_to_tensor(min_gx, dtype=tf.float32)
     gx_real = tf.maximum(gx_real, tmin_gx)
 
-    max_gy = np.array([dims[1]-1])
+    max_gy = np.array([dims[0]-1])
     tmax_gy = tf.convert_to_tensor(max_gy, dtype=tf.float32)
     gy_real = tf.minimum(gy_real, tmax_gy)
     
@@ -200,7 +200,7 @@ def read(x, h_point_prev, glimpse, testing):
         Fxt_1 = tf.transpose(Fx_1, perm=[0,2,1])
         Fxt_2 = tf.transpose(Fx_2, perm=[0,2,1])        
         # img: 1 x img_size
-        img = tf.reshape(img,[-1, dims[1], dims[0]])
+        img = tf.reshape(img,[-1, dims[0], dims[1]])
         fimg_1 = tf.matmul(Fy_1, tf.matmul(img, Fxt_1))
         fimg_1 = tf.reshape(fimg_1,[-1, N*N])
         fimg_2 = tf.matmul(Fy_2, tf.matmul(img, Fxt_2))
@@ -210,7 +210,8 @@ def read(x, h_point_prev, glimpse, testing):
         # fimg_2 = fimg_2/tf.reduce_max(fimg_2, 1, keep_dims=True) 
         fimg_1 = fimg_1/actfac_1
         fimg_2 = fimg_2/actfac_2
-        fimg = tf.concat([fimg_1, fimg_2], 1) 
+        # fimg = tf.concat([fimg_1, fimg_2], 1) 
+        fimg = fimg_2 # only use the small scale filters 
         return tf.reshape(fimg, [batch_size, -1])
 
     xr = filter_img(x, Fx_1, Fy_1, Fx_2, Fy_2, read_n) # batch_size x (read_n*read_n)
@@ -242,7 +243,7 @@ def counter(input, state):
 ## STATE VARIABLES ##############
 # initial states
 gx_prev = tf.zeros((batch_size, 1))
-gy_prev = tf.ones((batch_size, 1))*dims[1]/2
+gy_prev = tf.ones((batch_size, 1))*dims[0]/2
 h_point_prev = tf.zeros((batch_size, h_point_size))
 h_count_prev = tf.zeros((batch_size, h_count_size))
 point_state = lstm_point.zero_state(batch_size, tf.float32)
@@ -297,7 +298,7 @@ for true_glimpse in range(glimpses+1):
             "r":r,
         })
  
-    if true_glimpse!= 0:
+    if true_glimpse != 0:
         target_gx = blob_list[0][glimpse][0]
         target_gy = blob_list[0][glimpse][1]
  
