@@ -38,6 +38,15 @@ class InputData(object):
         self.images, self.labels, self.blob_list, self.size_list, self.mask_list, self.num_list, self.count_word = create_data_count.generate_data(even, min_blobs, max_blobs) # MT
         self.length = len(self.images)
 
+    def get_viz(self, even, min_blobs, max_blobs): # MT
+        """Generate and get test images and labels."""
+        self.images, self.labels, self.blob_list, self.size_list, self.mask_list, self.num_list, self.count_word = create_data_count.generate_data_viz(even, min_blobs, max_blobs) # MT
+        self.length = len(self.images)
+
+    def get_blank(self): # MT
+        """Generate and get blank images and labels for count test."""
+        self.images, self.labels, self.blob_list, self.size_list, self.mask_list, self.num_list, self.count_word = create_data_count.generate_blank_img() # MT
+        self.length = len(self.images)
 
     def load_sample(self):
         """Load the sample set and labels."""
@@ -97,7 +106,7 @@ class InputData(object):
         batch_nlts = [self.num_list[i] for i in batch_idx] 
         batch_cwds = [self.count_word[i] for i in batch_idx]
         return batch_imgs, batch_lbls, batch_blts, batch_slts, batch_mlts, batch_nlts, batch_cwds
-
+    
     def print_img_at_idx(self, idx):
         """Prints the image at index idx."""
         img = self.images[idx]
