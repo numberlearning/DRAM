@@ -82,6 +82,7 @@ task = tf.placeholder(tf.bool, shape=(3)) # task state
 onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, output_size))
 blob_list = tf.placeholder(tf.float32, shape=(batch_size, glimpses, 2))
 size_list = tf.placeholder(tf.float32, shape=(batch_size, glimpses))
+res_list = tf.placeholder(tf.float32, shape=(batch_size, glimpses, 2))
 mask_list = tf.placeholder(tf.float32, shape=(batch_size, glimpses))
 mask_list_T = tf.placeholder(tf.float32, shape=(batch_size, glimpses))
 num_list = tf.placeholder(tf.float32, shape=(batch_size))
@@ -153,7 +154,7 @@ def filterbank(gx, gy, N):
 def attn_window(scope, blob_list, h_point, N, glimpse, gx_prev, gy_prev, testing): 
     with tf.variable_scope(scope,reuse=REUSE):
         params=linear(h_point,3) # batch_size x 3
-    res_, gx_,gy_=tf.split(params, 3, 1) # batch_size x 1
+    res_,gx_,gy_=tf.split(params, 3, 1) # batch_size x 1
 
     res = tf.sigmoid(res_)
 
@@ -266,6 +267,7 @@ teacherys = list()
 xxs = list()
 yys = list()
 cqs = list() # count quality
+rqs = list() # response quality
 pqs = list() # point quality
 blob_point = list()
 ress = list() # point response
@@ -335,19 +337,22 @@ for true_glimpse in range(glimpses+1):
         in_blob_gx = tf.logical_and(tf.less(target_gx - size_list[0][glimpse]/2, predict_gx), tf.less(predict_gx, target_gx + size_list[0][glimpse]/2))
         in_blob_gy = tf.logical_and(tf.less(target_gy - size_list[0][glimpse]/2, predict_gy), tf.less(predict_gy, target_gy + size_list[0][glimpse]/2))
         in_blob = tf.logical_and(in_blob_gx, in_blob_gy)
-        touch_stop = tf.less(tf.constant(0.5, tf.float32), point_res[0,0]) 
         intensity = tf.sqrt((predict_gx - target_gx)**2 + (predict_gy - target_gy)**2)
-        
-        max_len = np.sqrt(dims[0]**2+dims[1]**2)
-        if true_glimpse == num_list[0]:
-            potquality = tf.where(touch_stop, tf.reshape(tf.constant(0.0, tf.float32),[-1,1]), max_len)
-        else:
-            potquality = tf.where(touch_stop, tf.reshape(tf.constant(max_len, tf.float32),[-1,1]), intensity)
-        
-        #potquality = tf.where(in_blob, tf.reshape(tf.constant(0.0),[-1,1]), intensity) 
-        #potquality = intensity
+#        touch_stop = tf.less(tf.constant(0.5, tf.float32), point_res[0,0]) 
+#        max_len = np.sqrt(dims[0]**2+dims[1]**2)
+#        if true_glimpse == num_list[0]:
+#            potquality = tf.where(touch_stop, tf.reshape(tf.constant(0.0, tf.float32),[-1,1]), max_len)
+#        else:
+#            potquality = tf.where(touch_stop, tf.reshape(tf.constant(max_len, tf.float32),[-1,1]), intensity)
+#        
+#        potquality = tf.where(in_blob, tf.reshape(tf.constant(0.0),[-1,1]), intensity) 
+        potquality = intensity
         pq = tf.reduce_mean(potquality) 
         pqs.append(pq) 
+
+        resquality = tf.abs(point_res[0,0] - res_list[0,true_glimpse])
+        rq = tf.reduce_mean(potquality)
+        rqs.append(rq)
 
         blb_pot, _ = tf.while_loop(cond, body, (tf.constant(-1, tf.float32), tf.constant(0, tf.float32)))
     
@@ -367,8 +372,8 @@ for true_glimpse in range(glimpses+1):
  
 ## LOSS FUNCTION ################################
 predcost1 = tf.reduce_sum(cqs*mask_list[0])# / (num_list[0]+1) # only count
-predcost2 = tf.reduce_sum(pqs*mask_list_T[0])# / (num_list[0]+1) # only point
-predcost3 = (tf.reduce_sum(cqs*mask_list[0]) + tf.reduce_sum(pqs*mask_list_T[0]))# / (num_list[0]+1) 
+predcost2 = tf.reduce_sum(pqs*mask_list_T[0])+tf.reduce_sum(rqs*mask_list_T[0])# / (num_list[0]+1) # only point
+predcost3 = tf.reduce_sum(cqs*mask_list[0]) + tf.reduce_sum(pqs*mask_list_T[0]) + tf.reduce_sum(rqs*mask_list_T[0])# / (num_list[0]+1) 
 
 predcost = tf.cond(task[0], lambda: predcost1, lambda: predcost2)
 predcost = tf.cond(task[2], lambda: predcost3, lambda: predcost) 
@@ -376,6 +381,7 @@ predcost = tf.cond(task[2], lambda: predcost3, lambda: predcost)
 # all-knower
 count_accuracy = tf.reduce_sum(Rs*mask_list[0]) / (num_list[0]+1)
 point_accuracy = tf.reduce_sum(pqs*mask_list_T[0]) / (num_list[0]+1) 
+res_accuracy = tf.reduce_sum(rqs*mask_list_T[0]) / (num_list[0]+1) 
 
 def evaluate():
     data = load_count.InputData()
