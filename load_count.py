@@ -14,14 +14,16 @@ class InputData(object):
         labels: A list of one-hot label lists.
     """
 
-    def __init__(self, folder="", images=[], labels=[], blob_list=[], size_list=[], mask_list=[], num_list=[], count_word=[]):
+    def __init__(self, folder="", images=[], labels=[], blob_list=[], size_list=[], res_list=[], mask_list=[], mask_list_T=[], num_list=[], count_word=[]):
         """Return an InputData object."""
         self.folder = folder
         self.images = []
         self.labels = []
         self.blob_list = []
         self.size_list = []
+        self.res_list = []
         self.mask_list = []
+        self.mask_list_T = []
         self.num_list = [] 
         self.count_word = []
         self.length = 0
@@ -29,23 +31,23 @@ class InputData(object):
 
     def get_train(self, even, min_blobs, max_blobs): # MT
         """Generate and get train images and labels."""
-        self.images, self.labels, self.blob_list, self.size_list, self.mask_list, self.num_list, self.count_word = create_data_count.generate_data(even, min_blobs, max_blobs) # MT
+        self.images, self.labels, self.blob_list, self.size_list, self.res_list, self.mask_list, self.mask_list_T, self.num_list, self.count_word = create_data_count.generate_data(even, min_blobs, max_blobs) # MT
         self.length = len(self.images)
 
 
     def get_test(self, even, min_blobs, max_blobs): # MT
         """Generate and get test images and labels."""
-        self.images, self.labels, self.blob_list, self.size_list, self.mask_list, self.num_list, self.count_word = create_data_count.generate_data(even, min_blobs, max_blobs) # MT
+        self.images, self.labels, self.blob_list, self.size_list, self.res_list, self.mask_list, self.mask_list_T, self.num_list, self.count_word = create_data_count.generate_data(even, min_blobs, max_blobs) # MT
         self.length = len(self.images)
 
     def get_viz(self, even, min_blobs, max_blobs): # MT
         """Generate and get test images and labels."""
-        self.images, self.labels, self.blob_list, self.size_list, self.mask_list, self.num_list, self.count_word = create_data_count.generate_data_viz(even, min_blobs, max_blobs) # MT
+        self.images, self.labels, self.blob_list, self.size_list, self.res_list, self.mask_list, self.mask_list_T, self.num_list, self.count_word = create_data_count.generate_data_viz(even, min_blobs, max_blobs) # MT
         self.length = len(self.images)
 
     def get_blank(self): # MT
         """Generate and get blank images and labels for count test."""
-        self.images, self.labels, self.blob_list, self.size_list, self.mask_list, self.num_list, self.count_word = create_data_count.generate_blank_img() # MT
+        self.images, self.labels, self.blob_list, self.size_list, self.res_list, self.mask_list, self.mask_list_T, self.num_list, self.count_word = create_data_count.generate_blank_img() # MT
         self.length = len(self.images)
 
     def load_sample(self):
@@ -102,10 +104,12 @@ class InputData(object):
         batch_lbls = [self.labels[i] for i in batch_idx]
         batch_blts = [self.blob_list[i] for i in batch_idx]
         batch_slts = [self.size_list[i] for i in batch_idx]
+        batch_rlts = [self.res_list[i] for i in batch_idx]
         batch_mlts = [self.mask_list[i] for i in batch_idx]
+        batch_mltTs = [self.mask_list_T[i] for i in batch_idx]
         batch_nlts = [self.num_list[i] for i in batch_idx] 
         batch_cwds = [self.count_word[i] for i in batch_idx]
-        return batch_imgs, batch_lbls, batch_blts, batch_slts, batch_mlts, batch_nlts, batch_cwds
+        return batch_imgs, batch_lbls, batch_blts, batch_slts, batch_rlts, batch_mlts, batch_mltTs, batch_nlts, batch_cwds
     
     def print_img_at_idx(self, idx):
         """Prints the image at index idx."""
