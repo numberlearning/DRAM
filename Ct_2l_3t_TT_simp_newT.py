@@ -37,7 +37,7 @@ folder_name + "/countmodel_",
 folder_name + "/prepoint_"] #sys.argv[10]~[14]
 print(sys.argv)
 
-train_iters = 300000#20000000000
+train_iters = 600000#20000000000
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
 log_filename = sys.argv[7]
@@ -82,7 +82,7 @@ task = tf.placeholder(tf.bool, shape=(3)) # task state
 onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, output_size))
 blob_list = tf.placeholder(tf.float32, shape=(batch_size, glimpses, 2))
 size_list = tf.placeholder(tf.float32, shape=(batch_size, glimpses))
-res_list = tf.placeholder(tf.float32, shape=(batch_size, glimpses, 2))
+res_list = tf.placeholder(tf.float32, shape=(batch_size, glimpses))
 mask_list = tf.placeholder(tf.float32, shape=(batch_size, glimpses))
 mask_list_T = tf.placeholder(tf.float32, shape=(batch_size, glimpses))
 num_list = tf.placeholder(tf.float32, shape=(batch_size))
@@ -303,7 +303,15 @@ for true_glimpse in range(glimpses+1):
             "classification":classification,
             "r":r,
         })
- 
+    
+    if true_glimpse < glimpses:
+        resquality = tf.abs(point_res[0,0] - res_list[0,true_glimpse])
+        rq = tf.reduce_mean(resquality)
+        rqs.append(rq)
+
+        # point response
+        ress.append(point_res[0,0])
+   
     if true_glimpse != 0:
         target_gx = blob_list[0][glimpse][0]
         target_gy = blob_list[0][glimpse][1]
@@ -350,10 +358,6 @@ for true_glimpse in range(glimpses+1):
         pq = tf.reduce_mean(potquality) 
         pqs.append(pq) 
 
-        resquality = tf.abs(point_res[0,0] - res_list[0,true_glimpse])
-        rq = tf.reduce_mean(potquality)
-        rqs.append(rq)
-
         blb_pot, _ = tf.while_loop(cond, body, (tf.constant(-1, tf.float32), tf.constant(0, tf.float32)))
     
         blob_point.append(blb_pot)
@@ -364,9 +368,6 @@ for true_glimpse in range(glimpses+1):
                 "gy":yy,
                 "blb_pot":blb_pot,
             })
-
-        # point response
-        ress.append(point_res[0,0])
 
     REUSE = True
  
@@ -380,8 +381,8 @@ predcost = tf.cond(task[2], lambda: predcost3, lambda: predcost)
 
 # all-knower
 count_accuracy = tf.reduce_sum(Rs*mask_list[0]) / (num_list[0]+1)
-point_accuracy = tf.reduce_sum(pqs*mask_list_T[0]) / (num_list[0]+1) 
-res_accuracy = tf.reduce_sum(rqs*mask_list_T[0]) / (num_list[0]+1) 
+point_accuracy = tf.reduce_sum(pqs*mask_list_T[0]) / (num_list[0]) 
+res_accuracy = tf.reduce_sum(rqs*mask_list_T[0]) / (num_list[0]) 
 
 def evaluate():
     data = load_count.InputData()
@@ -391,9 +392,9 @@ def evaluate():
     sumlabels = np.zeros(output_size)
  
     for i in range(batches_in_epoch):
-        nextX, nextY, nextZ, nextS, nextM, nextMT, nextN, nextC = data.next_batch(batch_size)
+        nextX, nextY, nextZ, nextS, nextR, nextM, nextMT, nextN, nextC = data.next_batch(batch_size)
         sumlabels += np.sum(nextY,0) 
-        feed_dict = {task: [False, True, False], testing: True, x: nextX, onehot_labels: nextY, blob_list: nextZ, size_list: nextS, mask_list: nextM, mask_list_T: nextMT, num_list: nextN, count_word: nextC}
+        feed_dict = {task: [False, True, False], testing: True, x: nextX, onehot_labels: nextY, blob_list: nextZ, size_list: nextS, res_list: nextR, mask_list: nextM, mask_list_T: nextMT, num_list: nextN, count_word: nextC}
         blbs, ctqs, ptqs, cs, cnt_acr, pot_acr, cnt, cor, potx, poty, prdx, prdy, tchx, tchy, xs, ys, pot_res = sess.run([blob_point, cqs, pqs, count_word, count_accuracy, point_accuracy, counts, corrects, pointxs, pointys, predictxs, predictys, teacherxs, teacherys, xxs, yys, ress], feed_dict=feed_dict)
         point_maxerror = np.max(ptqs*nextMT[0])
         if point_maxerror<=2.5:
@@ -473,16 +474,16 @@ if __name__ == '__main__':
     i_test = 0
 
     for i in range(start_restore_index*3, train_iters+3):
-        xtrain, ytrain, ztrain, strain, mtrain, mttrain, ntrain, ctrain = train_data.next_batch(batch_size)
-        bxtrain, bytrain, bztrain, bstrain, bmtrain, bmttrain, bntrain, bctrain = blank_data.next_batch(batch_size)
+        xtrain, ytrain, ztrain, strain, rtrain, mtrain, mttrain, ntrain, ctrain = train_data.next_batch(batch_size)
+        bxtrain, bytrain, bztrain, bstrain, brtrain, bmtrain, bmttrain, bntrain, bctrain = blank_data.next_batch(batch_size)
 
         if i<100 or i_test<3:
             total_pot_count += 1
             pot_count+=1
             if i%2==0:
-                results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             else:
-                results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, predcost_fetched, _ = results
             pot_quality += point_accuracy_fetched 
             pot_Pc += predcost_fetched
@@ -493,6 +494,7 @@ if __name__ == '__main__':
                 pot_count=0
                 print("iter=%d" % (i))
                 print("PrePoint: pot_accuracy: %f, Pc: %f" % (pot_quality, pot_Pc))
+                #print("Res_list: " + str(rtrain)) 
                 print("CORRECT: " + str(corrects_fetched))
                 print("POT_RES: " + str(ress_fetched))
             if i%1000==0:
@@ -513,19 +515,19 @@ if __name__ == '__main__':
                 print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
         else:
             if ii%3==0 and ii%2==0:
-                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: False, x: bxtrain, onehot_labels: bytrain, blob_list: bztrain, size_list: bstrain, mask_list: bmtrain, mask_list_T: bmttrain, num_list: bntrain, count_word: bctrain})
+                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: False, x: bxtrain, onehot_labels: bytrain, blob_list: bztrain, size_list: bstrain, res_list: brtrain, mask_list: bmtrain, mask_list_T: bmttrain, num_list: bntrain, count_word: bctrain})
             elif ii%3==0 and ii%2!=0:
-                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: True, x: bxtrain, onehot_labels: bytrain, blob_list: bztrain, size_list: bstrain, mask_list: bmtrain, mask_list_T: bmttrain, num_list: bntrain, count_word: bctrain})
+                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: True, x: bxtrain, onehot_labels: bytrain, blob_list: bztrain, size_list: bstrain, res_list: brtrain, mask_list: bmtrain, mask_list_T: bmttrain, num_list: bntrain, count_word: bctrain})
             elif ii%3==1 and ii%2==0:
-                results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             elif ii%3==1 and ii%2!=0:
-                results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             elif ii%3==2 and ii%2==0:
-                results = sess.run(fetches2, feed_dict = {task: [False, False, True], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [False, False, True], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             else:
-                results = sess.run(fetches2, feed_dict = {task: [False, False, True], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [False, False, True], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
         
-            blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, predcost_fetched, _ = results
+            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, predcost_fetched, _ = results
 
             # average over 100 batches
             if ii%3==0:
