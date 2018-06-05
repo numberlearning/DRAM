@@ -40,18 +40,24 @@ def get_coordinate(even):
         cY_ = 3
     else:
         cX_ = random.randint(7, 10)
-        cY_ = 15
+        cY_ = 10
     
     return cX_, cY_
 
 def get_mask(num_blobs):
     mask = np.zeros(glimpses)
-    for i in range (num_blobs+1):
+    for i in range(num_blobs+1):
         mask[i] = 1
     # mask[num_blobs-1] = 2 # last count word
     # mask[num_blobs] = 0.5 # I'm done! 
     return mask
- 
+
+def get_res(num_blobs):
+    res = np.zeros(glimpses)
+    for i in range(num_blobs):
+        res[i] = 1
+    return res
+
 def generate_data(even, min_blobs, max_blobs): # MT     
     n_labels = max_blobs_train - min_blobs_train + 1 # MT
     total = get_total(even, min_blobs, max_blobs)
@@ -59,7 +65,9 @@ def generate_data(even, min_blobs, max_blobs): # MT
     labels = np.zeros([total, n_labels])    
     blob_list = np.zeros([total, glimpses, 2])
     size_list = np.zeros([total, glimpses])
+    res_list = np.zeros([total, glimpses]) 
     mask_list = np.zeros([total, glimpses])
+    mask_list_T = np.zeros([total, glimpses])
     num_list = np.zeros(total)
     count_word = np.zeros([total, glimpses, n_labels+1]) 
     num_blobs = min_blobs 
@@ -83,7 +91,7 @@ def generate_data(even, min_blobs, max_blobs): # MT
                     cX = cX_ 
                 else:
                     cX = cX_prev + cX_ 
-                cY = random.randint(img_height/2 - cY_, img_height/2 + cY_ - height) # -15~15 / -3~3
+                cY = random.randint(img_height/2 - cY_, img_height/2 + cY_ - height) # -10~10 / -3~3
                 blob_list[img_count, glimpse_count, 0] = cX + width/2 # lower left corner
                 blob_list[img_count, glimpse_count, 1] = cY + height/2
                 size_list[img_count, glimpse_count] = height 
@@ -105,7 +113,9 @@ def generate_data(even, min_blobs, max_blobs): # MT
 
             imgs[img_count] = img
             labels[img_count, num_blobs - 1] = 1
+            res_list[img_count] = get_res(num_blobs)
             mask_list[img_count] = get_mask(num_blobs)
+            mask_list_T[img_count] = get_mask(num_blobs)
             num_list[img_count] = num_blobs
             img_count = img_count + 1
         num_blobs = num_blobs + 1
@@ -119,16 +129,18 @@ def generate_data(even, min_blobs, max_blobs): # MT
 #            empty_label[0] = 1
 #            label = np.vstack((label, empty_label))
 
-    return imgs, labels, blob_list, size_list, mask_list, num_list, count_word 
+    return imgs, labels, blob_list, size_list, res_list, mask_list, mask_list_T, num_list, count_word 
 
 def generate_blank_img(): # MT     
     n_labels = max_blobs_train - min_blobs_train + 1 # MT
-    total = test_trials*9
+    total = test_trials*(n_labels-1)
     imgs = np.zeros([total, img_height*img_width]) # input img size 
     labels = np.zeros([total, n_labels])    
     blob_list = np.ones([total, glimpses, 2])
+    res_list = np.zeros([total, glimpses])
     size_list = np.zeros([total, glimpses])
     mask_list = np.zeros([total, glimpses])
+    mask_list_T = np.zeros([total, glimpses])
     num_list = np.zeros(total)
     count_word = np.zeros([total, glimpses, n_labels+1]) 
     img_count = 0
@@ -147,10 +159,12 @@ def generate_blank_img(): # MT
 
         imgs[img_count] = img
         labels[img_count, n_labels-1] = 1
+        res_list[img_count] = get_res(n_labels)
         mask_list[img_count] = get_mask(n_labels)
+        mask_list_T[img_count] = get_mask(n_labels-1)
         num_list[img_count] = n_labels
         img_count = img_count + 1
     
     np.set_printoptions(threshold=np.nan)
 
-    return imgs, labels, blob_list, size_list, mask_list, num_list, count_word
+    return imgs, labels, blob_list, size_list, res_list, mask_list, mask_list_T, num_list, count_word
