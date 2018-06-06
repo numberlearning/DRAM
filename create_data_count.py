@@ -115,7 +115,7 @@ def generate_data(even, min_blobs, max_blobs): # MT
             labels[img_count, num_blobs - 1] = 1
             res_list[img_count] = get_res(num_blobs)
             mask_list[img_count] = get_mask(num_blobs)
-            mask_list_T[img_count] = get_mask(num_blobs)
+            mask_list_T[img_count] = get_mask(num_blobs-1)
             num_list[img_count] = num_blobs
             img_count = img_count + 1
         num_blobs = num_blobs + 1
