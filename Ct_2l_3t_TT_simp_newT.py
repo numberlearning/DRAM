@@ -303,14 +303,6 @@ for true_glimpse in range(glimpses+1):
             "classification":classification,
             "r":r,
         })
-    
-    if true_glimpse < glimpses:
-        resquality = tf.abs(point_res[0,0] - res_list[0,true_glimpse])
-        rq = tf.reduce_mean(resquality)
-        rqs.append(rq)
-
-        # point response
-        ress.append(point_res[0,0])
    
     if true_glimpse != 0:
         target_gx = blob_list[0][glimpse][0]
@@ -357,6 +349,13 @@ for true_glimpse in range(glimpses+1):
         potquality = intensity
         pq = tf.reduce_mean(potquality) 
         pqs.append(pq) 
+
+        resquality = tf.abs(point_res[0,0] - res_list[0,glimpse-1])
+        rq = tf.reduce_mean(resquality)
+        rqs.append(rq)
+
+        # point response
+        ress.append(point_res[0,0])
 
         blb_pot, _ = tf.while_loop(cond, body, (tf.constant(-1, tf.float32), tf.constant(0, tf.float32)))
     
