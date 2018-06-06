@@ -350,7 +350,7 @@ for true_glimpse in range(glimpses+1):
         pq = tf.reduce_mean(potquality) 
         pqs.append(pq) 
 
-        resquality = tf.abs(point_res[0,0] - res_list[0,glimpse-1])
+        resquality = tf.square(point_res[0,0] - res_list[0,glimpse-1])
         rq = tf.reduce_mean(resquality)
         rqs.append(rq)
 
