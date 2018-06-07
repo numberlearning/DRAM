@@ -155,14 +155,14 @@ def attn_window(scope, blob_list, h_point, N, glimpse, gx_prev, gy_prev, testing
     with tf.variable_scope(scope,reuse=REUSE):
         params=linear(h_point,3) # batch_size x 3
     res_,gx_,gy_=tf.split(params, 3, 1) # batch_size x 1
-
+ 
     res = tf.sigmoid(res_)
 
     if glimpse == -1:
         gx_ = tf.zeros([batch_size,1])
         gy_ = tf.zeros([batch_size,1])
         glimpse = 0
-        
+
     # relative distance
     gx_real = gx_prev + gx_
     gy_real = gy_prev + gy_ 
@@ -338,19 +338,12 @@ for true_glimpse in range(glimpses+1):
         in_blob_gy = tf.logical_and(tf.less(target_gy - size_list[0][glimpse]/2, predict_gy), tf.less(predict_gy, target_gy + size_list[0][glimpse]/2))
         in_blob = tf.logical_and(in_blob_gx, in_blob_gy)
         intensity = tf.sqrt((predict_gx - target_gx)**2 + (predict_gy - target_gy)**2)
-#        touch_stop = tf.less(tf.constant(0.5, tf.float32), point_res[0,0]) 
-#        max_len = np.sqrt(dims[0]**2+dims[1]**2)
-#        if true_glimpse == num_list[0]:
-#            potquality = tf.where(touch_stop, tf.reshape(tf.constant(0.0, tf.float32),[-1,1]), max_len)
-#        else:
-#            potquality = tf.where(touch_stop, tf.reshape(tf.constant(max_len, tf.float32),[-1,1]), intensity)
-#        
 #        potquality = tf.where(in_blob, tf.reshape(tf.constant(0.0),[-1,1]), intensity) 
         potquality = intensity
         pq = tf.reduce_mean(potquality) 
         pqs.append(pq) 
 
-        resquality = tf.square(point_res[0,0] - res_list[0,glimpse-1])
+        resquality = -res_list[0,glimpse]*tf.log(point_res[0,0]+1e-5)-(1-res_list[0,glimpse])*tf.log(1-point_res[0,0]+1e-5) # cross-entropy
         rq = tf.reduce_mean(resquality)
         rqs.append(rq)
 
@@ -372,8 +365,8 @@ for true_glimpse in range(glimpses+1):
  
 ## LOSS FUNCTION ################################
 predcost1 = tf.reduce_sum(cqs*mask_list[0])# / (num_list[0]+1) # only count
-predcost2 = tf.reduce_sum(pqs*mask_list_T[0])+tf.reduce_sum(rqs*mask_list_T[0])# / (num_list[0]+1) # only point
-predcost3 = tf.reduce_sum(cqs*mask_list[0]) + tf.reduce_sum(pqs*mask_list_T[0]) + tf.reduce_sum(rqs*mask_list_T[0])# / (num_list[0]+1) 
+predcost2 = tf.reduce_sum(pqs*mask_list_T[0])+tf.reduce_sum(rqs*mask_list[0])# / (num_list[0]+1) # only point
+predcost3 = tf.reduce_sum(cqs*mask_list[0]) + tf.reduce_sum(pqs*mask_list_T[0]) + tf.reduce_sum(rqs*mask_list[0])# / (num_list[0]+1) 
 
 predcost = tf.cond(task[0], lambda: predcost1, lambda: predcost2)
 predcost = tf.cond(task[2], lambda: predcost3, lambda: predcost) 
@@ -381,7 +374,7 @@ predcost = tf.cond(task[2], lambda: predcost3, lambda: predcost)
 # all-knower
 count_accuracy = tf.reduce_sum(Rs*mask_list[0]) / (num_list[0]+1)
 point_accuracy = tf.reduce_sum(pqs*mask_list_T[0]) / (num_list[0]) 
-res_accuracy = tf.reduce_sum(rqs*mask_list_T[0]) / (num_list[0]) 
+res_accuracy = tf.reduce_sum(rqs*mask_list_T[0]) / (num_list[0]+1) 
 
 def evaluate():
     data = load_count.InputData()
@@ -396,7 +389,8 @@ def evaluate():
         feed_dict = {task: [False, True, False], testing: True, x: nextX, onehot_labels: nextY, blob_list: nextZ, size_list: nextS, res_list: nextR, mask_list: nextM, mask_list_T: nextMT, num_list: nextN, count_word: nextC}
         blbs, ctqs, ptqs, cs, cnt_acr, pot_acr, cnt, cor, potx, poty, prdx, prdy, tchx, tchy, xs, ys, pot_res = sess.run([blob_point, cqs, pqs, count_word, count_accuracy, point_accuracy, counts, corrects, pointxs, pointys, predictxs, predictys, teacherxs, teacherys, xxs, yys, ress], feed_dict=feed_dict)
         point_maxerror = np.max(ptqs*nextMT[0])
-        if point_maxerror<=2.5:
+        res_maxerror = np.max(np.exp(pot_res*nextM[0])-1)
+        if point_maxerror<=2.5 and res_maxerror<=0.05:
             test_point += 1
 
     print("TESTING!") 
@@ -413,6 +407,7 @@ def evaluate():
     # print("TEACHER_Y: " + str(tchy)) 
     print("PRED_X,TCH_X: " + str(xs))
     print("PRED_Y,TCH_Y: " + str(ys))
+    print("res_maxerror: " + str(res_maxerror))
     print("it_idx: " + str(test_point/batches_in_epoch)) 
     return test_point/batches_in_epoch 
 
@@ -446,7 +441,7 @@ if __name__ == '__main__':
     blank_data = load_count.InputData()
     blank_data.get_blank() # MT
     fetches2=[]
-    fetches2.extend([ress, blob_point, pointxs, pointys, predictxs, predictys, counts, corrects, count_accuracy, point_accuracy, predcost, train_op])
+    fetches2.extend([ress, blob_point, pointxs, pointys, predictxs, predictys, counts, corrects, count_accuracy, point_accuracy, res_accuracy, predcost, train_op])
 
     start_time = time.clock()
     extra_time = 0
@@ -466,6 +461,7 @@ if __name__ == '__main__':
     sum_pc_2 = 0
     sum_pc_3 = 0
     pot_quality = 0
+    res_quality = 0
     pot_Pc = 0
     pot_count = 0
     total_pot_count = 0
@@ -483,16 +479,18 @@ if __name__ == '__main__':
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             else:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
-            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, predcost_fetched, _ = results
+            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, _ = results
             pot_quality += point_accuracy_fetched 
+            res_quality += res_accuracy_fetched
             pot_Pc += predcost_fetched
 
             if i%100==0:
                 pot_quality/=100
+                res_quality/=100
                 pot_Pc/=100
                 pot_count=0
                 print("iter=%d" % (i))
-                print("PrePoint: pot_accuracy: %f, Pc: %f" % (pot_quality, pot_Pc))
+                print("PrePoint: pot_accuracy: %f, res_accuracy: %f, Pc: %f" % (pot_quality, res_quality, pot_Pc))
                 #print("Res_list: " + str(rtrain)) 
                 print("CORRECT: " + str(corrects_fetched))
                 print("POT_RES: " + str(ress_fetched))
