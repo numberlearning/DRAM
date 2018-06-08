@@ -258,6 +258,8 @@ points = list()
 corrects = list()
 counts = list()
 Rs = list()
+ress = list() # point response
+rerrs = list() # response error
 pointxs = list()
 pointys = list()
 predictxs = list()
@@ -266,11 +268,10 @@ teacherxs = list()
 teacherys = list()
 xxs = list()
 yys = list()
-cqs = list() # count quality
 rqs = list() # response quality
 pqs = list() # point quality
+cqs = list() # count quality
 blob_point = list()
-ress = list() # point response
 
 # blob point
 def cond(blb_pot, glimpse):
@@ -317,6 +318,7 @@ for true_glimpse in range(glimpses+1):
         Rs.append(R)
 
         # pointer
+        ress.append(point_res[0,0])
         teacherxs.append(target_gx)
         teacherys.append(target_gy)
         pointxs.append(point_gx[0,0])
@@ -327,28 +329,30 @@ for true_glimpse in range(glimpses+1):
         xxs.append(xx)
         yy = [predict_gy[0,0], target_gy]
         yys.append(yy)
-    
-        # count reward 
-        cntquality = -tf.reduce_sum(tf.log(classification + 1e-5) * count_word[0,glimpse], 1) # cross-entropy
-        cq = tf.reduce_mean(cntquality)  
-        cqs.append(cq) 
 
-        # point reward
+        # response quality
+        resquality = -res_list[0,glimpse]*tf.log(point_res+1e-5)-(1-res_list[0,glimpse])*tf.log(1-point_res+1e-5) # cross-entropy
+        rq = tf.reduce_mean(resquality)
+        rqs.append(rq)
+
+        res_error = tf.abs(res_list[0,glimpse]-point_res)
+        rerr = tf.reduce_mean(res_error)
+        rerrs.append(rerr)
+
+        # point quality
         in_blob_gx = tf.logical_and(tf.less(target_gx - size_list[0][glimpse]/2, predict_gx), tf.less(predict_gx, target_gx + size_list[0][glimpse]/2))
         in_blob_gy = tf.logical_and(tf.less(target_gy - size_list[0][glimpse]/2, predict_gy), tf.less(predict_gy, target_gy + size_list[0][glimpse]/2))
         in_blob = tf.logical_and(in_blob_gx, in_blob_gy)
         intensity = tf.sqrt((predict_gx - target_gx)**2 + (predict_gy - target_gy)**2)
-#        potquality = tf.where(in_blob, tf.reshape(tf.constant(0.0),[-1,1]), intensity) 
+        #potquality = tf.where(in_blob, tf.reshape(tf.constant(0.0),[-1,1]), intensity) 
         potquality = intensity
         pq = tf.reduce_mean(potquality) 
-        pqs.append(pq) 
-
-        resquality = -res_list[0,glimpse]*tf.log(point_res[0,0]+1e-5)-(1-res_list[0,glimpse])*tf.log(1-point_res[0,0]+1e-5) # cross-entropy
-        rq = tf.reduce_mean(resquality)
-        rqs.append(rq)
-
-        # point response
-        ress.append(point_res[0,0])
+        pqs.append(pq)
+        
+        # count quality 
+        cntquality = -tf.reduce_sum(tf.log(classification + 1e-5) * count_word[0,glimpse], 1) # cross-entropy
+        cq = tf.reduce_mean(cntquality)  
+        cqs.append(cq) 
 
         blb_pot, _ = tf.while_loop(cond, body, (tf.constant(-1, tf.float32), tf.constant(0, tf.float32)))
     
@@ -364,17 +368,17 @@ for true_glimpse in range(glimpses+1):
     REUSE = True
  
 ## LOSS FUNCTION ################################
-predcost1 = tf.reduce_sum(cqs*mask_list[0])# / (num_list[0]+1) # only count
-predcost2 = tf.reduce_sum(pqs*mask_list_T[0])+tf.reduce_sum(rqs*mask_list[0])# / (num_list[0]+1) # only point
-predcost3 = tf.reduce_sum(cqs*mask_list[0]) + tf.reduce_sum(pqs*mask_list_T[0]) + tf.reduce_sum(rqs*mask_list[0])# / (num_list[0]+1) 
+predcost1 = tf.reduce_sum(cqs*mask_list[0]) # only count
+predcost2 = tf.reduce_sum(pqs*mask_list_T[0])+tf.reduce_sum(rqs*mask_list[0]) # only point
+predcost3 = tf.reduce_sum(cqs*mask_list[0]) + tf.reduce_sum(pqs*mask_list_T[0]) + tf.reduce_sum(rqs*mask_list[0]) # count and point 
 
 predcost = tf.cond(task[0], lambda: predcost1, lambda: predcost2)
 predcost = tf.cond(task[2], lambda: predcost3, lambda: predcost) 
 
 # all-knower
-count_accuracy = tf.reduce_sum(Rs*mask_list[0]) / (num_list[0]+1)
-point_accuracy = tf.reduce_sum(pqs*mask_list_T[0]) / (num_list[0]) 
 res_accuracy = tf.reduce_sum(rqs*mask_list_T[0]) / (num_list[0]+1) 
+point_accuracy = tf.reduce_sum(pqs*mask_list_T[0]) / (num_list[0]) 
+count_accuracy = tf.reduce_sum(Rs*mask_list[0]) / (num_list[0]+1)
 
 def evaluate():
     data = load_count.InputData()
@@ -387,9 +391,10 @@ def evaluate():
         nextX, nextY, nextZ, nextS, nextR, nextM, nextMT, nextN, nextC = data.next_batch(batch_size)
         sumlabels += np.sum(nextY,0) 
         feed_dict = {task: [False, True, False], testing: True, x: nextX, onehot_labels: nextY, blob_list: nextZ, size_list: nextS, res_list: nextR, mask_list: nextM, mask_list_T: nextMT, num_list: nextN, count_word: nextC}
-        blbs, ctqs, ptqs, cs, cnt_acr, pot_acr, cnt, cor, potx, poty, prdx, prdy, tchx, tchy, xs, ys, pot_res = sess.run([blob_point, cqs, pqs, count_word, count_accuracy, point_accuracy, counts, corrects, pointxs, pointys, predictxs, predictys, teacherxs, teacherys, xxs, yys, ress], feed_dict=feed_dict)
+        blbs, ctqs, ptqs, prqs, prerrs, cs, cnt_acr, pot_acr, cnt, cor, potx, poty, prdx, prdy, tchx, tchy, xs, ys = sess.run([blob_point, cqs, pqs, rqs, rerrs, count_word, count_accuracy, point_accuracy, counts, corrects, pointxs, pointys, predictxs, predictys, teacherxs, teacherys, xxs, yys], feed_dict=feed_dict)
         point_maxerror = np.max(ptqs*nextMT[0])
-        res_maxerror = np.max(np.exp(pot_res*nextM[0])-1)
+        res_maxerror = np.max(prerrs*nextM[0]) 
+        #res_maxerror = np.max(np.exp(prqs*nextM[0])-1)
         if point_maxerror<=2.5 and res_maxerror<=0.05:
             test_point += 1
 
