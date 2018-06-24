@@ -484,9 +484,9 @@ if __name__ == '__main__':
             if i%4==0:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             elif i%4==1:
-                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: True, x: bxtrain, onehot_labels: bytrain, blob_list: bztrain, size_list: bstrain, res_list: brtrain, mask_list: bmtrain, mask_list_T: bmttrain, num_list: bntrain, count_word: bctrain})
             elif i%4==2:
-                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: False, x: bxtrain, onehot_labels: bytrain, blob_list: bztrain, size_list: bstrain, res_list: brtrain, mask_list: bmtrain, mask_list_T: bmttrain, num_list: bntrain, count_word: bctrain})
             else:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             
