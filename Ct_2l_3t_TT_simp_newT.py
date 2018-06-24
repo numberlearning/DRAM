@@ -295,7 +295,7 @@ for true_glimpse in range(glimpses+1):
     task_str = tf.reshape(tf.cast(task, tf.float32), [batch_size, -1])
     h_point, point_state = pointer(tf.concat([r, task_str], 1), point_state)
     h_point_prev = h_point
-    h_count, count_state = counter(h_point, count_state)
+    h_count, count_state = counter(tf.concat([h_point, task_str], 1), count_state)
     h_count_prev = h_count
 
     with tf.variable_scope("output",reuse=REUSE):
@@ -412,6 +412,7 @@ def evaluate():
     # print("TEACHER_Y: " + str(tchy)) 
     print("PRED_X,TCH_X: " + str(xs))
     print("PRED_Y,TCH_Y: " + str(ys))
+    print("point_maxerror: " + str(point_maxerror))
     print("res_maxerror: " + str(res_maxerror))
     print("it_idx: " + str(test_point/batches_in_epoch)) 
     return test_point/batches_in_epoch 
@@ -480,10 +481,15 @@ if __name__ == '__main__':
         if i<100 or i_test<3:
             total_pot_count += 1
             pot_count+=1
-            if i%2==0:
+            if i%4==0:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
-            else:
+            elif i%4==1:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+            elif i%4==2:
+                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+            else:
+                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+            
             ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, _ = results
             pot_quality += point_accuracy_fetched 
             res_quality += res_accuracy_fetched
@@ -525,11 +531,11 @@ if __name__ == '__main__':
             elif ii%3==1 and ii%2!=0:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             elif ii%3==2 and ii%2==0:
-                results = sess.run(fetches2, feed_dict = {task: [False, False, True], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [False, True, True], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             else:
-                results = sess.run(fetches2, feed_dict = {task: [False, False, True], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
+                results = sess.run(fetches2, feed_dict = {task: [False, True, True], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
         
-            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, predcost_fetched, _ = results
+            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, _ = results
 
             # average over 100 batches
             if ii%3==0:
