@@ -45,9 +45,9 @@ class InputData(object):
         self.images, self.labels, self.blob_list, self.size_list, self.res_list, self.mask_list, self.mask_list_T, self.num_list, self.count_word = create_data_count.generate_data_viz(even, min_blobs, max_blobs) # MT
         self.length = len(self.images)
 
-    def get_blank(self): # MT
+    def get_blank(self, even, min_blobs, max_blobs): # MT
         """Generate and get blank images and labels for count test."""
-        self.images, self.labels, self.blob_list, self.size_list, self.res_list, self.mask_list, self.mask_list_T, self.num_list, self.count_word = create_data_count.generate_blank_img() # MT
+        self.images, self.labels, self.blob_list, self.size_list, self.res_list, self.mask_list, self.mask_list_T, self.num_list, self.count_word = create_data_count.generate_blank_img(even, min_blobs, max_blobs) # MT
         self.length = len(self.images)
 
     def load_sample(self):
