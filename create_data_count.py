@@ -131,9 +131,9 @@ def generate_data(even, min_blobs, max_blobs): # MT
 
     return imgs, labels, blob_list, size_list, res_list, mask_list, mask_list_T, num_list, count_word 
 
-def generate_blank_img(): # MT     
+def generate_blank_img(even, min_blobs, max_blobs): # MT     
     n_labels = max_blobs_train - min_blobs_train + 1 # MT
-    total = test_trials*(n_labels-1)
+    total = get_total(even, min_blobs, max_blobs) 
     imgs = np.zeros([total, img_height*img_width]) # input img size 
     labels = np.zeros([total, n_labels])    
     blob_list = np.ones([total, glimpses, 2])
