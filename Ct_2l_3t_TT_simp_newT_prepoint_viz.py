@@ -298,11 +298,11 @@ for true_glimpse in range(glimpses+1):
     task_str = tf.reshape(tf.cast([False, True, False], tf.float32), [batch_size, -1])
     h_point, point_state = pointer(tf.concat([r, task_str], 1), point_state)
     h_point_prev = h_point
-    h_count, count_state = counter(tf.concat([h_point, task_str], 1), count_state)
-    h_count_prev = h_count
+    #h_count, count_state = counter(tf.concat([h_point, task_str], 1), count_state)
+    #h_count_prev = h_count
 
     with tf.variable_scope("output",reuse=REUSE):
-        classification = tf.nn.softmax(linear(h_count, output_size + 1)) # add "I'm done!" tensor
+        classification = tf.nn.softmax(linear(h_point, output_size + 1)) # add "I'm done!" tensor
         classifications.append({
             "classification":classification,
             "r":r,
@@ -485,12 +485,8 @@ if __name__ == '__main__':
         if i<100 or i_test<3:
             total_pot_count += 1
             pot_count+=1
-            if i%4==0:
+            if i%2==0:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
-            elif i%4==1:
-                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: True, x: bxtrain, onehot_labels: bytrain, blob_list: bztrain, size_list: bstrain, res_list: brtrain, mask_list: bmtrain, mask_list_T: bmttrain, num_list: bntrain, count_word: bctrain})
-            elif i%4==2: 
-                results = sess.run(fetches2, feed_dict = {task: [True, False, False], testing: False, x: bxtrain, onehot_labels: bytrain, blob_list: bztrain, size_list: bstrain, res_list: brtrain, mask_list: bmtrain, mask_list_T: bmttrain, num_list: bntrain, count_word: bctrain})
             else:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
 
