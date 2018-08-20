@@ -88,7 +88,7 @@ def generate_data(even, min_blobs, max_blobs): # MT
                 width, height = get_dims(even, min_edge, max_edge) 
                 cX_, cY_ = get_coordinate(even)
                 if num_count == 0:
-                    cX = cX_ 
+                    cX = cX_ + 100 
                 else:
                     cX = cX_prev + cX_ 
                 cY = random.randint(img_height/2 - cY_, img_height/2 + cY_ - height) # -10~10 / -3~3
