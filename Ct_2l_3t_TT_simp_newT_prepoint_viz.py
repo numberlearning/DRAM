@@ -53,7 +53,7 @@ read_n = 13  # N x N attention window
 read_size = read_n*read_n
 output_size = max_blobs_train - min_blobs_train + 1
 h_point_size = 256
-h_count_size = 256
+#h_count_size = 256
 restore = str2bool(sys.argv[12]) #False
 start_non_restored_from_random = str2bool(sys.argv[13]) #True
 # delta, sigma2
@@ -88,7 +88,7 @@ mask_list_T = tf.placeholder(tf.float32, shape=(batch_size, glimpses))
 num_list = tf.placeholder(tf.float32, shape=(batch_size))
 count_word = tf.placeholder(tf.float32, shape=(batch_size, glimpses, output_size + 1)) # add "I'm done!" signal
 lstm_point = tf.contrib.rnn.LSTMCell(h_point_size, state_is_tuple=True) # point OP 
-lstm_count = tf.contrib.rnn.LSTMCell(h_count_size, state_is_tuple=True) # count OP 
+#lstm_count = tf.contrib.rnn.LSTMCell(h_count_size, state_is_tuple=True) # count OP 
 
 def linear(x,output_dim):
     """
@@ -236,25 +236,25 @@ def pointer(input, state):
         return lstm_point(input, state)
 
 ## COUNTER ##
-def counter(input, state):
-    """
-    run LSTM
-    state: previous lstm_cell state
-    input: cat(read, h_prev)
-    returns: (output, new_state)
-    """
-    with tf.variable_scope("count/LSTMCell", reuse=REUSE):
-        return lstm_count(input, state)
+#def counter(input, state):
+#    """
+#    run LSTM
+#    state: previous lstm_cell state
+#    input: cat(read, h_prev)
+#    returns: (output, new_state)
+#    """
+#    with tf.variable_scope("count/LSTMCell", reuse=REUSE):
+#        return lstm_count(input, state)
 
 
 ## STATE VARIABLES ##############
 # initial states
-gx_prev = tf.zeros((batch_size, 1))
+gx_prev = tf.ones((batch_size, 1))*100
 gy_prev = tf.ones((batch_size, 1))*dims[0]/2
 h_point_prev = tf.zeros((batch_size, h_point_size))
-h_count_prev = tf.zeros((batch_size, h_count_size))
+#h_count_prev = tf.zeros((batch_size, h_count_size))
 point_state = lstm_point.zero_state(batch_size, tf.float32)
-count_state = lstm_count.zero_state(batch_size, tf.float32)
+#count_state = lstm_count.zero_state(batch_size, tf.float32)
 zero_tensor = tf.cast(tf.zeros(1), tf.int64)
 classifications = list()
 points = list()
@@ -508,7 +508,7 @@ if __name__ == '__main__':
             if i%1000==0:
                 train_data = load_count.InputData()
                 train_data.get_train(None, min_blobs_train, max_blobs_train) # MT
-            if i%500==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
+            if i%100==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
                 start_evaluate = time.clock()
                 test_idx = evaluate()
                
@@ -596,7 +596,7 @@ if __name__ == '__main__':
                     train_data = load_count.InputData()
                     train_data.get_train(None, min_blobs_train, max_blobs_train) # MT
                 
-            if ((ii-2)/3)%500==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
+            if ((ii-2)/3)%100==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
                 #start_evaluate = time.clock()
                 #test_count_accuracy = evaluate()
                 saver = tf.train.Saver(tf.global_variables())
