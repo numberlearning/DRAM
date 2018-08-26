@@ -242,7 +242,7 @@ def pointer(input, state):
 #    """
 #    with tf.variable_scope("count/LSTMCell", reuse=REUSE):
 #        return lstm_count(input, state)
-
+#
 
 ## STATE VARIABLES ##############
 # initial states
@@ -299,7 +299,8 @@ for true_glimpse in range(glimpses+1):
     #h_count_prev = h_count
 
     with tf.variable_scope("output",reuse=REUSE):
-        classification = tf.nn.softmax(linear(h_point, output_size + 1)) # add "I'm done!" tensor
+        #classification = tf.nn.softmax(linear(h_point, output_size + 1)) # add "I'm done!" tensor
+        classification = tf.nn.relu(linear(h_point, output_size + 1)) 
         classifications.append({
             "classification":classification,
             "r":r,
@@ -350,7 +351,8 @@ for true_glimpse in range(glimpses+1):
         pqs.append(pq)
         
         # count quality 
-        cntquality = -tf.reduce_sum(tf.log(classification + 1e-5) * count_word[0,glimpse], 1) # cross-entropy
+        #cntquality = -tf.reduce_sum(tf.log(classification + 1e-5) * count_word[0,glimpse], 1) # cross-entropy
+        cntquality = tf.reduce_sum(tf.square(classification - count_word[0,glimpse]), 1)  
         cq = tf.reduce_mean(cntquality)  
         cqs.append(cq) 
 
@@ -504,7 +506,7 @@ if __name__ == '__main__':
             if i%1000==0:
                 train_data = load_count.InputData()
                 train_data.get_train(None, min_blobs_train, max_blobs_train) # MT
-            if i%500==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
+            if i%100==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
                 start_evaluate = time.clock()
                 test_idx = evaluate()
                
@@ -592,7 +594,7 @@ if __name__ == '__main__':
                     train_data = load_count.InputData()
                     train_data.get_train(None, min_blobs_train, max_blobs_train) # MT
                 
-            if ((ii-2)/3)%500==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
+            if ((ii-2)/3)%100==0:# in [0, 100, 200, 300, 400, 600, 800, 1200, 1600, 2400, 3200, 4800, 6400, 9600, 12800, 19200, 25600, 38400, 51200, 76800, 102400, 153600, 204800, 307200, 409600, 614400, 819200, 1000000, 1228800, 1638400, 2000000, 2457600, 3000000, 3276800, 4000000, 4915200, 5000000, 6000000, 6553600, 7000000]:
                 #start_evaluate = time.clock()
                 #test_count_accuracy = evaluate()
                 saver = tf.train.Saver(tf.global_variables())
