@@ -253,7 +253,8 @@ h_point_prev = tf.zeros((batch_size, h_point_size))
 point_state = lstm_point.zero_state(batch_size, tf.float32)
 #count_state = lstm_count.zero_state(batch_size, tf.float32)
 zero_tensor = tf.cast(tf.zeros(1), tf.int64)
-classifications = list()
+classifications_ce = list()
+classifications_se = list()
 points = list()
 corrects = list()
 counts = list()
@@ -270,7 +271,8 @@ xxs = list()
 yys = list()
 rqs = list() # response quality
 pqs = list() # point quality
-cqs = list() # count quality
+cqs_ce = list() # count quality - cross entropy
+cqs_se = list() # count quality - squared error
 blob_point = list()
 
 # blob point
@@ -298,21 +300,27 @@ for true_glimpse in range(glimpses+1):
     #h_count, count_state = counter(tf.concat([h_point, task_str], 1), count_state)
     #h_count_prev = h_count
 
-    with tf.variable_scope("output",reuse=REUSE):
-        #classification = tf.nn.softmax(linear(h_point, output_size + 1)) # add "I'm done!" tensor
-        classification = tf.nn.relu(linear(h_point, output_size + 1)) 
-        classifications.append({
-            "classification":classification,
+    with tf.variable_scope("output_ce",reuse=REUSE):
+        classification_ce = tf.nn.softmax(linear(h_point, output_size + 1)) # add "I'm done!" tensor
+        classifications_ce.append({
+            "classification_ce":classification_ce,
             "r":r,
         })
-   
+
+    with tf.variable_scope("output_se",reuse=REUSE):
+        classification_se = tf.nn.relu(linear(h_point, output_size + 1)) 
+        classifications_se.append({
+            "classification_se":classification_se,
+            "r":r,
+        })
+
     if true_glimpse != 0:
         target_gx = blob_list[0][glimpse][0]
         target_gy = blob_list[0][glimpse][1]
  
         # count word
         correct = tf.arg_max(count_word[0,glimpse], 0)
-        count = tf.arg_max(classification, 1)[0]
+        count = tf.arg_max(classification_ce, 1)[0]
         corrects.append(correct)
         counts.append(count) 
         R = tf.cast(tf.equal(correct, count), tf.float32)
@@ -351,10 +359,12 @@ for true_glimpse in range(glimpses+1):
         pqs.append(pq)
         
         # count quality 
-        #cntquality = -tf.reduce_sum(tf.log(classification + 1e-5) * count_word[0,glimpse], 1) # cross-entropy
-        cntquality = tf.reduce_sum(tf.square(classification - count_word[0,glimpse]), 1)  
-        cq = tf.reduce_mean(cntquality)  
-        cqs.append(cq) 
+        cntquality_ce = -tf.reduce_sum(tf.log(classification_ce + 1e-5) * count_word[0,glimpse], 1) # cross-entropy
+        cntquality_se = tf.reduce_sum(tf.square(classification_se - count_word[0,glimpse]), 1) # squared-error  
+        cq_ce = tf.reduce_mean(cntquality_ce)  
+        cq_se = tf.reduce_mean(cntquality_se)  
+        cqs_ce.append(cq_ce) 
+        cqs_se.append(cq_se) 
 
         blb_pot, _ = tf.while_loop(cond, body, (tf.constant(-1, tf.float32), tf.constant(0, tf.float32)))
     
@@ -370,9 +380,11 @@ for true_glimpse in range(glimpses+1):
     REUSE = True
  
 ## LOSS FUNCTION ################################
-predcost1 = tf.reduce_sum(cqs*mask_list[0]) # only count
+predcost1_ce = tf.reduce_sum(cqs_ce*mask_list[0]) # only count - cross entropy
+predcost1_se = tf.reduce_sum(cqs_se*mask_list[0]) # only count - squared error
+predcost1 = 0.5*predcost1_ce+0.5*predcost1_se 
 predcost2 = tf.reduce_sum(pqs*mask_list_T[0])+tf.reduce_sum(rqs*mask_list[0]) # only point
-predcost3 = tf.reduce_sum(cqs*mask_list[0]) + tf.reduce_sum(pqs*mask_list_T[0]) + tf.reduce_sum(rqs*mask_list[0]) # count and point 
+predcost3 = tf.reduce_sum(cqs_ce*mask_list[0]) + tf.reduce_sum(pqs*mask_list_T[0]) + tf.reduce_sum(rqs*mask_list[0]) # count and point 
 
 predcost = tf.cond(task[0], lambda: predcost1, lambda: predcost2)
 predcost = tf.cond(task[2], lambda: predcost3, lambda: predcost) 
@@ -393,7 +405,7 @@ def evaluate():
         nextX, nextY, nextZ, nextS, nextR, nextM, nextMT, nextN, nextC = data.next_batch(batch_size)
         sumlabels += np.sum(nextY,0) 
         feed_dict = {task: [False, True, False], testing: True, x: nextX, onehot_labels: nextY, blob_list: nextZ, size_list: nextS, res_list: nextR, mask_list: nextM, mask_list_T: nextMT, num_list: nextN, count_word: nextC}
-        blbs, ctqs, ptqs, prqs, prerrs, cs, cnt_acr, pot_acr, cnt, cor, potx, poty, prdx, prdy, tchx, tchy, xs, ys = sess.run([blob_point, cqs, pqs, rqs, rerrs, count_word, count_accuracy, point_accuracy, counts, corrects, pointxs, pointys, predictxs, predictys, teacherxs, teacherys, xxs, yys], feed_dict=feed_dict)
+        blbs, ctqs, ptqs, prqs, prerrs, cs, cnt_acr, pot_acr, cnt, cor, potx, poty, prdx, prdy, tchx, tchy, xs, ys = sess.run([blob_point, cqs_ce, pqs, rqs, rerrs, count_word, count_accuracy, point_accuracy, counts, corrects, pointxs, pointys, predictxs, predictys, teacherxs, teacherys, xxs, yys], feed_dict=feed_dict)
         point_maxerror = np.max(ptqs*nextMT[0])
         res_maxerror = np.max(prerrs*nextM[0]) 
         #res_maxerror = np.max(np.exp(prqs*nextM[0])-1)
@@ -449,7 +461,7 @@ if __name__ == '__main__':
     blank_data = load_count.InputData()
     blank_data.get_blank(None, min_blobs_train, max_blobs_train) # MT
     fetches2=[]
-    fetches2.extend([ress, blob_point, pointxs, pointys, predictxs, predictys, counts, corrects, count_accuracy, point_accuracy, res_accuracy, predcost, train_op])
+    fetches2.extend([ress, blob_point, pointxs, pointys, predictxs, predictys, counts, corrects, count_accuracy, point_accuracy, res_accuracy, predcost,predcost1_ce, predcost1_se, train_op])
 
     start_time = time.clock()
     extra_time = 0
@@ -468,6 +480,12 @@ if __name__ == '__main__':
     sum_pc_1 = 0
     sum_pc_2 = 0
     sum_pc_3 = 0
+
+    sum_pc_1_ce = 0
+    sum_pc_1_se = 0
+    sum_pc_3_ce = 0
+    sum_pc_3_se = 0
+
     pot_quality = 0
     res_quality = 0
     pot_Pc = 0
@@ -488,7 +506,7 @@ if __name__ == '__main__':
             else:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             
-            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, _ = results
+            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, predcost1_ce_fetched, predcost1_se_fetched, _ = results
             pot_quality += point_accuracy_fetched 
             res_quality += res_accuracy_fetched
             pot_Pc += predcost_fetched
@@ -497,6 +515,7 @@ if __name__ == '__main__':
                 pot_quality/=100
                 res_quality/=100
                 pot_Pc/=100
+
                 pot_count=0
                 print("iter=%d" % (i))
                 print("PrePoint: pot_accuracy: %f, res_accuracy: %f, Pc: %f" % (pot_quality, res_quality, pot_Pc))
@@ -533,13 +552,16 @@ if __name__ == '__main__':
             else:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, True], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
         
-            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, _ = results
+            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, predcost1_ce_fetched, predcost1_se_fetched, _ = results
 
             # average over 100 batches
             if ii%3==0:
                 sum_cnt_accuracy_1 += count_accuracy_fetched 
                 sum_pot_accuracy_1 += point_accuracy_fetched
-                sum_pc_1 += predcost_fetched 
+                sum_pc_1 += predcost_fetched
+                sum_pc_1_ce += predcost1_ce_fetched
+                sum_pc_1_se += predcost1_se_fetched
+
             elif ii%3==1:
                 sum_cnt_accuracy_2 += count_accuracy_fetched 
                 sum_pot_accuracy_2 += point_accuracy_fetched
@@ -548,7 +570,9 @@ if __name__ == '__main__':
                 sum_cnt_accuracy_3 += count_accuracy_fetched 
                 sum_pot_accuracy_3 += point_accuracy_fetched
                 sum_pc_3 += predcost_fetched 
-        
+                sum_pc_3_ce += predcost1_ce_fetched
+                sum_pc_3_se += predcost1_se_fetched
+
             if ii%300==0 or (ii-1)%300==0 or (ii-2)%300==0:
                 #if i==0 or i==1 or i==3:
                 #    if i==0:
@@ -564,20 +588,22 @@ if __name__ == '__main__':
               
                 if ii%300==0:
                     print("iter=%d" % (ii//3))
-                    print("TASK1: cnt_accuracy: %f, Pc: %f" % (sum_cnt_accuracy_1/100, sum_pc_1/100))
+                    print("TASK1: cnt_accuracy: %f, Pc: %f, Pc_ce: %f, Pc_se: %f" % (sum_cnt_accuracy_1/100, sum_pc_1/100, sum_pc_1_ce/100, sum_pc_1_se/100))
                     #print("PRED_X, TCH_X: " + str(xs_fetched)) 
                 elif (ii-1)%300==0:
                     print("TASK2: pot_accuracy: %f, Pc: %f" % (sum_pot_accuracy_2/100, sum_pc_2/100))
                     #print("PRED_X, TCH_X: " + str(xs_fetched)) 
                 else:
-                    print("TASK3: cnt_accuracy: %f, pot_accuracy: %f, Pc: %f" % (sum_cnt_accuracy_3/100, sum_pot_accuracy_3/100, sum_pc_3/100))
+                    print("TASK3: cnt_accuracy: %f, pot_accuracy: %f, Pc: %f, Pc_ce: %f, Pc_se: %f" % (sum_cnt_accuracy_3/100, sum_pot_accuracy_3/100, sum_pc_3/100, sum_pc_3_ce/100, sum_pc_3_se/100))
                     #print("PRED_X, TCH_X: " + str(xs_fetched)) 
             
                 if ii%300==0: 
                     sum_cnt_accuracy_1 = 0
                     sum_pot_accuracy_1 = 0
                     sum_pc_1 = 0
-           
+                    sum_pc_1_ce = 0
+                    sum_pc_1_se = 0
+
                 if (ii-1)%300==0: 
                     sum_cnt_accuracy_2 = 0
                     sum_pot_accuracy_2 = 0
@@ -587,6 +613,8 @@ if __name__ == '__main__':
                     sum_cnt_accuracy_3 = 0
                     sum_pot_accuracy_3 = 0
                     sum_pc_3 = 0
+                    sum_pc_3_ce = 0
+                    sum_pc_3_se = 0
 
                 sys.stdout.flush()
             
