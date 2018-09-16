@@ -350,8 +350,8 @@ for true_glimpse in range(glimpses+1):
         pqs.append(pq)
         
         # count quality 
-        cntquality_ce = -tf.reduce_sum(tf.log(classification_se + 1e-5) * count_word[0,glimpse], 1) # cross-entropy
-        cntquality_se = tf.reduce_sum(tf.square(classification_se - count_word[0,glimpse]), 1) # squared-error  
+        cntquality_ce = -tf.reduce_sum(tf.log(classification + 1e-5) * count_word[0,glimpse], 1) # cross-entropy
+        cntquality_se = tf.reduce_sum(tf.square(classification - count_word[0,glimpse]), 1) # squared-error  
         cq_ce = tf.reduce_mean(cntquality_ce)  
         cq_se = tf.reduce_mean(cntquality_se)  
         cqs_ce.append(cq_ce) 
