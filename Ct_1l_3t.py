@@ -299,7 +299,7 @@ for true_glimpse in range(glimpses+1):
     #h_count_prev = h_count
 
     with tf.variable_scope("output",reuse=REUSE):
-        classification = tf.nn.relu(linear(h_point, output_size + 1)) 
+        classification = tf.nn.softmax(linear(h_point, output_size + 1)) 
         classifications.append({
             "classification":classification,
             "r":r,
