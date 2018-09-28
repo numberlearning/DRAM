@@ -249,6 +249,7 @@ def pointer(input, state):
 gx_prev = tf.zeros((batch_size, 1))
 gy_prev = tf.ones((batch_size, 1))*dims[0]/2
 h_point_prev = tf.zeros((batch_size, h_point_size))
+countvec = tf.zeros((batch_size, output_size + 1))
 #h_count_prev = tf.zeros((batch_size, h_count_size))
 point_state = lstm_point.zero_state(batch_size, tf.float32)
 #count_state = lstm_count.zero_state(batch_size, tf.float32)
@@ -257,6 +258,7 @@ classifications = list()
 points = list()
 corrects = list()
 counts = list()
+countvecs = list()
 Rs = list()
 ress = list() # point response
 rerrs = list() # response error
@@ -293,13 +295,13 @@ for true_glimpse in range(glimpses+1):
     r, stats = read(x, h_point_prev, glimpse, testing)
     point_gx, point_gy, predict_gx, predict_gy, point_res = stats
     task_str = tf.reshape(tf.cast(task, tf.float32), [batch_size, -1])
-    h_point, point_state = pointer(tf.concat([r, task_str], 1), point_state)
+    h_point, point_state = pointer(tf.concat([tf.concat([r, task_str], 1), tf.stop_gradient(countvec)], 1), point_state)
     h_point_prev = h_point
     #h_count, count_state = counter(tf.concat([h_point, task_str], 1), count_state)
     #h_count_prev = h_count
 
     with tf.variable_scope("output",reuse=REUSE):
-        classification = tf.nn.relu(linear(h_point, output_size + 1)) 
+        classification = tf.nn.softmax(linear(h_point, output_size + 1)) 
         classifications.append({
             "classification":classification,
             "r":r,
@@ -312,8 +314,11 @@ for true_glimpse in range(glimpses+1):
         # count word
         correct = tf.arg_max(count_word[0,glimpse], 0)
         count = tf.arg_max(classification, 1)[0]
+        classmax = tf.reduce_max(classification, 1)[0] #largest value
+        countvec = tf.sign(classification-classmax)+1.0
         corrects.append(correct)
-        counts.append(count) 
+        counts.append(count)
+        countvecs.append(countvec)
         R = tf.cast(tf.equal(correct, count), tf.float32)
         Rs.append(R)
 
@@ -402,7 +407,8 @@ def evaluate():
     #print("COUNTWORDS: " + str(cs))
     #print("LabelSums: " + str(sumlabels))  
     #print("POINT_QUALITY: " + str(ptqs)) 
-    #print("CORRECT: " + str(cor)) 
+    #print("CORRECT: " + str(cor))
+    #print("COUNT: " + str(cnt))
     #print("BLOB_POINT: " + str(blbs))
     # print("POINT_X: " + str(potx))
     # print("POINT_Y: " + str(poty))
@@ -447,7 +453,7 @@ if __name__ == '__main__':
     blank_data = load_count.InputData()
     blank_data.get_blank(None, min_blobs_train, max_blobs_train) # MT
     fetches2=[]
-    fetches2.extend([ress, blob_point, pointxs, pointys, predictxs, predictys, counts, corrects, count_accuracy, point_accuracy, res_accuracy, predcost, predcost1, train_op])
+    fetches2.extend([ress, blob_point, pointxs, pointys, predictxs, predictys, counts, countvecs, corrects, count_accuracy, point_accuracy, res_accuracy, predcost, train_op])
 
     start_time = time.clock()
     extra_time = 0
@@ -487,7 +493,7 @@ if __name__ == '__main__':
             else:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, False], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
             
-            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, predcost1_fetched, _ = results
+            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, countvecs_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, _ = results
             pot_quality += point_accuracy_fetched 
             res_quality += res_accuracy_fetched
             pot_Pc += predcost_fetched
@@ -501,7 +507,6 @@ if __name__ == '__main__':
                 print("iter=%d" % (i))
                 print("PrePoint: pot_accuracy: %f, res_accuracy: %f, Pc: %f" % (pot_quality, res_quality, pot_Pc))
                 #print("Res_list: " + str(rtrain)) 
-                print("CORRECT: " + str(corrects_fetched))
                 print("POT_RES: " + str(ress_fetched))
             if i%1000==0:
                 train_data = load_count.InputData()
@@ -533,7 +538,7 @@ if __name__ == '__main__':
             else:
                 results = sess.run(fetches2, feed_dict = {task: [False, True, True], testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain, count_word: ctrain})
         
-            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, predcost1_fetched, _ = results
+            ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, counts_fetched, countvecs_fetched, corrects_fetched, count_accuracy_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, _ = results
 
             # average over 100 batches
             if ii%3==0:
@@ -572,6 +577,9 @@ if __name__ == '__main__':
                     #print("PRED_X, TCH_X: " + str(xs_fetched)) 
                 else:
                     print("TASK3: cnt_accuracy: %f, pot_accuracy: %f, Pc: %f" % (sum_cnt_accuracy_3/100, sum_pot_accuracy_3/100, sum_pc_3/100))
+                    print("CORRECT: " + str(corrects_fetched))
+                    print("COUNT: " + str(counts_fetched))
+                    print("COUNTVEC: " + str(countvecs_fetched))
                     #print("PRED_X, TCH_X: " + str(xs_fetched)) 
             
                 if ii%300==0: 
