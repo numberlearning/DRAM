@@ -315,7 +315,9 @@ for true_glimpse in range(glimpses+1):
         correct = tf.arg_max(count_word[0,glimpse], 0)
         count = tf.arg_max(classification, 1)[0]
         classmax = tf.reduce_max(classification, 1)[0] #largest value
-        countvec = tf.sign(classification-classmax)+1.0
+        countvec_real = tf.sign(classification-classmax)+1.0
+        countvec_target = tf.reshape(count_word[0,glimpse], [batch_size, output_size+1])
+        countvec = tf.cond(testing, lambda:countvec_real, lambda:countvec_target)
         corrects.append(correct)
         counts.append(count)
         countvecs.append(countvec)
