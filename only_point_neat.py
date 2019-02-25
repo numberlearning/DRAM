@@ -119,7 +119,6 @@ def attn_window(scope, blob_list, h_point, N, glimpse, gx_prev, gy_prev, testing
     if glimpse == -1:
         gx_ = tf.zeros([batch_size,1])
         gy_ = tf.zeros([batch_size,1])
-        glimpse = 0
 
     # relative distance
     gx_real = gx_prev + gx_
@@ -142,9 +141,14 @@ def attn_window(scope, blob_list, h_point, N, glimpse, gx_prev, gy_prev, testing
     tmin_gy = tf.convert_to_tensor(min_gy, dtype=tf.float32)
     gy_real = tf.maximum(gy_real, tmin_gy) 
 
-    gx = tf.cond(testing, lambda:gx_real, lambda:tf.ones((batch_size, 1))*blob_list[0][glimpse][0])
-    gy = tf.cond(testing, lambda:gy_real, lambda:tf.ones((batch_size, 1))*blob_list[0][glimpse][1])
- 
+    if glimpse == -1:
+        gx = gx_prev
+        gy = gy_prev
+    else:
+        gx = tf.cond(testing, lambda:gx_real, lambda:tf.ones((batch_size, 1))*blob_list[0][glimpse][0])
+        gy = tf.cond(testing, lambda:gy_real, lambda:tf.ones((batch_size, 1))*blob_list[0][glimpse][1])
+    # -1 represents the last value
+
     Fx_1, Fy_1, Fx_2, Fy_2 = filterbank(gx, gy, N)
     return Fx_1, Fy_1, Fx_2, Fy_2, gx, gy, gx_real, gy_real, res, gx_
 
@@ -195,6 +199,7 @@ teacherxs = list()
 teacherys = list()
 xxs = list()
 yys = list()
+xxs_real = list()
 rqs = list() # res quality
 pqs = list() # point quality
 blob_point = list()
@@ -224,6 +229,7 @@ for true_glimpse in range(glimpses+1):
     h_point = r#tf.nn.relu(r) #pointer(r, h_point_size)
     gx_prev = point_gx
     gy_prev = point_gy
+    pointxs.append(point_gx[0,0])
 
     if true_glimpse != 0:
         target_gx = blob_list[0][glimpse][0]
@@ -239,7 +245,7 @@ for true_glimpse in range(glimpses+1):
         # pointer
         teacherxs.append(target_gx)
         teacherys.append(target_gy)
-        pointxs.append(point_gx[0,0])
+        #pointxs.append(point_gx[0,0])
         pointys.append(point_gy[0,0])
         predictxs.append(predict_gx[0,0])
         predictys.append(predict_gy[0,0])
@@ -247,6 +253,8 @@ for true_glimpse in range(glimpses+1):
         xxs.append(xx)
         yy = [predict_gy[0,0], target_gy]
         yys.append(yy)
+        xx_real = [point_gx[0,0], target_gx]
+        xxs_real.append(xx_real)
         pointx_s.append(point_gx_[0,0])
         pointx_prevs.append(gx_prev[0,0])
 
@@ -300,14 +308,16 @@ def evaluate():
         nextX, nextY, nextZ, nextS, nextR, nextM, nextMT, nextN, nextC = data.next_batch(batch_size)
         sumlabels += np.sum(nextY,0) 
         feed_dict = {testing: True, x: nextX, onehot_labels: nextY, blob_list: nextZ, size_list: nextS, res_list: nextR, mask_list: nextM, mask_list_T: nextMT, num_list: nextN}
-        blbs, ptqs, prqs, prerrs, pot_acr, potx, poty, prdx, prdy, tchx, tchy, xs, ys, x_s, x_prevs, resrs, resvs = sess.run([blob_point, pqs, rqs, reserrs, point_accuracy, pointxs, pointys, predictxs, predictys, teacherxs, teacherys, xxs, yys, pointx_s, pointx_prevs, resraws, resvecs], feed_dict=feed_dict)
+        blbs, ptqs, prqs, prerrs, pot_acr, potx, poty, prdx, prdy, tchx, tchy, xs, ys, xs_real, x_s, x_prevs, resrs, resvs = sess.run([blob_point, pqs, rqs, reserrs, point_accuracy, pointxs, pointys, predictxs, predictys, teacherxs, teacherys, xxs, yys, xxs_real, pointx_s, pointx_prevs, resraws, resvecs], feed_dict=feed_dict)
         point_maxerror = np.max(ptqs*nextMT[0])
         res_maxerror = np.max(prerrs*nextM[0]) 
         #res_maxerror = np.max(np.exp(prqs*nextM[0])-1)
 
-    print("TESTING!") 
+    print("TESTING!")
+    print("POINT_X: " + str(potx))
     print("PRED_X_: " + str(x_s))
     print("PRED_X,TCH_X: " + str(xs))
+    print("POINT_X,TCH_X: " + str(xs_real))
     #print("PRED_X_PREV: " + str(x_prevs))
     print("PRED_Y,TCH_Y: " + str(ys))
     print("RES_RAW: " + str(resrs))
@@ -365,9 +375,9 @@ if __name__ == '__main__':
         total_pot_count += 1
         pot_count+=1
         if i%2==0:
-            results = sess.run(fetches2, feed_dict = {testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain})
-        else:
             results = sess.run(fetches2, feed_dict = {testing: True, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain})
+        else:
+            results = sess.run(fetches2, feed_dict = {testing: False, x: xtrain, onehot_labels: ytrain, blob_list: ztrain, size_list: strain, res_list: rtrain, mask_list: mtrain, mask_list_T: mttrain, num_list: ntrain})
             
         ress_fetched, blbs_fetched, potxs_fetched, potys_fetched, prdxs_fetched, prdys_fetched, resvecs_fetched, point_accuracy_fetched, res_accuracy_fetched, predcost_fetched, _ = results
         pot_quality += point_accuracy_fetched 
