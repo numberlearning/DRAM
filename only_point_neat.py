@@ -147,7 +147,6 @@ def attn_window(scope, blob_list, h_point, N, glimpse, gx_prev, gy_prev, testing
     else:
         gx = tf.cond(testing, lambda:gx_real, lambda:tf.ones((batch_size, 1))*blob_list[0][glimpse][0])
         gy = tf.cond(testing, lambda:gy_real, lambda:tf.ones((batch_size, 1))*blob_list[0][glimpse][1])
-    # -1 represents the last value
 
     Fx_1, Fy_1, Fx_2, Fy_2 = filterbank(gx, gy, N)
     return Fx_1, Fy_1, Fx_2, Fy_2, gx, gy, gx_real, gy_real, res, gx_
