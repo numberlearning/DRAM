@@ -98,16 +98,24 @@ def generate_data(even, min_blobs, max_blobs): # MT
                 count_word[img_count, glimpse_count, num_count + 1] = 1 # "I'm done!":[1,0,0,0,0], "one":[0,1,0,0,0], "two":[0,0,1,0,0] 
                 cX_prev = cX
                 cY_prev = cY
-
-                for p in range(cY, cY+height):
-                    for q in range(cX, cX+width): 
-                        img[p*img_width+q] = 255
                 
                 num_count += 1
                 glimpse_count += 1 
             
+            edge_dis = int(((img_width-cX_prev-width)+blob_list[img_count,0,0]-width/2)/2)
+            adjust_dis = (img_width-cX_prev-width)-edge_dis
+
+            for g in range(num_blobs):
+                cX_adj = int((blob_list[img_count,g,0]-width/2)+adjust_dis) 
+                cY_adj = int(blob_list[img_count,g,1]-height/2)
+                blob_list[img_count,g,0] += adjust_dis
+                
+                for p in range(cY_adj, cY_adj+height):
+                    for q in range(cX_adj, cX_adj+width):
+                        img[p*img_width+q] = 255
+            
             # I'm done!
-            blob_list[img_count, glimpse_count:glimpses, 0] = cX_prev+width/2
+            blob_list[img_count, glimpse_count:glimpses, 0] = cX_prev+width/2+adjust_dis
             blob_list[img_count, glimpse_count:glimpses, 1] = cY_prev+height/2
             count_word[img_count, glimpse_count:glimpses, 0] = 1
 
@@ -121,13 +129,6 @@ def generate_data(even, min_blobs, max_blobs): # MT
         num_blobs = num_blobs + 1
     
     np.set_printoptions(threshold=np.nan)
-
-#    if empty_img:
-#        train = np.vstack((train, np.zeros((1000, 10000))))
-#        for empty_idx in range(1000):
-#            empty_label = np.zeros(max_blobs + 1)
-#            empty_label[0] = 1
-#            label = np.vstack((label, empty_label))
 
     return imgs, labels, blob_list, size_list, res_list, mask_list, mask_list_T, num_list, count_word 
 
