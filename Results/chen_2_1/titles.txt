@@ -1,0 +1,8 @@
+Experiment 1 Results DRAM Network Final Performance
+Experiment 1 Results DRAM Network Development
+Experiment 1 Results FF Network Final Performance
+Experiment 1 Results FF Network Development
+Expt 2 Results fn propto 1n2 Decr Avg Area Final Performance
+Expt 2 Results fn propto 1n2 Decr Avg Area Development
+Expt 2 Results fn Const Decr Avg Area Final Performance
+Expt 2 Results fn Const Decr Avg Area Development
