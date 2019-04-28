@@ -10,7 +10,7 @@ from scipy import misc
 import time
 import sys
 from model_settings import min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test
-from FF_estimation import classification, classifications, x, batch_size, output_size, dims, read_n, delta_1 
+from FF_estimation_5layer import classification, classifications, x, batch_size, output_size, dims, read_n, delta_1 
 import load_input
 
 sess_config = tf.ConfigProto()
@@ -122,4 +122,4 @@ def stats_to_rect(stats):
     return dict(top=[int(minY)], bottom=[int(maxY)], left=[int(minX)], right=[int(maxX)])
 
 
-print("analysis_twolayer.py")
+print("analysis_estimation_5layer.py")

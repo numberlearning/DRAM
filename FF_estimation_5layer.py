@@ -60,7 +60,7 @@ img_size = dims[1]*dims[0] # canvas size
 read_n = 15  # read glimpse grid width/height
 read_size = read_n*read_n
 output_size = max_blobs_train - min_blobs_train + 1 # QSampler output size
-h_size = 250 #50
+h_size = 50
 restore = str2bool(sys.argv[14])
 start_non_restored_from_random = str2bool(sys.argv[15])
 # delta, sigma2
