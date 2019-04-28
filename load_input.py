@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib as mpl
-import create_natural_data
+import create_data_natural
 
 mpl.use('Agg')
 import matplotlib.pyplot as plt
@@ -24,13 +24,13 @@ class InputData(object):
 
     def get_train(self, even=None, min_blobs=1, max_blobs=1): # MT
         """Generate and get train images and labels."""
-        self.images, self.labels = create_natural_data.generate_data(even, min_blobs, max_blobs)
+        self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs)
         self.length = len(self.images)
 
 
     def get_test(self, even=None, min_blobs=1, max_blobs=1): # MT
         """Generate and get test images and labels."""
-        self.images, self.labels = create_natural_data.generate_data(even, min_blobs, max_blobs) # MT
+        self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs) # MT
         self.length = len(self.images)
 
 
