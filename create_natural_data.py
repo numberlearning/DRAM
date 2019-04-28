@@ -19,7 +19,7 @@ def get_size(testing, num_blobs, max_blobs):
     if testing:
         return 1000 # even: make 1000 images for each number
     else:
-        return int(10000*(num_blobs**(-2))/get_S(max_blobs)) # uneven distribution
+        return 1000#int(10000*(num_blobs**(-2))/get_S(max_blobs)) # uneven distribution
 
 
 def get_total(testing, min_blobs, max_blobs): # MT
@@ -37,9 +37,9 @@ def get_k(testing=False):
     """Get the constant scale factor for an individual blob.""" 
     
     if testing:
-        return 3
+        return 3 # testing: k is set to 3 throughout
     else:
-        return 3#random.randint(2, 4)
+        return random.randint(2, 4) # training: k is chosen from the uniform distribution of discrete values 2, 3, and 4
 
 
 def get_s(testing=False, n=None):
@@ -47,12 +47,12 @@ def get_s(testing=False, n=None):
 
     if testing:
         if n is not None:
-            return random.uniform(.8*3 * (n ** (-.5)), 1.2*3 * (n ** (-.5)))
+            return random.uniform(.8*3 * (n ** (-.5)), 1.2*3 * (n ** (-.5))) # first 500 displays
         else:
-            return random.uniform(.8, 1.2)
+            return random.uniform(.8, 1.2) # latter 500 displays
     else:
-        # return random.uniform(.8*2 * (n ** (-.3154)), 1.2*2 * (n ** (-.3154)))
-        return random.uniform(.8, 1.2)
+        return random.uniform(.8*2 * (n ** (-.3154)), 1.2*2 * (n ** (-.3154)))
+        #return random.uniform(.8, 1.2)
 
 def pir(x):
     """Perform probabilistic integer rounding"""
