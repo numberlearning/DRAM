@@ -2,3 +2,4 @@
 /data/*.txt
 /model_runs/**/*.ckpt.*
 __pycache__/
+/.ipynb_checkpoints/*
