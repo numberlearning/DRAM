@@ -19,6 +19,7 @@ def get_size(testing, num_blobs, max_blobs):
     if testing:
         return 1000 # even: make 1000 images for each number
     else:
+        # testing models' performance on training data 
         return 1000#int(10000*(num_blobs**(-2))/get_S(max_blobs)) # uneven distribution
 
 
@@ -51,8 +52,9 @@ def get_s(testing=False, n=None):
         else:
             return random.uniform(.8, 1.2) # latter 500 displays
     else:
-        return random.uniform(.8*2 * (n ** (-.3154)), 1.2*2 * (n ** (-.3154)))
-        #return random.uniform(.8, 1.2)
+        #return random.uniform(.5, 1.5) # new CAA data
+        return random.uniform(0.5*2 * (n ** (-.3154)), 1.5*2 * (n ** (-.3154))) # new DAA data
+        #return random.uniform(.8*2 * (n ** (-.3154)), 1.2*2 * (n ** (-.3154))) # previous DAA data
 
 def pir(x):
     """Perform probabilistic integer rounding"""
