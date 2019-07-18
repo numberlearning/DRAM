@@ -26,6 +26,12 @@ class InputData(object):
         """Generate and get train images and labels."""
         self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs)
         self.length = len(self.images)
+        
+        
+    def get_density(self, even=None, min_blobs=1, max_blobs=1): # MT
+        """Generate and get train images and labels."""
+        self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs, density=True)
+        self.length = len(self.images)
 
 
     def get_test(self, even=None, min_blobs=1, max_blobs=1): # MT
