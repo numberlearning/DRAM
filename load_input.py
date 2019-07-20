@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib as mpl
 import create_data_natural
+from model_settings import batch_size, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test
 
 mpl.use('Agg')
 import matplotlib.pyplot as plt
@@ -97,6 +98,7 @@ class InputData(object):
     def next_batch_nds(self, batch_size):
         """Returns a batch of size batch_size of data."""
         all_idx = np.arange(0, self.length)
+        np.random.shuffle(all_idx)
         batch_idx = all_idx[:batch_size]
         batch_imgs = [self.images[i] for i in batch_idx]
         batch_lbls = [self.labels[i] for i in batch_idx]
@@ -104,11 +106,11 @@ class InputData(object):
 
     def split_data(self):
         """Returns the first half and latter half data of each number."""
-        all_idx = np.arange(0, 9000)# self.length)
+        all_idx = np.arange(0, 15000) # self.length)
         nOfImgs = 1000
         fh_idx = all_idx[0:nOfImgs//2] # first half index
         lh_idx = all_idx[nOfImgs//2:nOfImgs] # latter half index
-        for i in range(1,9):
+        for i in range(min_blobs_test,max_blobs_test):
             fh_idx = np.append(fh_idx, all_idx[nOfImgs*i:nOfImgs*i+nOfImgs//2])
             lh_idx = np.append(lh_idx, all_idx[nOfImgs*i+nOfImgs//2:nOfImgs*(i+1)])
         fh_imgs = [self.images[i] for i in fh_idx]

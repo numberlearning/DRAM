@@ -48,6 +48,8 @@ def split_imgs():
     data = load_input.InputData()
     data.get_test(1,min_blobs_test,max_blobs_test)
     x1_test, y1_test, x2_test, y2_test = data.split_data()
+    #print(np.asarray(x1_test).shape)
+    #print(np.asarray(x2_test).shape)
     return x1_test, y1_test, x2_test, y2_test # x_test: batch_imgs, y_test: batch_lbls
 
 def load_checkpoint(it, human=False, path=None):
@@ -139,6 +141,7 @@ def classify_imgs_fh(it, new_imgs, num_imgs, path=None):
 
     imgs, labels, _, _ = last_imgs
     imgs = np.asarray(imgs)
+    #print(imgs.shape)
 
     load_checkpoint(it, human=False, path=path)
     outer_cs = inner_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs//2, dims[0] * dims[1])})
