@@ -113,7 +113,7 @@ def generate_data(testing, min_blobs, max_blobs, density=False): # MT
             num_count = 0 # amount of blobs in each image 
             used = np.zeros((num_blobs, 4)) # check overlapping
             #total_area = 0.0
-            d_edge = 4
+            d_edge = 3
             while num_count < num_blobs:
                 if density:
                     width = d_edge
@@ -122,8 +122,8 @@ def generate_data(testing, min_blobs, max_blobs, density=False): # MT
                     width, height = get_dims(testing, i, num_blobs)
 
                 if density:
-                    cX = random.randint(50-(d_edge/2+1)*num_blobs, 50+(d_edge/2+1)*num_blobs)
-                    cY = random.randint(50-(d_edge/2+1)*num_blobs, 50+(d_edge/2+1)*num_blobs)
+                    cX = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
+                    cY = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                 else:
                     cX = random.randint(1, 99-width) # top left corner
                     cY = random.randint(1, 99-height)
@@ -135,8 +135,8 @@ def generate_data(testing, min_blobs, max_blobs, density=False): # MT
                         index = index + 1
                     else:
                         if density:
-                            cX = random.randint(50-(d_edge/2+1)*num_blobs, 50+(d_edge/2+1)*num_blobs)
-                            cY = random.randint(50-(d_edge/2+1)*num_blobs, 50+(d_edge/2+1)*num_blobs)
+                            cX = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
+                            cY = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                         else:
                             cX = random.randint(1, 99-width)
                             cY = random.randint(1, 99-height)
