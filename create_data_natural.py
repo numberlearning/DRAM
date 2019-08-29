@@ -124,12 +124,13 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False): # MT
                 else:
                     width, height = get_dims(testing, i, num_blobs)
 
+                margin = 10
                 if density:
                     cX = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                     cY = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                 else:
-                    cX = random.randint(1, 99-width) # top left corner
-                    cY = random.randint(1, 99-height)
+                    cX = random.randint(margin, img_width-margin-width) # top left corner
+                    cY = random.randint(margin, img_height-margin-height)
 
                 index = 0
 
@@ -141,8 +142,8 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False): # MT
                             cX = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                             cY = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                         else:
-                            cX = random.randint(1, 99-width)
-                            cY = random.randint(1, 99-height)
+                            cX = random.randint(margin, img_width-margin-width)
+                            cY = random.randint(margin, img_height-margin-height)
                         index = 0
 
                 used[index, 0] = cX
