@@ -48,9 +48,9 @@ def get_s(testing=False, n=None):
 
     if testing:
         if n is not None:
-            return random.uniform(.8*3 * (n ** (-.5)), 1.2*3 * (n ** (-.5))) # first 500 displays
+            return random.uniform(.8*3 * (n ** (-.5)), 1.2*3 * (n ** (-.5))) # first 500 displays: CTA
         else:
-            return random.uniform(.8, 1.2) # latter 500 displays
+            return 1 # last 500: no variability
     else:
         #return random.uniform(.5, 1.5) # new CAA data
         return random.uniform(0.5*2 * (n ** (-.3154)), 1.5*2 * (n ** (-.3154))) # new DAA data
