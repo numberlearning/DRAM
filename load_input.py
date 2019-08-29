@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib as mpl
 import create_data_natural
 from model_settings import batch_size, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test
-
 mpl.use('Agg')
+
 import matplotlib.pyplot as plt
 
 
@@ -32,6 +32,12 @@ class InputData(object):
     def get_density(self, even=None, min_blobs=1, max_blobs=1): # MT
         """Generate and get train images and labels."""
         self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs, density=True)
+        self.length = len(self.images)
+
+
+    def get_CTA(self, even=None, min_blobs=1, max_blobs=9):
+        """Generate and get train images and labels."""
+        self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs, CTA=True)
         self.length = len(self.images)
 
 
@@ -133,7 +139,8 @@ class InputData(object):
 def test_this():
     """Test out this class."""
     myData = InputData()
-    myData.load_sample()
+    #myData.load_sample()
+    myData.get_CTA()
     print(myData.get_length())
     x_train, y_train = myData.next_batch(10)
     for i, img in enumerate(x_train):
@@ -149,8 +156,13 @@ def chunks(l, n):
 
 def print_img(img):
     """Prints the image."""
+    print('hello sharon')
     matrix = list(chunks(img, 100))
     plt.imshow(matrix, interpolation="nearest", origin="upper")
-    plt.colorbar()
+    #plt.colorbar()
     plt.show()
 
+def main():
+    test_this()
+
+main()
