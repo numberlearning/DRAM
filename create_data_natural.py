@@ -121,10 +121,18 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False): # MT
                 elif density:
                     width = d_edge
                     height = d_edge
+                elif has_spacing:
+                    width = d_edge
+                    height = d_edge
                 else:
                     width, height = get_dims(testing, i, num_blobs)
 
                 margin = 10
+                if has_spacing:
+                    spacing = 20
+                else:
+                    spacing = 1
+
                 if density:
                     cX = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                     cY = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
@@ -135,7 +143,7 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False): # MT
                 index = 0
 
                 while index < num_count:
-                    if cX+width+1 <= used[index, 0] or used[index, 0]+1+used[index, 2] <= cX or used[index, 1]+1+used[index,3] <= cY or cY+height+1<=used[index,1]: # check for no overlapping blobs
+                    if cX+width+spacing <= used[index, 0] or used[index, 0]+spacing+used[index, 2] <= cX or used[index, 1]+spacing+used[index,3] <= cY or cY+height+spacing<=used[index,1]: # check for no overlapping blobs
                         index = index + 1
                     else:
                         if density:

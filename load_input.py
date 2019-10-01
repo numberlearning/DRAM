@@ -39,6 +39,12 @@ class InputData(object):
         """Generate and get train images and labels."""
         self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs, CTA=True)
         self.length = len(self.images)
+    
+    
+    def get_has_spacing(self, even=None, min_blobs=1, max_blobs=9):
+        """Generate and get train images and labels."""
+        self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs, has_spacing=True)
+        self.length = len(self.images)
 
 
     def get_test(self, even=None, min_blobs=1, max_blobs=1): # MT
