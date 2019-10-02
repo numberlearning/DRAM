@@ -188,8 +188,8 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_s
             #total_area_blobs[img_count] = total_area
             #mean_area_blobs[img_count] = total_area / num_blobs
             img_count += 1
-            #if img_count % 1000 == 0:
-            #    print("img_count: %d" % img_count)
+            if img_count % 1000 == 0:
+                print("img_count: %d" % img_count)
             i += 1
 
         #average_edge.append(sum_edge / count_edge)
@@ -198,3 +198,18 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_s
     np.set_printoptions(threshold=np.nan)
     
     return train, label#, total_area_blobs, mean_area_blobs, average_edge
+
+
+def density_analysis_lists():
+    """Get list of images and numerosities for density analysis."""
+    train, label = generate_data(True, 1, 9, has_spacing=True)
+    img_list = train
+    print(img_list.shape)
+
+    total = get_total(True, 1, 9)
+    num_list = np.zeros([1, total])
+    for i, l in enumerate(label):
+        num = np.where(l == 1)[0][0] + 1
+        num_list[0][i] = num
+
+    return img_list, num_list
