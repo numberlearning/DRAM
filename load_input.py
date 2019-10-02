@@ -112,6 +112,7 @@ class InputData(object):
         all_idx = np.arange(0, self.length)
         np.random.shuffle(all_idx)
         batch_idx = all_idx[:batch_size]
+        #print('actual number of images in batch: %d' % len(batch_idx))
         batch_imgs = [self.images[i] for i in batch_idx]
         batch_lbls = [self.labels[i] for i in batch_idx]
         return batch_imgs, batch_lbls
@@ -146,12 +147,19 @@ def test_this():
     """Test out this class."""
     myData = InputData()
     #myData.load_sample()
-    myData.get_CTA()
+    myData.get_has_spacing()
     print(myData.get_length())
-    x_train, y_train = myData.next_batch(10)
+    #x_train, y_train = myData.next_batch(10)
+    #for i, img in enumerate(x_train):
+    #    print_img(img)
+    #    print(y_train[i])
+
+    # are there images with greater numerosities?
+    x_train, y_train = myData.next_batch(100)
     for i, img in enumerate(x_train):
-        print_img(img)
-        print(y_train[i])
+        if y_train[i][8] == 1:
+            print_img(img)
+            print(y_train[i])
 
 
 def chunks(l, n):

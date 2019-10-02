@@ -90,7 +90,7 @@ def get_dims(testing, i, num_blobs):
 
     return width, height
 
-def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False): # MT
+def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_spacing=False): # MT
     n_labels = max_blobs_train - min_blobs_train + 1
     total = get_total(testing, min_blobs, max_blobs)
     train = np.zeros([total, img_height*img_width]) # input img size
@@ -129,7 +129,10 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False): # MT
 
                 margin = 10
                 if has_spacing:
-                    spacing = 20
+                    if num_blobs < 10:
+                        spacing = 20
+                    else:
+                        spacing = 1
                 else:
                     spacing = 1
 
@@ -141,10 +144,12 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False): # MT
                     cY = random.randint(margin, img_height-margin-height)
 
                 index = 0
+                tries = 0
 
                 while index < num_count:
                     if cX+width+spacing <= used[index, 0] or used[index, 0]+spacing+used[index, 2] <= cX or used[index, 1]+spacing+used[index,3] <= cY or cY+height+spacing<=used[index,1]: # check for no overlapping blobs
                         index = index + 1
+                        tries = 0
                     else:
                         if density:
                             cX = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
@@ -153,6 +158,15 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False): # MT
                             cX = random.randint(margin, img_width-margin-width)
                             cY = random.randint(margin, img_height-margin-height)
                         index = 0
+                        tries += 1
+                        if tries > 5: # hangup, so restart adding blobs
+                            #print("tries")
+                            #print(tries)
+                            img = np.zeros(img_height*img_width)
+                            num_count = 0
+                            used = np.zeros((num_blobs, 4))
+                    
+
 
                 used[index, 0] = cX
                 used[index, 1] = cY
@@ -174,6 +188,8 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False): # MT
             #total_area_blobs[img_count] = total_area
             #mean_area_blobs[img_count] = total_area / num_blobs
             img_count += 1
+            #if img_count % 1000 == 0:
+            #    print("img_count: %d" % img_count)
             i += 1
 
         #average_edge.append(sum_edge / count_edge)
