@@ -34,6 +34,7 @@ def generate_data(testing, min_blobs, max_blobs): # MT
         # Place first blob
         cX1 = cX = int(img_width/2) - 1
         cY1 = cY = int(img_height/2) - 1
+        margin = 1
         spacing = 1
 
         for p in range(cY, cY+height):
@@ -41,18 +42,24 @@ def generate_data(testing, min_blobs, max_blobs): # MT
                 img[p*img_width+q] = 255
 
         # Place second blob
-        cX = random.randint(1, 99-width)
-        cY = random.randint(1, 99-height)
+        cX = i // img_width
+        cY = i % img_height
+        #cX = random.randint(1, 99-width)
+        #cY = random.randint(1, 99-height)
+        
+        if cX < margin or cY < margin or cX+width+margin > img_width or cY+height+margin > img_height:
+            cX = random.randint(margin, img_width-margin-width)
+            cY = random.randint(margin, img_height-margin-height)
 
         while not (cX+width+spacing <= cX1 or cX1+spacing+width <= cX or cY1+spacing+height <= cY or cY+height+spacing <= cY1): # check for no overlapping blobs
-            cX = random.randint(1, 99-width)
-            cY = random.randint(1, 99-height)
+            cX = random.randint(margin, img_width-margin-width)
+            cY = random.randint(margin, img_height-margin-height)
 
-        blob_list[img_count][0] = cX + width/2
-        blob_list[img_count][1] = cY + height/2
+        blob_list[img_count][0] = cX
+        blob_list[img_count][1] = cY
 
         for p in range(cY, cY+height):
-            for q in range(cX, cX+width):
+            for q in range(cX, cX+height):
                 img[p*img_width+q] = 255
         
         train[img_count] = img
