@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib as mpl
-import create_natural_data
-
+import create_data_natural
+from model_settings import batch_size, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test
 mpl.use('Agg')
+
 import matplotlib.pyplot as plt
 
 
@@ -26,6 +27,18 @@ class InputData(object):
     def get_train(self, even=None, min_blobs=1, max_blobs=1): # MT
         """Generate and get train images and labels."""
         self.images, self.labels, self.areas = create_natural_data.generate_data(even, min_blobs, max_blobs)
+        self.length = len(self.images)
+
+
+    def get_CTA(self, even=None, min_blobs=1, max_blobs=9):
+        """Generate and get train images and labels."""
+        self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs, CTA=True)
+        self.length = len(self.images)
+    
+    
+    def get_has_spacing(self, even=None, min_blobs=1, max_blobs=9):
+        """Generate and get train images and labels."""
+        self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs, has_spacing=True)
         self.length = len(self.images)
 
 
@@ -94,6 +107,7 @@ class InputData(object):
         """Returns a batch of size batch_size of data."""
         all_idx = np.arange(0, self.length)
         batch_idx = all_idx[:batch_size]
+        #print('actual number of images in batch: %d' % len(batch_idx))
         batch_imgs = [self.images[i] for i in batch_idx]
         batch_lbls = [self.labels[i] for i in batch_idx]
         batch_areas = [self.areas[i] for i in batch_idx]
@@ -126,12 +140,20 @@ class InputData(object):
 def test_this():
     """Test out this class."""
     myData = InputData()
-    myData.load_sample()
+    #myData.load_sample()
+    myData.get_has_spacing()
     print(myData.get_length())
-    x_train, y_train = myData.next_batch(10)
+    #x_train, y_train = myData.next_batch(10)
+    #for i, img in enumerate(x_train):
+    #    print_img(img)
+    #    print(y_train[i])
+
+    # are there images with greater numerosities?
+    x_train, y_train = myData.next_batch(100)
     for i, img in enumerate(x_train):
-        print_img(img)
-        print(y_train[i])
+        if y_train[i][8] == 1:
+            print_img(img)
+            print(y_train[i])
 
 
 def chunks(l, n):
@@ -142,8 +164,13 @@ def chunks(l, n):
 
 def print_img(img):
     """Prints the image."""
+    print('hello sharon')
     matrix = list(chunks(img, 100))
     plt.imshow(matrix, interpolation="nearest", origin="upper")
-    plt.colorbar()
+    #plt.colorbar()
     plt.show()
 
+def main():
+    test_this()
+
+main()

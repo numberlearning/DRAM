@@ -11,7 +11,7 @@ import time
 import sys
 from model_settings import min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test
 from FF_estimation import classification, classifications, x, batch_size, output_size, dims, read_n, delta_1 
-import load_input
+import load_input, load_estimation_test
 
 sess_config = tf.ConfigProto()
 sess_config.gpu_options.allow_growth = True
@@ -42,6 +42,27 @@ def density_imgs(num_imgs):
     data.get_density(0,min_blobs_test,max_blobs_test)
     x_train, y_train = data.next_batch_nds(num_imgs)
     return x_train, y_train # x_train: batch_imgs, y_train: batch_lbls
+
+def CTA_imgs(num_imgs):
+    """Get batch of random images from test set."""
+    data = load_input.InputData()
+    data.get_CTA(0,min_blobs_test,max_blobs_test)
+    x_train, y_train = data.next_batch_nds(num_imgs)
+    return x_train, y_train # x_train: batch_imgs, y_train: batch_lbls
+
+def has_spacing_imgs(num_imgs):
+    """Get batch of random images from test set."""
+    data = load_input.InputData()
+    data.get_has_spacing(0,min_blobs_test,max_blobs_test)
+    x_train, y_train = data.next_batch_nds(num_imgs)
+    return x_train, y_train # x_train: batch_imgs, y_train: batch_lbls
+
+def one_fixed_imgs(num_imgs):
+    """Get batch of random images from test set."""
+    data = load_estimation_test.InputData()
+    data.get_test(0,min_blobs_test,max_blobs_test)
+    x_train, y_train, blts = data.next_batch(num_imgs)
+    return x_train, y_train, blts # x_train: batch_imgs, y_train: batch_lbls
 
 def split_imgs():
     """Get all the images from test set."""
@@ -103,6 +124,85 @@ def classify_imgs_density(it, new_imgs, num_imgs, path=None):
             "class": np.argmax(labels[idx]),
             "label": labels[idx],
             "classifications": cs
+        }
+        out.append(item)
+    return out
+
+def classify_imgs_CTA(it, new_imgs, num_imgs, path=None): 
+    out = list()
+    global last_imgs
+    if new_imgs or last_imgs is None:
+        last_imgs = CTA_imgs(num_imgs)
+
+    imgs, labels = last_imgs
+    imgs = np.asarray(imgs)
+
+    load_checkpoint(it, human=False, path=path)
+    outer_cs = inner_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
+    for idx in range(num_imgs):
+        img = imgs[idx]
+        flipped = np.flip(img.reshape(100, 100), 0)
+        cs = list()
+        cs.append((outer_cs[0]["classification"][idx], inner_cs[0]["classification"][idx]))
+
+        item = {
+            "img": flipped,
+            "class": np.argmax(labels[idx]),
+            "label": labels[idx],
+            "classifications": cs
+        }
+        out.append(item)
+    return out
+
+def classify_imgs_has_spacing(it, new_imgs, num_imgs, path=None): 
+    out = list()
+    global last_imgs
+    if new_imgs or last_imgs is None:
+        last_imgs = has_spacing_imgs(num_imgs)
+
+    imgs, labels = last_imgs
+    imgs = np.asarray(imgs)
+
+    load_checkpoint(it, human=False, path=path)
+    outer_cs = inner_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
+    for idx in range(num_imgs):
+        img = imgs[idx]
+        flipped = np.flip(img.reshape(100, 100), 0)
+        cs = list()
+        cs.append((outer_cs[0]["classification"][idx], inner_cs[0]["classification"][idx]))
+
+        item = {
+            "img": flipped,
+            "class": np.argmax(labels[idx]),
+            "label": labels[idx],
+            "classifications": cs
+        }
+        out.append(item)
+    return out
+
+def classify_imgs_one_fixed(it, new_imgs, num_imgs, path=None): 
+    out = list()
+    global last_imgs
+    if new_imgs or last_imgs is None:
+        last_imgs = one_fixed_imgs(num_imgs)
+
+    imgs, labels, blob_coords = last_imgs
+    imgs = np.asarray(imgs)
+
+    load_checkpoint(it, human=False, path=path)
+    outer_cs = inner_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
+    for idx in range(num_imgs):
+        img = imgs[idx]
+        flipped = np.flip(img.reshape(100, 100), 0)
+        cs = list()
+        cs.append((outer_cs[0]["classification"][idx], inner_cs[0]["classification"][idx]))
+
+        item = {
+            "img": flipped,
+            "class": np.argmax(labels[idx]),
+            "label": labels[idx],
+            "classifications": cs,
+            "blob_coords": blob_coords
         }
         out.append(item)
     return out

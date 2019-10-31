@@ -3,6 +3,7 @@ import numpy as np
 import random
 from model_settings import img_height, img_width, min_edge, max_edge, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test # MT
 
+CTA_dims = [(9, 9), (7, 6), (5, 5), (5, 4), (4, 4), (4, 3), (4, 3), (3, 3), (3, 3), (3, 3), (3, 2), (3, 2), (3, 2), (3, 2), (3, 2)]
 
 def get_S(max_blobs):
     """Get the denominator of proportion of blobs with a specific number of blobs."""
@@ -89,7 +90,7 @@ def get_dims(testing, i, num_blobs):
 
     return width, height
 
-def generate_data(testing, min_blobs, max_blobs, density=False): # MT
+def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_spacing=False): # MT
     n_labels = max_blobs_train - min_blobs_train + 1
     total = get_total(testing, min_blobs, max_blobs)
     train = np.zeros([total, img_height*img_width]) # input img size
@@ -115,32 +116,57 @@ def generate_data(testing, min_blobs, max_blobs, density=False): # MT
             #total_area = 0.0
             d_edge = 3
             while num_count < num_blobs:
-                if density:
+                if CTA:
+                    width, height = CTA_dims[num_blobs-1]
+                elif density:
+                    width = d_edge
+                    height = d_edge
+                elif has_spacing:
                     width = d_edge
                     height = d_edge
                 else:
                     width, height = get_dims(testing, i, num_blobs)
 
+                margin = 10
+                if has_spacing:
+                    if num_blobs < 10:
+                        spacing = 20
+                    else:
+                        spacing = 1
+                else:
+                    spacing = 1
+
                 if density:
                     cX = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                     cY = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                 else:
-                    cX = random.randint(1, 99-width) # top left corner
-                    cY = random.randint(1, 99-height)
+                    cX = random.randint(margin, img_width-margin-width) # top left corner
+                    cY = random.randint(margin, img_height-margin-height)
 
                 index = 0
+                tries = 0
 
                 while index < num_count:
-                    if cX+width+1 <= used[index, 0] or used[index, 0]+1+used[index, 2] <= cX or used[index, 1]+1+used[index,3] <= cY or cY+height+1<=used[index,1]: # check for no overlapping blobs
+                    if cX+width+spacing <= used[index, 0] or used[index, 0]+spacing+used[index, 2] <= cX or used[index, 1]+spacing+used[index,3] <= cY or cY+height+spacing<=used[index,1]: # check for no overlapping blobs
                         index = index + 1
+                        tries = 0
                     else:
                         if density:
                             cX = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                             cY = random.randint(int(50-(d_edge/2+1.5)*num_blobs), int(50+(d_edge/2+1.5)*num_blobs))
                         else:
-                            cX = random.randint(1, 99-width)
-                            cY = random.randint(1, 99-height)
+                            cX = random.randint(margin, img_width-margin-width)
+                            cY = random.randint(margin, img_height-margin-height)
                         index = 0
+                        tries += 1
+                        if tries > 5: # hangup, so restart adding blobs
+                            #print("tries")
+                            #print(tries)
+                            img = np.zeros(img_height*img_width)
+                            num_count = 0
+                            used = np.zeros((num_blobs, 4))
+                    
+
 
                 used[index, 0] = cX
                 used[index, 1] = cY
@@ -162,6 +188,8 @@ def generate_data(testing, min_blobs, max_blobs, density=False): # MT
             #total_area_blobs[img_count] = total_area
             #mean_area_blobs[img_count] = total_area / num_blobs
             img_count += 1
+            if img_count % 1000 == 0:
+                print("img_count: %d" % img_count)
             i += 1
 
         #average_edge.append(sum_edge / count_edge)
@@ -170,3 +198,18 @@ def generate_data(testing, min_blobs, max_blobs, density=False): # MT
     np.set_printoptions(threshold=np.nan)
     
     return train, label#, total_area_blobs, mean_area_blobs, average_edge
+
+
+def density_analysis_lists():
+    """Get list of images and numerosities for density analysis."""
+    train, label = generate_data(True, 1, 9, has_spacing=True)
+    img_list = train
+    print(img_list.shape)
+
+    total = get_total(True, 1, 9)
+    num_list = np.zeros([1, total])
+    for i, l in enumerate(label):
+        num = np.where(l == 1)[0][0] + 1
+        num_list[0][i] = num
+
+    return img_list, num_list
