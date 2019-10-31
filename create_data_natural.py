@@ -90,11 +90,17 @@ def get_dims(testing, i, num_blobs):
 
     return width, height
 
-def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_spacing=False): # MT
+def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_spacing=False, scalar_output=False): # MT
     n_labels = max_blobs_train - min_blobs_train + 1
     total = get_total(testing, min_blobs, max_blobs)
     train = np.zeros([total, img_height*img_width]) # input img size
-    label = np.zeros([total, n_labels])
+
+    if scalar_output:
+        label = np.zeros([total, 1])
+    else:
+        label = np.zeros([total, n_labels])
+
+    area = np.zeros(total)
     #total_area_blobs = np.zeros([total, 1])
     #mean_area_blobs = np.zeros([total, 1])
     num_blobs = min_blobs
@@ -113,7 +119,7 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_s
             img = np.zeros(img_height*img_width) # input img size
             num_count = 0 # amount of blobs in each image 
             used = np.zeros((num_blobs, 4)) # check overlapping
-            #total_area = 0.0
+            total_area = 0.0
             d_edge = 3
             while num_count < num_blobs:
                 if CTA:
@@ -172,7 +178,7 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_s
                 used[index, 1] = cY
                 used[index, 2] = width
                 used[index, 3] = height
-                #total_area += width * height
+                total_area += width * height
 
                 #sum_edge += width
                 #count_edge += 1.0
@@ -184,12 +190,16 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_s
                 num_count += 1
 
             train[img_count] = img
-            label[img_count, num_blobs - 1] = 1
+
+            if scalar_output:
+                label[img_count] = num_blobs
+            else:
+                label[img_count, num_blobs - 1] = 1
             #total_area_blobs[img_count] = total_area
             #mean_area_blobs[img_count] = total_area / num_blobs
             img_count += 1
-            if img_count % 1000 == 0:
-                print("img_count: %d" % img_count)
+            #if img_count % 1000 == 0:
+            #    print("img_count: %d" % img_count)
             i += 1
 
         #average_edge.append(sum_edge / count_edge)
@@ -197,7 +207,7 @@ def generate_data(testing, min_blobs, max_blobs, density=False, CTA=False, has_s
 
     np.set_printoptions(threshold=np.nan)
     
-    return train, label#, total_area_blobs, mean_area_blobs, average_edge
+    return train, label, area#, total_area_blobs, mean_area_blobs, average_edge
 
 
 def density_analysis_lists():

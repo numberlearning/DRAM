@@ -26,25 +26,26 @@ class InputData(object):
 
     def get_train(self, even=None, min_blobs=1, max_blobs=1): # MT
         """Generate and get train images and labels."""
-        self.images, self.labels, self.areas = create_natural_data.generate_data(even, min_blobs, max_blobs)
+        self.images, self.labels, self.areas = create_data_natural.generate_data(even, min_blobs, max_blobs, scalar_output=True)
         self.length = len(self.images)
 
 
     def get_CTA(self, even=None, min_blobs=1, max_blobs=9):
         """Generate and get train images and labels."""
-        self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs, CTA=True)
+        self.images, self.labels, self.areas = create_data_natural.generate_data(even, min_blobs, max_blobs, CTA=True)
         self.length = len(self.images)
     
     
     def get_has_spacing(self, even=None, min_blobs=1, max_blobs=9):
         """Generate and get train images and labels."""
-        self.images, self.labels = create_data_natural.generate_data(even, min_blobs, max_blobs, has_spacing=True)
+        self.images, self.labels, self.areas = create_data_natural.generate_data(even, min_blobs, max_blobs, has_spacing=True)
         self.length = len(self.images)
+        print(self.length)
 
 
     def get_test(self, even=None, min_blobs=1, max_blobs=1): # MT
         """Generate and get test images and labels."""
-        self.images, self.labels, self.areas = create_natural_data.generate_data(even, min_blobs, max_blobs) # MT
+        self.images, self.labels, self.areas = create_data_natural.generate_data(even, min_blobs, max_blobs, scalar_output=True) # MT
         self.length = len(self.images)
 
 
@@ -149,11 +150,11 @@ def test_this():
     #    print(y_train[i])
 
     # are there images with greater numerosities?
-    x_train, y_train = myData.next_batch(100)
+    x_train, y_train, _ = myData.next_batch(100)
     for i, img in enumerate(x_train):
         if y_train[i][8] == 1:
             print_img(img)
-            print(y_train[i])
+            #print(y_train[i])
 
 
 def chunks(l, n):

@@ -89,7 +89,7 @@ def get_dims(testing, i, num_blobs):
     return width, height
 
 def generate_data(testing, min_blobs, max_blobs): # MT
-    n_labels = max_blobs_train - min_blobs_train + 1
+    n_labels = 1
     total = get_total(testing, min_blobs, max_blobs)
     train = np.zeros([total, img_height*img_width]) # input img size
     label = np.zeros([total, n_labels])
@@ -146,7 +146,7 @@ def generate_data(testing, min_blobs, max_blobs): # MT
                 num_count += 1
 
             train[img_count] = img
-            label[img_count, num_blobs - 1] = 1
+            label[img_count] = num_blobs
             area[img_count] = total_area
             #total_area_blobs[img_count] = total_area
             #mean_area_blobs[img_count] = total_area / num_blobs

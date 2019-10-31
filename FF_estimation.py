@@ -43,7 +43,7 @@ folder_name + "/zzzdraw_data_5000.npy",
 "true"]
 print(sys.argv)
 
-train_iters = 6000000#20000000000
+train_iters = 3000000#20000000000
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
 log_filename = sys.argv[7]
@@ -59,7 +59,8 @@ dims = [img_height, img_width]
 img_size = dims[1]*dims[0] # canvas size
 read_n = 15  # read glimpse grid width/height
 read_size = read_n*read_n
-output_size = max_blobs_train - min_blobs_train + 1 # QSampler output size
+output_size = 1
+max_output = max_blobs_train - min_blobs_train + 1
 h_size = 250
 restore = str2bool(sys.argv[14])
 start_non_restored_from_random = str2bool(sys.argv[15])
@@ -72,7 +73,7 @@ sigma2_1=delta_1*delta_1/4 # sigma=delta/2
 REUSE = None
 
 x = tf.placeholder(tf.float32,shape=(batch_size, img_size))
-onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, output_size))
+y = tf.placeholder(tf.float32, shape=(batch_size, output_size))
 mask = tf.placeholder(tf.float32, shape=(h_size))
 
 def linear(x,output_dim):
@@ -98,8 +99,8 @@ def filterbank(gx, gy, N):
     Fx_1 = tf.exp(-tf.square(a - mu_x_1) / (2*sigma2_1)) # batch_size x N x dims[0]
     Fy_1 = tf.exp(-tf.square(b - mu_y_1) / (2*sigma2_1)) # batch_size x N x dims[1]
     # normalize, sum over A and B dims
-    Fx_1=Fx_1/tf.maximum(tf.reduce_sum(Fx_1,2,keepdims=True),eps)
-    Fy_1=Fy_1/tf.maximum(tf.reduce_sum(Fy_1,2,keepdims=True),eps)
+    Fx_1=Fx_1/tf.maximum(tf.reduce_sum(Fx_1,2,keep_dims=True),eps)
+    Fy_1=Fy_1/tf.maximum(tf.reduce_sum(Fy_1,2,keep_dims=True),eps)
     return Fx_1,Fy_1
 
 def attn_window(scope,N):
@@ -127,7 +128,7 @@ def read(x):
         fimg_1 = tf.reshape(fimg_1,[-1, N*N])
         # normalization (if do norm, Pc will be nan)
         # scalar_1 = tf.reshape(tf.reduce_max(fimg_1, 1), [batch_size, 1])
-        # fimg_1 = fimg_1/tf.reduce_max(fimg_1, 1, keepdims=True)
+        # fimg_1 = fimg_1/tf.reduce_max(fimg_1, 1, keep_dims=True)
         fimg = fimg_1 
         return fimg
 
@@ -138,7 +139,7 @@ def read(x):
 # initial states
 r, stats = read(x) 
 rr=r
-maxr=tf.reduce_max(rr,1, keepdims=True)
+maxr=tf.reduce_max(rr,1, keep_dims=True)
 classifications = list()
 hiddens = list()
 
@@ -152,7 +153,8 @@ with tf.variable_scope("hidden",reuse=REUSE):
         })
 
 with tf.variable_scope("output",reuse=REUSE):
-    classification = tf.nn.softmax(linear(hidden, output_size))
+    classification = linear(hidden, output_size)
+    #classification = tf.nn.sigmoid(linear(hidden, output_size))*output_size
 #    raw_output = linear(hidden, output_size)
 #    masked_raw_output = linear(masked_hidden, output_size)
 #    masked_classification = tf.nn.softmax(linear(masked_hidden, output_size))
@@ -166,12 +168,16 @@ with tf.variable_scope("output",reuse=REUSE):
 
 REUSE=True
 
-## LOSE FUNCTION ################################
-predquality = -tf.reduce_sum(tf.log(classification + 1e-5) * onehot_labels, 1) # cross-entropy
-predcost = tf.reduce_mean(predquality)
+## LOSS FUNCTION ################################
+#predquality = -tf.reduce_sum(tf.log(classification + 1e-5) * y, 1) # cross-entropy
+#predcost = tf.reduce_mean(predquality)
 
-correct = tf.argmax(onehot_labels, 1)
-prediction = tf.argmax(classification, 1)
+#predquality = -tf.losses.cosine_distance(classification, y, dim=1)
+#predcost = tf.reduce_mean(predquality)
+predcost = tf.nn.sigmoid_cross_entropy_with_logits(labels=y, logits=classification, 1)
+
+correct = y
+prediction = classification
 
 # all-knower
 R = tf.cast(tf.equal(correct, prediction), tf.float32)
@@ -182,12 +188,10 @@ def evaluate():
     data.get_test(1, min_blobs_test, max_blobs_test) # MT
     batches_in_epoch = len(data.images) // batch_size
     accuracy = 0
-    sumlabels = np.zeros(output_size)
  
     for i in range(batches_in_epoch):
         nextX, nextY, nextZ = data.next_batch(batch_size)
-        sumlabels += np.sum(nextY, 0) 
-        feed_dict = {x: nextX, onehot_labels: nextY}
+        feed_dict = {x: nextX, y: nextY}
         c, mr, iimg, r, pred, cor = sess.run([classification, maxr, rr, reward, prediction, correct], feed_dict=feed_dict)
         accuracy += r
     
@@ -196,10 +200,10 @@ def evaluate():
     #print("CLASSIFICATION: " + str(c))
     #print("MAX: " + str(mr))
     #print("img: " + str(iimg)) 
-    print("ACCURACY: " + str(accuracy))
+    #print("ACCURACY: " + str(accuracy))
     #print("LabelSums: " + str(sumlabels))  
-    print("CORRECT: " + str(cor)) 
-    print("PREDICTION: " + str(pred))
+    #print("CORRECT: " + str(cor)) 
+    #print("PREDICTION: " + str(pred))
     return accuracy
 
 ## OPTIMIZER #################################################
@@ -237,12 +241,16 @@ if __name__ == '__main__':
 
     for i in range(start_restore_index, train_iters+1):
         xtrain, ytrain, ztrain = train_data.next_batch(batch_size)
-        results = sess.run(fetches2, feed_dict = {x: xtrain, onehot_labels: ytrain})
+        results = sess.run(fetches2, feed_dict = {x: xtrain, y: ytrain})
         reward_fetched, predcost_fetched, _ = results
         sum_rwd += reward_fetched # average over 100 batches
-        sum_pc += predcost_fetched 
+        sum_pc += predcost_fetched
 
         if i%100==0:
+            print("print(len(sum_rwd(i)):")
+            print(sum_rwd)
+            print("print(len(sum_pc(i)):")
+            print(sum_pc)
             print("iter=%d : Reward: %f Pc: %f" % (i, sum_rwd/100, sum_pc/100))
             sum_rwd = 0
             sum_pc = 0
