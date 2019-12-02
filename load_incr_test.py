@@ -4,7 +4,6 @@ mpl.use('tkagg')
 import matplotlib.pyplot as plt
 import create_incr_data_test
 
-max_N = 9
 
 class InputData(object):
     """An object of InputData must have images and images_incr.
@@ -24,16 +23,16 @@ class InputData(object):
         self.length = 0
 
 
-    def get_train(self):
+    def get_train(self, min_blobs=1, max_blobs=1):
         """Generate and get train images and labels."""
-        self.images, self.images_incr = create_incr_data_test.generate_data()
-        self.length = len(self.images)
+        self.images, self.images_incr = create_incr_data_test.generate_data(min_blobs, max_blobs)
+        self.length = len(self.images[0])
 
 
-    def get_test(self):
+    def get_test(self, min_blobs=1, max_blobs=1):
         """Generate and get test images and labels."""
-        self.images, self.images_incr = create_incr_data_test.generate_data()
-        self.length = len(self.images)
+        self.images, self.images_incr = create_incr_data_test.generate_data(min_blobs, max_blobs)
+        self.length = len(self.images[0])
 
 
     def get_length(self):
@@ -48,8 +47,8 @@ class InputData(object):
         batch_idx = all_idx[:batch_size]
         batch_imgs = []
         batch_imgs_incr = []
-        for n in range(max_N):
-            batch_imgs.append([self.images[n][i] for i in batch_idx])
+        for n, images in enumerate(self.images):
+            batch_imgs.append([images[i] for i in batch_idx])
             batch_imgs_incr.append([self.images_incr[n][i] for i in batch_idx])
         return batch_imgs, batch_imgs_incr
 
@@ -68,7 +67,7 @@ class InputData(object):
 def test_this():
     """Test out this class."""
     myData = InputData()
-    myData.get_test()
+    myData.get_test(1, 15)
     print(myData.get_length())
     x_train, x_incr_train = myData.next_batch(1)
     for n, imgs in enumerate(x_train):

@@ -8,10 +8,9 @@ from model_settings import img_height, img_width
 num_imgs = 100 # total testing images with N blobs
 num_incr = 100 # number of images with N+1 blobs per image with N blobs
 margin = 10 # minimum number of pixels between blob and edge of image
-spacing = 20 # minimum number of pixels between blobs
+spacing = 10 # minimum number of pixels between blobs
 width = 3
 height = 3
-max_N = 9
 
 
 def get_dims():
@@ -20,17 +19,16 @@ def get_dims():
     return width, height
 
 
-def generate_data():
+def generate_data(min_blobs, max_blobs):
     """Generate images for all numerosities."""
-    train_all_N = np.zeros([max_N, num_imgs, img_height*img_width])
-    train_incr_all_N = np.zeros([max_N, num_imgs, num_incr, img_height*img_width])
-    for i in range(max_N):
+    output_size = max_blobs - min_blobs + 1
+    train_all_N = np.zeros([output_size, num_imgs, img_height*img_width])
+    train_incr_all_N = np.zeros([output_size, num_imgs, num_incr, img_height*img_width])
+    for i in range(output_size):
         N = i+1
-        print('numerosity in generate data: %d' % N)
         train, train_incr = generate_data_with_N_blobs(N)
         train_all_N[i] = train
         train_incr_all_N[i] = train_incr
-        print('done with numerosity in generate data: %d' % N)
     return train_all_N, train_incr_all_N
 
 
