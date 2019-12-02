@@ -11,13 +11,14 @@ import time
 import sys
 from model_settings import min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test
 from FF_estimation import classification, classifications, x, batch_size, output_size, dims, read_n, delta_1 
-import load_input, load_estimation_test
+import load_input, load_estimation_test, load_incr_test
 
 sess_config = tf.ConfigProto()
 sess_config.gpu_options.allow_growth = True
 sess = tf.InteractiveSession(config=sess_config)
 
 saver = tf.train.Saver()
+last_imgs = None
 
 #data = load_input.InputData()
 #data.get_test(1,9)
@@ -63,6 +64,13 @@ def one_fixed_imgs(num_imgs):
     data.get_test(0,min_blobs_test,max_blobs_test)
     x_train, y_train, blts = data.next_batch(num_imgs)
     return x_train, y_train, blts # x_train: batch_imgs, y_train: batch_lbls
+
+def incr_imgs():
+    """Get batch of random images from test set."""
+    data = load_incr_test.InputData()
+    data.get_test(min_blobs_test, max_blobs_test)
+    x_train, x_incr_train = data.next_batch()
+    return x_train, x_incr_train
 
 def split_imgs():
     """Get all the images from test set."""
@@ -206,6 +214,55 @@ def classify_imgs_one_fixed(it, new_imgs, num_imgs, path=None):
         }
         out.append(item)
     return out
+
+def classify_imgs_incr(it, new_imgs, path=None): 
+    out_all_N = list()
+    global last_imgs
+    if new_imgs or last_imgs is None:
+        last_imgs = incr_imgs()
+
+    num_imgs = 100
+    num_incr = 100
+    imgs_all_N, imgs_incr_all_N = last_imgs
+    load_checkpoint(it, human=False, path=path)
+
+    for n, imgs in enumerate(imgs_all_N):
+        N = n+1
+        imgs = np.asarray(imgs)
+        imgs_incr = imgs_incr_all_N[n]
+        out = list()
+
+        outer_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
+
+        for i, img in enumerate(imgs):
+
+            flipped = np.flip(img.reshape(100, 100), 0)
+            cs = list()
+            cs.append(outer_cs[0]["classification"][i])
+
+            cs_incr_list = list()
+            flipped_incr_list = list()
+            imgs_incr_for_img = imgs_incr[i]
+            imgs_incr_for_img = np.asarray(imgs_incr_for_img)
+            inner_cs = sess.run(classifications, feed_dict={x: imgs_incr_for_img.reshape(num_incr, dims[0] * dims[1])})
+            for j, img_incr in enumerate(imgs_incr_for_img):
+                flipped_incr = np.flip(img_incr.reshape(100,100),0)
+                flipped_incr_list.append(flipped_incr)
+                cs_incr = list()
+                cs_incr.append(inner_cs[0]["classification"][j])
+                cs_incr_list.append(cs_incr)
+
+            item = {
+                "img": flipped,
+                "imgs_incr": flipped_incr_list,
+                "N": N,
+                "i": i,
+                "classifications": cs,
+                "classifications_incr": cs_incr_list
+            }
+            out.append(item)
+        out_all_N.append(out)
+    return out_all_N
 
 def classify_imgs_training(it, new_imgs, num_imgs, path=None): 
     out = list()
