@@ -33,7 +33,7 @@ def generate_data(testing, min_blobs, max_blobs): # MT
 
         while num_count < num_blobs:
             index = 0
-            if num_count = 0:
+            if num_count == 0:
                 cX = img_width/2 - 1
                 cY = img_height/2 - 1
             else:
