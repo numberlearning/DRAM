@@ -1,1 +1,0 @@
-learning_rate = 0.01, batch_size = 100, min_edge = 1, max_edge = 10, min_blobs_train = 1, max_blobs_train = 15, min_blobs_test = 1, max_blobs_test = 9, 
