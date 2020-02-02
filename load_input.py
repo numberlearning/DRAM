@@ -40,7 +40,6 @@ class InputData(object):
         """Generate and get train images and labels."""
         self.images, self.labels, self.areas = create_data_natural.generate_data(even, min_blobs, max_blobs, has_spacing=True)
         self.length = len(self.images)
-        print(self.length)
 
 
     def get_test(self, even=None, min_blobs=1, max_blobs=1): # MT
@@ -142,8 +141,7 @@ def test_this():
     """Test out this class."""
     myData = InputData()
     #myData.load_sample()
-    myData.get_has_spacing()
-    print(myData.get_length())
+    myData.get_test(0, 1, 15)
     #x_train, y_train = myData.next_batch(10)
     #for i, img in enumerate(x_train):
     #    print_img(img)
@@ -152,7 +150,7 @@ def test_this():
     # are there images with greater numerosities?
     x_train, y_train, _ = myData.next_batch(100)
     for i, img in enumerate(x_train):
-        if y_train[i][8] == 1:
+        if y_train[i] == 8:
             print_img(img)
             #print(y_train[i])
 
