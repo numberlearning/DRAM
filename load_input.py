@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib as mpl
+import pickle
 import create_data_natural
 from model_settings import batch_size, min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test
 mpl.use('Agg')
@@ -22,6 +23,9 @@ class InputData(object):
         self.labels = []
         self.areas = []
         self.length = 0
+
+        self.labels_scalar = []
+        self.labels_classification = []
 
 
     def get_train(self, even=None, min_blobs=1, max_blobs=1): # MT
@@ -77,6 +81,19 @@ class InputData(object):
         self.labels = self.load(filename)
 
 
+    def load_variable_position_only(self, filename):
+        """Load the images with variable position only, and their scalar and classifier labels."""
+        loaded = pickle.load( open( "variable_position_only_examples.p", "rb" ) )
+        self.images, self.labels_scalar, self.labels_classifier = loaded
+
+    def load_po(self, incremental=False):
+        if incremental:
+            loaded = pickle.load( open( "po_inc.p", "rb" ) )
+        else:
+            loaded = pickle.load( open( "po_ind.p", "rb" ) )
+        self.images, self.labels_scalar, self.labels_classifier = loaded
+        self.length = len(self.images)
+
     def load(self, filename):
         """Load the data from text file."""
         file = open(filename, "r")
@@ -102,6 +119,16 @@ class InputData(object):
         batch_lbls = [self.labels[i] for i in batch_idx]
         batch_areas = [self.areas[i] for i in batch_idx]
         return batch_imgs, batch_lbls, batch_areas
+
+    def next_batch_po(self, batch_size, incremental=False):
+        """Returns a batch of size batch_size of data."""
+        all_idx = np.arange(0, self.length)
+        np.random.shuffle(all_idx)
+        batch_idx = all_idx[:batch_size]
+        batch_imgs = [self.images[i] for i in batch_idx]
+        batch_lbls_scalar = [self.labels_scalar[i] for i in batch_idx]
+        batch_lbls_classifier = [self.labels_classifier[i] for i in batch_idx]
+        return batch_imgs, batch_lbls_scalar, batch_lbls_classifier
 
     def next_batch_nds(self, batch_size):
         """Returns a batch of size batch_size of data."""
@@ -155,6 +182,16 @@ def test_this():
             #print(y_train[i])
 
 
+def save_data_variable_position_only():
+    """Generate and save test images with variable position only, scalar labels, and classifier labels."""
+    x, y_scalar, y_classifier = create_data_natural.generate_data_variable_position_only()
+    variable_position_only_examples = (x, y_scalar, y_classifier)
+
+    import pickle
+    with open('variable_position_only_examples', 'wb') as fp:
+        pickle.dump(variable_position_only_examples, fp)
+
+
 def chunks(l, n):
     """Yield successive n-sized chunks from l."""
     for i in range(0, len(l), n):
@@ -170,6 +207,9 @@ def print_img(img):
     plt.show()
 
 def main():
-    test_this()
+    #save_data_variable_position_only()
+    #test_this()
+    pass
+
 
 main()
