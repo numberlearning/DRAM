@@ -87,6 +87,7 @@ class InputData(object):
         self.images, self.labels_scalar, self.labels_classifier = loaded
 
     def load_po(self, incremental=False):
+        """Load po testset."""
         if incremental:
             loaded = pickle.load( open( "po_inc.p", "rb" ) )
         else:
@@ -120,7 +121,7 @@ class InputData(object):
         batch_areas = [self.areas[i] for i in batch_idx]
         return batch_imgs, batch_lbls, batch_areas
 
-    def next_batch_po(self, batch_size, incremental=False):
+    def next_batch_po(self, batch_size):
         """Returns a batch of size batch_size of data."""
         all_idx = np.arange(0, self.length)
         np.random.shuffle(all_idx)

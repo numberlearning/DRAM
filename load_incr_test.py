@@ -94,4 +94,4 @@ def print_img(img, name=""):
     plt.clf()
 
 
-test_this()
+#test_this()

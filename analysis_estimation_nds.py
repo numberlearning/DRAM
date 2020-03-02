@@ -79,6 +79,13 @@ def scalar_imgs(num_imgs):
     x_test, y_test, _ = data.next_batch(num_imgs)
     return x_test, y_test
 
+def po_imgs(num_imgs, incremental=False):
+    """Get batch of random images from po test set."""
+    data = load_input.InputData()
+    data.load_po(incremental)
+    x_test, y_test_scalar, y_test_classifier = data.next_batch_po(num_imgs)
+    return x_test, y_test_scalar, y_test_classifier
+
 def split_imgs():
     """Get all the images from test set."""
     data = load_input.InputData()
