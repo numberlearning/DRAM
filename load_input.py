@@ -121,6 +121,11 @@ class InputData(object):
         batch_areas = [self.areas[i] for i in batch_idx]
         return batch_imgs, batch_lbls, batch_areas
 
+
+    def get_sets(self):
+        """Returns a set of po incremented images."""
+        return self.images, self.labels_scalar, self.labels_classifier
+
     def next_batch_po(self, batch_size):
         """Returns a batch of size batch_size of data."""
         all_idx = np.arange(0, self.length)

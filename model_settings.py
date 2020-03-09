@@ -11,4 +11,4 @@ test_trials = 500
 
 learning_rate = 1e-2
 glimpses = 10 # 10 run prep, glimpses+1
-batch_size = 100
+batch_size = 9000

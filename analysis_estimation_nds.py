@@ -86,6 +86,13 @@ def po_imgs(num_imgs, incremental=False):
     x_test, y_test_scalar, y_test_classifier = data.next_batch_po(num_imgs)
     return x_test, y_test_scalar, y_test_classifier
 
+def po_img_sets():
+    """Get num_sets sets of images from po test set."""
+    data = load_input.InputData()
+    data.load_po(incremental=True)
+    x_test, y_test_scalar, y_test_classifier = data.get_sets()
+    return x_test, y_test_scalar, y_test_classifier
+
 def split_imgs():
     """Get all the images from test set."""
     data = load_input.InputData()
@@ -302,6 +309,72 @@ def classify_imgs_scalar(it, new_imgs, num_imgs, path=None):
         }
         out.append(item)
     return out
+
+
+def classify_imgs_po(it, new_imgs, num_imgs, path=None, incremental=False, scalar=False): 
+    out = list()
+    global last_imgs
+    if new_imgs or last_imgs is None:
+        last_imgs = po_imgs(num_imgs)
+
+    imgs, labels_scalar, labels_classifier = last_imgs
+    if scalar:
+        labels = labels_scalar
+    else:
+        labels = labels_classifier
+    imgs = np.asarray(imgs)
+
+    load_checkpoint(it, human=False, path=path)
+    inner_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
+    for idx in range(num_imgs):
+        img = imgs[idx]
+        flipped = np.flip(img.reshape(100, 100), 0)
+        cs = list()
+        cs.append(inner_cs[0]["classification"][idx])
+
+        item = {
+            "img": flipped,
+            "label": labels[idx],
+            "classifications": cs
+        }
+        out.append(item)
+
+    return out
+
+
+def classify_imgs_po_sets(it, new_imgs, path=None, scalar=False): 
+    out = list()
+    global last_imgs
+    if new_imgs or last_imgs is None:
+        last_imgs = po_img_sets()
+
+    imgs, labels_scalar, labels_classifier = last_imgs
+    if scalar:
+        labels = labels_scalar
+    else:
+        labels = labels_classifier
+    imgs = np.asarray(imgs)
+
+    load_checkpoint(it, human=False, path=path)
+    num_sets = 1000
+    num_numerosities = 9
+    num_imgs = num_sets * num_numerosities
+    inner_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
+    for idx in range(num_imgs):
+        img = imgs[idx]
+        flipped = np.flip(img.reshape(100, 100), 0)
+        cs = list()
+        cs.append(inner_cs[0]["classification"][idx])
+
+        item = {
+            "img": flipped,
+            "label": labels[idx],
+            "classifications": cs
+        }
+        out.append(item)
+
+    return out
+
 
 def classify_imgs_training(it, new_imgs, num_imgs, path=None): 
     out = list()
