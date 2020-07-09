@@ -1,7 +1,7 @@
 #!/bin/bash
 for i in {1..10}
 do
-    MODELNAME="estimation/swap_test/swap_classifier_DAA_const_fN_run${i}"
+    MODELNAME="estimation/swap_test/swap_scalar_DAA_const_fN_run${i}"
     echo $MODELNAME
     rsync -rP -e ssh "../../mtfang/DRAM/model_runs/$MODELNAME/" "sychen23@psy-pdp-guppy:DRAM/model_runs/$MODELNAME/"
 done
