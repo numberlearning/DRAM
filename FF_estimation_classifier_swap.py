@@ -44,7 +44,7 @@ print(sys.argv)
 train_iters = 3000100#20000000000
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
-test_run = sys.argv[2]
+test_run = 1#sys.argv[2] #TODO: change this
 log_filename = sys.argv[8]
 settings_filename = folder_name + "/settings.txt"
 load_file = sys.argv[9]
@@ -71,15 +71,11 @@ sigma2_1=delta_1*delta_1/4 # sigma=delta/2
 REUSE = None
 
 x = tf.placeholder(tf.float32,shape=(batch_size, img_size))
+hidden_w = tf.placeholder(tf.float32,shape=(read_size, h_size))
+hidden_b = tf.placeholder(tf.float32,shape=(h_size,))
 onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, output_size))
 mask = tf.placeholder(tf.float32, shape=(h_size))
 
-MODE = "CAA_const_fN"
-swap_index = 3000000
-swap_file = "model_runs/estimation/scalar_model/scalar_"+MODE+"_run"+str(test_run)+"/classifymodel_" + str(swap_index) + ".ckpt"
-ckpt_reader = tf.train.load_checkpoint(swap_file)
-hidden_w = ckpt_reader.get_tensor("hidden/w")
-hidden_b = ckpt_reader.get_tensor("hidden/b")
 print("hidden_w:", hidden_w)
 print("hidden_b:", hidden_b)
 
@@ -168,9 +164,9 @@ with tf.variable_scope("output",reuse=tf.AUTO_REUSE):
     masked_classification = tf.nn.softmax(linear(masked_hidden, output_size))
     classifications.append({
         "classification":classification,
-        "masked_classification":masked_classification,
+        #"masked_classification":masked_classification,
         "raw_output":raw_output,
-        "masked_raw_output":masked_raw_output,
+        #"masked_raw_output":masked_raw_output,
         "r":r,
         })
 

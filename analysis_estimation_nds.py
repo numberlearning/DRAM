@@ -10,8 +10,10 @@ from scipy import misc
 import time
 import sys
 from model_settings import min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test
-from FF_estimation_scalar_swap import classification, classifications, x, batch_size, output_size, dims, read_n, delta_1, hidden_w, hidden_b
-print('FF_estimation_scalar_swap')
+#from FF_estimation_scalar_swap import classification, classifications, x, batch_size, output_size, dims, read_n, delta_1, hidden_w, hidden_b
+#print('FF_estimation_scalar_swap')
+from FF_estimation_classifier_swap import classification, classifications, x, batch_size, output_size, dims, read_n, delta_1, hidden_w, hidden_b
+print('FF_estimation_classifier_swap')
 import load_input, load_estimation_test, load_incr_test
 
 sess_config = tf.ConfigProto()
@@ -121,6 +123,7 @@ def load_checkpoint_swap(it, test_run, human=False, path=None, scalar=False):
     checkpoint_path = "%s/classifymodel_%d.ckpt" % (path, it)
     #from tensorflow.python.tools.inspect_checkpoint import print_tensors_in_checkpoint_file
     #print_tensors_in_checkpoint_file(file_name=checkpoint_path, tensor_name='', all_tensors=False, all_tensor_names=False)
+    #print(tf.all_variables())
     saver.restore(sess, checkpoint_path)
     return loaded_hidden_w, loaded_hidden_b
 
