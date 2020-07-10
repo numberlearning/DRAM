@@ -45,7 +45,7 @@ print(sys.argv)
 train_iters = 3000100#20000000000
 eps = 1e-8 # epsilon for numerical stability
 rigid_pretrain = True
-test_run = sys.argv[2]
+test_run = 1#sys.argv[2] #TODO: change this!!!
 log_filename = sys.argv[8]
 settings_filename = folder_name + "/settings.txt"
 load_file = sys.argv[9]
@@ -79,15 +79,11 @@ sigma2_1=delta_1*delta_1/4 # sigma=delta/2
 REUSE = None
 
 x = tf.placeholder(tf.float32,shape=(batch_size, img_size))
+hidden_w = tf.placeholder(tf.float32,shape=(read_size, h_size))#(read_size, output_size))
+hidden_b = tf.placeholder(tf.float32,shape=(h_size,))
 onehot_labels = tf.placeholder(tf.float32, shape=(batch_size, image_label_size))
 mask = tf.placeholder(tf.float32, shape=(h_size))
 
-MODE = "CAA_const_fN"
-swap_index = 3000000
-swap_file = "model_runs/estimation/classifier_model/classifier_"+MODE+"_run"+str(test_run)+"/classifymodel_" + str(swap_index) + ".ckpt"
-ckpt_reader = tf.train.load_checkpoint(swap_file)
-hidden_w = ckpt_reader.get_tensor("hidden/w")
-hidden_b = ckpt_reader.get_tensor("hidden/b")
 print("hidden_w:", hidden_w)
 print("hidden_b:", hidden_b)
 
@@ -109,13 +105,15 @@ def filterbank(gx, gy, N):
     a = tf.reshape(tf.cast(tf.range(dims[0]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[0]
     b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[1]
 
+    b = tf.reshape(tf.cast(tf.range(dims[1]), tf.float32), [1, 1, -1]) # 1 x 1 x dims[1]
+
     mu_x_1 = tf.reshape(mu_x_1, [-1, N, 1]) # batch_size x N x 1
     mu_y_1 = tf.reshape(mu_y_1, [-1, N, 1])
     Fx_1 = tf.exp(-tf.square(a - mu_x_1) / (2*sigma2_1)) # batch_size x N x dims[0]
     Fy_1 = tf.exp(-tf.square(b - mu_y_1) / (2*sigma2_1)) # batch_size x N x dims[1]
     # normalize, sum over A and B dims
-    Fx_1=Fx_1/tf.maximum(tf.reduce_sum(Fx_1,2,keep_dims=True),eps)
-    Fy_1=Fy_1/tf.maximum(tf.reduce_sum(Fy_1,2,keep_dims=True),eps)
+    Fx_1=Fx_1/tf.maximum(tf.reduce_sum(Fx_1,2,keepdims=True),eps)
+    Fy_1=Fy_1/tf.maximum(tf.reduce_sum(Fy_1,2,keepdims=True),eps)
     return Fx_1,Fy_1
 
 def attn_window(scope,N):
@@ -143,7 +141,7 @@ def read(x):
         fimg_1 = tf.reshape(fimg_1,[-1, N*N])
         # normalization (if do norm, Pc will be nan)
         # scalar_1 = tf.reshape(tf.reduce_max(fimg_1, 1), [batch_size, 1])
-        # fimg_1 = fimg_1/tf.reduce_max(fimg_1, 1, keep_dims=True)
+        # fimg_1 = fimg_1/tf.reduce_max(fimg_1, 1, keepdims=True)
         fimg = fimg_1 
         return fimg
 
@@ -170,7 +168,7 @@ def dense_to_one_hot(labels_dense, num_classes=output_size):
 # initial states
 r, stats = read(x) 
 rr=r
-maxr=tf.reduce_max(rr,1, keep_dims=True)
+maxr=tf.reduce_max(rr,1, keepdims=True)
 classifications = list()
 hiddens = list()
 
@@ -299,8 +297,6 @@ if __name__ == '__main__':
             extra_time = extra_time + time.clock() - start_evaluate
             print("--- %s CPU seconds ---" % (time.clock() - start_time - extra_time))
             if i == 0:
-                log_file = open(log_filename, 'w')
-                settings_file = open(settings_filename, "w")
                 settings_file.write("learning_rate = " + str(learning_rate) + ", ")
                 settings_file.write("batch_size = " + str(batch_size) + ", ")
                 settings_file.write("min_blobs_train = " + str(min_blobs_train) + ", ")

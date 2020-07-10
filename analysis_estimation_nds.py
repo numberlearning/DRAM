@@ -10,13 +10,16 @@ from scipy import misc
 import time
 import sys
 from model_settings import min_blobs_train, max_blobs_train, min_blobs_test, max_blobs_test
-from FF_estimation import classification, classifications, x, batch_size, output_size, dims, read_n, delta_1 
+from FF_estimation_scalar_swap import classification, classifications, x, batch_size, output_size, dims, read_n, delta_1, hidden_w, hidden_b
+print('FF_estimation_scalar_swap')
 import load_input, load_estimation_test, load_incr_test
 
 sess_config = tf.ConfigProto()
 sess_config.gpu_options.allow_growth = True
 sess = tf.InteractiveSession(config=sess_config)
 
+#saver_hidden = tf.train.Saver(["hidden/a", "hidden/b"])
+#saver_output = tf.train.Saver()
 saver = tf.train.Saver()
 last_imgs = None
 
@@ -104,6 +107,22 @@ def split_imgs():
 
 def load_checkpoint(it, human=False, path=None):
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
+
+def load_checkpoint_swap(it, test_run, human=False, path=None, scalar=False):
+    MODE = "DAA_const_fN"
+    swap_index = 3000000
+    if scalar:
+        swap_file = "model_runs/estimation/classifier_model/classifier_"+MODE+"_run"+str(test_run+1)+"/classifymodel_" + str(swap_index) + ".ckpt"
+    else:
+        swap_file = "model_runs/estimation/scalar_model/scalar_"+MODE+"_run"+str(test_run+1)+"/classifymodel_" + str(swap_index) + ".ckpt"
+    ckpt_reader = tf.train.load_checkpoint(swap_file)
+    loaded_hidden_w = ckpt_reader.get_tensor("hidden/w")
+    loaded_hidden_b = ckpt_reader.get_tensor("hidden/b")
+    checkpoint_path = "%s/classifymodel_%d.ckpt" % (path, it)
+    #from tensorflow.python.tools.inspect_checkpoint import print_tensors_in_checkpoint_file
+    #print_tensors_in_checkpoint_file(file_name=checkpoint_path, tensor_name='', all_tensors=False, all_tensor_names=False)
+    saver.restore(sess, checkpoint_path)
+    return loaded_hidden_w, loaded_hidden_b
 
 def classify_imgs(it, new_imgs, num_imgs, path=None): 
     out = list()
@@ -326,6 +345,40 @@ def classify_imgs_po(it, new_imgs, num_imgs, path=None, incremental=False, scala
 
     load_checkpoint(it, human=False, path=path)
     inner_cs = sess.run(classifications, feed_dict={x: imgs.reshape(num_imgs, dims[0] * dims[1])})
+    for idx in range(num_imgs):
+        img = imgs[idx]
+        flipped = np.flip(img.reshape(100, 100), 0)
+        cs = list()
+        cs.append(inner_cs[0]["classification"][idx])
+
+        item = {
+            "img": flipped,
+            "label": labels[idx],
+            "classifications": cs
+        }
+        out.append(item)
+
+    return out
+
+
+def classify_imgs_po_swap(it, new_imgs, num_imgs, test_run, path=None, incremental=False, scalar=False): 
+    out = list()
+    global last_imgs
+    if new_imgs or last_imgs is None:
+        last_imgs = po_imgs(num_imgs)
+
+    imgs, labels_scalar, labels_classifier = last_imgs
+    if scalar:
+        labels = labels_scalar
+    else:
+        labels = labels_classifier
+    imgs = np.asarray(imgs)
+
+    loaded_hidden_w, loaded_hidden_b = load_checkpoint_swap(it, test_run, human=False, path=path, scalar=scalar)
+    inner_cs = sess.run(classifications,feed_dict={
+                x: imgs.reshape(num_imgs, dims[0] * dims[1]),
+                hidden_w: loaded_hidden_w,
+                hidden_b: loaded_hidden_b})
     for idx in range(num_imgs):
         img = imgs[idx]
         flipped = np.flip(img.reshape(100, 100), 0)
