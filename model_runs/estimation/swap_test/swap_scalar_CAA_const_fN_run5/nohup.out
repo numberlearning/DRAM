@@ -1,0 +1,80 @@
+['FF_estimation_scalar_swap.py', 'estimation/swap_test/swap_scalar_CAA_const_fN_run5', '5', 'true', 'true', 'true', 'true', 'true', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run5/classify_log.csv', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run5/classifymodel_0.ckpt', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run5/classifymodel_', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run5/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+hidden_w: [[ 5.2235983e-02  1.3392963e-02  1.9014830e-02 ...  2.0404419e-02
+  -5.9873988e-03 -1.6420364e-02]
+ [-6.6451684e-02  1.2992669e-02 -1.7645773e-02 ...  4.4440985e-05
+  -1.6765218e-02  6.2149268e-04]
+ [-5.9966664e-03 -4.5189496e-02 -6.2783167e-02 ...  3.4970369e-02
+   6.6280752e-02 -1.8104836e-02]
+ ...
+ [-1.2786166e-02 -4.7402743e-02 -3.6025031e-03 ... -1.3294138e-02
+   1.6798025e-01  2.0424683e-02]
+ [-3.3403533e-03  4.7201205e-02 -9.7751737e-02 ... -1.7410012e-02
+   4.4552583e-02 -3.4178756e-02]
+ [ 3.8074225e-03 -4.8207715e-03 -2.1488979e-02 ... -4.0488478e-02
+  -6.0996581e-02 -2.5191521e-02]]
+hidden_b: [ 1.1361797   0.86249405  1.2389148   1.4338672   1.4159869   1.3181971
+  1.737185    1.3580822   1.3611493   1.1383789   1.3483076   1.3859779
+ -0.36733806  1.2223902   1.2753252   1.2729559   1.4960107   1.6182853
+  1.2694076   1.2766445   1.2384713   1.3273381   9.781464    1.5007464
+  1.3024352   1.253314    1.4852582   1.2925407   1.8033489   1.253226
+ -2.3695045   1.423666    1.4188229   0.98883885  0.98634404  1.2600917
+  0.924202    1.1490924   1.3541428   1.3092711   1.1304008  -1.0180578
+  1.6668441   0.9519174   1.4113021   1.368734    1.1494888   1.5267662
+  1.3050728   1.4273705   1.0504063   1.6395576   1.2607205   1.3574972
+  1.2079562   1.438555    1.1388842   0.43872476  1.5472012   1.372513
+  1.1913416   1.625417    1.6587312   1.6238383   1.4292698   0.8647864
+  1.0311047  -1.2768039   0.9815077   1.3623557   1.4335217   1.2010902
+  0.95688933  1.5986259   1.3102589   1.8288286   1.3155797   1.0043144
+  1.1380672   1.465926    1.7300704   1.3699841   1.5296996   1.0250696
+  1.1945121   1.1107905   1.3338393   1.372433    1.4892421   1.046544
+  1.1249973  -2.7307131   1.2090423  -1.3575044   1.0523422   1.5947655
+  1.3136078   5.7958465   1.5631056   1.383755    1.068302    1.3157074
+  1.2605236   0.9817109   1.1105671   1.9392612   1.3368239   1.5443566
+ -4.1840553   1.2252089   3.581813    1.0017387   1.0791036   1.0163563
+  1.4844197   1.3836645   1.0876676   0.934757    1.3298298   2.2155447
+ -3.5365663   1.4651808   1.7837998   1.409088    1.1084267   1.3916487
+  1.1862963   1.442762    1.1099741   1.2903823   0.94112265  1.2184112
+  1.4029745   1.3771778   1.0650837   1.063733    1.2859443   1.1121083
+  1.1008803   1.3602263   1.2435635   1.0864613   1.8244514   1.422936
+  1.1266197   1.4128633   1.3010631   1.1946849   1.4849668   1.2211804
+  1.3534983   1.2107742   1.2593299   1.1403538   1.6160147   1.4099697
+  1.1602972   1.2091483   1.5612513   0.8060467   1.6084366   1.0224423
+  1.4541358   1.4807049   1.1282401   1.0441126   1.5652717   2.0650916
+  1.0393039   1.6138663   1.1333113   1.2620658   1.3488061   1.185735
+  1.4419839   1.0521383   1.1861948   1.2394968   1.668884   -0.8790217
+  1.6118419   1.3579824   1.6493318   0.9459615   1.5564938   1.0130199
+  1.1777495   1.5774286   1.0807602   1.3440337   1.8621073   1.2035942
+  1.6049907   1.2170452   1.272619    1.3350769   1.2544712   1.0941895
+  1.4942243   1.0553416   1.5139215   1.472612    1.1412634   1.5408185
+ -0.7747903   0.9198438   7.0420713   1.2086935   1.4135481   0.98168933
+  1.2226344   1.106547    1.2362858   1.4020247   1.4818954   1.375583
+  1.597677    0.8763426   1.6960738   1.5232435   1.2633682   1.5077935
+  1.1562228   1.2139207   1.1641476   0.7897339   1.105606    1.4607226
+  1.3346834   1.1184647   1.3984933   5.538218    0.9969653   1.4735067
+  1.5359353   1.2223725   1.2457422   1.2617892   1.2959197   1.1221601
+  1.4317377   1.1463755   1.2275589   1.224443    1.0763353   1.3851657
+  1.4358437   1.2252642   0.9217156   1.5868295 ]
+WARNING:tensorflow:From FF_estimation_scalar_swap.py:117: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From FF_estimation_scalar_swap.py:173: calling reduce_max (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2020-07-04 09:58:14.952468: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-07-04 09:58:14.953951: E tensorflow/stream_executor/cuda/cuda_driver.cc:406] failed call to cuInit: CUDA_ERROR_NO_DEVICE
+2020-07-04 09:58:14.954007: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:158] retrieving CUDA diagnostic information for host: psy-pdp-guppy
+2020-07-04 09:58:14.954018: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:165] hostname: psy-pdp-guppy
+2020-07-04 09:58:14.954060: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:189] libcuda reported version is: 390.116.0
+2020-07-04 09:58:14.954092: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:193] kernel reported version is: 390.30.0
+2020-07-04 09:58:14.954102: E tensorflow/stream_executor/cuda/cuda_diagnostics.cc:303] kernel version 390.30.0 does not match DSO version 390.116.0 -- cannot find working devices in this configuration
+iter=0 : Reward: 0.000000 Pc: 0.000000
+Traceback (most recent call last):
+  File "FF_estimation_scalar_swap.py", line 296, in <module>
+    test_accuracy = evaluate()
+  File "FF_estimation_scalar_swap.py", line 214, in evaluate
+    data.get_test(1, min_blobs_test, max_blobs_test) # MT
+  File "/home/mtfang/DRAM/load_input.py", line 33, in get_test
+    self.images, self.labels = create_natural_data.generate_data(even, min_blobs, max_blobs) # MT
+  File "/home/mtfang/DRAM/create_natural_data.py", line 97, in generate_data
+    train = np.zeros([total, img_height*img_width]) # input img size
+MemoryError

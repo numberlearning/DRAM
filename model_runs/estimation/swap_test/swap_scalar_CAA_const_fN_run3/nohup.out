@@ -1,0 +1,80 @@
+['FF_estimation_scalar_swap.py', 'estimation/swap_test/swap_scalar_CAA_const_fN_run3', '3', 'true', 'true', 'true', 'true', 'true', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run3/classify_log.csv', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run3/classifymodel_0.ckpt', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run3/classifymodel_', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run3/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+hidden_w: [[ 0.01202456 -0.19158857 -0.0190829  ... -0.31669056  0.0005119
+   0.05531369]
+ [-0.01742321  0.03777157  0.0154511  ... -0.40842402  0.00820753
+  -0.00319202]
+ [ 0.01342855  0.01839544  0.03451486 ... -0.46016377 -0.00596214
+   0.00503162]
+ ...
+ [ 0.02029394 -0.02715484  0.03846364 ...  0.02617555  0.07034858
+  -0.01984884]
+ [ 0.05258651 -0.00847     0.01814029 ...  0.03799125 -0.03647659
+   0.02314928]
+ [ 0.05452621  0.00498001 -0.03810536 ... -0.04895011 -0.02037715
+  -0.02216793]]
+hidden_b: [ 1.7692993   1.2422485   1.5828489   1.3098514   1.077308    1.2834841
+  1.5325633   1.1546372   1.174331    1.3130232   1.3210669   1.4502934
+  1.374944    1.2258453   1.6432112  -2.0585012   1.2497504   1.094717
+  1.0150688   0.9832713   1.4397542   1.1549573   1.0467855   1.4123136
+  1.3313862   0.66623145  1.2253449   1.6997083   1.0157447   0.9972593
+  1.0021921   1.194548    1.3205853   1.2249435   1.5760212   1.2756447
+  1.0200815   1.1483442   1.4031634   0.86615455  1.3505666   1.1704742
+  1.2972466   1.0489602   1.5065616   1.5271968   1.4011966   1.3251022
+  1.276331    1.0848993  -0.51649123  1.2951323   0.8501012   1.6120313
+  1.5740963   1.533389    1.0898614   1.3172457   1.4038094   1.160521
+  1.2497075   0.83752906  0.79608893  2.0500383   0.74423546  0.8712493
+  9.821972    7.814024    1.0892836   1.2001022   1.3189833   1.4894996
+  1.3714739   1.1138684   1.6023681   1.7479758   1.2788055   1.5903978
+  1.0646569   1.25385     1.363354    1.5454241   1.049812    1.2154831
+  1.3767887   1.5457244   0.8200755   1.3624847   1.5758852   1.8417279
+  1.1570008   1.1087072   1.4238948   0.9880111   1.2677121   1.4733455
+  1.3205572   1.5629073   1.4756354   1.0594707   1.3659253   1.3504624
+  1.2209687   1.4229134   1.4596623   1.1359133   1.2189084   1.4895027
+  1.2121354   1.0013158   1.0787708   1.258298    1.05479     1.1508424
+  1.3861126   1.141938    1.3406878   1.7364094   1.1966377   1.5849202
+  1.1275195   1.6009007   0.97552514  1.5072478   1.4759449   1.2547356
+  1.0925134   1.3186233   1.0263723   1.2549589   1.7149495   1.4139884
+  1.4019613   1.5682861   1.1751134   1.2495251   1.2217354   1.1606547
+  1.1507972   1.3416597   1.0511334   1.1884881   1.3226972   1.0561498
+  1.466709    1.0093713   1.4539509   1.7039186   1.6704386   1.2408915
+  1.3276035   0.9435328   1.376667    0.7623775   1.3924503   1.2495106
+  6.987021    1.5962524   1.7643753   1.2583436   0.9943028   1.232606
+  1.2184817   1.2019557   1.4878666   1.4880905   1.3869224  -2.8805294
+  1.4933462   1.0237607   0.83014596  1.8719378   1.5559084   1.8447828
+  1.2407825   1.3409915   1.2517323   1.7670833   1.0149319   1.4666029
+  1.2132672   1.0019011   1.027228    1.3450347   1.535376    1.0868102
+  1.1258388   1.3105079   1.4253896   1.0802214   1.4836823   1.4301693
+  1.2999948   1.3008215   1.4989356   1.1938344   1.3094193   1.4892616
+  1.7035629   1.4532874   1.4558877   1.4415987   1.390983    1.4676785
+  1.112185    1.0285528   1.5900288  -2.6498954   1.4213934   1.1226757
+  1.3011461   1.5343537   1.2099397   1.1880435   1.6083475   1.1401708
+  1.0264175   1.2405772   1.3670741   1.487118    1.4416916   1.2622874
+  1.3936546   1.2536103   1.581969    1.2334063   1.3870945   1.1843915
+  1.5437324   1.0784614   1.1898694   2.7457638   1.3854473   1.2084209
+ -5.7491484   1.0782578   1.3948206   1.3956114   1.2356296   1.2271569
+  1.5558033   1.0964055  -1.544118    1.3474543   1.3450004   0.97088087
+  1.3888985   1.0961443   1.1558465   1.1266704 ]
+WARNING:tensorflow:From FF_estimation_scalar_swap.py:117: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From FF_estimation_scalar_swap.py:173: calling reduce_max (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2020-07-04 09:58:14.914819: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-07-04 09:58:14.918515: E tensorflow/stream_executor/cuda/cuda_driver.cc:406] failed call to cuInit: CUDA_ERROR_NO_DEVICE
+2020-07-04 09:58:14.918605: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:158] retrieving CUDA diagnostic information for host: psy-pdp-guppy
+2020-07-04 09:58:14.918618: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:165] hostname: psy-pdp-guppy
+2020-07-04 09:58:14.918679: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:189] libcuda reported version is: 390.116.0
+2020-07-04 09:58:14.918732: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:193] kernel reported version is: 390.30.0
+2020-07-04 09:58:14.918741: E tensorflow/stream_executor/cuda/cuda_diagnostics.cc:303] kernel version 390.30.0 does not match DSO version 390.116.0 -- cannot find working devices in this configuration
+iter=0 : Reward: 0.000800 Pc: 0.000000
+Traceback (most recent call last):
+  File "FF_estimation_scalar_swap.py", line 296, in <module>
+    test_accuracy = evaluate()
+  File "FF_estimation_scalar_swap.py", line 214, in evaluate
+    data.get_test(1, min_blobs_test, max_blobs_test) # MT
+  File "/home/mtfang/DRAM/load_input.py", line 33, in get_test
+    self.images, self.labels = create_natural_data.generate_data(even, min_blobs, max_blobs) # MT
+  File "/home/mtfang/DRAM/create_natural_data.py", line 97, in generate_data
+    train = np.zeros([total, img_height*img_width]) # input img size
+MemoryError

@@ -1,0 +1,70 @@
+['FF_estimation_scalar_swap.py', 'estimation/swap_test/swap_scalar_CAA_const_fN_run1', '1', 'true', 'true', 'true', 'true', 'true', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run1/classify_log.csv', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run1/classifymodel_0.ckpt', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run1/classifymodel_', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run1/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+hidden_w: [[-1.6469395e-03  7.4806392e-02  1.3849573e-02 ...  1.0527719e-02
+   1.6301945e-02 -2.6116174e-02]
+ [-2.4414148e-02 -3.7259767e-03 -3.2901503e-03 ... -9.8233167e-03
+   7.0258169e-03  4.4696197e-02]
+ [ 4.3407973e-02 -3.1746642e-03 -7.8305759e-02 ...  2.8710248e-02
+   4.0033177e-02  3.3903547e-02]
+ ...
+ [-3.7269004e-02 -2.5178416e-02 -5.9751201e-01 ...  5.3593732e-02
+   5.7869325e-03 -4.5143194e-02]
+ [ 2.5137814e-02 -1.5940293e-04 -3.9786899e-01 ... -2.6503503e-02
+  -1.2055073e-03 -6.6305366e-03]
+ [-6.3254465e-03  2.6009038e-02 -1.9400761e-01 ...  8.4636547e-03
+  -4.0238919e-03  1.1921821e-02]]
+hidden_b: [ 1.4298726   1.4276081   1.4492735   1.1649147   1.8382046   1.1493887
+ -1.4276868   1.3631396   2.2160907   1.4507626   1.6303521   1.1569803
+  1.5646803   1.3804457   1.2972782   1.0522715   1.2766522   1.4886993
+  0.9495889   1.1400273  -0.65071654  1.1137401   1.2288754   1.3855416
+  1.2553678  -2.4307692   1.5642482   1.2492273   1.4079398   1.3645568
+  1.3721639   1.0718678   1.5828764   1.1107416   1.2428144   1.2227561
+  1.2890528   1.3956404   1.6681191   0.83480066  1.2871586   1.3360264
+  1.3348602   1.3382428   1.3838027   1.0767235   1.3992369   1.1887583
+  1.2902309   0.9968376   1.4441775   0.944126    1.0051973   1.4242029
+  1.4857054   0.19907355  1.1770067   1.4518906   1.0149826   1.0735294
+  1.246001    1.6304909   1.1844685   0.8151462   1.3168153   1.3763146
+  1.1406155   1.489654    1.3067247   1.1963266   1.1464084   1.3422258
+  0.9936197   1.295516    1.0033696   1.2452815   1.4034905   1.2151306
+  1.0275687   1.5682238   1.4832795   1.2196137   1.432778    1.2097186
+  1.3635566   1.134754    0.9892029   1.16525     1.524445    1.1394659
+  1.2820164   1.1600653   1.3481513   1.4095474   1.2469739   1.6747295
+  1.2158867   1.3171676   1.4076033   1.4584467   1.4164377   1.5860206
+  1.5300895   1.4287021   0.90263134 -2.122085    1.1533508   1.0648946
+  0.95086914  1.3730899   1.3571725   1.3407156  10.54398     1.533427
+  1.2485543   1.3207285   1.1340343  -3.3402984   0.7007326   1.7606801
+  1.8033991   1.2895726   1.4880415   1.3136888   1.5180321   1.2452332
+  1.617184    1.4619807   1.1295801   1.4980175   1.3707066   1.4047884
+  0.40532514  1.0535923   0.74419373  0.8312434   0.6824141   0.9756143
+  1.0707232   1.2640265   1.2727609   1.9898306   1.1119555   1.069769
+  1.1165707   1.968264    1.034009    1.4723232   1.6380146   1.1056701
+  1.1231111   0.6889609   1.5202982   1.1384608   1.204278    0.91599405
+  1.4569024   1.5218022   1.2014171   0.979539    0.94458413  1.3281609
+  1.1910115   1.041021    1.5603442   1.2338709   1.3669688   1.1900998
+  0.8879972   1.6466706   1.2267225   0.90737563  1.2939208   1.3086829
+  1.1754096  -0.97223425  1.5925788   1.0545508   1.203472    0.98412603
+  1.106829    1.6691415   1.318918    1.2604024  -1.2276999   1.2682196
+  1.4055024   1.0683639   1.0556772   1.1142696   1.194647    1.4563171
+  1.4583195   1.3326494   1.2160021   1.0785578   1.1977246   1.2899377
+  1.3101895   1.475034    1.1119529   1.3115772   1.4129779   1.4598393
+  1.7712828   1.018529    4.6710386   0.9893759   1.286628    1.1442502
+  1.3388932   1.134722    0.9641719   1.6659744   1.3291433   1.6873219
+  1.0225265   0.95599866  1.6161951   0.87851995  1.5473228   1.2603388
+  1.4571062   1.3833169   1.0791856   1.2255317   1.6378998   0.98860323
+  1.3098773   1.0012896   1.175833    1.723966    1.154137    1.2026746
+  1.3039348   1.1574862   1.5786612   0.83035535  0.9650981   1.1461077
+  1.5195234  -5.062781    1.4140961   1.213664    1.2535822   1.6545613
+  1.1144367   1.4415172   9.192761    1.0831513 ]
+WARNING:tensorflow:From FF_estimation_scalar_swap.py:117: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From FF_estimation_scalar_swap.py:173: calling reduce_max (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2020-07-04 09:58:14.808604: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-07-04 09:58:14.836000: E tensorflow/stream_executor/cuda/cuda_driver.cc:406] failed call to cuInit: CUDA_ERROR_NO_DEVICE
+2020-07-04 09:58:14.836536: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:158] retrieving CUDA diagnostic information for host: psy-pdp-guppy
+2020-07-04 09:58:14.836558: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:165] hostname: psy-pdp-guppy
+2020-07-04 09:58:14.837244: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:189] libcuda reported version is: 390.116.0
+2020-07-04 09:58:14.837299: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:193] kernel reported version is: 390.30.0
+2020-07-04 09:58:14.837310: E tensorflow/stream_executor/cuda/cuda_diagnostics.cc:303] kernel version 390.30.0 does not match DSO version 390.116.0 -- cannot find working devices in this configuration
+iter=0 : Reward: 0.000600 Pc: 0.000000

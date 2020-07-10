@@ -1,0 +1,78 @@
+['FF_estimation_scalar_swap.py', 'estimation/swap_test/swap_scalar_CAA_const_fN_run7', '7', 'true', 'true', 'true', 'true', 'true', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run7/classify_log.csv', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run7/classifymodel_0.ckpt', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run7/classifymodel_', 'model_runs/estimation/swap_test/swap_scalar_CAA_const_fN_run7/zzzdraw_data_5000.npy', 'false', 'true', 'false', 'false', 'true']
+hidden_w: [[ 0.04025376  0.03689584  0.02581293 ... -0.01053984 -0.04619173
+   0.00414999]
+ [-0.02750487  0.05923181 -0.04617208 ... -0.04435987  0.00203502
+   0.04706398]
+ [-0.54487616 -0.00344817 -0.02653692 ... -0.03214004  0.03550847
+  -0.01410672]
+ ...
+ [-0.03267665 -0.50690436  0.0154969  ...  0.07684626  0.00617398
+   0.03077729]
+ [-0.02395647 -0.0277886   0.0147035  ...  0.10627368 -0.02756878
+  -0.03116093]
+ [ 0.00217998  0.03172014  0.03023623 ... -0.39702186 -0.06361046
+   0.01755031]]
+hidden_b: [ 1.7035654   1.2191494   1.2046869   1.0539232   1.5238414   1.4518405
+ -6.000318    1.3173187   1.4629506   1.1533895   1.3678257   1.9683163
+  1.3612707   1.6272023   1.1592852   1.3763427   1.8075441   2.3613791
+  1.0352379   1.2762073   1.2041495   1.4364266   1.1670815   1.8692485
+  0.6032693   1.2176269   1.076179   11.742132    1.6035957   1.3335769
+  1.2001923   1.012943    1.4806768   0.95987046  1.529515    1.0663648
+  1.3837396   1.6527578   1.3819926  -0.22893004  1.1450255   1.2018224
+  1.3753262   1.7499944   1.3782314   1.4830326   1.1222873   1.7146666
+  0.86585677  1.0225053   1.3885199   1.3616337   1.0894352   0.62269646
+  0.9414601   1.5476829   1.7890862   0.8101679   1.4066318   1.2514843
+  1.71715     1.1570146   1.515551    1.2906151   1.3703452   1.1165146
+  1.3233353   1.4012432   1.3714298   0.90854925 -0.13849452  1.2316077
+  1.0677943   1.5443714   1.2927197   1.0950403   1.4506364   1.4898905
+  1.3874518   1.1596694   1.2390238   1.2418078   1.5235678   1.0315633
+  1.0662987   1.1009606   1.4078503   1.1053139   1.2115831   1.0896704
+  1.357278    0.71728295  1.4072437   1.1651938   1.0953199   1.3093872
+  1.3392729   1.5464076   0.9936139   1.2384149   1.017526    0.89236563
+  1.7435929   1.3469518   1.229462    1.389151    1.1142669   0.85783994
+  1.5547544   1.0008565  -1.1954283   1.319375    1.3211883   1.2852237
+  1.0804839   1.4626368   1.5099128   1.2845393   1.2681344   0.911491
+ -2.1685643   1.3325099   1.2522541   1.1344502   1.0366448   1.2806317
+ -0.56408834  1.955773    1.1920121   8.544723    1.5849305   1.1877518
+  1.6232567   1.1641437   1.0568066   1.4708902   1.3736876   0.7586012
+  1.5355455   1.4932408   1.2954322   1.165155    1.2953532   0.8432463
+  1.4762923   0.739722    1.6670523   1.4505495   0.8992721   1.5914135
+  0.9804487   1.7145323   1.3181832   1.2708085   1.393011    1.381568
+  1.3375195   1.1433597   1.6979698   1.3332573   1.4917743   0.736464
+  1.0992522   1.1068419   1.2313131   1.5783963   0.47443935  1.1933812
+  1.4328036   1.2545735   1.193543    1.0963169   1.0660577   1.00318
+  1.7925482   1.3828559   1.1437331   1.3986648   1.3876106   1.3109839
+  1.3041592   3.8387985   1.5307087   1.4695731   1.05724     1.0651132
+  1.3651693   1.2806345   1.1919763   1.143227    1.3803397   1.3246834
+  1.2135328   1.3214389  -1.1193917   1.2897564   1.5077592   1.1804487
+  1.2160517   0.9899189   1.1831931   1.6972855   1.1385739   0.8925904
+  1.5425432   0.8971742   1.201016    1.3474305   0.61530674  1.4753094
+  1.0667294   1.1557817   1.2753228   0.9600651   1.36521     1.5157747
+  1.5791714   2.0085008   1.2544564   1.1824272   1.5991725   0.982823
+  1.764999    1.5534604   1.159834    1.405716    1.2886751   1.380337
+  1.5627205   1.480332    1.5218365   1.1108106   1.1696465   1.0717835
+  1.4055301   1.5022471   1.3785468   1.2064185   1.0906296   1.1019278
+  1.3445199   1.3243781   1.0690007   1.9488735   1.1262977   1.445773
+  0.7878676   1.1828426   1.4276395   1.1874256 ]
+WARNING:tensorflow:From FF_estimation_scalar_swap.py:117: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+WARNING:tensorflow:From FF_estimation_scalar_swap.py:173: calling reduce_max (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2020-07-04 09:58:41.304783: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-07-04 09:58:43.802408: E tensorflow/stream_executor/cuda/cuda_driver.cc:406] failed call to cuInit: CUDA_ERROR_NO_DEVICE
+2020-07-04 09:58:43.802960: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:158] retrieving CUDA diagnostic information for host: psy-pdp-guppy
+2020-07-04 09:58:43.802971: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:165] hostname: psy-pdp-guppy
+2020-07-04 09:58:43.804133: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:189] libcuda reported version is: 390.116.0
+2020-07-04 09:58:43.804632: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:193] kernel reported version is: 390.30.0
+2020-07-04 09:58:43.804644: E tensorflow/stream_executor/cuda/cuda_diagnostics.cc:303] kernel version 390.30.0 does not match DSO version 390.116.0 -- cannot find working devices in this configuration
+iter=0 : Reward: 0.000800 Pc: 0.000000
+Traceback (most recent call last):
+  File "FF_estimation_scalar_swap.py", line 289, in <module>
+    train_data.get_train(None, min_blobs_train, max_blobs_train) # MT
+  File "/home/mtfang/DRAM/load_input.py", line 27, in get_train
+    self.images, self.labels = create_natural_data.generate_data(even, min_blobs, max_blobs)
+  File "/home/mtfang/DRAM/create_natural_data.py", line 97, in generate_data
+    train = np.zeros([total, img_height*img_width]) # input img size
+MemoryError
