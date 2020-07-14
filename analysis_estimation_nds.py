@@ -110,13 +110,12 @@ def split_imgs():
 def load_checkpoint(it, human=False, path=None):
     saver.restore(sess, "%s/classifymodel_%d.ckpt" % (path, it))
 
-def load_checkpoint_swap(it, test_run, human=False, path=None, scalar=False):
-    MODE = "DAA_const_fN"
+def load_checkpoint_swap(it, mode, test_run, human=False, path=None, scalar=False):
     swap_index = 3000000
     if scalar:
-        swap_file = "model_runs/estimation/classifier_model/classifier_"+MODE+"_run"+str(test_run+1)+"/classifymodel_" + str(swap_index) + ".ckpt"
+        swap_file = "model_runs/estimation/classifier_model/classifier_"+mode+"_run"+str(test_run+1)+"/classifymodel_" + str(swap_index) + ".ckpt"
     else:
-        swap_file = "model_runs/estimation/scalar_model/scalar_"+MODE+"_run"+str(test_run+1)+"/classifymodel_" + str(swap_index) + ".ckpt"
+        swap_file = "model_runs/estimation/scalar_model/scalar_"+mode+"_run"+str(test_run+1)+"/classifymodel_" + str(swap_index) + ".ckpt"
     ckpt_reader = tf.train.load_checkpoint(swap_file)
     loaded_hidden_w = ckpt_reader.get_tensor("hidden/w")
     loaded_hidden_b = ckpt_reader.get_tensor("hidden/b")
@@ -364,7 +363,7 @@ def classify_imgs_po(it, new_imgs, num_imgs, path=None, incremental=False, scala
     return out
 
 
-def classify_imgs_po_swap(it, new_imgs, num_imgs, test_run, path=None, incremental=False, scalar=False): 
+def classify_imgs_po_swap(it, new_imgs, num_imgs, mode, test_run, path=None, incremental=False, scalar=False): 
     out = list()
     global last_imgs
     if new_imgs or last_imgs is None:
@@ -377,7 +376,7 @@ def classify_imgs_po_swap(it, new_imgs, num_imgs, test_run, path=None, increment
         labels = labels_classifier
     imgs = np.asarray(imgs)
 
-    loaded_hidden_w, loaded_hidden_b = load_checkpoint_swap(it, test_run, human=False, path=path, scalar=scalar)
+    loaded_hidden_w, loaded_hidden_b = load_checkpoint_swap(it, mode, test_run, human=False, path=path, scalar=scalar)
     inner_cs = sess.run(classifications,feed_dict={
                 x: imgs.reshape(num_imgs, dims[0] * dims[1]),
                 hidden_w: loaded_hidden_w,
