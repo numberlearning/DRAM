@@ -509,5 +509,5 @@ def classify_imgs_lh(it, new_imgs, num_imgs, path=None):
         }
         out.append(item)
     return out
-
+sess.close()
 print("analysis_estimation_nds.py")
